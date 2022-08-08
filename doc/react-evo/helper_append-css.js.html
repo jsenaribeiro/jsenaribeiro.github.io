@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: storer/usage.js</title>
+    <title>JSDoc: Source: helper/append-css.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: storer/usage.js</h1>
+    <h1 class="page-title">Source: helper/append-css.js</h1>
 
     
 
@@ -26,16 +26,20 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { store } from "./provider";
-/**
- * Creates a sub-store
- * @param selector select the sub-object in store object
- * @returns return a sliced sub-store object
+            <pre class="prettyprint source linenums"><code>/**
+ * Adds a new CSS class name in current className list
+ * @param props current properties
+ * @param newClass new CSS class name to append
+ * @returns props with new CSS class name added
  */
-export function usageStore(selector) {
-    const at = (fn) => fn(selector(store));
-    const on = (fn) => (e) => fn(selector(store), e.target.value);
-    return [at, on];
+export function appendCss(props, newClass) {
+    const noNewClass = !newClass;
+    const noProps = !props;
+    if (noProps || noNewClass)
+        return props;
+    const classes = [props.className || "", newClass || ""];
+    const className = classes.join(" ");
+    return { ...props, className };
 }
 </code></pre>
         </article>
