@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Global</title>
+    <title>JSDoc: Module: Storing</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Global</h1>
+    <h1 class="page-title">Module: Storing</h1>
 
     
 
@@ -28,7 +28,6 @@
 
 <header>
     
-        <h2></h2>
         
     
 </header>
@@ -39,45 +38,6 @@
         
 
         
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
     
     </div>
 
@@ -85,6 +45,13 @@
 
     
 
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="module-Storing.Provider.html">Provider</a></dt>
+            <dd></dd>
+        </dl>
     
 
     
@@ -98,13 +65,13 @@
 
         
             
-<h4 class="name" id="cloneComponent"><span class="type-signature">(constant) </span>cloneComponent<span class="type-signature"></span></h4>
+<h4 class="name" id=".createProxy"><span class="type-signature">(static, constant) </span>createProxy<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    <p>Deep component cloning</p>
+    <p>Generate a deep proxy object</p>
 </div>
 
 
@@ -142,7 +109,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="storer_cloner.js.html">storer/cloner.js</a>, <a href="storer_cloner.js.html#line13">line 13</a>
+        <a href="storer_proxy.js.html">storer/proxy.js</a>, <a href="storer_proxy.js.html#line10">line 10</a>
     </li></ul></dd>
     
 
@@ -170,7 +137,7 @@
     
 
     
-    <h4 class="name" id="appendCss"><span class="type-signature"></span>appendCss<span class="signature">(props, newClass)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id=".useState"><span class="type-signature">(static) </span>useState<span class="signature">(state)</span><span class="type-signature"> &rarr; {object}</span></h4>
     
 
     
@@ -178,7 +145,7 @@
 
 
 <div class="description">
-    <p>Adds a new CSS class name in current className list</p>
+    <p>Create a local state object</p>
 </div>
 
 
@@ -214,7 +181,7 @@
 
         <tr>
             
-                <td class="name"><code>props</code></td>
+                <td class="name"><code>state</code></td>
             
 
             <td class="type">
@@ -230,30 +197,7 @@
 
             
 
-            <td class="description last"><p>current properties</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>newClass</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>new CSS class name to append</p></td>
+            <td class="description last"><p>initialized state object</p></td>
         </tr>
 
     
@@ -294,7 +238,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helper.js.html">helper.js</a>, <a href="helper.js.html#line7">line 7</a>
+        <a href="storer_usage.js.html">storer/usage.js</a>, <a href="storer_usage.js.html#line33">line 33</a>
     </li></ul></dd>
     
 
@@ -323,7 +267,7 @@
 
         
 <div class="param-desc">
-    <p>props with new CSS class name added</p>
+    <p>async self-rendering local state object</p>
 </div>
 
 
@@ -352,7 +296,7 @@
     
 
     
-    <h4 class="name" id="dispatch"><span class="type-signature"></span>dispatch<span class="signature">(evt, arg)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id=".useStore"><span class="type-signature">(static) </span>useStore<span class="signature">(select)</span><span class="type-signature"></span></h4>
     
 
     
@@ -360,7 +304,7 @@
 
 
 <div class="description">
-    <p>Multi-event dispatcher</p>
+    <p>Instantiate in global scope an smaller inner object from store object</p>
 </div>
 
 
@@ -396,200 +340,7 @@
 
         <tr>
             
-                <td class="name"><code>evt</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>event label</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>arg</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>event value</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="storer_listener.js.html">storer/listener.js</a>, <a href="storer_listener.js.html#line10">line 10</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>false if the event is not found</p>
-</div>
-
-
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="listener"><span class="type-signature"></span>listener<span class="signature">(evt, fnc)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Multi-event listener</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>evt</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>event label</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fnc</code></td>
+                <td class="name"><code>select</code></td>
             
 
             <td class="type">
@@ -605,7 +356,7 @@
 
             
 
-            <td class="description last"><p>event handler</p></td>
+            <td class="description last"><p>select an inner object from store object</p></td>
         </tr>
 
     
@@ -646,7 +397,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="storer_listener.js.html">storer/listener.js</a>, <a href="storer_listener.js.html#line22">line 22</a>
+        <a href="storer_usage.js.html">storer/usage.js</a>, <a href="storer_usage.js.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -671,20 +422,133 @@
 
 
 
-<h5>Returns:</h5>
+
+
+
+
 
         
-<div class="param-desc">
-    <p>event canceller</p>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="module-Storing.Provider.html">Provider</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".createProxy"><span class="type-signature">(static, constant) </span>createProxy<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Generate a deep proxy object</p>
 </div>
 
 
 
+
+
+
+
+<dl class="details">
+
     
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="storer_proxy.js.html">storer/proxy.js</a>, <a href="storer_proxy.js.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
 
 
 
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
 
         
             
@@ -692,7 +556,7 @@
     
 
     
-    <h4 class="name" id="module:Binding"><span class="type-signature"></span>module:Binding<span class="signature">(props, args)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id=".useState"><span class="type-signature">(static) </span>useState<span class="signature">(state)</span><span class="type-signature"> &rarr; {object}</span></h4>
     
 
     
@@ -700,7 +564,7 @@
 
 
 <div class="description">
-    <p>Directive for two-way data binding in form element</p>
+    <p>Create a local state object</p>
 </div>
 
 
@@ -736,7 +600,7 @@
 
         <tr>
             
-                <td class="name"><code>props</code></td>
+                <td class="name"><code>state</code></td>
             
 
             <td class="type">
@@ -752,30 +616,7 @@
 
             
 
-            <td class="description last"><p>current props</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>args</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">DirectiveArgs</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>directive args</p></td>
+            <td class="description last"><p>initialized state object</p></td>
         </tr>
 
     
@@ -816,7 +657,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="binder_form.js.html">binder/form.js</a>, <a href="binder_form.js.html#line9">line 9</a>
+        <a href="storer_usage.js.html">storer/usage.js</a>, <a href="storer_usage.js.html#line33">line 33</a>
     </li></ul></dd>
     
 
@@ -845,791 +686,7 @@
 
         
 <div class="param-desc">
-    <p>handled bind props for two-way data binding in uncontrolled components</p>
-</div>
-
-
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="module:Binding"><span class="type-signature"></span>module:Binding<span class="signature">(props, args)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Directive for input two-way data binding</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>props</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>current props</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>args</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">DirectiveArgs</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>directive args</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="binder_input.js.html">binder/input.js</a>, <a href="binder_input.js.html#line10">line 10</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>handles bind props for two-way data binding</p>
-</div>
-
-
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="module:Synchronizer"><span class="type-signature"></span>module:Synchronizer<span class="signature">(that, filter)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Loading request by HTTP get verb</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>that</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">ApiAsync</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>ApiSync context</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>filter</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>query object for query string GET request</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="syncer_load.js.html">syncer/load.js</a>, <a href="syncer_load.js.html#line11">line 11</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>responde queried from RESTful API</p>
-</div>
-
-
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="module:Synchronizer"><span class="type-signature"></span>module:Synchronizer<span class="signature">(that, reload)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Change request inference for POST, PUT and DELETE verbs</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>that</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">ApiAsync</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>ApiAsync context</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>reload</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>send a GET request after a change request?</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="syncer_save.js.html">syncer/save.js</a>, <a href="syncer_save.js.html#line23">line 23</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="register"><span class="type-signature"></span>register<span class="signature">(add)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Event registry</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>add</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>is add (else remove)?</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="storer_listener.js.html">storer/listener.js</a>, <a href="storer_listener.js.html#line34">line 34</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="useLanguage"><span class="type-signature"></span>useLanguage<span class="signature">(language)</span><span class="type-signature"> &rarr; {object}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Modular hook for change current i18n language</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>language</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>required locale</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="storer_i18n.js.html">storer/i18n.js</a>, <a href="storer_i18n.js.html#line25">line 25</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>selected or default locale</p>
+    <p>async self-rendering local state object</p>
 </div>
 
 
@@ -1647,6 +704,981 @@
 </dl>
 
     
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".useStore"><span class="type-signature">(static) </span>useStore<span class="signature">(select)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Instantiate in global scope an smaller inner object from store object</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>select</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>select an inner object from store object</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="storer_usage.js.html">storer/usage.js</a>, <a href="storer_usage.js.html#line9">line 9</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="module-Storing.Provider.html">Provider</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".createProxy"><span class="type-signature">(static, constant) </span>createProxy<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Generate a deep proxy object</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="storer_proxy.js.html">storer/proxy.js</a>, <a href="storer_proxy.js.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".useState"><span class="type-signature">(static) </span>useState<span class="signature">(state)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Create a local state object</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>initialized state object</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="storer_usage.js.html">storer/usage.js</a>, <a href="storer_usage.js.html#line33">line 33</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>async self-rendering local state object</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".useStore"><span class="type-signature">(static) </span>useStore<span class="signature">(select)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Instantiate in global scope an smaller inner object from store object</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>select</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>select an inner object from store object</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="storer_usage.js.html">storer/usage.js</a>, <a href="storer_usage.js.html#line9">line 9</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="module-Storing.Provider.html">Provider</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".createProxy"><span class="type-signature">(static, constant) </span>createProxy<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Generate a deep proxy object</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="storer_proxy.js.html">storer/proxy.js</a>, <a href="storer_proxy.js.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".useState"><span class="type-signature">(static) </span>useState<span class="signature">(state)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Create a local state object</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>initialized state object</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="storer_usage.js.html">storer/usage.js</a>, <a href="storer_usage.js.html#line33">line 33</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>async self-rendering local state object</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".useStore"><span class="type-signature">(static) </span>useStore<span class="signature">(select)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Instantiate in global scope an smaller inner object from store object</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>select</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>select an inner object from store object</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="storer_usage.js.html">storer/usage.js</a>, <a href="storer_usage.js.html#line9">line 9</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

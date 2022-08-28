@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: syncer/load.js</title>
+    <title>JSDoc: Class: ApiAsync</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,52 +17,204 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: syncer/load.js</h1>
+    <h1 class="page-title">Class: ApiAsync</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/** @module Synchronizer */
-import { syncher } from ".";
-import { context } from "../shared";
-import { error } from "./functions";
-/**
- * Loading request by HTTP get verb
- * @param {ApiAsync} that ApiSync context
- * @param {object} filter query object for query string GET request
- * @returns responde queried from RESTful API
- */
-export default async function loadAsync(that, filter) {
-    const headers = await that.headers();
-    const queries = filter &amp;&amp; "?" + new URLSearchParams(filter);
-    const settings = { headers, signal: syncher.canceller.signal };
-    const route = that.config.search?.route || that.config.route;
-    const url = that.config.url + route + queries;
-    syncher.isLoading = true;
-    context.render();
-    try {
-        const response = await fetch(url, settings);
-        const result = await response.json();
-        that.config.set(window.store, result);
-        return result;
-    }
-    catch (ex) {
-        console.log(0, ex);
-        syncher.exception = that.config.onError(error);
-    }
-    finally {
-        syncher.outOfSync = false;
-        syncher.isLoading = false;
-        context.render();
-    }
-}
-</code></pre>
-        </article>
-    </section>
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="module-Synchronizer.html">Synchronizer</a>.</span>ApiAsync<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description"><p>Synchronizer configurator class</p></div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+    <h2>Constructor</h2>
+    
+
+    
+    <h4 class="name" id="ApiAsync"><span class="type-signature"></span>new ApiAsync<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="syncer_class.js.html">syncer/class.js</a>, <a href="syncer_class.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="build"><span class="type-signature"></span>build<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Synchronization builder</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="syncer_class.js.html">syncer/class.js</a>, <a href="syncer_class.js.html#line36">line 36</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
