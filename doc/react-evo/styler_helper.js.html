@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Provider</title>
+    <title>JSDoc: Source: styler/helper.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,138 +17,36 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Provider</h1>
+    <h1 class="page-title">Source: styler/helper.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>
-            <span class="ancestors"><a href="module-Storing.html">Storing</a>.</span>Provider<span class="signature">()</span><span class="type-signature"></span></h2>
-        
-            <div class="class-description"><p>ReactEvo provider class</p></div>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-    
-    <h2>Constructor</h2>
-    
-
-    
-    <h4 class="name" id="Provider"><span class="type-signature"></span>new Provider<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="storer_provider.js.html">storer/provider.js</a>, <a href="storer_provider.js.html#line11">line 11</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**  @module Styling */
+/**
+ * Adds a new CSS class name in current className list
+ * @param {object} props current properties
+ * @param {string} newClass  new CSS class name to append
+ * @returns {object} props with new CSS class name added
+ */
+export function appendCss(props, newClass) {
+    const noProps = !props;
+    const noNewClass = !newClass;
+    if (noProps || noNewClass)
+        return props;
+    const classes = [props.className || "", newClass || ""];
+    const className = classes.join(" ").trim();
+    // classes.includes("del") &amp;&amp; console.log("appendCSS", className)
+    const newProps = { ...props, className };
+    return newProps;
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
