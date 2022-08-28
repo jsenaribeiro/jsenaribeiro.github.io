@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: syncer/functions.js</title>
+    <title>JSDoc: Source: syncer/interfaces.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: syncer/functions.js</h1>
+    <h1 class="page-title">Source: syncer/interfaces.js</h1>
 
     
 
@@ -27,43 +27,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/** @module synchronizer */
-import { ApiAsync } from "./class";
-/**
- * Default synchronizer configuration
- */
-const defaultSyncApi = {
-    route: "/",
-    idField: "id",
-    timeout: 5000,
-    caching: 1000,
-    avoidId: false,
-    retries: 0,
-    idRoute: true,
-    onError: (err) => err?.message,
-    querier: (_) => ({})
-};
-export const error = (text) => new Error("REACT-EVO (syncer): " + text);
-export const defineSync = (arg) => ({
-    set: arg.set,
-    get: arg.get,
-    url: arg.url || "",
-    route: arg.route || defaultSyncApi.route,
-    avoidId: arg.avoidId || defaultSyncApi.avoidId,
-    idField: arg.idField || defaultSyncApi.idField,
-    caching: arg.caching || defaultSyncApi.caching,
-    retries: arg.retries || defaultSyncApi.retries,
-    timeout: arg.timeout || defaultSyncApi.timeout,
-    inIdURL: arg.inIdURL || defaultSyncApi.idRoute,
-    onError: arg.onError || defaultSyncApi.onError
-});
-/**
- * Synchronizer modular hook
- * @param {ISyncApiArgs} settings custom configuration
- * @returns synchronizable state handler
- */
-export function synchronizer(settings) {
-    return new ApiAsync(settings).build;
-}
+export {};
 </code></pre>
         </article>
     </section>
