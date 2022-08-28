@@ -28,9 +28,10 @@
         <article>
             <pre class="prettyprint source linenums"><code>import React from "react";
 import { inRouted } from '../router/routed';
-import { refocus } from './refocus';
-import { handler } from './proper';
-import { directives } from "./config";
+import { focus } from './focus';
+import { DIRECTIVES } from "./evo";
+import { createProxy } from "./proxy";
+var index = 0;
 /**
  * @name cloneComponent
  * @param props current react component props
@@ -38,38 +39,45 @@ import { directives } from "./config";
  * @param unrouted checks if a routed component is unrouted
  * @returns cloned children (deep clone if there is directives)
  */
-export const cloneComponent = (root, tag = "App") => refocus(() => cloneChildren(root.props.children, tag));
-const clone = (child, tag) => React.cloneElement(deepClone(child, tag), {}, cloneChildren(child.props.children, tag));
-const cloneChild = (child, tag) => !inRouted(child) ? undefined
+export const cloneComponent = (root, tag = "App") => (index = 0) || focus(() => cloneChildren(root.props.children, tag, "0"));
+const clone = (child, tag, uid) => child.props?.shown === false ? undefined
+    : React.cloneElement(deepClone(child, tag, uid), {}, cloneChildren(child.props.children, tag, uid));
+const cloneChild = (child, tag, key) => !inRouted(child) ? undefined
     : React.isValidElement(child)
-        ? clone(child, tag)
+        ? clone(child, tag, key)
         : child;
-const cloneChildren = (children, tag) => React.Children.map(children, (child) => cloneChild(child, tag));
-const deepClone = (child, tag) => !directives?.length ? child
+const cloneChildren = (children, tag, key) => React.Children.map(children, (child) => cloneChild(child, tag, key));
+const deepClone = (child, tag, key) => !DIRECTIVES?.length ? child
     : when(child, "class") ? child
-        : when(child, "element") ? cloneElement(child, tag)
-            : when(child, "fragment") ? cloneElement(child, tag)
-                : when(child, "function") ? { ...child, type: (_) => cloneFunction(child) }
+        : when(child, "element") ? cloneElement(child, tag, key)
+            : when(child, "fragment") ? cloneElement(child, tag, key)
+                : when(child, "function") ? { ...child, type: (_) => cloneFunction(child, tag) }
                     : child;
-function cloneFunction(child) {
+function cloneFunction(child, parent) {
+    const identity = `${child.type.name}-${index}`;
     const tagLabel = child.type.name;
     const oldProps = child.props;
-    const oldChild = child.type(oldProps);
-    const newChild = handler(oldChild, tagLabel);
-    const newProps = newChild.props;
+    const argStore = createProxy(window.store);
+    const newChild = child.type(oldProps);
+    const newProps = properHandler(newChild.props, tagLabel, parent, identity);
+    // console.log(child.props.route)
+    // child.props.route &amp;&amp; dispatch(child.props.route)
     const children = React
-        .Children.map(newProps.children, (c) => deepClone(c, tagLabel));
+        .Children.map(newProps.children, (c) => deepClone(c, tagLabel, identity));
     return ({ ...newChild, props: { ...newProps, children } });
 }
-function cloneElement(child, tag) {
-    const newChild = handler(child, tag);
-    const children = cloneChildren(newChild.props.children, tag);
-    return { ...newChild, props: { ...newChild.props, children } };
+function cloneElement(child, tag, key) {
+    const newProps = properHandler(child.props, child.type, tag, key);
+    const children = cloneChildren(newProps.children, tag, key);
+    return { ...child, props: { ...newProps, children } };
 }
 const when = (child, ...types) => types.includes("class") &amp;&amp; child?.type?.toString().startsWith("class")
     || types.includes("fragment") &amp;&amp; child?.type.toString() == 'Symbol(react.fragment)'
     || types.includes("element") &amp;&amp; typeof child?.type === "string"
     || types.includes((typeof child?.type));
+export const properHandler = (props, tag, componentTag, key) => DIRECTIVES
+    .map(fn => fn(props, { tag, componentTag, uid: key }))
+    .reduce((last, next) => ({ ...last, ...next }));
 </code></pre>
         </article>
     </section>
@@ -80,13 +88,13 @@ const when = (child, ...types) => types.includes("class") &amp;&amp; child?.type
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Provider.html">Provider</a></li></ul><h3>Global</h3><ul><li><a href="global.html#appendCss">appendCss</a></li><li><a href="global.html#cloneComponent">cloneComponent</a></li><li><a href="global.html#createStore">createStore</a></li><li><a href="global.html#letStore">letStore</a></li><li><a href="global.html#refresh">refresh</a></li><li><a href="global.html#setStore">setStore</a></li><li><a href="global.html#store">store</a></li><li><a href="global.html#usageStore">usageStore</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Provider.html">Provider</a></li></ul><h3>Global</h3><ul><li><a href="global.html#appendCss">appendCss</a></li><li><a href="global.html#cloneComponent">cloneComponent</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Mon Aug 08 2022 18:11:52 GMT-0300 (Brasilia Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Sat Aug 27 2022 23:03:40 GMT-0300 (Brasilia Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

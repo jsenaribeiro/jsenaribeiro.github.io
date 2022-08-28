@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: storer/usage.js</title>
+    <title>JSDoc: Source: storer/core.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: storer/usage.js</h1>
+    <h1 class="page-title">Source: storer/core.js</h1>
 
     
 
@@ -27,15 +27,30 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import { store } from "./provider";
+import { context } from "../shared";
 /**
- * Creates a sub-store
- * @param selector select the sub-object in store object
- * @returns return a sliced sub-store object
+ * Render all the components
  */
-export function usageStore(selector) {
-    const at = (fn) => fn(selector(store));
-    const on = (fn) => (e) => fn(selector(store), e.target.value);
-    return [at, on];
+export const refresh = () => context.render();
+/**
+ * Modifies global store object
+ * @param apply changes the store object
+ * @returns returns the changed current value
+ */
+export function setStore(apply) {
+    const value = apply(store);
+    return value;
+}
+/**
+ * Modifies global store object (handler)
+ * @param apply changes the store object
+ * @returns undefined
+ */
+export function letStore(apply) {
+    return (e) => {
+        apply(store, e.target.value);
+        return undefined;
+    };
 }
 </code></pre>
         </article>
