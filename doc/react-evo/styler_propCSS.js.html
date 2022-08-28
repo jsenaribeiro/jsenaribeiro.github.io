@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: storer/usage.js</title>
+    <title>JSDoc: Source: styler/propCSS.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: storer/usage.js</h1>
+    <h1 class="page-title">Source: styler/propCSS.js</h1>
 
     
 
@@ -26,47 +26,13 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { context } from "../shared";
-const ERROR_ROOT_OBJECT = new Error("letStore only selects sub-objects");
-const ERROR_VALUE_SELECTED = new Error("letStore only selects objects, not values");
+            <pre class="prettyprint source linenums"><code>import { appendCss } from "../helper";
 /**
- * Instantiate in global scope an smaller inner object from store object
- * @param select select an inner object from store object
+ * Suggar syntax alterantive for className
+ * @param props current props
+ * @returns css props as className alterantive
  */
-export function useStore(select) {
-    const parts = select.toString().split('.');
-    if (parts.length &lt; 2)
-        throw ERROR_ROOT_OBJECT;
-    const field = parts[parts.length - 1];
-    window[field] = {};
-    Object.defineProperty(window, field, {
-        get: function () {
-            const selected = select(window.store);
-            const isNotAnObject = typeof selected != "object";
-            if (isNotAnObject)
-                throw ERROR_VALUE_SELECTED;
-            return selected;
-        },
-        set: function (value) {
-            return context.storer(field, value);
-        }
-    });
-}
-/**
- * Create a local state object
- * @param state initialized state object
- * @returns async self-rendering local state object
- */
-export function useState(state) {
-    return new Proxy(state, {
-        get(refer, field) { return refer[field]; },
-        set(refer, field, value) {
-            refer[field] = value;
-            context.render();
-            return true;
-        }
-    });
-}
+export const cssClassNameAlternative = (props) => !props ? props : { ...props, ...appendCss(props, props.css) };
 </code></pre>
         </article>
     </section>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: storer/usage.js</title>
+    <title>JSDoc: Source: storer/i18n.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: storer/usage.js</h1>
+    <h1 class="page-title">Source: storer/i18n.js</h1>
 
     
 
@@ -26,46 +26,41 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { context } from "../shared";
-const ERROR_ROOT_OBJECT = new Error("letStore only selects sub-objects");
-const ERROR_VALUE_SELECTED = new Error("letStore only selects objects, not values");
+            <pre class="prettyprint source linenums"><code>import { Authenticator } from "../auther/setup";
+import { content, context } from "../shared";
+var initialized = false;
+export const locales = [];
 /**
- * Instantiate in global scope an smaller inner object from store object
- * @param select select an inner object from store object
+ * Globalization fluent class
  */
-export function useStore(select) {
-    const parts = select.toString().split('.');
-    if (parts.length &lt; 2)
-        throw ERROR_ROOT_OBJECT;
-    const field = parts[parts.length - 1];
-    window[field] = {};
-    Object.defineProperty(window, field, {
-        get: function () {
-            const selected = select(window.store);
-            const isNotAnObject = typeof selected != "object";
-            if (isNotAnObject)
-                throw ERROR_VALUE_SELECTED;
-            return selected;
-        },
-        set: function (value) {
-            return context.storer(field, value);
-        }
-    });
+export class I18nEVO {
+    globalization(locale, isDefault = false) {
+        locales.push(locale);
+        if (isDefault)
+            content.default = locale;
+        setTimeout(() => initialized = true, 9);
+        return this;
+    }
+    authentication(method, relogin, encript) {
+        return new Authenticator(method, relogin, encript);
+    }
 }
 /**
- * Create a local state object
- * @param state initialized state object
- * @returns async self-rendering local state object
+ * Modular hook for change current i18n language
+ * @param language required locale
+ * @returns selected or default locale
  */
-export function useState(state) {
-    return new Proxy(state, {
-        get(refer, field) { return refer[field]; },
-        set(refer, field, value) {
-            refer[field] = value;
-            context.render();
-            return true;
-        }
-    });
+export function useLanguage(language) { return setIdiom(language, 3); }
+function setIdiom(language, retry) {
+    if (retry &lt; 0)
+        return;
+    if (initialized == false)
+        setTimeout(() => setIdiom(language, retry - 1), 99);
+    window.locale = locales.find(x => x.language === language)
+        || locales.find(x => x.language.startsWith(language))
+        || locales.find(x => language.startsWith(x.language))
+        || content.default;
+    context.render();
 }
 </code></pre>
         </article>

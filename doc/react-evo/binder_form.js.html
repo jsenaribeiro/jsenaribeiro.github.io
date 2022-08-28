@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: storer/usage.js</title>
+    <title>JSDoc: Source: binder/form.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: storer/usage.js</h1>
+    <h1 class="page-title">Source: binder/form.js</h1>
 
     
 
@@ -26,46 +26,68 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { context } from "../shared";
-const ERROR_ROOT_OBJECT = new Error("letStore only selects sub-objects");
-const ERROR_VALUE_SELECTED = new Error("letStore only selects objects, not values");
+            <pre class="prettyprint source linenums"><code>import { context } from '../shared';
 /**
- * Instantiate in global scope an smaller inner object from store object
- * @param select select an inner object from store object
+ * Directive for two-way data binding in form element
+ * @param props current props
+ * @param args directive args
+ * @returns handled bind props for two-way data binding in uncontrolled components
  */
-export function useStore(select) {
-    const parts = select.toString().split('.');
-    if (parts.length &lt; 2)
-        throw ERROR_ROOT_OBJECT;
-    const field = parts[parts.length - 1];
-    window[field] = {};
-    Object.defineProperty(window, field, {
-        get: function () {
-            const selected = select(window.store);
-            const isNotAnObject = typeof selected != "object";
-            if (isNotAnObject)
-                throw ERROR_VALUE_SELECTED;
-            return selected;
-        },
-        set: function (value) {
-            return context.storer(field, value);
-        }
-    });
-}
-/**
- * Create a local state object
- * @param state initialized state object
- * @returns async self-rendering local state object
- */
-export function useState(state) {
-    return new Proxy(state, {
-        get(refer, field) { return refer[field]; },
-        set(refer, field, value) {
-            refer[field] = value;
-            context.render();
-            return true;
-        }
-    });
+export default function twoWayDataBindingForm(props, args) {
+    if (args.tag !== "form")
+        return props;
+    if (!props?.bind)
+        return props;
+    console.log("twoWayDataBindingForm...");
+    const currentOnSubmit = props.onSubmit;
+    function getChildren(names, child) {
+        const children = !!child?.props?.children?.map
+            ? props.children.map((c) => getChildren(names, c))
+            : [];
+        if (names.includes(props.name))
+            children.push(child);
+        return children;
+    }
+    const onSubmit = (e) => {
+        console.log("onSubmit...");
+        e.preventDefault();
+        e.stopPropagation();
+        e.nativeEvent.submitter.onclick = "return false";
+        const inputs = Array.from(e.target.elements);
+        const names = inputs.map((x) => x.name);
+        const childrenGetByFormNames = props.children
+            .flatMap((c) => getChildren(names, c).flatMap(x => x));
+        childrenGetByFormNames // validate -> setCustomValidity
+            .filter((x) => x.props.validate)
+            .map((x) => [x.props.name, x.props.validate()])
+            .filter((array) => !!array[1])
+            .forEach((array) => {
+            const [field, error] = array;
+            const input = inputs.find((i) => i.name == field);
+            if (input)
+                input.setCustomValidity(error);
+        });
+        const errors = inputs
+            .filter((x) => !!x.validationMessage)
+            .map((x) => ({
+            error: x.validationMessage,
+            value: x.value,
+            field: x.name
+        }));
+        if (errors.length === 0)
+            inputs.forEach(i => {
+                context.enable = false;
+                const field = props.bind + "." + i.name;
+                context.storer(field, i.value);
+                setTimeout(() => context.enable = true, 11);
+            });
+        return props.onCommit(errors);
+    };
+    return {
+        ...props,
+        method: "GET",
+        onSubmit
+    };
 }
 </code></pre>
         </article>

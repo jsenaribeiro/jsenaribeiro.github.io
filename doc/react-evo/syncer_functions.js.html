@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: storer/usage.js</title>
+    <title>JSDoc: Source: syncer/functions.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: storer/usage.js</h1>
+    <h1 class="page-title">Source: syncer/functions.js</h1>
 
     
 
@@ -26,46 +26,42 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { context } from "../shared";
-const ERROR_ROOT_OBJECT = new Error("letStore only selects sub-objects");
-const ERROR_VALUE_SELECTED = new Error("letStore only selects objects, not values");
+            <pre class="prettyprint source linenums"><code>import { ApiAsync } from "./class";
 /**
- * Instantiate in global scope an smaller inner object from store object
- * @param select select an inner object from store object
+ * Default synchronizer configuration
  */
-export function useStore(select) {
-    const parts = select.toString().split('.');
-    if (parts.length &lt; 2)
-        throw ERROR_ROOT_OBJECT;
-    const field = parts[parts.length - 1];
-    window[field] = {};
-    Object.defineProperty(window, field, {
-        get: function () {
-            const selected = select(window.store);
-            const isNotAnObject = typeof selected != "object";
-            if (isNotAnObject)
-                throw ERROR_VALUE_SELECTED;
-            return selected;
-        },
-        set: function (value) {
-            return context.storer(field, value);
-        }
-    });
-}
+const defaultSyncApi = {
+    route: "/",
+    idField: "id",
+    timeout: 5000,
+    caching: 1000,
+    avoidId: false,
+    retries: 0,
+    idRoute: true,
+    onError: (err) => err?.message,
+    querier: (_) => ({})
+};
+export const error = (text) => new Error("REACT-EVO (syncer): " + text);
+export const defineSync = (arg) => ({
+    set: arg.set,
+    get: arg.get,
+    url: arg.url || "",
+    route: arg.route || defaultSyncApi.route,
+    avoidId: arg.avoidId || defaultSyncApi.avoidId,
+    idField: arg.idField || defaultSyncApi.idField,
+    caching: arg.caching || defaultSyncApi.caching,
+    retries: arg.retries || defaultSyncApi.retries,
+    timeout: arg.timeout || defaultSyncApi.timeout,
+    inIdURL: arg.inIdURL || defaultSyncApi.idRoute,
+    onError: arg.onError || defaultSyncApi.onError
+});
 /**
- * Create a local state object
- * @param state initialized state object
- * @returns async self-rendering local state object
+ * Synchronizer modular hook
+ * @param settings custom configuration
+ * @returns synchronizable state handler
  */
-export function useState(state) {
-    return new Proxy(state, {
-        get(refer, field) { return refer[field]; },
-        set(refer, field, value) {
-            refer[field] = value;
-            context.render();
-            return true;
-        }
-    });
+export function synchronizer(settings) {
+    return new ApiAsync(settings).build;
 }
 </code></pre>
         </article>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: storer/usage.js</title>
+    <title>JSDoc: Source: storer/listener.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: storer/usage.js</h1>
+    <h1 class="page-title">Source: storer/listener.js</h1>
 
     
 
@@ -27,45 +27,59 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import { context } from "../shared";
-const ERROR_ROOT_OBJECT = new Error("letStore only selects sub-objects");
-const ERROR_VALUE_SELECTED = new Error("letStore only selects objects, not values");
+const events = {};
+const eventLabels = ["mounted", "updated", "unmount", "catched", "refresh"];
 /**
- * Instantiate in global scope an smaller inner object from store object
- * @param select select an inner object from store object
+ * Multi-event dispatcher
+ * @param evt event label
+ * @param arg event value
+ * @returns false if the event is not found
  */
-export function useStore(select) {
-    const parts = select.toString().split('.');
-    if (parts.length &lt; 2)
-        throw ERROR_ROOT_OBJECT;
-    const field = parts[parts.length - 1];
-    window[field] = {};
-    Object.defineProperty(window, field, {
-        get: function () {
-            const selected = select(window.store);
-            const isNotAnObject = typeof selected != "object";
-            if (isNotAnObject)
-                throw ERROR_VALUE_SELECTED;
-            return selected;
-        },
-        set: function (value) {
-            return context.storer(field, value);
-        }
-    });
+export function dispatch(evt, arg = {}) {
+    if (!events[evt])
+        return false;
+    else
+        events[evt].forEach(f => f(arg));
 }
 /**
- * Create a local state object
- * @param state initialized state object
- * @returns async self-rendering local state object
+ * Multi-event listener
+ * @param evt event label
+ * @param fnc event handler
+ * @returns event canceller
  */
-export function useState(state) {
-    return new Proxy(state, {
-        get(refer, field) { return refer[field]; },
-        set(refer, field, value) {
-            refer[field] = value;
-            context.render();
-            return true;
-        }
-    });
+export function listener(evt, fnc) {
+    if (!events[evt])
+        events[evt] = [];
+    events[evt].push(fnc);
+    return () => events[evt]
+        .filter(f => f.toString() === fnc.toString())
+        .forEach((_, i) => delete events[i]);
+}
+/**
+ * Event registry
+ * @param add is add (else remove)?
+ */
+export function register(add) {
+    const listening = add
+        ? window.addEventListener
+        : window.removeEventListener;
+    const registration = (lbl, fns) => fns.forEach(f => listening(lbl, f));
+    const isDOMevent = (event) => typeof document.body["on" + event] !== undefined;
+    Object.keys(events)
+        .filter(k => isDOMevent(k))
+        .filter(k => !k.startsWith("/"))
+        .filter(k => !eventLabels.includes(k))
+        .forEach(k => registration(k, events[k]));
+    if (add)
+        window.addEventListener("hashchange", x => render());
+    else
+        window.removeEventListener("hashchange", x => render());
+    window.onbeforeunload = function (e) {
+        console.log("onbeforeunload");
+    };
+    const render = () => {
+        context.render();
+    };
 }
 </code></pre>
         </article>

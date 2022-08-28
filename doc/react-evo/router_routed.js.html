@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: storer/usage.js</title>
+    <title>JSDoc: Source: router/routed.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: storer/usage.js</h1>
+    <h1 class="page-title">Source: router/routed.js</h1>
 
     
 
@@ -27,45 +27,33 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import { context } from "../shared";
-const ERROR_ROOT_OBJECT = new Error("letStore only selects sub-objects");
-const ERROR_VALUE_SELECTED = new Error("letStore only selects objects, not values");
 /**
- * Instantiate in global scope an smaller inner object from store object
- * @param select select an inner object from store object
+ * Evaluate if the element is routed if there is a route props
+ * @param child current element
+ * @returns check if the child element is routed
  */
-export function useStore(select) {
-    const parts = select.toString().split('.');
-    if (parts.length &lt; 2)
-        throw ERROR_ROOT_OBJECT;
-    const field = parts[parts.length - 1];
-    window[field] = {};
-    Object.defineProperty(window, field, {
-        get: function () {
-            const selected = select(window.store);
-            const isNotAnObject = typeof selected != "object";
-            if (isNotAnObject)
-                throw ERROR_VALUE_SELECTED;
-            return selected;
-        },
-        set: function (value) {
-            return context.storer(field, value);
-        }
-    });
-}
-/**
- * Create a local state object
- * @param state initialized state object
- * @returns async self-rendering local state object
- */
-export function useState(state) {
-    return new Proxy(state, {
-        get(refer, field) { return refer[field]; },
-        set(refer, field, value) {
-            refer[field] = value;
-            context.render();
-            return true;
-        }
-    });
+export function inRouted(child) {
+    if (!child?.props?.route)
+        return true;
+    const elementRoute = child.props.route;
+    const currentRoute = window.location.hash.slice(1);
+    const patternRoute = elementRoute
+        .replace(/\/:.+?\//gi, "/(.+)/")
+        .replace(/\/:.+?$/gi, "/(.+)")
+        .replace(/\//g, "\/");
+    if (elementRoute === "/" &amp;&amp; currentRoute === "/")
+        return true;
+    const models = elementRoute.split('/');
+    const labels = models.filter(m => m[0] == ":");
+    const already = context.routes
+        .filter(x => x.regex == patternRoute)
+        .some(x => x.names.every((p) => labels.includes(p)));
+    if (already == false)
+        context.routes
+            .push({ regex: patternRoute, names: labels });
+    var has = new RegExp(patternRoute, "gi")
+        .test(currentRoute) &amp;&amp; elementRoute != "/";
+    return has;
 }
 </code></pre>
         </article>
