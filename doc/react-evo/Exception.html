@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: storer/usage.js</title>
+    <title>JSDoc: Class: Exception</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,60 +17,144 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: storer/usage.js</h1>
+    <h1 class="page-title">Class: Exception</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/** @module Storing */
-import { context } from "../shared";
-const ERROR_ROOT_OBJECT = new Error("letStore only selects sub-objects");
-const ERROR_VALUE_SELECTED = new Error("letStore only selects objects, not values");
-/**
- * Instantiate in global scope an smaller inner object from store object
- * @param {function} select select an inner object from store object
- */
-export function useStore(select) {
-    const parts = select.toString().split('.');
-    if (parts.length &lt; 2)
-        throw ERROR_ROOT_OBJECT;
-    const field = parts[parts.length - 1];
-    window[field] = {};
-    Object.defineProperty(window, field, {
-        get: function () {
-            const selected = select(window.store);
-            const isNotAnObject = typeof selected != "object";
-            if (isNotAnObject)
-                throw ERROR_VALUE_SELECTED;
-            return selected;
-        },
-        set: function (value) {
-            return context.storer(field, value);
-        }
-    });
-}
-/**
- * Create a local state object
- * @param {object} state initialized state object
- * @returns {object} async self-rendering local state object
- */
-export function useState(state) {
-    return new Proxy(state, {
-        get(refer, field) { return refer[field]; },
-        set(refer, field, value) {
-            refer[field] = value;
-            context.render();
-            return true;
-        }
-    });
-}
-</code></pre>
-        </article>
-    </section>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Exception<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description"><p>Error object with error message and invalid fiels</p></div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+    <h2>Constructor</h2>
+    
+
+    
+    <h4 class="name" id="Exception"><span class="type-signature"></span>new Exception<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="types_error.js.html">types/error.js</a>, <a href="types_error.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="Exception.html">Exception</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

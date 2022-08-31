@@ -27,21 +27,27 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/** @module Synching */
-import { syncher } from '.';
 import { context, delay } from '../shared';
-import { error } from './functions';
 import { loadAsync } from './load';
-const FAILED_FETCH_SYNC = "Sync failed: not possible to fetch data...";
+import { aborter, handler } from './handler';
+const FAILED_FETCH_SYNC = "(React EVO) Sync failed: not possible to fetch data...";
+const invalidMappedId = (key) => "(React EVO) id field not correctly mapped (" + key + " field no found in entity)";
 const same = (x, y) => JSON.stringify(x) === JSON.stringify(y);
 const diff = (x, y) => same(x, y) === false;
-async function preValidationAsync(that, retries = 3) {
-    const ready = !!that.synced;
+async function preValidationAsync(that, data, guid, retries = 3) {
+    const noReady = !that.synced;
     const failed = !that.synced &amp;&amp; !retries;
-    const retry = () => preValidationAsync(that, retries - 1);
+    const hasUID = (obj) => Object.keys(obj).includes(guid);
+    const retry = () => preValidationAsync(that, data, guid, retries - 1);
+    const noGUID = Array.isArray(data)
+        ? data?.every(hasUID) === false
+        : hasUID(data) === false;
     if (failed)
         throw FAILED_FETCH_SYNC;
-    if (!ready)
+    if (noReady)
         await delay(500, async () => await retry());
+    if (noGUID)
+        throw invalidMappedId(guid);
 }
 /**
  * Change request inference for POST, PUT and DELETE verbs
@@ -49,13 +55,13 @@ async function preValidationAsync(that, retries = 3) {
  * @param {boolean} reload send a GET request after a change request?
  */
 export async function saveAsync(that, reload) {
-    await preValidationAsync(that);
-    const value = that.config.get(window.store);
-    const state = value?.array ? value.array : value;
+    const guid = that.config.uid;
+    const info = context.storer(that.config.map);
+    const data = JSON.parse(JSON.stringify(info));
+    const unit = !Array.isArray(data);
+    await preValidationAsync(that, data, guid);
     that.reload = reload;
-    that.actual = JSON.parse(JSON.stringify(state));
-    const guid = that.config.idField;
-    const unit = !Array.isArray(that.actual);
+    that.actual = data;
     if (unit &amp;&amp; !that.actual[guid])
         action(that, "create", that.actual);
     else if (unit &amp;&amp; that.actual[guid]) {
@@ -89,6 +95,7 @@ export async function saveAsync(that, reload) {
         createds.forEach(x => action(that, "create", x));
         updateds.forEach(x => action(that, "update", x));
         deleteds.forEach(x => action(that, "delete", x));
+        console.debug({ createds, updateds, deleteds });
         const noAction = createds.length
             + updateds.length
             + deleteds.length === 0;
@@ -103,7 +110,7 @@ export async function saveAsync(that, reload) {
  * @param {object} entity target entity object
  */
 async function action(that, action, entity) {
-    const id = entity[that.config.update?.idField || that.config.idField];
+    const id = entity[that.config.update?.uid || that.config.uid];
     const method = action == "create" ? "POST"
         : action == "update" ? "PUT"
             : "DELETE";
@@ -116,11 +123,9 @@ async function action(that, action, entity) {
     const body = JSON.stringify(entity);
     const settings = {
         method, body, headers,
-        signal: syncher.canceller.signal
+        signal: aborter.signal
     };
-    syncher.isLoading = true;
-    context.render();
-    try {
+    await handler(that, "SAVE", url, async () => {
         const response = await fetch(url, settings);
         if (response.ok)
             await response.json();
@@ -129,15 +134,7 @@ async function action(that, action, entity) {
         that.synced = that.actual;
         if (that.reload)
             loadAsync(that, {});
-    }
-    catch (ex) {
-        syncher.exception = that.config.onError(error) || ex.message;
-    }
-    finally {
-        syncher.outOfSync = false;
-        syncher.isLoading = false;
-        context.render();
-    }
+    });
 }
 </code></pre>
         </article>
@@ -149,13 +146,13 @@ async function action(that, action, entity) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Authoring.html">Authoring</a></li><li><a href="module-Binding.html">Binding</a></li><li><a href="module-Routing.html">Routing</a></li><li><a href="module-Storing.html">Storing</a></li><li><a href="module-Styling.html">Styling</a></li><li><a href="module-Synching.html">Synching</a></li></ul><h3>Classes</h3><ul><li><a href="I18nEVO.html">I18nEVO</a></li><li><a href="module.exports.html">exports</a></li><li><a href="module-Authoring.Authenticator.html">Authenticator</a></li><li><a href="module-Routing.Router.html">Router</a></li><li><a href="module-Storing.Provider.html">Provider</a></li><li><a href="module-Synching.ApiAsync.html">ApiAsync</a></li></ul><h3>Global</h3><ul><li><a href="global.html#cloneComponent">cloneComponent</a></li><li><a href="global.html#dispatch">dispatch</a></li><li><a href="global.html#listener">listener</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#token">token</a></li><li><a href="global.html#useLanguage">useLanguage</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Authoring.html">Authoring</a></li><li><a href="module-Binding.html">Binding</a></li><li><a href="module-Routing.html">Routing</a></li><li><a href="module-Storing.html">Storing</a></li><li><a href="module-Styling.html">Styling</a></li><li><a href="module-Synching.html">Synching</a></li></ul><h3>Classes</h3><ul><li><a href="Exception.html">Exception</a></li><li><a href="I18nEVO.html">I18nEVO</a></li><li><a href="module.exports.html">exports</a></li><li><a href="module-Authoring.Authenticator.html">Authenticator</a></li><li><a href="module-Routing.Router.html">Router</a></li><li><a href="module-Storing.Provider.html">Provider</a></li><li><a href="module-Synching.ApiAsync.html">ApiAsync</a></li><li><a href="Validation.html">Validation</a></li></ul><h3>Global</h3><ul><li><a href="global.html#cloneComponent">cloneComponent</a></li><li><a href="global.html#dispatch">dispatch</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#token">token</a></li><li><a href="global.html#useLanguage">useLanguage</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Sun Aug 28 2022 01:08:55 GMT-0300 (Brasilia Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Wed Aug 31 2022 12:50:04 GMT-0300 (Brasilia Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
