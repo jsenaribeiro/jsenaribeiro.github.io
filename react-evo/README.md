@@ -2,7 +2,7 @@
 
 Please, check this links bellow to framework introduction.
 
-#### [Overview](https://github.com/jsenaribeiro/react-evo/blob/default/doc/overview.md) | [Preview](https://github.com/jsenaribeiro/react-evo/blob/default/doc/preview.md) |  [Review](https://github.com/jsenaribeiro/react-evo/blob/default/doc/review.md)
+#### [Overview](overview.md) | [Preview](preview.md) |  [Review](review.md)
 
 ## Usage
 
