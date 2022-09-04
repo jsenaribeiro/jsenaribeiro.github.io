@@ -1,13 +1,4 @@
-### **React Away** is a React SPA micro-framework with an agile stateful approach, RESTful synchornizers and property directives with those features:
-
-* declarative style
-* self-rendering state
-* two-way data binding
-* remote state synchronizers
-* cache, retries and pooling
-* attribute programming
-* component-scoped CSS
-* property routing
+## **React Away** is a React SPA micro-framework with an agile stateful approach with self-rendering states, RESTful synchornizers, property directives, two-way data binding, component-scoped CSS, routing directives, among others.
 
 <br/>
 
