@@ -51,7 +51,9 @@
 <p>ReactDOM settings just replaces ReactDOM.</p>
 <pre><code class="language-tsx"><div><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-away&#x27;</span>
 
-ReactDOM.createRoot(<span class="hljs-literal">true</span>, <span class="hljs-string">&quot;#root&quot;</span>, <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span></span>, { <span class="hljs-attr">hello</span>: <span class="hljs-string">&quot;world&quot;</span> }) 
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Store</span> </span>{ hello: <span class="hljs-string">&quot;world&quot;</span> }
+
+ReactDOM.createRoot(<span class="hljs-literal">true</span>, <span class="hljs-string">&quot;#root&quot;</span>, <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span></span>, Store) 
 </div></code></pre>
 <p>Then just import store from 'react-away'.</p>
 <pre><code class="language-ts"><div><span class="hljs-keyword">declare</span> <span class="hljs-keyword">const</span> store: <span class="hljs-built_in">any</span>
@@ -92,7 +94,7 @@ ReactDOM.createRoot(<span class="hljs-literal">true</span>, <span class="hljs-st
 <p>Native globalization support in ReactDOM.createRoot</p>
 <pre><code class="language-ts"><div><span class="hljs-keyword">import</span> locales <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./locales&#x27;</span>
 
-ReactDOM.createRoot(<span class="hljs-literal">true</span>, <span class="hljs-string">&quot;#root&quot;</span>, <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span>/&gt;</span></span>, context)
+ReactDOM.createRoot(<span class="hljs-literal">true</span>, <span class="hljs-string">&quot;#root&quot;</span>, <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span>/&gt;</span></span>, Store)
    .globalization(locales, <span class="hljs-literal">true</span>)
 </div></code></pre>
 <p>With parametrization with simple functions.</p>
@@ -108,7 +110,7 @@ ReactDOM.createRoot(<span class="hljs-literal">true</span>, <span class="hljs-st
 <pre><code class="language-tsx"><div><span class="hljs-keyword">const</span> noWrap = <span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> ! props.full ? props
    : ({...props, <span class="hljs-attr">style</span>: { <span class="hljs-attr">whiteSpace</span>: <span class="hljs-string">&quot;nowrap&quot;</span> } })
 
-ReactDOM.createRoot(<span class="hljs-literal">true</span>, <span class="hljs-string">&quot;#root&quot;</span>, <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span>/&gt;</span></span>, context, [noWrap])
+ReactDOM.createRoot(<span class="hljs-literal">true</span>, <span class="hljs-string">&quot;#root&quot;</span>, <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span>/&gt;</span></span>, Store, [noWrap])
 
 <span class="hljs-keyword">const</span> Example = <span class="hljs-function">() =&gt;</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">noWrap</span>&gt;</span>This text doesn&#x27;t wrap<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 </div></code></pre>
