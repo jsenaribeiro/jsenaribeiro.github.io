@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: auther/fluent.js</title>
+    <title>JSDoc: Source: router/letter.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: auther/fluent.js</h1>
+    <h1 class="page-title">Source: router/letter.js</h1>
 
     
 
@@ -26,16 +26,37 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { Authenticator } from "./setup";
+            <pre class="prettyprint source linenums"><code>/** @module Routing */
+import { context } from "../shared";
 /**
- * Authetication settings for ReactDOM startup
+ * Evaluate if the element is routed if there is a route props
+ * @param {JSX.Element} child current element
+ * @returns {boolean} check if the child element is routed
  */
-export default class AuthenticationFluent {
-    app;
-    constructor(app) { this.app = app; }
-    authentication(method, relogin, encript) {
-        return new Authenticator(this.app, method, relogin, encript);
-    }
+export function letRoute(child) {
+    if (!child?.props?.route)
+        return true;
+    const elementRoute = child.props.route;
+    const currentRoute = global.route;
+    const patternRoute = elementRoute
+        .replace(/\/:.+?\//gi, "/(.+)/")
+        .replace(/\/:.+?$/gi, "/(.+)")
+        .replace(/\//g, "\/");
+    if (elementRoute === "/" &amp;&amp; currentRoute === "/")
+        return true;
+    const argumentRoute = elementRoute
+        .split('/').filter(m => m[0] == ":");
+    const routed = {
+        label: elementRoute,
+        regex: patternRoute,
+        param: argumentRoute
+    };
+    const already = context.routes.filter(x => x.regex == patternRoute)
+        .some(x => routed.param.every((p) => routed.param.includes(p)));
+    if (already === false)
+        context.routes.push(routed);
+    return new RegExp(patternRoute, "gi")
+        .test(currentRoute) &amp;&amp; elementRoute != "/";
 }
 </code></pre>
         </article>

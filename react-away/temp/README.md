@@ -18,11 +18,11 @@ npm i react-away --save
 Configure replacing ReactDOM by ReactDOM.
 
 ```tsx
-import ReactDOM from 'react-away'
+import { registry } from 'react-away'
 
 export class Store { user: { name: "john" } }
 
-ReactDOM.createRoot(true, "#root", <App />, Store)
+export default registry(true, App, Store)
 ```
 
 Just use with self-rendeing states and two-way data binding.
