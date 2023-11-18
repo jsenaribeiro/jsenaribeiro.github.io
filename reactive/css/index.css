@@ -1,6 +1,7 @@
-@import url(./_defaults.css);
-@import url(./_headings.css);
-@import url(./_utilities.css);
-@import url(./_variables.css);
+@import url(./markdown.css);
+@import url(./highlight.css);
 
-
+@import url(./defaults.css);
+@import url(./headings.css);
+@import url(./utilities.css);
+@import url(./variables.css);
