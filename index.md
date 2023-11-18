@@ -1,6 +1,6 @@
 # Documentations
 
-## [React Away](./reactive/)
+## [Reactive](./reactive/)
 <sup>SSR React framework</sup>
 
 ## [React Away](./react-away/)
