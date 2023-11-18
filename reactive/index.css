@@ -1,0 +1,33 @@
+@import url(./css/index.css);
+@import url(./css/menu.css);
+
+body {
+   padding: 0;
+   scrollbar-color: dark;
+}
+
+iframe {
+   border:0;
+   width: 100%;
+   height: 100%;
+   display: block;
+}
+
+main {
+   margin:0 auto;
+   padding: 0;
+   display: grid;
+   max-width: 900px;
+   grid-template-columns: 190px 1fr;
+}
+
+main aside li { margin-left: -10px; }
+
+#title { 
+   margin: 0;
+   padding: 0;
+   font-size: 2rem; 
+   letter-spacing: 33px;
+   font-weight: 500;
+   border:0;
+}
