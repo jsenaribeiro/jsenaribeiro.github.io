@@ -16,6 +16,8 @@ body, embed {
    background-color: var(--inverse);
 }
 
+pre { background-color: #2B2B2B; }
+
 img { width: 100%; }
 
 a { color: #4CA4ED }
