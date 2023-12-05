@@ -127,13 +127,10 @@ pre {
 <script src='./default.js'></script>
 <h1 id="binding">binding</h1>
 <blockquote>
-<p>self-rendering states
-● stateful props
-● contextual states
+<p>stateful props
+● modular contexts
 ● props binding
-● reactive forms
-● validation API
-● server actions</p>
+● reactive forms</p>
 </blockquote>
 <h2 id="stateful-props">stateful props</h2>
 <p>Stateful props is a hookless state handling as React useState hook replacer. As a <a href="deeper.html#self-rendering-state">self-rendering state</a>, any field changing triggers the component render.</p>
@@ -143,7 +140,7 @@ pre {
        <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> props.name = e.target.name} /&gt;
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<h2 id="context-states">context states</h2>
+<h2 id="modular-contexts">modular contexts</h2>
 <p>Contextual states is a modular <a href="deeper.html#self-rendering-state">self-rendering state</a> as an easy, lean and dynamic Context API alternative, using OOP approach in observable getters.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Store</span>({ <span class="hljs-attr">title</span>:<span class="hljs-string">&#x27;Welcome!&#x27;</span> })
 

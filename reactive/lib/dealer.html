@@ -2,7 +2,7 @@
     <html>
     <head>
         <meta charset="UTF-8">
-        <title>rendering</title>
+        <title>dealing</title>
         <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -127,117 +127,60 @@ pre {
 <script src='default.js'></script>
 <style>
    body { zoom:0.9; }
+   h3:before { content: '● ' }
+   h3 { color: #AAA; font-weight: 300; }
 </style>
-<h1 id="rendering">rendering</h1>
-<blockquote>
-<p>JiH
-● SEO
-● server-side render
-● server components</p>
-</blockquote>
-<h2 id="server-with-jih">Server with JiH</h2>
-<p>Render is the startup application that starts and enables with multiple component trees.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> server <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactive/server&#x27;</span>
+<h1 id="dealing">dealing</h1>
+<p>The startup embeds a fluent dealer with advanced features with intermediate fluent methods. Those features are widely used by framework itself and it is available to developers.</p>
+<pre><code class="language-tsx"><span class="hljs-title class_">React</span>.<span class="hljs-title function_">server</span>(<span class="hljs-number">3000</span>, <span class="hljs-string">&quot;/routes&quot;</span>, settings?)
+     .<span class="hljs-title function_">inject</span>(<span class="hljs-comment">/* custom props injection */</span>)
+     .<span class="hljs-title function_">plugin</span>(<span class="hljs-comment">/* Deno plugin transpiler */</span>)
+     .<span class="hljs-title function_">parser</span>(<span class="hljs-comment">/* JSX rendering parsers */</span>)     
+     .<span class="hljs-title function_">render</span>(<span class="hljs-title class_">App</span>)
+</code></pre>
+<p>The settings argument enable full default customization.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">ISettings</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">CommonOptions</span> {
+  baseURL?: <span class="hljs-built_in">string</span> <span class="hljs-comment">// default = /routes</span>
+  <span class="hljs-comment">// etc....</span>
+}
+</code></pre>
+<h2 id="transpiler-plugins">transpiler <strong>plugins</strong></h2>
+<p>Plugin transpiler is a simplified API to add Deno plugins to extend the transpiler. This feature is used by like modular CSS, function decorators, etc.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title class_">IPluggin</span> = <span class="hljs-function">(<span class="hljs-params">path:<span class="hljs-built_in">string</span>, code: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-built_in">string</span>
+</code></pre>
+<h2 id="rendering-parsers">rendering <strong>parsers</strong></h2>
+<p>Rendering parses handles and extendds the React rendering process. This feature is used by the server-side rendering, property injection, etc.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">IParser</span> {
+   onComponent?: (<span class="hljs-attr">node</span>: <span class="hljs-title class_">ReactNode</span>): <span class="hljs-title class_">ReactNode</span>
+   onElement?: (<span class="hljs-attr">node</span>: <span class="hljs-title class_">ReactNode</span>): <span class="hljs-title class_">RactNode</span>
+   onProps?: (<span class="hljs-attr">props</span>: <span class="hljs-built_in">any</span>): <span class="hljs-built_in">any</span>
+}
+</code></pre>
+<h2 id="injecting-props">injecting <strong>props</strong></h2>
+<p>Property injection is a attribute directive using a functional-like implementation that is used by features like routing porps. Module declaration is needed in TypeScript projects.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">show</span> = (<span class="hljs-params">props, args</span>) =&gt; ({ ...props, <span class="hljs-attr">hidden</span>:!props.<span class="hljs-property">show</span>  })
 
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">Todo</span> = props =&gt; etc...
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">show</span>=<span class="hljs-string">{true}</span>&gt;</span> shown props works!<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; etc...
-
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-number">3000</span>, <span class="hljs-string">&quot;/&quot;</span>).<span class="hljs-title function_">render</span>(<span class="hljs-title class_">Todo</span>, <span class="hljs-title class_">Hello</span>)
+<span class="hljs-title class_">React</span>.<span class="hljs-title function_">server</span>(<span class="hljs-number">3000</span>, <span class="hljs-string">&quot;/routes&quot;</span>).<span class="hljs-title function_">inject</span>(show).<span class="hljs-title function_">render</span>(<span class="hljs-title class_">App</span>)
 </code></pre>
-<p>With JiH (JSX-in-HTML), the component could be invoked inside HTML.</p>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">Hello</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">Todo</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span> 
+<pre><code class="language-ts"><span class="hljs-keyword">declare</span> <span class="hljs-variable language_">module</span> <span class="hljs-string">&quot;react&quot;</span> { <span class="hljs-keyword">interface</span> <span class="hljs-title class_">HTMLAttributes</span>&lt;T&gt; { show?:<span class="hljs-built_in">boolean</span> }}
 </code></pre>
-<h2 id="seo-with-ssi">SEO with SSI</h2>
-<p>JiH (JSX-in-HTML) enables JSX component within static HTMLs for simple SEO.</p>
-<pre><code class="language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;description&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;Sample&quot;</span> /&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">load</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;_metadatas.html&#x27;</span> /&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-
-   <span class="hljs-tag">&lt;<span class="hljs-name">Hello</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&#x27;World&#x27;</span> /&gt;</span>     <span class="hljs-comment">&lt;!-- JSX-in-HTML with value props --&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">TodoList</span> <span class="hljs-attr">todos</span>=<span class="hljs-string">array</span> /&gt;</span>   <span class="hljs-comment">&lt;!-- JSX-in-HTML with reference props --&gt;</span>
-   
-   <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"> <span class="hljs-keyword">const</span> array=[]; </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+<p>The proper second argument as PropertyArgs interface brings extra information. The IoC object allows dependency injection into component context as the invalids in form binding.</p>
+<div cols=2 style='margin-bottom:-20px'>
+<pre><code class="language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">PropertyArgs</span> { 
+   <span class="hljs-attr">tag</span>:<span class="hljs-built_in">string</span>,  <span class="hljs-comment">// tag name</span>
+   <span class="hljs-attr">uid</span>:<span class="hljs-built_in">number</span>,  <span class="hljs-comment">// DOM identifier</span>
+   <span class="hljs-attr">ioc</span>:<span class="hljs-built_in">any</span>      <span class="hljs-comment">// IoC dictionary</span>
+}
 </code></pre>
-<p>The new <code>load[src]</code> server tag enables semantic server-side includes.</p>
-<pre><code class="language-html"><span class="hljs-comment">&lt;!-- file: _metadadas.html --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">DI</span>(<span class="hljs-params">props, { invalids }</span>) {
+   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span>&gt;</span> 
+      {/* ...etc  */}
+   <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
+}
 </code></pre>
-<h2 id="server-side-renderings">server-side renderings</h2>
-<p>Full server-side rendering with dynamic, static and incremental generation:</p>
-<table>
-<thead>
-<tr>
-<th>SSR</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>static</code></td>
-<td>generated HTML file during build time</td>
-</tr>
-<tr>
-<td><code>dynamic</code></td>
-<td>HTML content in each request (default)</td>
-</tr>
-<tr>
-<td><code>periodic</code></td>
-<td>intervalled HTML file rebuild</td>
-</tr>
-</tbody>
-</table>
-<pre><code class="language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-keyword">static</span>, dynamic, periodic } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactive&#x27;</span>
-
-<span class="hljs-meta">@static</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">About</span>(<span class="hljs-params"></span>) { <span class="hljs-comment">/*...*/</span> } 
-
-<span class="hljs-meta">@dynamic</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Users</span>(<span class="hljs-params"></span>) { <span class="hljs-comment">/*...*/</span> } 
-
-<span class="hljs-meta">@periodic</span>({ <span class="hljs-attr">time</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">unit</span>: <span class="hljs-string">&quot;day&quot;</span> }) 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Newsletter</span>(<span class="hljs-params"></span>) { <span class="hljs-comment">/*...*/</span> } 
-</code></pre>
-<h2 id="server-components">server components</h2>
-<p>The React server components are fully supported with function serialization and no &quot;use client&quot; or &quot;use server&quot; directives. The client-side API is represented in server-side just interfaces that will be run in client-side.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">AwaitMe</span>(<span class="hljs-params"></span>) { ... }
-</code></pre>
-<p>As cleaner Suspense replacer, the async props show the styled container element as loading replacer until a async component is loaded, that it changed to its children.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Sample</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">progress</span> <span class="hljs-attr">async</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">AwaitMe</span> /&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">progress</span>&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-<h2 id="async-props">async props</h2>
-<p>The <code>async</code> props is an clean props-driven Suspense component alternative that renders a hosting component until its children Promise is loaded, then is is hidden and its content is shown.</p>
-<section cols='5:4'><aside>
-<h3 id="suspense-component"><code>Suspense</code> component</h3>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">Suspence</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">{</span>&lt;<span class="hljs-attr">progress</span>/&gt;</span>}&gt;
-      <span class="hljs-tag">&lt;<span class="hljs-name">ComponentAsync</span> /&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">Suspence</span>&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-</aside><aside>
-<h3 id="async-directive"><code>async</code> directive</h3>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">progress</span> <span class="hljs-attr">async</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">ComponentAsync</span> /&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">progress</span>&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-</aside></section>
-
+</div>
         
         <script async type="text/javascript">
 /* From extension marp-team.marp-vscode */

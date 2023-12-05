@@ -2,7 +2,7 @@
     <html>
     <head>
         <meta charset="UTF-8">
-        <title>fetching</title>
+        <title>syncing</title>
         <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -126,34 +126,14 @@ pre {
         <style>
 @import url(../index.css);
 </style>
-<h1 id="fetching">fetching</h1>
+<h1 id="syncing">syncing</h1>
 <blockquote>
 <p>async props
 ● extended fetch
 ● syncer api
 ● authentication</p>
 </blockquote>
-<h2 id="async-props">async props</h2>
-<p>The boolean <code>async</code> props renders the hosting element/component meanwhile its children Promise component is not loaded yet, as cleaner <code>Suspense</code> alternative.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">progress</span> <span class="hljs-attr">async</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">ComponentAsync</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">progress</span>&gt;</span>
-</span></code></pre>
-<p>Here a comparison between a <code>Suspense</code> component and <code>async</code> props implementation.</p>
-<section cols='5:4'><aside>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">Suspence</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">{</span>&lt;<span class="hljs-attr">progress</span>/&gt;</span>}&gt;
-      <span class="hljs-tag">&lt;<span class="hljs-name">ComponentAsync</span> /&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">Suspence</span>&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-</aside><aside>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">progress</span> <span class="hljs-attr">async</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">ComponentAsync</span> /&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">progress</span>&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-</aside></section>
-<h2 id="extended-fetch">extended fetch</h2>
+<h2 id="fetch-api">fetch api</h2>
 <p>In fetch, <code>'force-cache'</code> is the default value. Sync components without props and async component without props with cached fetch, the HTML will be <a href="render.html#server-side-renderings">statically generated</a>.</p>
 <pre><code class="language-tsx"><span class="hljs-title function_">fetch</span>(url, { <span class="hljs-attr">cache</span>: <span class="hljs-string">&#x27;force-cache&#x27;</span>|<span class="hljs-string">&#x27;no-cache&#x27;</span>|<span class="hljs-string">&#x27;no-store&#x27;</span>|<span class="hljs-string">&#x27;etc&#x27;</span>... }) 
 </code></pre>

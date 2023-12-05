@@ -26,3 +26,7 @@ h2::before {
 }
 
 h3 a { font-weight: bolder; }
+
+
+h3:before { content: '● ' }
+h3 { color: #AAA; font-weight: 300; margin-top:0 }
