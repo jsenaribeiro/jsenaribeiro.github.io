@@ -2,8 +2,17 @@ setTimeout(createLogo, 111)
 
 function delay(timeout, fn) { setTimeout(fn, timeout) }
 
+function createFavicon() {
+   const link = document.createElement('link');
+   link.rel = 'icon';
+   document.head.appendChild(link);
+   document.title = 'reactive.js'
+   link.href = 'img/favicon.ico';
+}
+
 function createLogo() {
    createRadios()
+   createFavicon()
    createHeadings()
 
    // document.body.innerHTML = window.getComputedStyle(document.body).getPropertyValue('font-size');
@@ -66,11 +75,7 @@ function createRadios() {
    })
 }
 
-const link = document.createElement('link');
-link.rel = 'icon';
-document.head.appendChild(link);
-document.title = 'reactive.js'
-link.href = 'img/favicon2.ico';
+
 
 // document.body.addEventListener("click", onFocus, true);
 // document.body.addEventListener("onfocusout", onFocus, true);
