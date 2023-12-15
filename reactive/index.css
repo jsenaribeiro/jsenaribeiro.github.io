@@ -35,6 +35,8 @@ main aside li { margin-left: -10px; }
    border:0;
 }
 
+#menu h3::before { content:'' }
+
 #menu h3 {
    margin-top: 0;
    margin-bottom: 0;
