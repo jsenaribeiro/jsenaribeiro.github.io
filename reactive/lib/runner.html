@@ -132,21 +132,19 @@ pre {
 ● project structure</p>
 </blockquote>
 <h2 id="getting-started">getting started</h2>
-<p>A new @reactive project could be created manually with npm installing <code>react</code> and <code>reactive-framework</code> packages, with <code>vite</code> and <code>typescript</code> as dev dependencies. But, with @reactive/runner CLI this could be made easier.</p>
+<p>Create a new project with deno as bellow</p>
 <pre><code class="language-cmd">&gt; deno run -A npm:@reactive/runner@latest
 </code></pre>
 <h2 id="running-scripts">running scripts</h2>
-<p>After all download was completed, it will show this basic tutorial.</p>
+<p>A run script will be generates as this commands</p>
 <pre><code class="language-console">   cd my-reactive-project
    run dev    --- to run in dev mode
    run build  --- to build project
    run server --- to run release
 </code></pre>
 <h2 id="project-structure">project structure</h2>
-<p>The project folder structure is a flatten one-level folder structure.</p>
 <section cols='2'><aside folder>
-<h3 id="root-files">root files</h3>
-<p>The root folder contains only configuration files with the root README documentation and server startup application.</p>
+<p>The <strong>root folder</strong> keeps all configuration files with README documentation and run script.</p>
 <table>
 <thead>
 <tr>
@@ -182,8 +180,7 @@ pre {
 </tbody>
 </table>
 </aside><aside folder>
-<h3 id="root-folders">root folders</h3>
-<p>Project is flatten one-level structured without 'src' or 'app' extra folder project, the root folder project is the 'src' itself.</p>
+<p>A <strong>flatten source folders</strong> with asset and bundles directories for  production-ready deploy,</p>
 <table>
 <thead>
 <tr>
