@@ -37,10 +37,17 @@ function createHeadings() {
    document.querySelectorAll('h3 a').forEach(a => {
       const link = a.href;
       const text = a.textContent
-      if (text == 'Licence') return console.log(a)
+      if (text == 'Licence') return
       a.href = '#';
-      a.onclick = () => iframe.src = link
+      a.onclick = () => { 
+         uncheckRadios()
+         iframe.src = link
+      }      
    })
+}
+function uncheckRadios() {
+   document.getElementsByName('menu')
+      .forEach(r => r.checked = false)
 }
 
 function createRadios() {
