@@ -34,3 +34,11 @@ main aside li { margin-left: -10px; }
    font-weight: 500;
    border:0;
 }
+
+#menu h3 {
+   margin-top: 0;
+   margin-bottom: 0;
+
+   padding-top: 10px;
+   padding-bottom: 5px;
+}
