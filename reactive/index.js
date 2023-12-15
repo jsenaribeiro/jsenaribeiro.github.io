@@ -35,8 +35,9 @@ function createLogo() {
 function createHeadings() {
    const iframe = document.querySelector('iframe')
    document.querySelectorAll('h3 a').forEach(a => {
-      if( a.innerHTML.includes('License')) return
       const link = a.href;
+      const text = a.textContent
+      if (text == 'Licence') return console.log(a)
       a.href = '#';
       a.onclick = () => iframe.src = link
    })
