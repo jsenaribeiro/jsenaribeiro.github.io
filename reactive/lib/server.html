@@ -142,26 +142,23 @@ pre {
 <p>The reactive is a server-first framework.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-number">3000</span>).<span class="hljs-title function_">render</span>(<span class="hljs-attr">isDevelopment</span>: <span class="hljs-literal">true</span>)
 </code></pre>
-<p>It is based in JSX-in-HTML new approach, where the JSX could be invoked in HTML, allowing more performatic static HTML and minimizing component trees.</p>
+<p>JSX-in-HTML improves preformance with more static HTML and smaller component trees.</p>
 <pre><code class="language-js">/components  <span class="hljs-comment">// JSX component folders served by index.ts</span>
 /routes      <span class="hljs-comment">// HTML route pages served by index.html</span>
 </code></pre>
-<p>Its micro-component architecture that prevents anemic HTML and monolith component tree with multiple root components in MPA application with SPA experience.</p>
+<p>It introduces the micro-component architecture, that prevents anemic empty HTML and monolith component tree with a MPA multiple root components and keeping a SPA UX.</p>
 <h2 id="configurable-defaults">configurable defaults</h2>
 <p>The application is fully configurable with no vendor lock-in conventions (as in next.js).</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Config</span>, server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactive&#x27;</span>
 
 <span class="hljs-keyword">const</span> <span class="hljs-attr">settings</span>: <span class="hljs-title class_">Config</span> = { <span class="hljs-attr">directory</span>: { <span class="hljs-attr">routes</span>: <span class="hljs-string">&#x27;./pages&#x27;</span> }}
 
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-number">3000</span>, settings)
-     .<span class="hljs-title function_">render</span>(<span class="hljs-literal">true</span>)
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-number">3000</span>, settings).<span class="hljs-title function_">render</span>(<span class="hljs-literal">true</span>)
 </code></pre>
 <p>Configurable defaults brings the simplicity of conventions-over-configuration approach with the control and versatility of configuration-over-conventions approach.</p>
 <h2 id="ioc-container">IoC container</h2>
 <p>Reactive brings dependency injection with fluent <strong>inject</strong> method with overloads for plugins transpiler, proper directives and global states for <a href="./binder.html">lean state management</a>.</p>
-<pre><code class="language-ts"><span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-number">3000</span>, settings)
-     .<span class="hljs-title function_">inject</span>(<span class="hljs-comment">/** etc... **/</span>)
-     .<span class="hljs-title function_">render</span>(<span class="hljs-literal">true</span>)
+<pre><code class="language-ts"><span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-number">3000</span>, settings).<span class="hljs-title function_">inject</span>(<span class="hljs-comment">/** etc... **/</span>).<span class="hljs-title function_">render</span>(<span class="hljs-literal">true</span>)
 </code></pre>
 <h2 id="transpiler-plugins">transpiler plugins</h2>
 <p>Plugin enables transpile extension using a Plugin class (server-side build only).</p>
