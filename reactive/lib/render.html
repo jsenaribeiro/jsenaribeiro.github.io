@@ -130,7 +130,10 @@ pre {
 <p>JiH
 ● SEO
 ● server-side render
-● server components</p>
+● fullstack components
+● function decorators
+● server components
+● lazy props</p>
 </blockquote>
 <h2 id="server-with-jih">Server with JiH</h2>
 <p>Render is the startup application that starts and enables with multiple component trees.</p>
@@ -145,15 +148,11 @@ pre {
 <p>With JiH (JSX-in-HTML), the component could be invoked inside HTML.</p>
 <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">Hello</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">Todo</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span> 
 </code></pre>
-<h2 id="seo-with-ssi">SEO with SSI</h2>
-<p>JiH (JSX-in-HTML) enables JSX component within static HTMLs for simple SEO.</p>
+<h2 id="vanilla-seo">vanilla SEO</h2>
+<p>Vanilla and simple SEO with JSX-in-HTML.</p>
 <pre><code class="language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;description&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;Sample&quot;</span> /&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">load</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&#x27;_metadatas.html&#x27;</span> /&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Head</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&#x27;Sample&#x27;</span> <span class="hljs-attr">description</span>=<span class="hljs-string">&#x27;example&#x27;</span> /&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
 
@@ -164,77 +163,64 @@ pre {
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
-<p>The new <code>load[src]</code> server tag enables semantic server-side includes.</p>
-<pre><code class="language-html"><span class="hljs-comment">&lt;!-- file: _metadadas.html --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
-</code></pre>
 <h2 id="server-side-renderings">server-side renderings</h2>
-<p>Full server-side rendering with dynamic, static and incremental generation:</p>
+<p>Server-components with implicit algoritms with function decorators for explicit rendering. Function decorators enables multiples render modes in same module.</p>
 <table>
 <thead>
 <tr>
-<th>SSR</th>
-<th>description</th>
+<th style="text-align:right"><code>STRATEGY</code></th>
+<th>static</th>
+<th>dynamic</th>
+<th>periodic</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>static</code></td>
-<td>generated HTML file during build time</td>
+<td style="text-align:right"><code>momment</code></td>
+<td>build-time</td>
+<td>request-time</td>
+<td>intervalled time</td>
 </tr>
 <tr>
-<td><code>dynamic</code></td>
-<td>HTML content in each request (default)</td>
-</tr>
-<tr>
-<td><code>periodic</code></td>
-<td>intervalled HTML file rebuild</td>
+<td style="text-align:right"><code>default</code></td>
+<td>sync components</td>
+<td>async components</td>
+<td><strong>only explicit</strong></td>
 </tr>
 </tbody>
 </table>
-<pre><code class="language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-keyword">static</span>, dynamic, periodic } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactive&#x27;</span>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { client, dynamic, periodic } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactive&#x27;</span>
 
-<span class="hljs-meta">@static</span>
+<span class="hljs-meta">@client</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Todo</span>(<span class="hljs-params"></span>) { <span class="hljs-comment">/*...*/</span> }  
+
+<span class="hljs-comment">// static are default</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">About</span>(<span class="hljs-params"></span>) { <span class="hljs-comment">/*...*/</span> } 
 
 <span class="hljs-meta">@dynamic</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Users</span>(<span class="hljs-params"></span>) { <span class="hljs-comment">/*...*/</span> } 
 
-<span class="hljs-meta">@periodic</span>({ <span class="hljs-attr">time</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">unit</span>: <span class="hljs-string">&quot;day&quot;</span> }) 
+<span class="hljs-meta">@periodic</span>(<span class="hljs-string">&quot;36h&quot;</span>) 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Newsletter</span>(<span class="hljs-params"></span>) { <span class="hljs-comment">/*...*/</span> } 
 </code></pre>
-<h2 id="server-components">server components</h2>
-<p>The React server components are fully supported with function serialization and no &quot;use client&quot; or &quot;use server&quot; directives. The client-side API is represented in server-side just interfaces that will be run in client-side.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">AwaitMe</span>(<span class="hljs-params"></span>) { ... }
+<p>As fullstack component discards any &quot;use client&quot; directive or event @client decorators, as a fallback algorithm to failed server-side rendering.</p>
+<pre><code class="language-ts"><span class="hljs-comment">// any failed server-side rendering fallbacks into client component</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Todo</span>(<span class="hljs-params"></span>) { <span class="hljs-comment">/* I&#x27;m a client component implementation */</span> }  
 </code></pre>
-<p>As cleaner Suspense replacer, the async props show the styled container element as loading replacer until a async component is loaded, that it changed to its children.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Sample</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">progress</span> <span class="hljs-attr">async</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">AwaitMe</span> /&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">progress</span>&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-<h2 id="async-props">async props</h2>
-<p>The <code>async</code> props is an clean props-driven Suspense component alternative that renders a hosting component until its children Promise is loaded, then is is hidden and its content is shown.</p>
-<section cols='5:4'><aside>
-<h3 id="suspense-component"><code>Suspense</code> component</h3>
+<h2 id="lazy-props">lazy props</h2>
+<p>The <code>lazy</code> props is props-driven simplified <code>&lt;Suspense/&gt;</code> alternative to handle async component with pre-loading component or element.</p>
+<aside cols='2'>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">Suspence</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">{</span>&lt;<span class="hljs-attr">progress</span>/&gt;</span>}&gt;
-      <span class="hljs-tag">&lt;<span class="hljs-name">ComponentAsync</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Async</span> /&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-name">Suspence</span>&gt;</span>
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-</aside><aside>
-<h3 id="async-directive"><code>async</code> directive</h3>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">progress</span> <span class="hljs-attr">async</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">ComponentAsync</span> /&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">progress</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">Async</span> <span class="hljs-attr">lazy</span>=<span class="hljs-string">{</span>&lt;<span class="hljs-attr">progress</span>/&gt;</span>} /&gt;
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-</aside></section>
-
+</aside>
         
         <script async type="text/javascript">
 /* From extension marp-team.marp-vscode */

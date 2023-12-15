@@ -156,30 +156,29 @@ pre {
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 </aside></section>
-<h2 id="location-api">location+ API</h2>
+<h2 id="location-api">location API</h2>
 <p>The reactive approach is to be more standard-like possible, then routing is basically managed by DOM Location API, but with some essential mixin extensions.</p>
 <ul>
 <li><strong>location.params</strong>: current route params as object</li>
 <li><strong>location.route</strong>: it a location.href.pathname without params</li>
-<li><strong>location.lazy</strong>: create a routed lazy component</li>
 </ul>
 <h2 id="routing-props">routing props</h2>
-<p>The <code>[link]</code> props is a client-side <code>[href]</code> that works with any clickable. Here, the H1 elements only renders when matchits <code>[route]</code> props with current route.</p>
+<p>The <code>[link]</code> props is a client-side <code>[href]</code> that works with any clickable element where the <code>[route]</code> props is a conditional render based in current route.</p>
 <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/hi&#x27;</span>&gt;</span>Hi!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/hello&#x27;</span>&gt;</span>Hello!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;/hi&#x27;</span>&gt;</span>Show hi...<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;/hello&#x27;</span>&gt;</span>Show hello...<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
 </code></pre>
-<p>Routing programmatically using extended HTML location API.</p>
-<pre><code class="language-js">location.<span class="hljs-property">route</span> = <span class="hljs-string">&#x27;/hi&#x27;</span>
+<p>Programmatic client-side routing extends HTML location API.</p>
+<pre><code class="language-js">location.<span class="hljs-property">route</span> = <span class="hljs-string">&#x27;/about&#x27;</span>
 </code></pre>
-<h2 id="nesting-routing">nesting routing</h2>
-<p>Nesting routing is easily target with simple './' before the path, the link will receive the current route path during render time.</p>
+<h2 id="nesting-routes">nesting routes</h2>
+<p>Nesting routing reuses './' syntax, since any route starts with '/'.</p>
 <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;./hello&#x27;</span>&gt;</span>Show hello...<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>   
 </code></pre>
-<h2 id="routing-params">routing params</h2>
-<p>The route parameters are recorded in <code>location.params</code> and using <code>':'</code> symbol in route for parameterized route, as below.</p>
+<h2 id="route-params">route params</h2>
+<p>The route parameters are embbeed by <code>location.params</code> with  <code>':'</code> syntax.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/whoiam/:name&#x27;</span>&gt;</span>
       { location.params.name }
@@ -187,12 +186,14 @@ pre {
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 <h2 id="lazy-components">lazy components</h2>
-<p>Route-based lazy component is created by useRoute. In this case, the Welcome component will if the current route is '/home'.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Welcome</span> = location.<span class="hljs-title function_">lazy</span>(<span class="hljs-string">&#x27;../components/welcome&#x27;</span>)
+<p>Routed lazy components are created by useLazy function and supports async props.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { useLazy } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactive&#x27;</span>
+
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Welcome</span> = <span class="hljs-title function_">useLazy</span>(<span class="hljs-string">&#x27;../components/welcome&#x27;</span>)
 
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;/home&#x27;</span>&gt;</span>Home<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">Welcome</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/home&#x27;</span> /&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">Welcome</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/home&#x27;</span> <span class="hljs-attr">async</span>=<span class="hljs-string">{</span>&lt;<span class="hljs-attr">progress</span>/&gt;</span>} /&gt;
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 

@@ -2,7 +2,7 @@
     <html>
     <head>
         <meta charset="UTF-8">
-        <title>binding</title>
+        <title>serving</title>
         <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -124,131 +124,91 @@ pre {
     </head>
     <body class="vscode-body vscode-dark">
         <style>@import url(../index.css);</style>
-<script src='./default.js'></script>
-<h1 id="binding">binding</h1>
+<script src='default.js'></script>
+<style>
+   h3:before { content: '● ' }
+   h3 { color: #AAA; font-weight: 300; }
+</style>
+<h1 id="serving">serving</h1>
 <blockquote>
-<p>stateful props
-● modular contexts
-● props binding
-● reactive forms</p>
+<p>jsx-in-html
+● IoC container
+● plugin extensions
+● property injections
+● configurable defaults
+● micro-components architecture</p>
 </blockquote>
-<p>Reactive is base in a new evolution of stateful design in React. Like functional hooks was a evolution of class components, the brand new proxy objects enable OOP for stateful react.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:right">class components</th>
-<th style="text-align:center">functional hooks</th>
-<th style="text-align:left">proxy objects</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right">original more verbose way to use stateful component</td>
-<td style="text-align:center">enables stateful functional components with inner function calls</td>
-<td style="text-align:left">functional components with simple OOP proxy self-rendering states</td>
-</tr>
-</tbody>
-</table>
-<p>There is simple rules for proxy object as <a href="deeper.html#self-rendering-state">self-rendering state</a>: when it is destructured, it loses its reactivity. To work, it needs to keep its original root reference name. There are 3 SRS ways:</p>
-<center>
-<table>
-<thead>
-<tr>
-<th style="text-align:right">stateful props</th>
-<th style="text-align:center">injecting feeds</th>
-<th style="text-align:left">context slots</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right">local states</td>
-<td style="text-align:center">global states</td>
-<td style="text-align:left">shared states</td>
-</tr>
-</tbody>
-</table>
-</center>
-<h2 id="stateful-props">stateful props</h2>
-<p>Stateful props is a hookless state handling as React useState hook replacer. As a <a href="deeper.html#self-rendering-state">self-rendering state</a>, any field changing triggers the component render.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello { props.name } !<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> props.name = e.target.name} /&gt;
-<span class="hljs-tag">&lt;/&gt;</span></span>
+<h2 id="jsx-in-html">JSX-in-HTML</h2>
+<p>The reactive is a server-first framework.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-number">3000</span>).<span class="hljs-title function_">render</span>(<span class="hljs-attr">isDevelopment</span>: <span class="hljs-literal">true</span>)
 </code></pre>
-<h2 id="injecting-feeds">injecting feeds</h2>
-<p>Injecting feeds allows dependency injection as second component argument, the store object cound be injected in server and desestructured in component as global state.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-number">3000</span>).<span class="hljs-title function_">inject</span>({ <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;World&#x27;</span> }).<span class="hljs-title function_">render</span>(<span class="hljs-literal">true</span>)
+<p>It is based in JSX-in-HTML new approach, where the JSX could be invoked in HTML, allowing more performatic static HTML and minimizing component trees.</p>
+<pre><code class="language-js">/components  <span class="hljs-comment">// JSX component folders served by index.ts</span>
+/routes      <span class="hljs-comment">// HTML route pages served by index.html</span>
+</code></pre>
+<p>Its micro-component architecture that prevents anemic HTML and monolith component tree with multiple root components in MPA application with SPA experience.</p>
+<h2 id="configurable-defaults">configurable defaults</h2>
+<p>It is fully configurable in its second argument, avoiding vendor lock-in conventions (as in next.js).</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Config</span>, server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactive&#x27;</span>
 
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params">props, { store }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello { store.name } !<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{store.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> store.name = e.target.name} /&gt;
-<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-<h2 id="context-slots">context slots</h2>
-<p>Meanwhile feed stores are easy global state solution that refreshs all component trees, contextual slots are more redux-like, injecting observable reactivity only where it is read.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Store</span>({ <span class="hljs-attr">title</span>:<span class="hljs-string">&#x27;Welcome!&#x27;</span> })
+<span class="hljs-keyword">const</span> <span class="hljs-attr">settings</span>: <span class="hljs-title class_">Config</span> = { <span class="hljs-attr">directory</span>: { <span class="hljs-attr">routes</span>: <span class="hljs-string">&#x27;./pages&#x27;</span> }}
 
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>{ app.title }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;/hello&#x27;</span>&gt;</span>Go to Hello <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">Hello</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/hello&#x27;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&#x27;World&#x27;</span> /&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-number">3000</span>, settings)
+     .<span class="hljs-title function_">render</span>(<span class="hljs-literal">true</span>)
 </code></pre>
-<h2 id="props-binding">props binding</h2>
-<p>The <code>[data]</code> and <code>[bind]</code> props easily map the value and stateful event props.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span> Hello {props.name} ! <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&quot;name&quot;</span> /&gt;</span>   
-<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-<p>Binding props adapt to its specific input type, or textarea, select, etc.</p>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{obj.key}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> obj.key = e.target.value} /&gt;   
-
-<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{obj}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&quot;key&quot;</span> /&gt;</span> <span class="hljs-comment">&lt;!-- comparison with props binding --&gt;</span>
-</code></pre>
-<h2 id="reactive-forms">reactive forms</h2>
-<p>Reactive forms are enabled by <code>form[data]</code> vanilla-like a <code>react-hook-forms </code>alternative.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Form</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">required</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&quot;name&quot;</span> /&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&#x27;submit&#x27;</span>&gt;</span>Ok<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-<h2 id="validation-api">validation api</h2>
-<p>It supports extensiable vanilla HTML Validation API with injected Invalid errors.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Form</span> = (<span class="hljs-params">props, { invalids }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> {<span class="hljs-attr">onSubmit</span>} {<span class="hljs-attr">onValidate</span>}&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">required</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&quot;name&quot;</span> /&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&#x27;submit&#x27;</span>&gt;</span>Ok<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-      { invalids.name?.map(ShowError) }
-   <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
-
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">ShowError</span> = error =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{error}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">onValidate</span>(<span class="hljs-params">data, errs</span>) {  
-   <span class="hljs-keyword">const</span> fail = <span class="hljs-string">&#x27;The &quot;zap&quot; is an invalid name&#x27;</span> 
-   <span class="hljs-keyword">const</span> zapIsInvalid = data[<span class="hljs-string">&#x27;name&#x27;</span>] == <span class="hljs-string">&#x27;zap&#x27;</span>  
-   <span class="hljs-keyword">if</span> (noUpper) errs.<span class="hljs-title function_">add</span>({ <span class="hljs-attr">bind</span>:<span class="hljs-string">&#x27;name&#x27;</span>, fail })
+<p>Configurable defaults brings the simplicity of conventions-over-configuration with the versatility of configuration-over-conventions, allowing change the project structure.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Config</span> {
+   <span class="hljs-attr">isDevelopment</span>: <span class="hljs-built_in">boolean</span>
+   <span class="hljs-attr">directory</span>: {
+      <span class="hljs-attr">assets</span>: <span class="hljs-built_in">string</span>
+      <span class="hljs-attr">routes</span>: <span class="hljs-built_in">string</span>
+      <span class="hljs-attr">bundles</span>: <span class="hljs-built_in">string</span>
+      <span class="hljs-attr">components</span>: <span class="hljs-built_in">string</span>
+   }
 }
 </code></pre>
-<h2 id="server-actions">server actions</h2>
-<p>Form binding supports enables server-side actions as REStful API call.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> actionProps = {
-   <span class="hljs-attr">action</span>: <span class="hljs-string">&quot;http://api/name&quot;</span>,
-   <span class="hljs-attr">method</span>: <span class="hljs-string">&quot;POST&quot;</span>,
-   <span class="hljs-attr">format</span>: <span class="hljs-string">&quot;json&quot;</span> <span class="hljs-comment">// &quot;formdata&quot;, etc</span>
-}
-
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">Form</span> = (<span class="hljs-params">props, { response: { status } }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> {<span class="hljs-attr">...actionProps</span>}&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">required</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&quot;name&quot;</span> /&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&#x27;submit&#x27;</span>&gt;</span>Ok<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-      { status == 200 &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Sucesso!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>}
-   <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
+<h2 id="ioc-container">IoC container</h2>
+<p>Reactive brings dependency injection with fluent <strong>inject</strong> method with overloads for plugins transpiler, proper directives and global states for <a href="./binder.html">lean state management</a>.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-number">3000</span>, settings)
+     .<span class="hljs-title function_">inject</span>(<span class="hljs-comment">/** etc... **/</span>)
+     .<span class="hljs-title function_">render</span>(<span class="hljs-literal">true</span>)
 </code></pre>
+<h2 id="transpiler-plugins">transpiler <strong>plugins</strong></h2>
+<p>Plugin enables transpile extension using a Plugin class (it is only server-side build time).</p>
+<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Plugin</span> {   
+   <span class="hljs-keyword">public</span> <span class="hljs-attr">label</span>: <span class="hljs-built_in">string</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-attr">match</span>: <span class="hljs-function">(<span class="hljs-params">path: <span class="hljs-built_in">string</span>, code?: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-built_in">boolean</span>
+   <span class="hljs-keyword">public</span> <span class="hljs-attr">apply</span>: <span class="hljs-function">(<span class="hljs-params">path: <span class="hljs-built_in">string</span>, code: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-built_in">string</span>&gt;
+}
+</code></pre>
+<h2 id="injecting-propers">injecting <strong>propers</strong></h2>
+<p>Propers are functional-like property injection similar to Angular attribute directives.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">show</span> = (<span class="hljs-params">props, args</span>) =&gt; ({ ...props, <span class="hljs-attr">hidden</span>:!props.<span class="hljs-property">show</span>  })
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">show</span>=<span class="hljs-string">{true}</span>&gt;</span> shown props works!<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-number">3000</span>).<span class="hljs-title function_">inject</span>(show).<span class="hljs-title function_">render</span>(<span class="hljs-literal">true</span>)
+</code></pre>
+<p>Module declaration is required for TypeScript intelissense.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">declare</span> <span class="hljs-variable language_">module</span> <span class="hljs-string">&quot;react&quot;</span> { <span class="hljs-keyword">interface</span> <span class="hljs-title class_">HTMLAttributes</span>&lt;T&gt; { show?:<span class="hljs-built_in">boolean</span> }}
+</code></pre>
+<p>Its second argument has brings extras information for advanced features as contextual errors.</p>
+<div cols style='margin-bottom:-20px; grid-template-columns: auto 1fr;'>
+<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Params</span> { 
+   <span class="hljs-attr">tag</span>:<span class="hljs-built_in">string</span>,  <span class="hljs-comment">// current tag</span>
+   <span class="hljs-attr">ioc</span>:record   <span class="hljs-comment">// IoC container</span>
+   <span class="hljs-attr">uid</span>:<span class="hljs-built_in">number</span>,  <span class="hljs-comment">// DOM identifier</span>
+}
+</code></pre>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">DI</span>(<span class="hljs-params">props, { invalids }</span>) {
+   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span>&gt;</span> 
+      {/* ...etc  */}
+   <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
+}
+</code></pre>
+</div>
+<h2 id="global-states">global states</h2>
+<p>Global states are part of the brand new <a href="./binder.html">reactive stateful redesign</a>.</p>
 
         
         <script async type="text/javascript">

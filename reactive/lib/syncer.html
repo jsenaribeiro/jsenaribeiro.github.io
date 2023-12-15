@@ -133,22 +133,19 @@ pre {
 ● syncer api
 ● authentication</p>
 </blockquote>
-<h2 id="fetch-api">fetch api</h2>
-<p>In fetch, <code>'force-cache'</code> is the default value. Sync components without props and async component without props with cached fetch, the HTML will be <a href="render.html#server-side-renderings">statically generated</a>.</p>
-<pre><code class="language-tsx"><span class="hljs-title function_">fetch</span>(url, { <span class="hljs-attr">cache</span>: <span class="hljs-string">&#x27;force-cache&#x27;</span>|<span class="hljs-string">&#x27;no-cache&#x27;</span>|<span class="hljs-string">&#x27;no-store&#x27;</span>|<span class="hljs-string">&#x27;etc&#x27;</span>... }) 
-</code></pre>
-<p>Similar to <code>next.js</code>, it extends fetch cache settings for <strong>SWR</strong>, but with no 'proprietary' syntax, allowing time units for timeout directives, enabling <a href="render.html#server-side-renderings">incremental site regeneration</a>.</p>
+<h2 id="fetch-api">fetch api+</h2>
+<p>The fetch API is extended in reactive to apply SWR with smaller changes. The cache property is extended to accept time units for intervalled revalidation.</p>
 <pre><code class="language-tsx"><span class="hljs-title function_">fetch</span>(url, { <span class="hljs-attr">cache</span>: <span class="hljs-string">&#x27;10s&#x27;</span>|<span class="hljs-string">&#x27;20min&#x27;</span>|<span class="hljs-string">&#x27;50h&#x27;</span> }) 
 </code></pre>
-<p>Using cache directive as <code>'no-cache'</code> or <code>'no-store'</code>, or if component has any props or external dependency, the component will be <a href="render.html#server-side-renderings">dynamically generated</a> in each request by default.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> todos = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(url, { <span class="hljs-attr">tag</span>: <span class="hljs-string">&#x27;todos&#x27;</span> }) 
+<p>The revalidation use the url as default cache key, but also accepts custom key.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> todos = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(url, { <span class="hljs-attr">key</span>: <span class="hljs-string">&#x27;todos&#x27;</span> }) 
 
-fetch.<span class="hljs-title function_">purge</span>(<span class="hljs-string">&#x27;todos&#x27;</span>, <span class="hljs-string">&#x27;hello-world&#x27;</span>) <span class="hljs-comment">// SWR revalidate</span>
+fetch.<span class="hljs-title function_">clear</span>(<span class="hljs-string">&#x27;todos&#x27;</span>, <span class="hljs-string">&#x27;hello-world&#x27;</span>) <span class="hljs-comment">// SWR revalidate</span>
 </code></pre>
-<p>It also adds the <code>tag</code> field to manage revalidations with new <code>fetch.purge</code>(tag).</p>
+<p>The static clear method enables programatic revalidation.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> todos = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(url, { <span class="hljs-attr">tag</span>: <span class="hljs-string">&#x27;todos&#x27;</span> }) 
 
-fetch.<span class="hljs-title function_">purge</span>(<span class="hljs-string">&#x27;todos&#x27;</span>, <span class="hljs-string">&#x27;hello-world&#x27;</span>) <span class="hljs-comment">// SWR revalidate</span>
+fetch.<span class="hljs-title function_">clear</span>([<span class="hljs-string">&#x27;todos&#x27;</span>, <span class="hljs-string">&#x27;hello-world&#x27;</span>]) <span class="hljs-comment">// revalidate</span>
 </code></pre>
 <h2 id="syncer-api">syncer api</h2>
 <p>Syncer API is a SWR fetching that handles and abstracts RESTful API in CRUD semantics with async global states, retry, cache, pooling, etc.</p>
@@ -163,7 +160,8 @@ fetch.<span class="hljs-title function_">purge</span>(<span class="hljs-string">
    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Fact cat: { fact }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 }
 </code></pre>
-<h2 id="authen-api">authen api</h2>
+<h2 id="auth-api">auth api</h2>
+<p>Simple autentication to JWT Bearer or oAuth...</p>
 <blockquote>
 <p>Work in progress...</p>
 </blockquote>
