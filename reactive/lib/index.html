@@ -128,24 +128,22 @@ pre {
 </style>
 <script src='./index.js'></script>
 <section menu center>
-<p><a href="#lite--application-startup">lite</a> | <a href="#easy--routing-with-seo-and-jih">easy</a> | <a href="#fast--fully-featured-rendering">fast</a> | <a href="#lean--cleaner-stateful-coding">lean</a> | <a href="#open--extensible-library">open</a> | <a href="#news--concepts-and-features">news</a></p>
+<p><a href="#easy--routing-with-seo-and-jih">easy</a> | <a href="#lite--application-startup">lite</a> | <a href="#lean--cleaner-stateful-coding">lean</a> |  <a href="#fast--fully-featured-rendering">fast</a> | <a href="#open--extensible-library">open</a> | <a href="#news--concepts-and-features">news</a></p>
 </section>
 <h1 id="documentation">documentation</h1>
 <blockquote>
-<p>full server-side rendering
-● search-engine optmization
+<p>server-side rendering
+● search-engine optimization
 ● micro-components architecture
 ● self-rendering objects
 ● function decorators
 ● property injections
-● easy routing
-● data binding
-● reactive forms
+● simple routing
 ● modular CSS
-● server actions</p>
+● props binding</p>
 </blockquote>
 <div center align='center'>
-<p><img src='../img/library.png' width='100%' /><br/></p>
+<img hidden src='../img/library.png' width='100%' /><br/>
 <!-- TODO 
 binder
 - stateful: props, store, feeds
@@ -155,7 +153,7 @@ binder
 render
 - client-side: @client
 - server-side: static(sync), dynamic(async), periodic(@)
-- full-stacks: automatic client failback
+- full-stacks: automatic client fallback
 
 router
 - HTML page = static folder routing
@@ -177,44 +175,44 @@ styler
 - classNaame tag
 - layout props
 -->
-<p>Reactive is full featured ramework with with a brand new micro-components architecture as evolution of monolithic component tree in single-page applications.</p>
 </div>
 <h2 id="lite--application-startup">LITE | <code>application startup</code></h2>
-<p>A lite <a href="lib/server.html">server</a> with Deno and a sliced preact lib (1kb) and zero bundle.</p>
+<p>A lite Deno <a href="lib/server.html">server</a> with reduced preact lib (1kb) and zero bundle.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> server <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactive/server&#x27;</span>
 
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-number">3000</span>, <span class="hljs-string">&quot;/&quot;</span>).<span class="hljs-title function_">render</span>(<span class="hljs-title class_">Todo</span>, <span class="hljs-title class_">Hello</span>)
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-number">3000</span>,).<span class="hljs-title function_">render</span>(<span class="hljs-literal">true</span>)
 </code></pre>
-<p>JSX is rendered inside of HTML itselft (JSX-in-HTML or <strong>JiH</strong>).</p>
+<p>JSX-in-HTML(<strong>JiH</strong>) enables JSX being invoked directlly inside HTML.</p>
 <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">Hello</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">Todo</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
 <h2 id="easy--routing-with-seo-and-jih">EASY | <code>routing with SEO and JiH</code></h2>
-<p>Vanilla HTML-based pages with <a href="lib/server.html">JSX-in-HTML</a>, simple folder routing (with no extra convention), vanilla <a href="lib/server.html">SEO</a> and server-side <a href="lib/server.html">embed</a> tag for server-side includes.</p>
-<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Page | About<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;description&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;About page&quot;</span> /&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;_metadatas.html&#x27;</span> /&gt;</span>
+<p>Simple HTML folder routing (no extra convention) for vanilla <a href="lib/server.html">SEO</a>.</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Meta</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;Page&quot;</span> <span class="hljs-attr">description</span>=<span class="hljs-string">&quot;About page&quot;</span> /&gt;</span>
 
 <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>About<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
-   Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-   Dicta at inventore aspernatur ullam quasi beatae quis 
+   Lorem ipsum dolor sit amet, consectetur elit. 
+   Dicta at inventore aspernatur ullam quas quis 
    numquam recusandae quia. 
 <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 </code></pre>
-<h2 id="fast--fully-featured-rendering">FAST | <code>fully featured rendering</code></h2>
-<p>Full <a href="lib/render.html">server-side rendering</a> with static-site generation and incremental-static generation by function decorators with faster micro-components tree.</p>
-<pre><code class="language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-keyword">static</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactive/decorators&#x27;</span>
+<p>Props routing enables advanced client routing features with lazy components</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { useLazy } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactive&#x27;</span>
 
-<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) { <span class="hljs-comment">/*...*/</span> }
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Hello</span> = <span class="hljs-title function_">useLazy</span>(<span class="hljs-string">&#x27;./components/hello.ts&#x27;</span>)
 
-<span class="hljs-meta">@static</span>
-<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) { <span class="hljs-comment">/*...*/</span> }
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Panel</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span> Menu <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;/about&#x27;</span>&gt;</span>About<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> <span class="hljs-comment">&lt;!-- server routing --&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;/tutor&#x27;</span>&gt;</span>Tutor<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> <span class="hljs-comment">&lt;!-- client routing --&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;/hello&#x27;</span>&gt;</span>Hello<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> <span class="hljs-comment">&lt;!-- lazy modulings --&gt;</span>
 
-<span class="hljs-meta">@static</span>({ <span class="hljs-attr">time</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">unit</span>: <span class="hljs-string">&quot;day&quot;</span> }) 
-<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) { <span class="hljs-comment">/*...*/</span> }
+   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/tutor&#x27;</span>&gt;</span>Hi! I&#x27;m your tutor!<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>   
+   <span class="hljs-tag">&lt;<span class="hljs-name">Hello</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/hello&#x27;</span> /&gt;</span> 
+<span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 <h2 id="lean--stateful-redesign">LEAN | <code>stateful redesign</code></h2>
-<p><a href="lib/stater.html">Stateful props</a> as local state, oversimplified <a href="lib/stater.html">modular Store</a> as Context Api alternative, and global props for <a href="lib/binder.html">binding</a>, <a href="lib/router.html">routing</a> and <a href="lib/styler.html">styling</a>.</p>
+<p>Self-rendering proxy objects for local <a href="lib/stater.html">stateful props</a>, global injecting feeds, and contextual slots. Also a leaner element mapper with <a href="lib/binder.html">props binding</a> and new <a href="lib/styler.html">styling features</a>.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Store</span>({ <span class="hljs-attr">title</span>:<span class="hljs-string">&#x27;Welcome!&#x27;</span> })
 
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
@@ -227,27 +225,39 @@ styler
    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Hello { props.name } !<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
 <span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-<p>Binding props also supports <a href="lib/binder.html">uncontrolled components</a> that supports customizable validation API with context injection of error list.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">ReactiveForms</span> = (<span class="hljs-params">props, { invalids:e }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Forms</span> = (<span class="hljs-params">props, { invalids:e }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> {<span class="hljs-attr">onSubmit</span>} {<span class="hljs-attr">onInvalid</span>} &gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">required</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&quot;name&quot;</span> /&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&#x27;submit&#x27;</span>&gt;</span>Ok<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
       { e.name &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span> { e.name.error }<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span> }
    <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 <span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+<h2 id="fast--rull-rendering">FAST | <code>rull rendering</code></h2>
+<p>PWA-ready with full <a href="lib/render.html">server-side rendering</a> and implicit render strategy with server static default. Explicit render strategy is enabled by the brand new function decorators</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { client dynamic, periodic } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactive&#x27;</span>
 
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">onSubmit</span>(<span class="hljs-params">data</span>) { <span class="hljs-comment">/* ...handling */</span> }
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">onInvalid</span>(<span class="hljs-params">errs</span>) { <span class="hljs-comment">/* ...extending */</span> }
+<span class="hljs-meta">@client</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Todo</span> = (<span class="hljs-params"></span>) =&gt; { ... }
+
+<span class="hljs-meta">@dynamic</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Stocks</span>(<span class="hljs-params"></span>) { ... }
+
+<span class="hljs-meta">@periodic</span>(<span class="hljs-string">&quot;24h&quot;</span>, <span class="hljs-literal">true</span>) 
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">MessageOfDay</span>(<span class="hljs-params"></span>) { ... }
 </code></pre>
 <h2 id="open--extensible-library">OPEN | <code>extensible library</code></h2>
-<p>Highly and easy extensible framework with IoC container with multiple injections, such as props, plugins, parsers, etc.</p>
-<p>props
-parsers
-plug-ins</p>
-<pre><code class="language-tsx"><span class="hljs-title class_">React</span>.<span class="hljs-title function_">server</span>(<span class="hljs-number">3000</span>, <span class="hljs-string">&quot;/routes&quot;</span>)
-     .<span class="hljs-title function_">inject</span>(<span class="hljs-comment">/*  props|plugin|parser  */</span>) 
-     .<span class="hljs-title function_">render</span>(<span class="hljs-comment">/*   components   */</span>)
+<p>Highly and easily extensible with IoC container with propers, plugins, parsers <a href="./deeper.html#property-mixins">Propers</a> enables injectable props that extends existing elements (similar to Angular attribute directives).</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-title function_">show</span> = props =&gt; ({...props, <span class="hljs-attr">hidden</span>: !props.<span class="hljs-property">show</span> })
+
+<span class="hljs-title class_">React</span>.<span class="hljs-title function_">server</span>(<span class="hljs-number">3000</span>)
+     .<span class="hljs-title function_">inject</span>(show, <span class="hljs-string">&quot;shown&quot;</span>)
+     .<span class="hljs-title function_">render</span>(<span class="hljs-title class_">App</span>)
+</code></pre>
+<p>After injected, it coulbe use in any JSX Element.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">show</span>=<span class="hljs-string">{false}</span>&gt;</span>Don&#x27;t show me<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 </code></pre>
 <h2 id="news--concepts-approaches-and-features">NEWS | <code>concepts, approaches and features</code></h2>
 <ul>
