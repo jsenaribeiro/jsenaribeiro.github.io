@@ -3,5 +3,5 @@
 ## [Reactive](./reactive/)
 <sup>SSR React framework</sup>
 
-## [React Away](./react-away/)
-<sup>SPA Micro-Framework for agile stateful React</sup>
+## [Reactive Slide](./react-away/)
+<sup>SSR React framework</sup>
