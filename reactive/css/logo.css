@@ -5,8 +5,7 @@
    --logo-color: wheat; /* #61DAFB */
    --logo-arch: 9px;
    --speed: 333ms;
-}
- 
+} 
 
 logo {
    display: inline-block;

@@ -158,7 +158,13 @@ pre {
 <p>Configurable defaults brings the simplicity of conventions-over-configuration approach with the control and versatility of configuration-over-conventions approach.</p>
 <h2 id="ioc-container">IoC container</h2>
 <p>Reactive brings dependency injection with fluent <strong>inject</strong> method with overloads for plugins transpiler, proper directives and global states for <a href="./binder.html">lean state management</a>.</p>
-<pre><code class="language-ts"><span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-number">3000</span>, settings).<span class="hljs-title function_">inject</span>(<span class="hljs-comment">/** etc... **/</span>).<span class="hljs-title function_">render</span>(<span class="hljs-literal">true</span>)
+<pre><code class="language-ts"><span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-number">3000</span>, settings).<span class="hljs-title function_">inject</span>(<span class="hljs-comment">/** injectables **/</span>).<span class="hljs-title function_">render</span>(<span class="hljs-literal">true</span>)
+</code></pre>
+<p>The feeds object in functional component second argument  brings the IoC context.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Sample</span>(<span class="hljs-params">props, feeds</span>) { ... }
+</code></pre>
+<p>The feeds object resolves custom injections with <a href="./binder.html">stores</a> and contextual information as errors, request, response (client-side only) ny destructuring the feeds object.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Sample</span>(<span class="hljs-params">props, { store, errors, request }</span>) { ... }
 </code></pre>
 <h2 id="transpiler-plugins">transpiler plugins</h2>
 <p>Plugin enables transpile extension using a Plugin class (server-side build only).</p>
@@ -194,9 +200,6 @@ pre {
 }
 </code></pre>
 </div>
-<h2 id="global-states">global states</h2>
-<p>Global states are part of the brand new <a href="./binder.html">reactive stateful redesign</a> in binder module, that enable a more intuitive and minimalist way to deal with states in React.</p>
-
         
         <script async type="text/javascript">
 /* From extension marp-team.marp-vscode */
