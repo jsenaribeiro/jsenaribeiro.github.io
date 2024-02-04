@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="overflow: hidden;">
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,7 @@
    </main>
    <style>
       body, html {
+         overflow: hidden;
          background-color: #222;
          width:100%; 
          height: 100%;
@@ -21,6 +22,7 @@
       }
 
       iframe {
+         overflow: none;
          background-color: #333;
          width: 800px; 
          height: 100%;
@@ -29,12 +31,12 @@
       }
 
       main {
-         margin: 0 auto;
-         padding: 0;
-         display: grid;
          max-width: 999px;
          width:100%; 
          height: 100%;
+         margin: 0 auto;
+         display: grid;
+         padding: 0;
          grid-template-columns: 190px 1fr;
          grid-template-rows: 1fr;
       }

@@ -1,6 +1,18 @@
 @import url(./css/index.css);
 @import url(./css/logo.css);
 
+body { padding:0; margin:0 }
+
+article { margin-top: 15px; }
+
+[menu-top] { margin-bottom:-25px; }
+
+fieldset {
+   border-color: dimgrey;
+   border-style: dashed;
+ }
+ 
+
 #title logo { 
    top: -5px;
    left: 3px; 
@@ -75,6 +87,7 @@ blockquote {
 }
 
 h1 { font-family: quicksand }
+[specs] a { font-family: agave !important; font-weight: 100; }
 [specs] tr td:nth-of-type(3) { font-size: 13px; white-space: nowrap }
 [specs] tr td:nth-of-type(3) { opacity:0.65 }
 [specs] tr td:nth-of-type(2) { font-size: 13px; }
@@ -94,14 +107,16 @@ legend:hover { cursor:pointer; filter: brightness(1) }
 legend {
    padding: 0 7px;
    margin-top: 2rem;
-   font-size: 1.5rem;
+   font-size: 1.3rem;
+   color: #999;
    /* border-bottom: solid 1px grey; */
 }
 
 legend b {      
    color: wheat;
-   font-weight: 300;
-   font-family: quicksand
+   font-weight: 900;
+   font-family: quicksand;
+   font-size: 15px;
 }
 
 fieldset {
