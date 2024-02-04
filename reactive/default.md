@@ -19,12 +19,12 @@
 <section menu center menu-top>
    
    [easy](# 'vanilla-like low learning-curve') 
-   | [lite](#) 
-   | [lean](#) 
-   | [fast](#) 
-   | [full](#) 
-   | [bold](#) 
-   | [nice](#)
+   • [lite](#) 
+   • [lean](#) 
+   • [fast](#) 
+   • [full](#) 
+   • [bold](#) 
+   • [nice](#)
 
 </section>
 
@@ -35,9 +35,6 @@
 <style>
    [specs] tr td:nth-of-type(3) { zoom:0.9; line-height:15px; }
 </style>
-
-<script>   
-</script>
 
 <section specs>
 
@@ -50,6 +47,28 @@
 | <a href='#' onclick='onPreview("router", true)'>router</a> | easy folder, decorator and props routing with decorator seo, route params, nesting routes, authorization with no wierd conventions | /route @route [route] <br/> ./nest  :param [routed] <br/> @seo  @auth  @error|
 | <a href='#' onclick='onPreview("binder", true)'>binder</a> | props bindings for controlled components and uncontrolled forms with restful server actions and vanilla validation api | props directive<br/>[bind] [data] form[data]<br/>action validation authentication  |
 | <a href='#' onclick='onPreview("bearer", true)'>bearer</a> | @auth decorator for authorization integrated with 'ajaxness' auth api  lib for simple authentication with jwt bearer and oAuth | authorization: @auth  <br/> authentication: form[onAuth] <br/> session: login logged logout |
+
+<br/>
+
+<aside cols='3:5' style='zoom:0.9'>
+
+```cmd
+$ bun create reactive
+
+- empty template? no
+- project name? test
+- vs code IDE? yes
+- install? yes
+```
+
+```bash
+\apis          # restiful apis      
+\assets        # public static files
+\builds        # bundle and SSG htmls
+\components    # common jsx components
+\directives    # custom props directives
+\routes        # pages with md, jsx and html
+```
 
 </section>
 </article>
@@ -426,5 +445,3 @@ const session = auth<Profile>(googleAuth)
 
 <article review>
 </article>
-
-<br/><br/><br/>

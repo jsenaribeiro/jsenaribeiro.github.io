@@ -89,7 +89,8 @@ body.marp-vscode blockquote {
 }
 
 </style>
-            
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
 <style>
@@ -227,12 +228,12 @@ body.marp-vscode blockquote {
 <article overview>
 <section menu center menu-top>
 <p><a href="#" title="vanilla-like low learning-curve">easy</a>
-| <a href="#">lite</a>
-| <a href="#">lean</a>
-| <a href="#">fast</a>
-| <a href="#">full</a>
-| <a href="#">bold</a>
-| <a href="#">nice</a></p>
+• <a href="#">lite</a>
+• <a href="#">lean</a>
+• <a href="#">fast</a>
+• <a href="#">full</a>
+• <a href="#">bold</a>
+• <a href="#">nice</a></p>
 </section>
 <h1 id="overview--preview--review"><strong>overview</strong> | <a href='#' onclick='onPreview("")'>preview</a> | <a href='#' onclick='onReview("")'>review</a></h1>
 <blockquote>
@@ -241,8 +242,6 @@ body.marp-vscode blockquote {
 <style>
    [specs] tr td:nth-of-type(3) { zoom:0.9; line-height:15px; }
 </style>
-<script>   
-</script>
 <section specs>
 <table>
 <thead>
@@ -290,6 +289,22 @@ body.marp-vscode blockquote {
 </tr>
 </tbody>
 </table>
+<br/>
+<aside cols='3:5' style='zoom:0.9'>
+<pre><code class="language-cmd">$ bun create reactive
+
+- empty template? no
+- project name? test
+- vs code IDE? yes
+- install? yes
+</code></pre>
+<pre><code class="language-bash">\apis          <span class="hljs-comment"># restiful apis      </span>
+\assets        <span class="hljs-comment"># public static files</span>
+\builds        <span class="hljs-comment"># bundle and SSG htmls</span>
+\components    <span class="hljs-comment"># common jsx components</span>
+\directives    <span class="hljs-comment"># custom props directives</span>
+\routes        <span class="hljs-comment"># pages with md, jsx and html</span>
+</code></pre>
 </section>
 </article>
 <article id='preview' preview hidden>
@@ -322,7 +337,7 @@ body.marp-vscode blockquote {
 @client
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">ClientSideRendered</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<p>Static files is server by /assets and restful api in /apis folder.</p>
+<p>Static files is server by /assets and restful apis in /apis folder.</p>
 <aside cols='4:5' >
 <pre><code class="language-py">/assets
   /styles.css
@@ -602,9 +617,7 @@ body.marp-vscode blockquote {
 </article>
 <article review>
 </article>
-<p><br/><br/><br/></p>
-
-            
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
             <script async type="text/javascript">
 /* From extension marp-team.marp-vscode */
 (()=>{var U=Object.defineProperty;var d=($,E)=>U($,"name",{value:E,configurable:!0});(()=>{var $={676:(w,b,g)=>{w.exports=g(185)},185:(w,b)=>{"use strict";var g;g={value:!0};const x={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},k="data-marp-auto-scaling-wrapper",u="data-marp-auto-scaling-svg",c="data-marp-auto-scaling-container",T=class T extends HTMLElement{constructor(){super(),this.svgPreserveAspectRatio="xMinYMid meet";const s=d(i=>([n])=>{const{width:e,height:t}=n.contentRect;this[i]={width:e,height:t},this.updateSVGRect()},"t");this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(s("containerSize")),this.wrapperObserver=new ResizeObserver((...i)=>{s("wrapperSize")(...i),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){var s,i,n,e,t;this.shadowRoot.innerHTML=`
