@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="main.css" type="css/text" hrel="stylesheet">
+   <title>reactive.js</title>
+   <script src='./main.js'></script>
+</head>
+<body onload="startup()">
+   <main>
+      <iframe src="./default.html"></iframe>
+   </main>
+   <style>
+      body, html {
+         background-color: #222;
+         width:100%; 
+         height: 100%;
+         padding: 0;
+         margin: 0;
+      }
+
+      iframe {
+         background-color: #333;
+         width: 800px; 
+         height: 100%;
+         padding: 0;
+         border: 0;
+      }
+
+      main {
+         margin: 0 auto;
+         padding: 0;
+         display: grid;
+         max-width: 999px;
+         width:100%; 
+         height: 100%;
+         grid-template-columns: 190px 1fr;
+         grid-template-rows: 1fr;
+      }
+   </style>
+</body>
+</html>
