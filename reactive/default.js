@@ -25,7 +25,7 @@ function onPreview(id, save) {
    id && document.querySelector('#' + id).classList.remove('hidden')
 
    setTimeout(() => {
-      location.hash = '#preview'
+      location.hash = id ? `#${id}` : '#preview'
       document.body.style.visibility = 'visible' }, 99)
 
    save && history && history.psu

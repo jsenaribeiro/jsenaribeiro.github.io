@@ -236,7 +236,7 @@ body.marp-vscode blockquote {
 </section>
 <h1 id="overview--preview--review"><strong>overview</strong> | <a href='#' onclick='onPreview("")'>preview</a> | <a href='#' onclick='onReview("")'>review</a></h1>
 <blockquote>
-<p>SSR • SEO • partial hydration • prefetch-routing <br/>render refocus • JSX streaming • dependency injection <br/>props directive • function decorators</p>
+<p>server-side rendering • stateful handling • versatile routing <br/>route authorization • search engine optimization</p>
 </blockquote>
 <style>
    [specs] tr td:nth-of-type(3) { zoom:0.9; line-height:15px; }
@@ -294,18 +294,17 @@ body.marp-vscode blockquote {
 </article>
 <article id='preview' preview hidden>
 <section menu center menu-top>
-<p><a href="#" title="vanilla-like low learning-curve">easy</a>
-| <a href="#">lite</a>
-| <a href="#">lean</a>
-| <a href="#">fast</a>
-| <a href="#">full</a>
-| <a href="#">bold</a>
-| <a href="#">nice</a></p>
+<p><a href="#" title="single-page application">SPA</a>
+• <a href="#" title="search engine optimization">SEO</a>
+• <a href="#" title="server-side rendering">SSR</a>
+• <a href="#" title="client-side rendering">CSR</a>
+• <a href="#" title="react server components">RSC</a>
+• <a href="#" title="progressive web app">PWA</a></p>
 </section>
 <h1 id="overview--preview--review-1"><a href='#' onclick='onOverview()'>overview</a> | <strong>preview</strong> | <a href='#' onclick='onReview()'>review</a></h1>
 <center style='text-align: center !important'>
 <blockquote>
-<p>SSR • SEO • partial hydration • prefetch-routing <br/>render refocus • JSX streaming • dependency injection <br/>props directive • function decorators</p>
+<p>partial hydration • prefetch route • render streaming <br/>render refocus • dependency injection • restiful actions <br/>props directive • function decorators</p>
 </blockquote>
 </center>
 <fieldset id='server' onclick='onPreview(this.id)' class='hidden'>
@@ -323,19 +322,17 @@ body.marp-vscode blockquote {
 @client
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">ClientSideRendered</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<p>It also serves restful services in /api and static contents in /assets.</p>
+<p>Static files is server by /assets and restful api in /apis folder.</p>
 <aside cols='4:5' >
-<pre><code class="language-py"><span class="hljs-comment"># route: /assets/favicon.ico</span>
-/assets
+<pre><code class="language-py">/assets
   /styles.css
   /favicon.ico
   /img/profile.png
 </code></pre>
-<pre><code class="language-tsx"><span class="hljs-comment">// route: /api/hello</span>
-<span class="hljs-comment">// local: /apis/hello.tsx</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">get</span> = request =&gt;
-   <span class="hljs-keyword">new</span> <span class="hljs-title class_">Response</span>(<span class="hljs-string">&#x27;hello world&#x27;</span>)
+<pre><code class="language-tsx"><span class="hljs-comment">// HTTP verb function naming</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">get</span>(<span class="hljs-params">request: Request</span>) {
+   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Response</span>(<span class="hljs-string">&#x27;hello world&#x27;</span>)
+}
 </code></pre>
 </aside>
 <style>   
@@ -350,10 +347,7 @@ body.marp-vscode blockquote {
 </fieldset>
 <fieldset id='stater' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>STATER</b> handling</legend>
-<p>Hookless OOP state handling alterantive for useState and context api.</p>
-<pre><code class="language-tsx">obj.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;new name&#x27;</span> <span class="hljs-comment">// changed object triggers the render</span>
-</code></pre>
-<p>Stateful props for <strong>local</strong> states and <strong>global</strong> states from dependency injection.</p>
+<p>Stateful proxy object with <strong>local</strong> stateful props and <strong>global</strong> state dependency injection.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = (<span class="hljs-params">props, ({ stores: <span class="hljs-variable language_">global</span> })</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    Local Hello { props.name } !
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> props.name=e.taget.value} /&gt;
@@ -366,7 +360,7 @@ body.marp-vscode blockquote {
 
 <span class="hljs-keyword">await</span> <span class="hljs-title class_">Reactive</span>.<span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>).<span class="hljs-title function_">inject</span>({ <span class="hljs-variable language_">global</span> }).<span class="hljs-title function_">render</span>()
 </code></pre>
-<p>The <strong>modular</strong> states enable shared states by import and export semantics.</p>
+<p>Contextual states is enabled by <strong>modular</strong> stateful objects using createState.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { createState } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactive&#x27;</span>
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> modular = <span class="hljs-title function_">createState</span>({ <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span> })

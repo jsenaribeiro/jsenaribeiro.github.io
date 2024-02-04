@@ -30,7 +30,7 @@
 
 # **overview** | <a href='#' onclick='onPreview("")'>preview</a> | <a href='#' onclick='onReview("")'>review</a>
 
-> SSR • SEO • partial hydration • prefetch-routing <br/>render refocus • JSX streaming • dependency injection <br/>props directive • function decorators
+> server-side rendering • stateful handling • versatile routing <br/>route authorization • search engine optimization
 
 <style>
    [specs] tr td:nth-of-type(3) { zoom:0.9; line-height:15px; }
@@ -57,13 +57,12 @@
 <article id='preview' preview hidden>
 <section menu center menu-top>
    
-   [easy](# 'vanilla-like low learning-curve') 
-   | [lite](#) 
-   | [lean](#) 
-   | [fast](#) 
-   | [full](#) 
-   | [bold](#) 
-   | [nice](#)
+   [SPA](# 'single-page application')
+   • [SEO](# 'search engine optimization') 
+   • [SSR](# 'server-side rendering')
+   • [CSR](# 'client-side rendering') 
+   • [RSC](# 'react server components') 
+   • [PWA](# 'progressive web app') 
    
 </section>
 
@@ -71,7 +70,7 @@
 
 <center style='text-align: center !important'>
 
-> SSR • SEO • partial hydration • prefetch-routing <br/>render refocus • JSX streaming • dependency injection <br/>props directive • function decorators
+> partial hydration • prefetch route • render streaming <br/>render refocus • dependency injection • restiful actions <br/>props directive • function decorators
 
 </center>
 
@@ -94,23 +93,21 @@ export default const PeriodicRendered = props => <>...</>
 export default const ClientSideRendered = props => <>...</>
 ```
 
-It also serves restful services in /api and static contents in /assets.
+Static files is server by /assets and restful apis in /apis folder.
 
 <aside cols='4:5' >
 
 ```py
-# route: /assets/favicon.ico
 /assets
   /styles.css
   /favicon.ico
   /img/profile.png
 ```
 ```tsx
-// route: /api/hello
-// local: /apis/hello.tsx
-
-export const get = request =>
-   new Response('hello world')
+// HTTP verb function naming
+export function get(request: Request) {
+   return new Response('hello world')
+}
 ```
 
 </aside>
@@ -129,13 +126,7 @@ export const get = request =>
 <fieldset id='stater' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>STATER</b> handling</legend>
 
-Hookless OOP state handling alterantive for useState and context api.
-
-```tsx
-obj.name = 'new name' // changed object triggers the render
-```
-
-Stateful props for **local** states and **global** states from dependency injection.
+Stateful proxy object with **local** stateful props and **global** state dependency injection.
 
 ```tsx
 const Component = (props, ({ stores: global })) => <>
@@ -153,7 +144,7 @@ const global = { name: 'world', now: new Date() }
 await Reactive.server("#root").inject({ global }).render()
 ```
 
-The **modular** states enable shared states by import and export semantics.
+Contextual states is enabled by **modular** stateful objects using createState.
 
 ```tsx
 import { createState } from 'reactive'
