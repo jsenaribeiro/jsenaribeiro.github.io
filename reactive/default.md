@@ -38,7 +38,7 @@
 
 <br/>
 
-<aside cols='3:5' style='zoom:0.9'>
+<aside cols='4:5' style='zoom:0.9'>
 
 ```cmd
 $ bun create reactive
