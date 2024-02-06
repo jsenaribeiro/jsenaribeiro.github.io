@@ -1,18 +1,6 @@
 <script src='./default.js'></script>
-
 <style>
-   @import url(./main.css);
-   [cols] { margin-top:-10px; }
-   fieldset:not(.hidden) > legend ~ i { display:none }
-   .hidden > *:not(legend,i) { display: none; }
-   .hidden > *:not(legend,i) { display: none; }
-   html { overflow: hidden !important; }
-   h1 em { color:dimgrey !important }
-   h1 { 
-      font-size:27px !important; 
-      letter-spacing:-1px; 
-      line-height: 51px;
-   }
+   @import url(./default.css);
 </style>
 
 <article overview>
@@ -129,6 +117,8 @@ export function get(request: Request) {
 }
 ```
 
+Click [here](./review/server.html) to learn more about this.
+
 </aside>
 
 <style>   
@@ -140,6 +130,54 @@ export function get(request: Request) {
       margin-bottom: 15px;
    }
 </style>
+</fieldset>
+<fieldset id ='styler' onclick='onPreview(this.id)' class='hidden'>
+<legend><b>STYLER</b> scoping</legend>
+
+Fixed modular CSS with component-scoped by decorators or className tag.
+
+<aside cols='2'><div>
+
+```css
+/* file: module.css */
+h1 { color:green }
+```
+```css
+/* file: styles.css (global) */
+button.ComponentA { color:blue }
+```
+
+</div><div>
+
+```tsx
+import 'module.css'
+
+@style('./component.css')
+const ComponentA = () => <>
+   <h1>Hello World!</h1>
+   <button>Ok</button>
+</>
+```
+
+</div></aside>
+
+<style>pre { margin: 7px 0px; }</style>
+
+New easy grid layout style prop directives for lean and fast structuring.
+
+```jsx
+const Component = props => <>
+
+   <!-- grid layout props -->
+   <section grid cols='2'>
+      <aside>cols 1</aside>
+      <aside>cols 2</aside>
+   </section>
+</>
+```
+
+Click [here](./review/styler.html) to learn more about this.
+
 </fieldset>
 
 <fieldset id='stater' onclick='onPreview(this.id)' class='hidden'>
@@ -175,61 +213,6 @@ const Component = props => <>
    <input value={modular.name} 
       onChange={e => modular.name=e.taget.value} />
 </>
-```
-
-</fieldset>
-<fieldset id ='styler' onclick='onPreview(this.id)' class='hidden'>
-<legend><b>STYLER</b> scoping</legend>
-
-Fixed modular CSS with component-scoped by decorators or className tag.
-
-<aside cols='2'><div>
-
-```css
-/* file: module.css */
-h1 { color:green }
-```
-```css
-/* file: styles.css (global) */
-button.ComponentA { color:blue }
-```
-
-</div><div>
-
-```tsx
-import 'module.css'
-
-@style('./component.css')
-const ComponentA = () => <>
-   <h1>Hello World!</h1>
-   <button>Ok</button>
-</>
-```
-
-</div></aside>
-
-<style>pre { margin: 7px 0px; }</style>
-
-Grid layout style props with conditional rendering with media query directly in JSX/HTML.
-
-```jsx
-const Component = props => <>
-
-   <!-- grid layout props -->
-   <section grid cols='2'>
-      <aside>cols 1</aside>
-      <aside>cols 2</aside>
-
-      <!-- conditional rendering with dark mode -->
-      <button theme='dark'>Ok</button>
-
-      <!-- conditional rendering with min-max width -->
-      <button range={[1025, 1280]}>Validate</button>
-
-      <!-- conditional rendering with full custom media query -->
-      <button query='(min-width: 1025px) and (max-width: 1280px)'>cancel</button>
-   </section>
-</!->
 ```
 
 </fieldset>

@@ -1,0 +1,29 @@
+@import url(./main.css);
+
+[cols] { margin-top:-10px; }
+
+fieldset:not(.hidden) > legend ~ i { display:none }
+.hidden > *:not(legend,i) { display: none; }
+.hidden > *:not(legend,i) { display: none; }
+
+html { overflow: hidden !important; }
+h1 em { color:dimgrey !important }
+h1 { 
+   font-size:27px !important; 
+   letter-spacing:-1px; 
+   line-height: 51px;
+}
+
+article {
+   padding: 0 20px;
+}
+
+h1 { padding-bottom: 0px; };
+
+blockquote {
+   font-size: 13px;
+   text-align: center;
+   margin-top: -15px;
+   margin-left: -3px;   
+   line-height: 20px;
+}

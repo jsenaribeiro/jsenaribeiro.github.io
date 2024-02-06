@@ -1,5 +1,3 @@
-function delay(timeout, fn) { setTimeout(fn, timeout) }
-
 function startup() {   
    const iframe = document.querySelector('iframe')
    const content = iframe.contentWindow.document.body

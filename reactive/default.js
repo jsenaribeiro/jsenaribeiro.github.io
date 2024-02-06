@@ -1,3 +1,10 @@
+function delay(timeout, fn) { setTimeout(fn, timeout) }
+
+delay(999, function() {
+   console.log('location.hash !!!!!', location)
+   if (location.hash == '#preview')
+      onPreview('')
+})
 
 function onOverview() {
    document.querySelector('article[overview]').hidden = false

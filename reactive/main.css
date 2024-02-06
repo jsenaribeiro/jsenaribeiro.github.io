@@ -76,13 +76,7 @@ h2 > code {
 
 h2::before { content:'' }
 
-blockquote {
-   font-size: 13px;
-   text-align: center;
-   margin-top: -25px;
-   margin-left: -3px;   
-   line-height: 20px;
-}
+
 
 h1 { font-family: quicksand }
 [specs] a { font-family: agave !important; font-weight: 100; }
