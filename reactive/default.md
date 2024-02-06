@@ -43,9 +43,9 @@
 ```cmd
 $ bun create reactive
 
-- empty template? no
-- project name? test
-- vs code IDE? yes
+- template? empty | minimal | sampling
+- project name? my-project
+- vs code IDE? [Y/n] y
 - install? yes
 ```
 
