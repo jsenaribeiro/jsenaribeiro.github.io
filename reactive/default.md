@@ -221,7 +221,7 @@ const Component = props => <>
 <fieldset id='ranker' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>RANKER</b> searching</legend>
 
-Easy SEO with new function decorators by @seo decorator, with basic title and description overload, and also metatags object overload.
+Simple SEO using function decorators by @seo decorator with metatags support.
 
 <aside cols=2>
 
@@ -249,22 +249,6 @@ export function Example() { ... }
 
 <fieldset id='router' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>ROUTER</b> modeling</legend>
-
-Easy routing href with no extra conventions supporting props, folder and decorators.
-
-| | | | |
-|-:|-|-|-|
-| **JSX** | \ | \route\index.tsx | entry index component |
-| **MD** | \example | \routes\example.md | markdown rendering |
-| **HTML** | \sample | \routes\sample.html | HTML serving |
-| **index** | \about | \routes\about\index.tsx | indexed routing
-
-<style>
-   #router table th { font-weight: bolder !important; zoom:1.2 }
-   #router table { width: 100%; zoom: 0.75; margin:20px; }
-   #router tr td:nth-of-type(4) { opacity: 0.65; }
-   #router tr td:nth-of-type(1) { font-weight: 9000 !important; }
-</style>
 
 The `@route` decorator support params (dynamic routes) with explicit component route.
 
@@ -321,45 +305,30 @@ const Component = (props, { stores: hello }) => <>
 </>
 ```
 
-Uncontroled components **form binding** as form[data] and input[bind] with support to  validation api, restful server actions and embbed authentication.
+Uncontroled component `form[data]` supports actions, validation, and authentication.
 
 ```tsx
-const Component = (props, { errors }) => <>
-   <form data={props} method="post" type='json'
-      action="http://api.example.com/signup"
-      onAuth={parseJwt}> <!-- jwt bearer -->
-
-      Name: <input bind='name' maxlength={50} />
-      Mail: <input bind='mail' pattern="\w+@\w+\.\w+" />    
-
-      <button>Submit</button>
-   </form>
-</>
+const Form = (props, { errors }) => <form data={props} 
+   method="post" action="http://api.sample.com"> 
+   Name: <input bind='name' maxlength={50} />
+   Mail: <input bind='mail' pattern="\w+@\w+\.\w+" />    
+   <button>Submit</button>
+</form>
 ```
 
-Custom props directives could be injected in reactive IoC container.
+It is possible custom props directives by dependency injection.
 
 ```tsx
 import { server } from 'reactive'
-
-const hello = { name:'john' }
-const failure = ({ status, error }) => <h1>failed!</h1>
 const shown = props => ({ ...props, hidden: !props.shown })
-const jwtBearer = new JwtAuth(1000, x => x.access_token)
-
-await server("#root", { failure })
-   .inject({ hello })
-   .inject([ shown ])
-   .render()
+await server("#root", { failure }).inject([ shown ]).render()
 ```
 
-This `shown` implements a props injections as property mixing (aka props directive). It also requires module declaration to avoid typescript warnings in React.
+Here `shown` is a custom props directive (requires module declaration for intelisense).
 
 ```ts
-// testing the new injected props 
-const Example = prop => <div show={false}>...</div>
+export const Sample = prop => <div show={false}>sampling...</div>
 
-// declaring new props in react module to avoid warnings in typescript
 declare module "react" { interface HTMLAttribute { show?: boolean }}
 ```
 

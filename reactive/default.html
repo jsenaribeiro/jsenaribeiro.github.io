@@ -413,7 +413,7 @@ body.marp-vscode blockquote {
 </fieldset>
 <fieldset id='ranker' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>RANKER</b> searching</legend>
-<p>Easy SEO with new function decorators by @seo decorator, with basic title and description overload, and also metatags object overload.</p>
+<p>Simple SEO using function decorators by @seo decorator with metatags support.</p>
 <aside cols=2>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { seo } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactive&#x27;</span>
 
@@ -435,49 +435,6 @@ body.marp-vscode blockquote {
 </fieldset>
 <fieldset id='router' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>ROUTER</b> modeling</legend>
-<p>Easy routing href with no extra conventions supporting props, folder and decorators.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:right"></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right"><strong>JSX</strong></td>
-<td>\</td>
-<td>\route\index.tsx</td>
-<td>entry index component</td>
-</tr>
-<tr>
-<td style="text-align:right"><strong>MD</strong></td>
-<td>\example</td>
-<td>\routes\example.md</td>
-<td>markdown rendering</td>
-</tr>
-<tr>
-<td style="text-align:right"><strong>HTML</strong></td>
-<td>\sample</td>
-<td>\routes\sample.html</td>
-<td>HTML serving</td>
-</tr>
-<tr>
-<td style="text-align:right"><strong>index</strong></td>
-<td>\about</td>
-<td>\routes\about\index.tsx</td>
-<td>indexed routing</td>
-</tr>
-</tbody>
-</table>
-<style>
-   #router table th { font-weight: bolder !important; zoom:1.2 }
-   #router table { width: 100%; zoom: 0.75; margin:20px; }
-   #router tr td:nth-of-type(4) { opacity: 0.65; }
-   #router tr td:nth-of-type(1) { font-weight: 9000 !important; }
-</style>
 <p>The <code>@route</code> decorator support params (dynamic routes) with explicit component route.</p>
 <pre><code class="language-ts"><span class="hljs-meta">@route</span>(<span class="hljs-string">&#x27;/any/route/params/:id&#x27;</span>)
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">Params</span>(<span class="hljs-params">props, { params }</span>) {
@@ -517,37 +474,22 @@ body.marp-vscode blockquote {
    Global Hello { hello.name }! <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{hello}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<p>Uncontroled components <strong>form binding</strong> as form[data] and input[bind] with support to  validation api, restful server actions and embbed authentication.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = (<span class="hljs-params">props, { errors }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&#x27;json&#x27;</span>
-      <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;http://api.example.com/signup&quot;</span>
-      <span class="hljs-attr">onAuth</span>=<span class="hljs-string">{parseJwt}</span>&gt;</span> <span class="hljs-comment">&lt;!-- jwt bearer --&gt;</span>
-
-      Name: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> <span class="hljs-attr">maxlength</span>=<span class="hljs-string">{50}</span> /&gt;</span>
-      Mail: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;mail&#x27;</span> <span class="hljs-attr">pattern</span>=<span class="hljs-string">&quot;\w+@\w+\.\w+&quot;</span> /&gt;</span>    
-
-      <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
+<p>Uncontroled component <code>form[data]</code> supports actions, validation, and authentication.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Form</span> = (<span class="hljs-params">props, { errors }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> 
+   <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;http://api.sample.com&quot;</span>&gt;</span> 
+   Name: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> <span class="hljs-attr">maxlength</span>=<span class="hljs-string">{50}</span> /&gt;</span>
+   Mail: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;mail&#x27;</span> <span class="hljs-attr">pattern</span>=<span class="hljs-string">&quot;\w+@\w+\.\w+&quot;</span> /&gt;</span>    
+   <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
 </code></pre>
-<p>Custom props directives could be injected in reactive IoC container.</p>
+<p>It is possible custom props directives by dependency injection.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactive&#x27;</span>
-
-<span class="hljs-keyword">const</span> hello = { <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;john&#x27;</span> }
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">failure</span> = (<span class="hljs-params">{ status, error }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>failed!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">shown</span> = props =&gt; ({ ...props, <span class="hljs-attr">hidden</span>: !props.<span class="hljs-property">shown</span> })
-<span class="hljs-keyword">const</span> jwtBearer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JwtAuth</span>(<span class="hljs-number">1000</span>, <span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-property">access_token</span>)
-
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>, { failure })
-   .<span class="hljs-title function_">inject</span>({ hello })
-   .<span class="hljs-title function_">inject</span>([ shown ])
-   .<span class="hljs-title function_">render</span>()
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>, { failure }).<span class="hljs-title function_">inject</span>([ shown ]).<span class="hljs-title function_">render</span>()
 </code></pre>
-<p>This <code>shown</code> implements a props injections as property mixing (aka props directive). It also requires module declaration to avoid typescript warnings in React.</p>
-<pre><code class="language-ts"><span class="hljs-comment">// testing the new injected props </span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">Example</span> = prop =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">show</span>=<span class="hljs-string">{false}</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<p>Here <code>shown</code> is a custom props directive (requires module declaration for intelisense).</p>
+<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Sample</span> = prop =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">show</span>=<span class="hljs-string">{false}</span>&gt;</span>sampling...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 
-<span class="hljs-comment">// declaring new props in react module to avoid warnings in typescript</span>
 <span class="hljs-keyword">declare</span> <span class="hljs-variable language_">module</span> <span class="hljs-string">&quot;react&quot;</span> { <span class="hljs-keyword">interface</span> <span class="hljs-title class_">HTMLAttribute</span> { show?: <span class="hljs-built_in">boolean</span> }}
 </code></pre>
 </fieldset>

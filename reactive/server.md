@@ -17,11 +17,9 @@
 
 > static rendering • dynamic rendering • periodic rendering <br/>function decorator • partial hydration • markdown support<br/>extended html • react server components • restful apis
 
-Server-side rendering improves performance by reducing rendering time and bundle size. Client-side component is keep minimal, only in use cases that demands user interation.
+## Server folder models
 
-## server folder models
-
-Reactive has three special serving folder: `/apis`, `/assets`, and `/routes`. The **/apis** serves restiful APIs with exported named method with HTTP verb. 
+Reactive `/apis`, `/assets`, and `/routes`, where **'/api'** servers RESTful APIs with as exported functions. 
 
 ```ts
 // file: /apis/sample.ts
@@ -30,35 +28,35 @@ Reactive has three special serving folder: `/apis`, `/assets`, and `/routes`. Th
 export const get = (request: Request) => new Response('Hello World!')
 ```
 
-The **/assets** folder serves all static content as images, styles, sounds, etc. It is not served with '/' root, since it requires '/assets' prefix in url to be served properly.
+The **/assets** folder serves all static content as images, styles, sounds, etc. 
 
-```
-// route: /assets/styles.css
+```html
+<link rel="stylesheet" href="/assets/styles.css" />
 ```
 
-The **/routes** folder serves all the routed content, supporting JSX, HTML and markdown. It resolves with filename and folder/index, conflicts resolutions will throw an exception.
+The **/routes** folder supports JSX, HTML and markdown by filename and folder/index.
 
 ```ts
-// routing conflict range by filetypes and by folder/index
-// about.md x about.tsx x about.html x about/index.tsx
+// routing name conflict will throw a build exception 
+>> about.md x about.tsx x about.html x about/index.tsx
 ```
 
 
-## client-side components
+## Client-side components
 
-Client components is easily modeled using function decorators. A more component-scope alternative to next.js modular 'use' directives and intra-component fetch api extensions. 
+Client components are modelled with @client function decorators. A more component-scope alternative than next.js modular 'use client' and intra-component fetch api extensions. 
 
 ```tsx
 @client
 export default const ClientSideRendered = props => <>...</>
 ```
 
-## server-side components
+## Server-side components
 
-Reactive supports server-components with static, dynamic and periodic SSR by function decorator, where static SSR are defaul, so `@server('static')` are optional/implicit. As in another React SSR frameworks, routed components need to be exported as default.
+Static, dynamic and periodic SSR is supported sing @server function decorator as metadata for default exported components. The static SSR is the default rendering model (implicit).
 
 ```tsx
-@server('static')  // default ()
+@server('static') // default
 export default const StaticRendered = props => <>...</>
 
 @server('dynamic')  
@@ -68,7 +66,7 @@ export default const DynamicRendered = props => <>...</>
 export default const PeriodicRendered = props => <>...</>
 ```
 
-React server component enables async components that simplifies fetching data in React. It is integrated with Suspense component api support as bellow.
+React server component enables async components, supporting Suspense component API.
 
 ```tsx
 import { Suspense } from 'react'
@@ -83,9 +81,9 @@ export default async function AsyncComponent(props) {
 }
 ```
 
-## extended routing renders
+## Extended renders
 
-Markdown and pure HTML are supported as routed component, where the HTML is extended by a new `<link>` extension that enable JSX component in a HTML.
+Markdown and HTML are supported a new `<link>` extension for JSX usage inside HTML.
 
 ```html
 <head>

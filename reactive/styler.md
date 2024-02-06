@@ -17,11 +17,10 @@
 
 > module scope CSS • component scope CSS • grid layout props <br/>function decorator • SoC styling • vanilla-like CSS
 
-Reactive styler extensions fixes CSS scoping in react development, allowing vanilla-like SoC between styling and structuring. It is an oposite CSS approach to tailwind.css, reducing boilerplate styling code in component modelling as vanilla-like SoC.
 
-## module scope import CSS
+## Modular CSS imports
 
-Reactive framework fixes the modular import CSS issue in react, avoiding global CSS leaking in import CSS. So, CSS imports is only applied in current module components.
+Reactive fixes global CSS leaking in CSS imports, applying CSS imports only in module components.
 
 
 <aside cols='2'>
@@ -54,7 +53,7 @@ h1 { color: black; }
 </section>
 </aside>
 
-## component scope CSS
+## Component scope CSS
 
 The `@style` decorator enables component-scope CSS programmatically in JSX.
 
@@ -85,7 +84,7 @@ button.Hello {
 
 </aside>
 
-## grid layout prop directives
+## Grid layout prop directives
 
 New style props directive, enable easy grid layout with `[grid]` setting `display:grid` and `[cols]` enabling equal spliting size with number or string grid-column-template syntax.
 

@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>module scope import CSS</title>
+            <title>Modular CSS imports</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -224,9 +224,8 @@ body.marp-vscode blockquote {
 <blockquote>
 <p>module scope CSS • component scope CSS • grid layout props <br/>function decorator • SoC styling • vanilla-like CSS</p>
 </blockquote>
-<p>Reactive styler extensions fixes CSS scoping in react development, allowing vanilla-like SoC between styling and structuring. It is an oposite CSS approach to tailwind.css, reducing boilerplate styling code in component modelling as vanilla-like SoC.</p>
-<h2 id="module-scope-import-css">module scope import CSS</h2>
-<p>Reactive framework fixes the modular import CSS issue in react, avoiding global CSS leaking in import CSS. So, CSS imports is only applied in current module components.</p>
+<h2 id="modular-css-imports">Modular CSS imports</h2>
+<p>Reactive fixes global CSS leaking in CSS imports, applying CSS imports only in module components.</p>
 <aside cols='2'>
 <section>
 <pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">About</span> = (<span class="hljs-params"></span>) =&gt; 
@@ -246,7 +245,7 @@ body.marp-vscode blockquote {
 </code></pre>
 </section>
 </aside>
-<h2 id="component-scope-css">component scope CSS</h2>
+<h2 id="component-scope-css">Component scope CSS</h2>
 <p>The <code>@style</code> decorator enables component-scope CSS programmatically in JSX.</p>
 <pre><code class="language-tsx">@<span class="hljs-title function_">style</span>(<span class="hljs-string">&#x27;./hello.css&#x27;</span>)
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello World!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
@@ -266,7 +265,7 @@ body.marp-vscode blockquote {
 }
 </code></pre>
 </aside>
-<h2 id="grid-layout-prop-directives">grid layout prop directives</h2>
+<h2 id="grid-layout-prop-directives">Grid layout prop directives</h2>
 <p>New style props directive, enable easy grid layout with <code>[grid]</code> setting <code>display:grid</code> and <code>[cols]</code> enabling equal spliting size with number or string grid-column-template syntax.</p>
 <aside cols='2'>
 <pre><code class="language-tsx"><span class="hljs-comment">// cols = number</span>

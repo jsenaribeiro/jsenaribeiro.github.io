@@ -76,7 +76,7 @@ h2 > code {
 
 h2::before { content:'' }
 
-
+article { zoom: 1.15 !important }
 
 h1 { font-family: quicksand }
 [specs] a { font-family: agave !important; font-weight: 100; }

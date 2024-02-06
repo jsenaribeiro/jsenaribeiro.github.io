@@ -8,8 +8,8 @@ function startup() {
 }
 
 function adjustZoom(content) {
-   content.style.zoom = 1.17
-   content.style.padding = '50px !important'   
+   // content.style.zoom = 1.17
+   // content.style.padding = '50px !important'   
 }
 
 function createLink(iframe, content) {
