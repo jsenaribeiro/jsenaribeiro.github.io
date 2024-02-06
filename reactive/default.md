@@ -64,12 +64,13 @@ $ bun create reactive
 <article id='preview' preview hidden>
 <section menu center menu-top>
    
-   [SPA](# 'single-page application')
-   • [SEO](# 'search engine optimization') 
-   • [SSR](# 'server-side rendering')
-   • [CSR](# 'client-side rendering') 
-   • [RSC](# 'react server components') 
-   • [PWA](# 'progressive web app') 
+   [easy](# 'vanilla-like low learning-curve') 
+   • [lite](#) 
+   • [lean](#) 
+   • [fast](#) 
+   • [full](#) 
+   • [bold](#) 
+   • [nice](#)
    
 </section>
 
