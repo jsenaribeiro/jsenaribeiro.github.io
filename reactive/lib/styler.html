@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>styling</title>
-        <style>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Modular CSS imports</title>
+            <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
@@ -89,7 +89,7 @@ body.marp-vscode blockquote {
 }
 
 </style>
-        
+            
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
 <style>
@@ -110,81 +110,204 @@ body.marp-vscode blockquote {
     pointer-events: none;
 }
 </style>
-        <style>
-body, embed {      
-   font-size: 13px;
-   color: var(--default);
-   background-color: var(--inverse);
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
 }
 
-pre { 
-   background-color: #2B2B2B;	
-}
 </style>
-    </head>
-    <body class="vscode-body vscode-dark">
-        <style>@import url(../index.css);</style>
-<h1 id="styling">styling</h1>
-<blockquote>
-<p>modular CSS
-● className tag
-● layout props
-● semantic CSS</p>
-</blockquote>
-<h2 id="modular-css">modular CSS</h2>
-<p>Modular CSS fixes the CSS global leaking in React imports,.</p>
-<pre><code class="language-jsx"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./app.css&#x27;</span> <span class="hljs-comment">// only applied here!</span>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
 
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello World!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
-</code></pre>
-<h2 id="classname-tag">className tag</h2>
-<p>ClassName tags enables component scope as global CSS selectors.</p>
-<pre><code class="language-css"><span class="hljs-selector-tag">button</span><span class="hljs-selector-class">.App</span> { <span class="hljs-attribute">background-color</span>:steelblue }
-</code></pre>
-<h2 id="grid-layout-props">grid layout props</h2>
-<p>Layout props brings easy grid layout as global props.</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>[<code>cols</code>]</td>
-<td>grid-template-columns by template ou equal split number</td>
-</tr>
-<tr>
-<td>[<code>gaps</code>]</td>
-<td>gap with single and double value for column and row</td>
-</tr>
-<tr>
-<td>[<code>grid</code>]</td>
-<td>set inline grid template syntax</td>
-</tr>
-</tbody>
-</table>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">&#x27;2&#x27;</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span> 50% left <span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span> 50% right <span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
 
-<span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">&#x27;1fr 1fr&#x27;</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span> 50% left <span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span> 50% right <span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+.markdown-alert>:first-child {
+  margin-top: 0
+}
 
-<span class="hljs-tag">&lt;<span class="hljs-name">article</span> <span class="hljs-attr">grid</span>=<span class="hljs-string">&#x27;1fr / 100px 1fr / 1fr&#x27;</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>application<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span> aside content<span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>   
-   <span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span>main content...<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span>address<span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span>
-</code></pre>
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
 
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
         
-        <script async type="text/javascript">
+        </head>
+        <body class="vscode-body vscode-dark">
+            <style>@import url(./index.css);</style>
+<article onload='reZoom()'>
+<section menu center menu-top>
+<p><a href="#" title="vanilla-like low learning-curve">easy</a>
+• <a href="#">lite</a>
+• <a href="#">lean</a>
+• <a href="#">fast</a>
+• <a href="#">full</a>
+• <a href="#">bold</a>
+• <a href="#">nice</a></p>
+</section>
+<h1 title> <a href='../main.html#overview'>overview</a> | <a href='../main.html#preview'>preview</a> | <b>review</b> <div title>styler scope improvements</div></h1>
+<blockquote>
+<p>module scope CSS • component scope CSS • grid layout props <br/>function decorator • SoC styling • vanilla-like CSS</p>
+</blockquote>
+<h2 id="modular-css-imports">Modular CSS imports</h2>
+<p>Reactive fixes global CSS leaking in CSS imports, applying CSS imports only in module components.</p>
+<aside cols='2'>
+<section>
+<pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">About</span> = (<span class="hljs-params"></span>) =&gt; 
+   <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>About Hello!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+</code></pre>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./hello.css&#x27;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params"></span>) =&gt; 
+   <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello World!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+</code></pre>
+</section><section>
+<pre><code class="language-css"><span class="hljs-comment">/* global.css */</span>
+<span class="hljs-selector-tag">h1</span> { <span class="hljs-attribute">color</span>: blue; }
+</code></pre>
+<pre><code class="language-css"><span class="hljs-comment">/* modular css sample */</span>
+<span class="hljs-comment">/* file: ./hello.css */</span>
+<span class="hljs-selector-tag">h1</span> { <span class="hljs-attribute">color</span>: black; }
+</code></pre>
+</section>
+</aside>
+<h2 id="component-scope-css">Component scope CSS</h2>
+<p>The <code>@style</code> decorator enables component-scope CSS programmatically in JSX.</p>
+<pre><code class="language-tsx">@<span class="hljs-title function_">style</span>(<span class="hljs-string">&#x27;./hello.css&#x27;</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello World!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+</code></pre>
+<p>In global CSS is also possible achive component-scope CSS using component name as className CSS. Reactive transform all component name as className CSS for its children.</p>
+<aside cols='2'>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./hello.css&#x27;</span>
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Hello</span>(<span class="hljs-params"></span>) {
+   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello World!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+}
+</code></pre>
+<pre><code class="language-css"><span class="hljs-selector-tag">button</span><span class="hljs-selector-class">.Hello</span> { 
+   <span class="hljs-attribute">color</span>: green;
+   <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span> <span class="hljs-number">20px</span>;
+   <span class="hljs-attribute">background-color</span>: silver;
+}
+</code></pre>
+</aside>
+<h2 id="grid-layout-prop-directives">Grid layout prop directives</h2>
+<p>New style props directive, enable easy grid layout with <code>[grid]</code> setting <code>display:grid</code> and <code>[cols]</code> enabling equal spliting size with number or string grid-column-template syntax.</p>
+<aside cols='2'>
+<pre><code class="language-tsx"><span class="hljs-comment">// cols = number</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Table</span> = props =&gt;  <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">grid</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">{2}</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Column 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Column 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>   
+<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+<pre><code class="language-tsx"><span class="hljs-comment">// cols = grid-column-template</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Table</span> = props =&gt;  <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">grid</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">&#x27;1fr 1fr&#x27;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Column 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Column 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>   
+<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+</aside>
+<p>The <code>[gaps]</code> props sets the both or vertical-horizontal margin between columns.</p>
+<aside cols='2'>
+<pre><code class="language-tsx"><span class="hljs-comment">// cols = number</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Table</span> = props =&gt;  <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">grid</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">{2}</span> <span class="hljs-attr">gaps</span>=<span class="hljs-string">&#x27;10px&#x27;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Column 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Column 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>   
+<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+<pre><code class="language-tsx"><span class="hljs-comment">// cols = grid-column-template</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Table</span> = props =&gt;  <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">grid</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">&#x27;1fr 1fr&#x27;</span> <span class="hljs-attr">gaps</span>=<span class="hljs-string">&#x27;10px 10px&#x27;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Column 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Column 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>   
+<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+</aside>
+<p><br/><br/><br/></p>
+
+            
+            <script async type="text/javascript">
 /* From extension marp-team.marp-vscode */
 (()=>{var U=Object.defineProperty;var d=($,E)=>U($,"name",{value:E,configurable:!0});(()=>{var $={676:(w,b,g)=>{w.exports=g(185)},185:(w,b)=>{"use strict";var g;g={value:!0};const x={h1:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:()=>HTMLHeadingElement,attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:()=>HTMLSpanElement},pre:{proto:()=>HTMLElement,style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},k="data-marp-auto-scaling-wrapper",u="data-marp-auto-scaling-svg",c="data-marp-auto-scaling-container",T=class T extends HTMLElement{constructor(){super(),this.svgPreserveAspectRatio="xMinYMid meet";const s=d(i=>([n])=>{const{width:e,height:t}=n.contentRect;this[i]={width:e,height:t},this.updateSVGRect()},"t");this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(s("containerSize")),this.wrapperObserver=new ResizeObserver((...i)=>{s("wrapperSize")(...i),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){var s,i,n,e,t;this.shadowRoot.innerHTML=`
 <style>
@@ -200,5 +323,5 @@ pre {
 
 </script>
 
-    </body>
-    </html>
+        </body>
+        </html>

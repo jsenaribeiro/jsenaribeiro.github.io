@@ -118,7 +118,7 @@ export function get(request: Request) {
 }
 ```
 
-Click [here](./review/server.html) to learn more about this.
+Click [here](./lib/server.html) to learn more about this.
 
 </aside>
 
@@ -177,7 +177,7 @@ const Component = props => <>
 </>
 ```
 
-Click [here](./review/styler.html) to learn more about this.
+Click [here](./lib/styler.html) to learn more about this.
 
 </fieldset>
 

@@ -1,14 +1,9 @@
-@import url(../css/index.css);
+@import url(../default.css);
 
-[menu] { 
-   margin:-15px 0 -10px 0; 
-   letter-spacing:1px; 
-   font-size:1.2em; 
+div[title] { margin-top:-19px; }
+
+h1[title] {
+   border:0;
+   margin-top:-10px;
+   margin-bottom: 10px;
 }
-
-[folder] table { margin:0 }
-[folder] td:first-of-type { color:white !important  }
-[folder] td { padding: 3px 10px 3px 10px; }
-[folder] th { padding: 0; border:0; }
-
-[logo] { width: 40px; vertical-align:middle; margin:0 }
