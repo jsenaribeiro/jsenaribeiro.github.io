@@ -92,7 +92,7 @@ $ bun create reactive
 
 <fieldset id='server' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>SERVER</b> rendering</legend>
-<a href="./lib/server.html" review> [ + more details... ]</a>
+<a href="./lib/server.html" review> ( REVIEW )</a>
 
 Full server-side rendering with simple function @decorators.
 
@@ -128,19 +128,28 @@ export function get(request: Request) {
 ```
 
 </aside>
-<style>   
-   #router th { font-weight:400 !important;  }
-   #router tr th { border-bottom:solid 1px dimgrey !important; }
-   #router table td { line-height: 15px; }
-   #router table {
-      margin-top: 10px;
-      margin-bottom: 15px;
-   }
-</style>
+
+Exceptions are handled by local @error decorator and global component injection.
+
+<aside cols='4:5'>
+
+```tsx
+@error(<h1>Custom error...</h1>)
+export function Sample() { ... }
+```
+
+```tsx
+await server("#root").inject(Error).render()
+const Error = (status, errors) => <>...</>
+```
+
+
+</aside>
 </fieldset>
+
 <fieldset id ='styler' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>STYLER</b> scoping</legend>
-<a href="./lib/styler.html" review> [ + more details... ]</a>
+<a href="./lib/styler.html" review> ( REVIEW )</a>
 
 Fixed modular CSS with component-scoped by decorators or className tag.
 
@@ -188,7 +197,7 @@ const Component = props => <>
 
 <fieldset id='stater' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>STATER</b> handling</legend>
-<a href="./lib/stater.html" review> [ + more details... ]</a>
+<a href="./lib/stater.html" review> ( REVIEW )</a>
 
 Stateful proxy object with **local** stateful props and **global** state dependency injection.
 
@@ -226,7 +235,7 @@ const Component = props => <>
 
 <fieldset id='ranker' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>RANKER</b> searching</legend>
-<a href="./lib/ranker.html" review> [ + more details... ]</a>
+<a href="./lib/ranker.html" review> ( REVIEW )</a>
 
 Simple SEO using function decorators by @seo decorator with metatags support.
 
@@ -256,12 +265,13 @@ export function Example() { ... }
 
 <fieldset id='router' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>ROUTER</b> modeling</legend>
+<a href="./lib/router.html" review> ( REVIEW )</a>
 
-The `@route` decorator support params (dynamic routes) with explicit component route.
+With `@route` decorator, params (dynamic routes) is supported within component route.
 
 ```ts
-@route('/any/route/params/:id')
-function Params(props, { params }) {
+@route('/whatever/params/:id')
+export default function Params(props, { params }) {
    return <h1>ID: { params.id }</h1>
 }
 ```
@@ -269,7 +279,7 @@ function Params(props, { params }) {
 Routing props enable layout componentization with nested routes (`./`) and lazy routing
 
 ```tsx
-const Sample = import('./main').asLazy('Sample')
+const Sample = import('./main').asLazyComponent('Sample')
 
 export default const Menu = (props) => <>
    <h1>Menu</h1>
@@ -283,25 +293,12 @@ export default const Menu = (props) => <>
    <Sample route='./lazy' />
 </!->
 ```
-
-Generic errors is inject within index, where @error decorator handles specifics.
-
-<aside cols='4:5'>
-
-```tsx
-@error(<h1>Custom error...</h1>)
-export function Sample() { ... }
-```
-```tsx
-await server("#root").inject(Error).render()
-const Error = (status, errors) => <>...</>
-```
-
 </aside>
 </fieldset>
 
 <fieldset id='binder' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>BINDER</b> properting</legend>
+<a href="./lib/binder.html" review> ( REVIEW )</a>
 
 Controlled component **props binding** with [data] and [bind] props.
 
@@ -343,6 +340,7 @@ declare module "react" { interface HTMLAttribute { show?: boolean }}
 
 <fieldset id='bearer' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>BEARER</b> authoring</legend>
+<a href="./lib/bearer.html" review> ( REVIEW )</a>
 
 Authorization is covered by @auth decorator with regex inspection.
 
@@ -402,6 +400,4 @@ const session = auth<Profile>(googleAuth)
 
 </fieldset>
 </article>
-
-<article review>
-</article>
+<br/>

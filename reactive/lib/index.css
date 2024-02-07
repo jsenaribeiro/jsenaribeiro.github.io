@@ -7,3 +7,9 @@ h1[title] {
    margin-top:-10px;
    margin-bottom: 10px;
 }
+
+h2 {
+   color: wheat !important;
+   border-bottom-width: 1px;
+   border-bottom-color: #555 !important;
+}

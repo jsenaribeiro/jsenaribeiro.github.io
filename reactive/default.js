@@ -9,7 +9,6 @@ delay(999, function() {
 function onOverview() {
    document.querySelector('article[overview]').hidden = false
    document.querySelector('article[preview]').hidden = true
-   document.querySelector('article[review]').hidden = true
 }
 
 function onPreview(id, save) {
@@ -21,7 +20,6 @@ function onPreview(id, save) {
 
    document.querySelector('article[overview]').hidden = true
    document.querySelector('article[preview]').hidden = false
-   document.querySelector('article[review]').hidden = true
 
    document.querySelectorAll(query).forEach(node => {
       node.classList.add('hidden')

@@ -210,7 +210,7 @@ body.marp-vscode blockquote {
         </head>
         <body class="vscode-body vscode-dark">
             <style>@import url(./index.css);</style>
-<article onload='reZoom()'>
+<article>
 <section menu center menu-top>
 <p><a href="#" title="vanilla-like low learning-curve">easy</a>
 • <a href="#">lite</a>
@@ -222,7 +222,7 @@ body.marp-vscode blockquote {
 </section>
 <h1 title> <a href='../main.html#overview'>overview</a> | <a href='../main.html#preview'>preview</a> | <b>review</b> <div title>server-side rendering</div></h1>
 <blockquote>
-<p>static rendering • dynamic rendering • periodic rendering <br/>function decorator • partial hydration • markdown support<br/>extended html • react server components • restful apis</p>
+<p>static rendering • dynamic rendering • periodic rendering <br/>react server components • partial hydration • web apis<br/>extended html • error handling • markdown</p>
 </blockquote>
 <h2 id="server-folder-models">Server folder models</h2>
 <p>Reactive <code>/apis</code>, <code>/assets</code>, and <code>/routes</code>, where <strong>'/api'</strong> servers RESTful APIs with as exported functions.</p>
@@ -271,12 +271,42 @@ body.marp-vscode blockquote {
 <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;component&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;../components/header.tsx&quot;</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;Header&quot;</span> /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-   <span class="hljs-comment">&lt;!-- JSX inside HTML --&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">Header</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;HTML-X&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>   
+   <span class="hljs-tag">&lt;<span class="hljs-name">Header</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;HTML-X&quot;</span> /&gt;</span> <span class="hljs-comment">&lt;!-- JSX into HTML --&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 </code></pre>
+<h2 id="exception-components">Exception components</h2>
+<p>Reactive renderas a default global error component that could be replaceable in failure member in reactive settings object in server call.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactive/server&#x27;</span>
 
+<span class="hljs-comment">// sampling a custom high-order component error</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">myGenericErrorComponent</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My generic error page...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>{ errors.map((x,i) =&gt; <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{i}</span>&gt;</span>{ x }<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>) }<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+
+<span class="hljs-comment">// replacing default failure HOC for error handling</span>
+<span class="hljs-keyword">const</span> settings = { <span class="hljs-attr">failure</span>: <span class="hljs-title class_">MyGenericErrorComponent</span> }
+
+<span class="hljs-comment">// starting reactive server with custom error component</span>
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>, settings).<span class="hljs-title function_">render</span>()
+</code></pre>
+<p>With <code>@error</code> decorator, specific error handlers could be shared between components.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { error } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactive&#x27;</span>
+
+<span class="hljs-comment">// sampling a custom high-order component error</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">mySpecificErrorComponent</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My specific error page...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>{ errors.map((x,i) =&gt; <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{i}</span>&gt;</span>{ x }<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>) }<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+
+@<span class="hljs-title function_">error</span>(mySpecificErrorComponent)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Sample</span>(<span class="hljs-params"></span>) { ... }
+
+@<span class="hljs-title function_">error</span>(mySpecificErrorComponent)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Example</span>(<span class="hljs-params"></span>) { ... }
+</code></pre>
+<br/>
             
             <script async type="text/javascript">
 /* From extension marp-team.marp-vscode */

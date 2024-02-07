@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Modular state object</title>
+            <title></title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -220,52 +220,11 @@ body.marp-vscode blockquote {
 • <a href="#">bold</a>
 • <a href="#">nice</a></p>
 </section>
-<h1 title> <a href='../main.html#overview'>overview</a> | <a href='../main.html#preview'>preview</a> | <b>review</b> <div title>stateful object handling</div></h1>
+<h1 title> <a href='../main.html#overview'>overview</a> | <a href='../main.html#preview'>preview</a> | <b>review</b> <div title>server-side rendering</div></h1>
 <blockquote>
-<p>stateful proxy object • stateful props<br/>modular state • global state<br/> OOP state handling</p>
+<p>search engine optimization • metatag args<br/>function decorator • html metatags</p>
 </blockquote>
-<h2 id="modular-state-object">Modular state object</h2>
-<p>Stateful proxy object (SRO) is a brand new hookless stateful React concept that encapsulates a useState hook within a javascript Proxy object. It enables a easy, leaner and intuitive OOP state handling, where the each object change triggers the render.</p>
-<h2 id="local-stateful-props">Local stateful props</h2>
-<p>Stateful props bring out-of-the-box local state handling as SRO component props.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
-   Local Hello { props.name } !
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> {<span class="hljs-attr">onChange</span>} /&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
-
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">onChange</span> = e =&gt; props.<span class="hljs-property">name</span> = e.<span class="hljs-property">taget</span>.<span class="hljs-property">value</span>
-</code></pre>
-<h2 id="global-state-injection">Global state injection</h2>
-<p>Global states could be achieved by the framework IoC container in inject method.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> user = { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span>, <span class="hljs-attr">now</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() } 
-
-<span class="hljs-keyword">await</span> <span class="hljs-title class_">Reactive</span>.<span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>).<span class="hljs-title function_">inject</span>({ user }).<span class="hljs-title function_">render</span>()
-</code></pre>
-<p>DI is resolve in 2nd functional component arg by stores object deconstrution.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params">props, { stores: user }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
-   Local Hello { user.name } !
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{user.name}</span> {<span class="hljs-attr">onChange</span>} /&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
-
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">onChange</span> = e =&gt; props.<span class="hljs-property">name</span> = e.<span class="hljs-property">taget</span>.<span class="hljs-property">value</span>
-</code></pre>
-<h2 id="modular-stateful-object">Modular stateful object</h2>
-<p>The <code>createState</code> offers a modular sharing state for partial component tree, instead of full component tree with global state, or individual shared state with local state.</p>
-<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> user = <span class="hljs-title function_">createState</span>({ <span class="hljs-attr">guid</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;john&#x27;</span> })
-
-user.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;paul&#x27;</span> <span class="hljs-comment">// it will trigger the render inside a component</span>
-</code></pre>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { user } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./states&#x27;</span>
-
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params">props, { stores: user }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
-   Local Hello { user.name } !
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{user.name}</span> {<span class="hljs-attr">onChange</span>} /&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
-
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">onChange</span> = e =&gt; props.<span class="hljs-property">name</span> = e.<span class="hljs-property">taget</span>.<span class="hljs-property">value</span>
-</code></pre>
-<p><br/><br/></p>
-
+<br/>
             
             <script async type="text/javascript">
 /* From extension marp-team.marp-vscode */

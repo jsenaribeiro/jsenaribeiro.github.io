@@ -24,7 +24,7 @@ h4 {
 }
 
 h2 {
-   border-bottom: none1
+   /* border-bottom: none; */
 }
 
 h2::before {
