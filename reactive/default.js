@@ -21,13 +21,14 @@ function onPreview(id, save) {
    document.querySelector('article[overview]').hidden = true
    document.querySelector('article[preview]').hidden = false
 
-   document.querySelectorAll(query).forEach(node => {
-      node.classList.add('hidden')
-      console.log(node)
-   })
+   document.querySelectorAll(query).forEach(x => x.classList.add('hidden'))
 
-   // document.body.style.visibility = 'hidden'
    id && document.querySelector('#' + id).classList.remove('hidden')
+
+   const queryLib = `[href*='lib/${id}']`
+   
+   document.querySelectorAll(`[href*='/lib/']`).forEach(x => x.style.display='none')
+   document.querySelectorAll(queryLib).forEach(x => x.style.display='inline-block')
 
    setTimeout(() => {
       location.hash = id ? `#${id}` : '#preview'

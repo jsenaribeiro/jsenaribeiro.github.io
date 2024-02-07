@@ -1,14 +1,6 @@
 <script src='./default.js'></script>
 <style>
 @import url(./default.css);
-/* article { zoom: 1 !important } */
-a[review] {
-   float: right;
-   display: block;
-   font-size: 13px;
-   background: #222;
-   margin-top: -27px;
-}
 </style>
 
 <article overview>
@@ -92,23 +84,22 @@ $ bun create reactive
 
 <fieldset id='server' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>SERVER</b> rendering</legend>
-<a href="./lib/server.html" review> ( REVIEW )</a>
+<a href="./lib/server.html" review> ( + )</a>
 
 Full server-side rendering with simple function @decorators.
 
+<aside cols='2' >
+
 ```tsx
-@server('static')  // default
-export default const StaticRendered = props => <>...</>
-
 @server('dynamic')  
-export default const DynamicRendered = props => <>...</>
-
-@server('periodic', "36h") 
-export default const PeriodicRendered = props => <>...</>
-
-@client
-export default const ClientSideRendered = props => <>...</>
+const About = props => <>...</>
 ```
+```tsx
+@server('periodic', "36h") 
+const Sample = props => <>...</>
+```
+
+</aside>
 
 Static files is server by /assets and restful apis in /apis folder.
 
@@ -143,13 +134,15 @@ await server("#root").inject(Error).render()
 const Error = (status, errors) => <>...</>
 ```
 
-
 </aside>
+
+Go to [review](./lib/server.html) section for more details.
+
 </fieldset>
 
 <fieldset id ='styler' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>STYLER</b> scoping</legend>
-<a href="./lib/styler.html" review> ( REVIEW )</a>
+<a href="./lib/styler.html" review> ( + )</a>
 
 Fixed modular CSS with component-scoped by decorators or className tag.
 
@@ -183,59 +176,55 @@ const ComponentA = () => <>
 New easy grid layout style prop directives for lean and fast structuring.
 
 ```jsx
-const Component = props => <>
-
-   <!-- grid layout props -->
-   <section grid cols='2'>
-      <aside>cols 1</aside>
-      <aside>cols 2</aside>
-   </section>
-</>
+const Grid = props => <p grid cols='2'><div>cols 1</div><div>cols 2</div></p>
 ```
+
+Go to [review](./lib/styler.html) section for more details.
 
 </fieldset>
 
 <fieldset id='stater' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>STATER</b> handling</legend>
-<a href="./lib/stater.html" review> ( REVIEW )</a>
+<a href="./lib/stater.html" review> ( + )</a>
 
-Stateful proxy object with **local** stateful props and **global** state dependency injection.
+Stateful proxy object with **local** (stateful props), **global** and **contextual** scope.
 
 ```tsx
-const Component = (props, ({ stores: global })) => <>
-   Local Hello { props.name } !
-   <input value={props.name} onChange={e => props.name=e.taget.value} />
+import sharing from './store'
 
-   Global Hello { global.name } !
+const Component = (props, ({ stores: global })) => <>
+   <input value={props.name} onChange={e => props.name=e.taget.value} />
    <input value={global.name} onChange={e => global.name=e.taget.value} />
+   <input value={sharing.name} onChange={e => sharing.name=e.taget.value} />
 </>
 ```
 
+Global states are injected in Reactive server IoC container.
+
+<aside cols='2'>
+
 ```tsx
-const global = { name: 'world', now: new Date() } 
-
-await Reactive.server("#root").inject({ global }).render()
+await server("#root")
+  .inject({ global: { name:'word' }})
+  .render()
 ```
-
-Contextual states is enabled by **modular** stateful objects using createState.
 
 ```tsx
 import { createState } from 'reactive'
-
-export const modular = createState({ name: 'world' })
-
-const Component = props => <>
-   Modular Hello { modular.name } !
-   <input value={modular.name} 
-      onChange={e => modular.name=e.taget.value} />
-</>
+const store = { name: 'world' }
+export default createState(store)
 ```
+
+</aside>
+
+
+Go to [review](./lib/stater.html) section for more details.
 
 </fieldset>
 
 <fieldset id='ranker' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>RANKER</b> mechanism</legend>
-<a href="./lib/ranker.html" review> ( REVIEW )</a>
+<a href="./lib/ranker.html" review> ( + )</a>
 
 Simple SEO using function decorators by @seo decorator with metatags support.
 
@@ -261,13 +250,16 @@ const metatags = {
 export function Example() { ... }
 ```
 </aside>
+
+Go to [review](./lib/ranker.html) section for more details.
+
 </fieldset>
 
 <fieldset id='router' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>ROUTER</b> modeling</legend>
-<a href="./lib/router.html" review> ( REVIEW )</a>
+<a href="./lib/router.html" review> ( + )</a>
 
-With `@route` decorator, params (dynamic routes) is supported within component route.
+The `@route` decorator enables params (dynamic routes) with `:param` syntax.
 
 ```ts
 @route('/whatever/params/:id')
@@ -276,7 +268,7 @@ export default function Params(props, { params }) {
 }
 ```
 
-Routing props enable layout componentization with nested routes (`./`) and lazy routing
+Routing props enable componented layouts, nested routes (`./`) and lazy routing
 
 ```tsx
 const Sample = import('./main').asLazyComponent('Sample')
@@ -284,28 +276,27 @@ const Sample = import('./main').asLazyComponent('Sample')
 export default const Menu = (props) => <>
    <h1>Menu</h1>
    <a href='/main'>Main</a>
-   <a href='/main/lazy'>Lazy</a>
-
-   <!-- conditional rendering -->
-   <main route='/main'>Main</main>
-
-   <!-- lazy routing -->
-   <Sample route='./lazy' />
+   <a href='/main/lazy'>Lazy</a>   
+   <main route='/main'>Main</main>  <!-- conditional rendering -->   
+   <Sample route='./lazy' />        <!-- lazy component routing -->
 </!->
 ```
 </aside>
+
+Go to [review](./lib/router.html) section for more details.
+
 </fieldset>
 
 <fieldset id='binder' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>BINDER</b> properting</legend>
-<a href="./lib/binder.html" review> ( REVIEW )</a>
+<a href="./lib/binder.html" review> ( + )</a>
 
 Controlled component **props binding** with [data] and [bind] props.
 
 ```tsx
 const Component = (props, { stores: hello }) => <>
-   Local Hello { props.name }! <input data={props} bind='name' /> 
-   Global Hello { hello.name }! <input data={hello} bind='name' />
+   <input data={props} bind='name' /> 
+   <input data={hello} bind='name' />
 </>
 ```
 
@@ -327,20 +318,19 @@ import { server } from 'reactive'
 const shown = props => ({ ...props, hidden: !props.shown })
 await server("#container").inject([ shown ]).render()
 ```
-
-Here `shown` is a custom props directive (requires module declaration for intelisense).
-
 ```ts
 export const Sample = prop => <div show={false}>sampling...</div>
 
 declare module "react" { interface HTMLAttribute { show?: boolean }}
 ```
 
+Go to [review](./lib/binder.html) section for more details.
+
 </fieldset>
 
 <fieldset id='bearer' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>BEARER</b> authentication</legend>
-<a href="./lib/bearer.html" review> ( REVIEW )</a>
+<a href="./lib/bearer.html" review> ( + )</a>
 
 Authorization is covered by @auth decorator with regex inspection.
 
@@ -397,6 +387,8 @@ const session = auth<Profile>(googleAuth)
    .catch(x => "Authentatication fails", "/login")
    .match<Token>(x => x.token, "/home")
 ```
+
+Go to [review](./lib/bearer.html) section for more details.
 
 </fieldset>
 </article>

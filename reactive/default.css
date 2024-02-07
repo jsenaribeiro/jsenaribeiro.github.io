@@ -25,3 +25,12 @@ blockquote {
    margin-left: -3px;   
    line-height: 20px;
 }
+
+a[review] {
+   float: right;
+   display: block;
+   font-size: 15px;
+   background: #222;
+   margin-top: -29px;
+   font-weight: bold;
+}

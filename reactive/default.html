@@ -213,14 +213,6 @@ body.marp-vscode blockquote {
             <script src='./default.js'></script>
 <style>
 @import url(./default.css);
-/* article { zoom: 1 !important } */
-a[review] {
-   float: right;
-   display: block;
-   font-size: 13px;
-   background: #222;
-   margin-top: -27px;
-}
 </style>
 <article overview>
 <section menu center menu-top>
@@ -322,20 +314,16 @@ a[review] {
 </center>
 <fieldset id='server' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>SERVER</b> rendering</legend>
-<a href="./lib/server.html" review> ( REVIEW )</a>
+<a href="./lib/server.html" review> ( + )</a>
 <p>Full server-side rendering with simple function @decorators.</p>
-<pre><code class="language-tsx">@<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;static&#x27;</span>)  <span class="hljs-comment">// default</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">StaticRendered</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
-
-@<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;dynamic&#x27;</span>)  
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">DynamicRendered</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
-
-@<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;periodic&#x27;</span>, <span class="hljs-string">&quot;36h&quot;</span>) 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">PeriodicRendered</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
-
-@client
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">ClientSideRendered</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
+<aside cols='2' >
+<pre><code class="language-tsx">@<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;dynamic&#x27;</span>)  
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">About</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
+<pre><code class="language-tsx">@<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;periodic&#x27;</span>, <span class="hljs-string">&quot;36h&quot;</span>) 
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Sample</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+</aside>
 <p>Static files is server by /assets and restful apis in /apis folder.</p>
 <aside cols='4:5' >
 <pre><code class="language-py">/assets
@@ -358,10 +346,11 @@ a[review] {
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">Error</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 </aside>
+<p>Go to <a href="./lib/server.html">review</a> section for more details.</p>
 </fieldset>
 <fieldset id ='styler' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>STYLER</b> scoping</legend>
-<a href="./lib/styler.html" review> ( REVIEW )</a>
+<a href="./lib/styler.html" review> ( + )</a>
 <p>Fixed modular CSS with component-scoped by decorators or className tag.</p>
 <aside cols='2'><div>
 <pre><code class="language-css"><span class="hljs-comment">/* file: module.css */</span>
@@ -382,47 +371,38 @@ a[review] {
 </div></aside>
 <style>pre { margin: 7px 0px; }</style>
 <p>New easy grid layout style prop directives for lean and fast structuring.</p>
-<pre><code class="language-jsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-
-   <span class="hljs-comment">&lt;!-- grid layout props --&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">grid</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">&#x27;2&#x27;</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span>cols 1<span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span>cols 2<span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
+<pre><code class="language-jsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Grid</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">grid</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">&#x27;2&#x27;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>cols 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>cols 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
 </code></pre>
+<p>Go to <a href="./lib/styler.html">review</a> section for more details.</p>
 </fieldset>
 <fieldset id='stater' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>STATER</b> handling</legend>
-<a href="./lib/stater.html" review> ( REVIEW )</a>
-<p>Stateful proxy object with <strong>local</strong> stateful props and <strong>global</strong> state dependency injection.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = (<span class="hljs-params">props, ({ stores: <span class="hljs-variable language_">global</span> })</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   Local Hello { props.name } !
+<a href="./lib/stater.html" review> ( + )</a>
+<p>Stateful proxy object with <strong>local</strong> (stateful props), <strong>global</strong> and <strong>contextual</strong> scope.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> sharing <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./store&#x27;</span>
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = (<span class="hljs-params">props, ({ stores: <span class="hljs-variable language_">global</span> })</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> props.name=e.taget.value} /&gt;
-
-   Global Hello { global.name } !
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{global.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> global.name=e.taget.value} /&gt;
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{sharing.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> sharing.name=e.taget.value} /&gt;
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-variable language_">global</span> = { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span>, <span class="hljs-attr">now</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() } 
-
-<span class="hljs-keyword">await</span> <span class="hljs-title class_">Reactive</span>.<span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>).<span class="hljs-title function_">inject</span>({ <span class="hljs-variable language_">global</span> }).<span class="hljs-title function_">render</span>()
+<p>Global states are injected in Reactive server IoC container.</p>
+<aside cols='2'>
+<pre><code class="language-tsx"><span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>)
+  .<span class="hljs-title function_">inject</span>({ <span class="hljs-attr">global</span>: { <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;word&#x27;</span> }})
+  .<span class="hljs-title function_">render</span>()
 </code></pre>
-<p>Contextual states is enabled by <strong>modular</strong> stateful objects using createState.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { createState } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactive&#x27;</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> modular = <span class="hljs-title function_">createState</span>({ <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span> })
-
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   Modular Hello { modular.name } !
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{modular.name}</span> 
-      <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> modular.name=e.taget.value} /&gt;
-<span class="hljs-tag">&lt;/&gt;</span></span>
+<span class="hljs-keyword">const</span> store = { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span> }
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">createState</span>(store)
 </code></pre>
+</aside>
+<p>Go to <a href="./lib/stater.html">review</a> section for more details.</p>
 </fieldset>
 <fieldset id='ranker' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>RANKER</b> mechanism</legend>
-<a href="./lib/ranker.html" review> ( REVIEW )</a>
+<a href="./lib/ranker.html" review> ( + )</a>
 <p>Simple SEO using function decorators by @seo decorator with metatags support.</p>
 <aside cols=2>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { seo } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactive&#x27;</span>
@@ -442,40 +422,38 @@ a[review] {
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Example</span>(<span class="hljs-params"></span>) { ... }
 </code></pre>
 </aside>
+<p>Go to <a href="./lib/ranker.html">review</a> section for more details.</p>
 </fieldset>
 <fieldset id='router' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>ROUTER</b> modeling</legend>
-<a href="./lib/router.html" review> ( REVIEW )</a>
-<p>With <code>@route</code> decorator, params (dynamic routes) is supported within component route.</p>
+<a href="./lib/router.html" review> ( + )</a>
+<p>The <code>@route</code> decorator enables params (dynamic routes) with <code>:param</code> syntax.</p>
 <pre><code class="language-ts"><span class="hljs-meta">@route</span>(<span class="hljs-string">&#x27;/whatever/params/:id&#x27;</span>)
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Params</span>(<span class="hljs-params">props, { params }</span>) {
    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>ID: { params.id }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 }
 </code></pre>
-<p>Routing props enable layout componentization with nested routes (<code>./</code>) and lazy routing</p>
+<p>Routing props enable componented layouts, nested routes (<code>./</code>) and lazy routing</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Sample</span> = <span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./main&#x27;</span>).<span class="hljs-title function_">asLazyComponent</span>(<span class="hljs-string">&#x27;Sample&#x27;</span>)
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = (<span class="hljs-params">props</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Menu<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;/main/lazy&#x27;</span>&gt;</span>Lazy<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-
-   <span class="hljs-comment">&lt;!-- conditional rendering --&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
-
-   <span class="hljs-comment">&lt;!-- lazy routing --&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">Sample</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;./lazy&#x27;</span> /&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;/main/lazy&#x27;</span>&gt;</span>Lazy<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>   
+   <span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>  <span class="hljs-comment">&lt;!-- conditional rendering --&gt;</span>   
+   <span class="hljs-tag">&lt;<span class="hljs-name">Sample</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;./lazy&#x27;</span> /&gt;</span>        <span class="hljs-comment">&lt;!-- lazy component routing --&gt;</span>
 &lt;/!-&gt;
 </span></code></pre>
 </aside>
+<p>Go to <a href="./lib/router.html">review</a> section for more details.</p>
 </fieldset>
 <fieldset id='binder' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>BINDER</b> properting</legend>
-<a href="./lib/binder.html" review> ( REVIEW )</a>
+<a href="./lib/binder.html" review> ( + )</a>
 <p>Controlled component <strong>props binding</strong> with [data] and [bind] props.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = (<span class="hljs-params">props, { stores: hello }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   Local Hello { props.name }! <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span> 
-   Global Hello { hello.name }! <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{hello}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span> 
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{hello}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 <p>Uncontroled component <code>form[data]</code> supports actions, validation, and authentication.</p>
@@ -491,15 +469,15 @@ a[review] {
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">shown</span> = props =&gt; ({ ...props, <span class="hljs-attr">hidden</span>: !props.<span class="hljs-property">shown</span> })
 <span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#container&quot;</span>).<span class="hljs-title function_">inject</span>([ shown ]).<span class="hljs-title function_">render</span>()
 </code></pre>
-<p>Here <code>shown</code> is a custom props directive (requires module declaration for intelisense).</p>
 <pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Sample</span> = prop =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">show</span>=<span class="hljs-string">{false}</span>&gt;</span>sampling...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 
 <span class="hljs-keyword">declare</span> <span class="hljs-variable language_">module</span> <span class="hljs-string">&quot;react&quot;</span> { <span class="hljs-keyword">interface</span> <span class="hljs-title class_">HTMLAttribute</span> { show?: <span class="hljs-built_in">boolean</span> }}
 </code></pre>
+<p>Go to <a href="./lib/binder.html">review</a> section for more details.</p>
 </fieldset>
 <fieldset id='bearer' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>BEARER</b> authentication</legend>
-<a href="./lib/bearer.html" review> ( REVIEW )</a>
+<a href="./lib/bearer.html" review> ( + )</a>
 <p>Authorization is covered by @auth decorator with regex inspection.</p>
 <pre><code class="language-tsx">@<span class="hljs-title function_">auth</span>({ <span class="hljs-attr">role</span>: <span class="hljs-string">&quot;user|admin&quot;</span> }) <span class="hljs-keyword">function</span> <span class="hljs-title function_">Profile</span>(<span class="hljs-params"></span>) { ... }
 </code></pre>
@@ -543,6 +521,7 @@ a[review] {
    .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-string">&quot;Authentatication fails&quot;</span>, <span class="hljs-string">&quot;/login&quot;</span>)
    .<span class="hljs-property">match</span>&lt;<span class="hljs-title class_">Token</span>&gt;(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-property">token</span>, <span class="hljs-string">&quot;/home&quot;</span>)
 </code></pre>
+<p>Go to <a href="./lib/bearer.html">review</a> section for more details.</p>
 </fieldset>
 </article>
 <br/>
