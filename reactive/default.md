@@ -28,13 +28,13 @@
 
 |  | | |
 |:-:|-|-|
-| <a href='#' onclick='onPreview("server", true)'>server</a> | full static, dynamic and periodic SSR with support to JSX, markdown and extended HTML with link tag for JSX components. | md jsx html <br/> /api /assets /routes <br/> static dynamic periodic |
-| <a href='#' onclick='onPreview("styler", true)'>styler</a> | component-scope CSS as @style decorator, global className component tag, and fixed modular CSS imports | @style(url) decorator <br/> .Global className Tag <br/> /module.css imports |
-| <a href='#' onclick='onPreview("stater", true)'>stater</a> | stateful proxy objects for easy and leaner functional stateful component handling with multiple scopes. | local stateful props<br/>global injectable object<br/>modular stateful objects  |
-| <a href='#' onclick='onPreview("ranker", true)'>ranker</a> | fullstack @seo function decorator for search engine ranking optimization with metatags and title and description overload<br/>  | metatags params<br/>function decorator</br>simple title+description |
-| <a href='#' onclick='onPreview("router", true)'>router</a> | easy folder, decorator and props routing with decorator seo, route params, nesting routes, authorization with no wierd conventions | /route @route [route] <br/> ./nest  :param [routed] <br/> @seo  @auth  @error|
-| <a href='#' onclick='onPreview("binder", true)'>binder</a> | props bindings for controlled components and uncontrolled forms with restful server actions and vanilla validation api | props directive<br/>[bind] [data] form[data]<br/>action validation authentication  |
-| <a href='#' onclick='onPreview("bearer", true)'>bearer</a> | @auth decorator for authorization integrated with 'ajaxness' auth api  lib for simple authentication with jwt bearer and oAuth | authorization: @auth  <br/> authentication: form[onAuth] <br/> session: login logged logout |
+| <a href='#' onclick='onPreview("server", true)'>server</a> | Full SSR with JSX, markdown and extended HTML support |
+| <a href='#' onclick='onPreview("styler", true)'>styler</a> | Scoped CSS with @style decorator, global className tag, and fixed modular CSS imports | 
+| <a href='#' onclick='onPreview("stater", true)'>stater</a> | Simple alternative stateful proxy objects with multiple local, global and modular scope | 
+| <a href='#' onclick='onPreview("ranker", true)'>ranker</a> | Easy SEO by function decorators with metatags and open graph protocol support |
+| <a href='#' onclick='onPreview("router", true)'>router</a> | Folder, props and decorator routing with route params and nesting route support |
+| <a href='#' onclick='onPreview("binder", true)'>binder</a> | Props bindings for vanilla-like controlled and uncontrolled components approach | 
+| <a href='#' onclick='onPreview("bearer", true)'>bearer</a> | Authorization with decorator and integration with 'ajaxness' for jwt bearer and oAuth | 
 
 <br/>
 

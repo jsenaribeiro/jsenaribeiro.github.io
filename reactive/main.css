@@ -90,7 +90,7 @@ h1 { font-family: quicksand }
    /* transform: rotate(-90deg); */
    font-family: quicksand;
    font-weight: bolder;
-   font-size: 1.3rem;
+   font-size: 1.2rem;
 }
 
 legend::before { content:'' }
@@ -105,7 +105,9 @@ legend {
 }
 
 legend b {      
-   color: wheat;
+   /* color: wheat; */
+   /* color: rgb(96, 164, 216) !important; */
+   color: rgb(83, 171, 238) !important; 
    font-weight: 900;
    font-family: quicksand;
    font-size: 15px;
@@ -130,4 +132,8 @@ main {
    left: 50%;
    position: absolute;
    transform: translate(-50%, -50%);
+}
+
+blockquote {
+   font-size: 1.1rem !important;
 }
