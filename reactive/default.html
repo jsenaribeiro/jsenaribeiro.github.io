@@ -212,7 +212,15 @@ body.marp-vscode blockquote {
         <body class="vscode-body vscode-dark">
             <script src='./default.js'></script>
 <style>
-   @import url(./default.css);
+@import url(./default.css);
+/* article { zoom: 1 !important } */
+a[review] {
+   float: right;
+   display: block;
+   font-size: 13px;
+   background: #222;
+   margin-top: -27px;
+}
 </style>
 <article overview>
 <section menu center menu-top>
@@ -314,6 +322,7 @@ body.marp-vscode blockquote {
 </center>
 <fieldset id='server' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>SERVER</b> rendering</legend>
+<a href="./lib/server.html" review> [ + more details... ]</a>
 <p>Full server-side rendering with simple function @decorators.</p>
 <pre><code class="language-tsx">@<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;static&#x27;</span>)  <span class="hljs-comment">// default</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">StaticRendered</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
@@ -339,7 +348,6 @@ body.marp-vscode blockquote {
    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Response</span>(<span class="hljs-string">&#x27;hello world&#x27;</span>)
 }
 </code></pre>
-<p>Click <a href="./lib/server.html">here</a> to learn more about this.</p>
 </aside>
 <style>   
    #router th { font-weight:400 !important;  }
@@ -353,6 +361,7 @@ body.marp-vscode blockquote {
 </fieldset>
 <fieldset id ='styler' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>STYLER</b> scoping</legend>
+<a href="./lib/styler.html" review> [ + more details... ]</a>
 <p>Fixed modular CSS with component-scoped by decorators or className tag.</p>
 <aside cols='2'><div>
 <pre><code class="language-css"><span class="hljs-comment">/* file: module.css */</span>
@@ -382,10 +391,10 @@ body.marp-vscode blockquote {
    <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<p>Click <a href="./lib/styler.html">here</a> to learn more about this.</p>
 </fieldset>
 <fieldset id='stater' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>STATER</b> handling</legend>
+<a href="./lib/stater.html" review> [ + more details... ]</a>
 <p>Stateful proxy object with <strong>local</strong> stateful props and <strong>global</strong> state dependency injection.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = (<span class="hljs-params">props, ({ stores: <span class="hljs-variable language_">global</span> })</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    Local Hello { props.name } !
@@ -413,6 +422,7 @@ body.marp-vscode blockquote {
 </fieldset>
 <fieldset id='ranker' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>RANKER</b> searching</legend>
+<a href="./lib/ranker.html" review> [ + more details... ]</a>
 <p>Simple SEO using function decorators by @seo decorator with metatags support.</p>
 <aside cols=2>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { seo } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactive&#x27;</span>

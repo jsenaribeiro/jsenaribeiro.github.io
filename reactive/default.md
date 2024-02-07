@@ -1,6 +1,14 @@
 <script src='./default.js'></script>
 <style>
-   @import url(./default.css);
+@import url(./default.css);
+/* article { zoom: 1 !important } */
+a[review] {
+   float: right;
+   display: block;
+   font-size: 13px;
+   background: #222;
+   margin-top: -27px;
+}
 </style>
 
 <article overview>
@@ -84,6 +92,7 @@ $ bun create reactive
 
 <fieldset id='server' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>SERVER</b> rendering</legend>
+<a href="./lib/server.html" review> [ + more details... ]</a>
 
 Full server-side rendering with simple function @decorators.
 
@@ -118,10 +127,7 @@ export function get(request: Request) {
 }
 ```
 
-Click [here](./lib/server.html) to learn more about this.
-
 </aside>
-
 <style>   
    #router th { font-weight:400 !important;  }
    #router tr th { border-bottom:solid 1px dimgrey !important; }
@@ -134,6 +140,7 @@ Click [here](./lib/server.html) to learn more about this.
 </fieldset>
 <fieldset id ='styler' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>STYLER</b> scoping</legend>
+<a href="./lib/styler.html" review> [ + more details... ]</a>
 
 Fixed modular CSS with component-scoped by decorators or className tag.
 
@@ -177,12 +184,11 @@ const Component = props => <>
 </>
 ```
 
-Click [here](./lib/styler.html) to learn more about this.
-
 </fieldset>
 
 <fieldset id='stater' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>STATER</b> handling</legend>
+<a href="./lib/stater.html" review> [ + more details... ]</a>
 
 Stateful proxy object with **local** stateful props and **global** state dependency injection.
 
@@ -220,6 +226,7 @@ const Component = props => <>
 
 <fieldset id='ranker' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>RANKER</b> searching</legend>
+<a href="./lib/ranker.html" review> [ + more details... ]</a>
 
 Simple SEO using function decorators by @seo decorator with metatags support.
 
