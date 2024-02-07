@@ -234,7 +234,7 @@ const Component = props => <>
 </fieldset>
 
 <fieldset id='ranker' onclick='onPreview(this.id)' class='hidden'>
-<legend><b>RANKER</b> searching</legend>
+<legend><b>RANKER</b> mechanism</legend>
 <a href="./lib/ranker.html" review> ( REVIEW )</a>
 
 Simple SEO using function decorators by @seo decorator with metatags support.
@@ -325,7 +325,7 @@ It is possible custom props directives by dependency injection.
 ```tsx
 import { server } from 'reactive'
 const shown = props => ({ ...props, hidden: !props.shown })
-await server("#root", { failure }).inject([ shown ]).render()
+await server("#container").inject([ shown ]).render()
 ```
 
 Here `shown` is a custom props directive (requires module declaration for intelisense).
@@ -339,7 +339,7 @@ declare module "react" { interface HTMLAttribute { show?: boolean }}
 </fieldset>
 
 <fieldset id='bearer' onclick='onPreview(this.id)' class='hidden'>
-<legend><b>BEARER</b> authoring</legend>
+<legend><b>BEARER</b> authentication</legend>
 <a href="./lib/bearer.html" review> ( REVIEW )</a>
 
 Authorization is covered by @auth decorator with regex inspection.

@@ -421,7 +421,7 @@ a[review] {
 </code></pre>
 </fieldset>
 <fieldset id='ranker' onclick='onPreview(this.id)' class='hidden'>
-<legend><b>RANKER</b> searching</legend>
+<legend><b>RANKER</b> mechanism</legend>
 <a href="./lib/ranker.html" review> ( REVIEW )</a>
 <p>Simple SEO using function decorators by @seo decorator with metatags support.</p>
 <aside cols=2>
@@ -489,7 +489,7 @@ a[review] {
 <p>It is possible custom props directives by dependency injection.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactive&#x27;</span>
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">shown</span> = props =&gt; ({ ...props, <span class="hljs-attr">hidden</span>: !props.<span class="hljs-property">shown</span> })
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>, { failure }).<span class="hljs-title function_">inject</span>([ shown ]).<span class="hljs-title function_">render</span>()
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#container&quot;</span>).<span class="hljs-title function_">inject</span>([ shown ]).<span class="hljs-title function_">render</span>()
 </code></pre>
 <p>Here <code>shown</code> is a custom props directive (requires module declaration for intelisense).</p>
 <pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Sample</span> = prop =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">show</span>=<span class="hljs-string">{false}</span>&gt;</span>sampling...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
@@ -498,7 +498,7 @@ a[review] {
 </code></pre>
 </fieldset>
 <fieldset id='bearer' onclick='onPreview(this.id)' class='hidden'>
-<legend><b>BEARER</b> authoring</legend>
+<legend><b>BEARER</b> authentication</legend>
 <a href="./lib/bearer.html" review> ( REVIEW )</a>
 <p>Authorization is covered by @auth decorator with regex inspection.</p>
 <pre><code class="language-tsx">@<span class="hljs-title function_">auth</span>({ <span class="hljs-attr">role</span>: <span class="hljs-string">&quot;user|admin&quot;</span> }) <span class="hljs-keyword">function</span> <span class="hljs-title function_">Profile</span>(<span class="hljs-params"></span>) { ... }
