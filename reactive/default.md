@@ -109,13 +109,11 @@ Static files is server by /assets and restful apis in /apis folder.
 /assets
   /styles.css
   /favicon.ico
-  /img/profile.png
 ```
-```tsx
-// HTTP verb function naming
-export function get(request: Request) {
-   return new Response('hello world')
-}
+```ts
+// exported as HTTP verb method naming
+export const get = (request: Request) =>
+   new Response('hello world')
 ```
 
 </aside>
@@ -199,7 +197,7 @@ const Component = (props, ({ stores: global })) => <>
 </>
 ```
 
-Global states are injected in Reactive server IoC container.
+Global states are injectables, meanwhile createState generates the modular states.
 
 <aside cols='2'>
 
@@ -259,21 +257,19 @@ Go to [review](./lib/ranker.html) section for more details.
 <legend><b>ROUTER</b> modeling</legend>
 <a href="./lib/router.html" review> ( + )</a>
 
-The `@route` decorator enables params (dynamic routes) with `:param` syntax.
+The `@route` decorator enables params (dynamic routes) by dependency injection.
 
 ```ts
-@route('/whatever/params/:id')
-export default function Params(props, { params }) {
-   return <h1>ID: { params.id }</h1>
-}
+@route('/whatever-route-you-want/params/:id')
+const Params(props, { params }) => <h1>ID: { params.id }</h1>
 ```
 
-Routing props enable componented layouts, nested routes (`./`) and lazy routing
+Routing props enable componented layouts, nested routes (`./`) and lazy routing.
 
 ```tsx
 const Sample = import('./main').asLazyComponent('Sample')
 
-export default const Menu = (props) => <>
+const Menu = (props) => <>
    <h1>Menu</h1>
    <a href='/main'>Main</a>
    <a href='/main/lazy'>Lazy</a>   
@@ -291,22 +287,18 @@ Go to [review](./lib/router.html) section for more details.
 <legend><b>BINDER</b> properting</legend>
 <a href="./lib/binder.html" review> ( + )</a>
 
-Controlled component **props binding** with [data] and [bind] props.
+Controlled component **props binding** with `[data]` and `[bind]` props.
 
 ```tsx
-const Component = (props, { stores: hello }) => <>
-   <input data={props} bind='name' /> 
-   <input data={hello} bind='name' />
-</>
+const Hello = props => <input data={props} bind='name' /> 
 ```
 
-Uncontroled component `form[data]` supports actions, validation, and authentication.
+Uncontroled component `form[data]` with actions, validation, and authentication.
 
 ```tsx
 const Form = (props, { errors }) => <form data={props} 
    method="post" action="http://api.sample.com"> 
-   Name: <input bind='name' maxlength={50} />
-   Mail: <input bind='mail' pattern="\w+@\w+\.\w+" />    
+   Name: <input bind='name' maxlength={50} /> 
    <button>Submit</button>
 </form>
 ```
@@ -320,7 +312,6 @@ await server("#container").inject([ shown ]).render()
 ```
 ```ts
 export const Sample = prop => <div show={false}>sampling...</div>
-
 declare module "react" { interface HTMLAttribute { show?: boolean }}
 ```
 

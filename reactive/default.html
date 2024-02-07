@@ -329,12 +329,10 @@ body.marp-vscode blockquote {
 <pre><code class="language-py">/assets
   /styles.css
   /favicon.ico
-  /img/profile.png
 </code></pre>
-<pre><code class="language-tsx"><span class="hljs-comment">// HTTP verb function naming</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">get</span>(<span class="hljs-params">request: Request</span>) {
-   <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Response</span>(<span class="hljs-string">&#x27;hello world&#x27;</span>)
-}
+<pre><code class="language-ts"><span class="hljs-comment">// exported as HTTP verb method naming</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">get</span> = (<span class="hljs-params">request: Request</span>) =&gt;
+   <span class="hljs-keyword">new</span> <span class="hljs-title class_">Response</span>(<span class="hljs-string">&#x27;hello world&#x27;</span>)
 </code></pre>
 </aside>
 <p>Exceptions are handled by local @error decorator and global component injection.</p>
@@ -387,7 +385,7 @@ body.marp-vscode blockquote {
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{sharing.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> sharing.name=e.taget.value} /&gt;
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<p>Global states are injected in Reactive server IoC container.</p>
+<p>Global states are injectables, meanwhile createState generates the modular states.</p>
 <aside cols='2'>
 <pre><code class="language-tsx"><span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>)
   .<span class="hljs-title function_">inject</span>({ <span class="hljs-attr">global</span>: { <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;word&#x27;</span> }})
@@ -427,16 +425,14 @@ body.marp-vscode blockquote {
 <fieldset id='router' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>ROUTER</b> modeling</legend>
 <a href="./lib/router.html" review> ( + )</a>
-<p>The <code>@route</code> decorator enables params (dynamic routes) with <code>:param</code> syntax.</p>
-<pre><code class="language-ts"><span class="hljs-meta">@route</span>(<span class="hljs-string">&#x27;/whatever/params/:id&#x27;</span>)
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Params</span>(<span class="hljs-params">props, { params }</span>) {
-   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>ID: { params.id }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
-}
+<p>The <code>@route</code> decorator enables params (dynamic routes) by dependency injection.</p>
+<pre><code class="language-ts"><span class="hljs-meta">@route</span>(<span class="hljs-string">&#x27;/whatever-route-you-want/params/:id&#x27;</span>)
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Params</span>(props, { params }) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>ID: { params.id }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 </code></pre>
-<p>Routing props enable componented layouts, nested routes (<code>./</code>) and lazy routing</p>
+<p>Routing props enable componented layouts, nested routes (<code>./</code>) and lazy routing.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Sample</span> = <span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./main&#x27;</span>).<span class="hljs-title function_">asLazyComponent</span>(<span class="hljs-string">&#x27;Sample&#x27;</span>)
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = (<span class="hljs-params">props</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = (<span class="hljs-params">props</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Menu<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;/main/lazy&#x27;</span>&gt;</span>Lazy<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>   
@@ -450,17 +446,13 @@ body.marp-vscode blockquote {
 <fieldset id='binder' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>BINDER</b> properting</legend>
 <a href="./lib/binder.html" review> ( + )</a>
-<p>Controlled component <strong>props binding</strong> with [data] and [bind] props.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = (<span class="hljs-params">props, { stores: hello }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span> 
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{hello}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
+<p>Controlled component <strong>props binding</strong> with <code>[data]</code> and <code>[bind]</code> props.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span></span> 
 </code></pre>
-<p>Uncontroled component <code>form[data]</code> supports actions, validation, and authentication.</p>
+<p>Uncontroled component <code>form[data]</code> with actions, validation, and authentication.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Form</span> = (<span class="hljs-params">props, { errors }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> 
    <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;http://api.sample.com&quot;</span>&gt;</span> 
-   Name: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> <span class="hljs-attr">maxlength</span>=<span class="hljs-string">{50}</span> /&gt;</span>
-   Mail: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;mail&#x27;</span> <span class="hljs-attr">pattern</span>=<span class="hljs-string">&quot;\w+@\w+\.\w+&quot;</span> /&gt;</span>    
+   Name: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> <span class="hljs-attr">maxlength</span>=<span class="hljs-string">{50}</span> /&gt;</span> 
    <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
 </code></pre>
@@ -470,7 +462,6 @@ body.marp-vscode blockquote {
 <span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#container&quot;</span>).<span class="hljs-title function_">inject</span>([ shown ]).<span class="hljs-title function_">render</span>()
 </code></pre>
 <pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Sample</span> = prop =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">show</span>=<span class="hljs-string">{false}</span>&gt;</span>sampling...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-
 <span class="hljs-keyword">declare</span> <span class="hljs-variable language_">module</span> <span class="hljs-string">&quot;react&quot;</span> { <span class="hljs-keyword">interface</span> <span class="hljs-title class_">HTMLAttribute</span> { show?: <span class="hljs-built_in">boolean</span> }}
 </code></pre>
 <p>Go to <a href="./lib/binder.html">review</a> section for more details.</p>
