@@ -235,7 +235,7 @@ body.marp-vscode blockquote {
    .<span class="hljs-title function_">match</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-property">access</span>, <span class="hljs-string">&quot;/&quot;</span>)
 
 <span class="hljs-comment">// injecting session into server settings</span>
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;#id&#x27;</span>, { session }).<span class="hljs-title function_">render</span>()
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;#id&#x27;</span>, { session }).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 </code></pre>
 <h2 id="session-instance">Session instance</h2>
 <p>Session object has login and logout methods with its related custom routes.</p>
@@ -267,7 +267,7 @@ body.marp-vscode blockquote {
    .<span class="hljs-property">match</span>&lt;<span class="hljs-title class_">Token</span>&gt;(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-property">token</span>, <span class="hljs-string">&quot;/home&quot;</span>)
 </code></pre>
 <h2 id="authorization-decorator">Authorization decorator</h2>
-<p>Authorization is covered by @auth decorator with regex inspection.</p>
+<p>Authorization is covered by @auth decorator with regex inspection enabling server-side and client-side validation during routing process.</p>
 <pre><code class="language-tsx">@<span class="hljs-title function_">auth</span>({ <span class="hljs-attr">role</span>: <span class="hljs-string">&quot;user&quot;</span> }) <span class="hljs-keyword">function</span> <span class="hljs-title function_">Profile</span>(<span class="hljs-params"></span>) { ... }
 
 @<span class="hljs-title function_">auth</span>({ <span class="hljs-attr">role</span>: <span class="hljs-string">&quot;user|admin&quot;</span> }) <span class="hljs-keyword">function</span> <span class="hljs-title function_">Profile</span>(<span class="hljs-params"></span>) { ... }
