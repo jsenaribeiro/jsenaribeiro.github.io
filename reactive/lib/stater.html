@@ -236,32 +236,35 @@ body.marp-vscode blockquote {
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">onChange</span> = e =&gt; props.<span class="hljs-property">name</span> = e.<span class="hljs-property">taget</span>.<span class="hljs-property">value</span>
 </code></pre>
 <h2 id="global-state-injection">Global state injection</h2>
-<p>Global states could be achieved by the framework IoC container in inject method.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> user = { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span>, <span class="hljs-attr">now</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() } 
+<p>The global state is passed in server settings as storage field.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactive/server&#x27;</span>
 
-<span class="hljs-keyword">await</span> <span class="hljs-title class_">Reactive</span>.<span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>).<span class="hljs-title function_">inject</span>({ user }).<span class="hljs-title function_">render</span>()
+<span class="hljs-keyword">const</span> user = { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span>, <span class="hljs-attr">now</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() } 
+<span class="hljs-keyword">const</span> settings = { <span class="hljs-attr">storage</span>: user }
+
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>, settings)
+     .<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 </code></pre>
 <p>DI is resolve in 2nd functional component arg by stores object deconstrution.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params">props, { stores: user }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
-   Local Hello { user.name } !
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{user.name}</span> {<span class="hljs-attr">onChange</span>} /&gt;</span>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params">props, { store }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
+   Local Hello { store.name } !
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{store.name}</span> {<span class="hljs-attr">onChange</span>} /&gt;</span>
 <span class="hljs-tag">&lt;/&gt;</span></span>
 
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">onChange</span> = e =&gt; props.<span class="hljs-property">name</span> = e.<span class="hljs-property">taget</span>.<span class="hljs-property">value</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">onChange</span> = e =&gt; props.<span class="hljs-property">name</span> = e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>
 </code></pre>
-<h2 id="modular-stateful-object">Modular stateful object</h2>
-<p>The <code>createState</code> offers a modular sharing state for partial component tree, instead of full component tree with global state, or individual shared state with local state.</p>
+<h2 id="orbital-modular-states">Orbital modular states</h2>
+<p>Orbital states covers partial component tree (similar to React context API), its useful for sharing states for a limited components using just module semantics. Its less minimalist alternative than local and global state, but yet considerably much less verbose than conventional React Context API.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> user = <span class="hljs-title function_">createState</span>({ <span class="hljs-attr">guid</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;john&#x27;</span> })
-
-user.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;paul&#x27;</span> <span class="hljs-comment">// it will trigger the render inside a component</span>
 </code></pre>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { user } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./states&#x27;</span>
 
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params">props, { stores: user }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
-   Local Hello { user.name } !
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{user.name}</span> {<span class="hljs-attr">onChange</span>} /&gt;</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
+   Local Hello { store.name } !
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{store.name}</span> {<span class="hljs-attr">onChange</span>} /&gt;</span>
 <span class="hljs-tag">&lt;/&gt;</span></span>
 
+<span class="hljs-comment">// it will trigger the render inside a component</span>
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">onChange</span> = e =&gt; props.<span class="hljs-property">name</span> = e.<span class="hljs-property">taget</span>.<span class="hljs-property">value</span>
 </code></pre>
 <p><br/><br/></p>

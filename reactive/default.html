@@ -340,7 +340,7 @@ body.marp-vscode blockquote {
 <pre><code class="language-tsx">@<span class="hljs-title function_">error</span>(<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Custom error...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>)
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Sample</span>(<span class="hljs-params"></span>) { ... }
 </code></pre>
-<pre><code class="language-tsx"><span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>).<span class="hljs-title function_">inject</span>(<span class="hljs-title class_">Error</span>).<span class="hljs-title function_">render</span>()
+<pre><code class="language-tsx"><span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>).<span class="hljs-title function_">inject</span>(<span class="hljs-title class_">Error</span>).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">Error</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 </aside>
@@ -376,24 +376,22 @@ body.marp-vscode blockquote {
 <fieldset id='stater' onclick='onPreview(this.id)' class='hidden'>
 <legend><b>STATER</b> handling</legend>
 <a href="./lib/stater.html" review> ( + )</a>
-<p>Stateful proxy object with <strong>local</strong> (stateful props), <strong>global</strong> and <strong>contextual</strong> scope.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> sharing <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./store&#x27;</span>
+<p>Stateful proxy object with <strong>local</strong> (stateful props), <strong>global</strong> and <strong>orbital</strong> states.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> share <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./store&#x27;</span>
 
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = (<span class="hljs-params">props, ({ stores: <span class="hljs-variable language_">global</span> })</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = (<span class="hljs-params">props, ({ store })</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> props.name=e.taget.value} /&gt;
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{global.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> global.name=e.taget.value} /&gt;
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{sharing.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> sharing.name=e.taget.value} /&gt;
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{store.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> store.name=e.taget.value} /&gt;
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{share.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> share.name=e.taget.value} /&gt;
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<p>Global states are injectables, meanwhile createState generates the modular states.</p>
+<p>A global state is passed by settings, meanwhile orbital states uses createState function.</p>
 <aside cols='2'>
-<pre><code class="language-tsx"><span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>)
-  .<span class="hljs-title function_">inject</span>({ <span class="hljs-attr">global</span>: { <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;word&#x27;</span> }})
-  .<span class="hljs-title function_">render</span>()
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-variable language_">global</span> = { <span class="hljs-attr">storage</span>: <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span> }
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>, <span class="hljs-variable language_">global</span>).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 </code></pre>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { createState } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactive&#x27;</span>
-<span class="hljs-keyword">const</span> store = { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span> }
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">createState</span>(store)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">createState</span>({ <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span> })
 </code></pre>
 </aside>
 <p>Go to <a href="./lib/stater.html">review</a> section for more details.</p>
@@ -459,7 +457,7 @@ body.marp-vscode blockquote {
 <p>It is possible custom props directives by dependency injection.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactive&#x27;</span>
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">shown</span> = props =&gt; ({ ...props, <span class="hljs-attr">hidden</span>: !props.<span class="hljs-property">shown</span> })
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#container&quot;</span>).<span class="hljs-title function_">inject</span>([ shown ]).<span class="hljs-title function_">render</span>()
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#container&quot;</span>).<span class="hljs-title function_">inject</span>([ shown ]).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 </code></pre>
 <pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Sample</span> = prop =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">show</span>=<span class="hljs-string">{false}</span>&gt;</span>sampling...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 <span class="hljs-keyword">declare</span> <span class="hljs-variable language_">module</span> <span class="hljs-string">&quot;react&quot;</span> { <span class="hljs-keyword">interface</span> <span class="hljs-title class_">HTMLAttribute</span> { show?: <span class="hljs-built_in">boolean</span> }}
@@ -483,7 +481,7 @@ body.marp-vscode blockquote {
 
 <span class="hljs-keyword">const</span> opts = { session }
 
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;#id&#x27;</span>,opts).<span class="hljs-title function_">render</span>()
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;#id&#x27;</span>,opts).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 </code></pre>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { session } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;.&#x27;</span>
 

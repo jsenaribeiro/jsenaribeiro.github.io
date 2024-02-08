@@ -185,7 +185,7 @@ Go to [review](./lib/styler.html) section for more details.
 <legend><b>STATER</b> handling</legend>
 <a href="./lib/stater.html" review> ( + )</a>
 
-Stateful proxy object with **local** (stateful props), **global** and **contextual** scope.
+Stateful proxy object with **local** (stateful props), **global** and **orbital** states.
 
 ```tsx
 import share from './store'
@@ -197,12 +197,13 @@ const Component = (props, ({ store })) => <>
 </>
 ```
 
-Global states are injectables, meanwhile createState generates the modular states.
+A global state is passed by settings, meanwhile orbital states uses createState function.
 
 <aside cols='2'>
 
 ```tsx
-await server("/routes").render("#root")
+const global = { storage: name: 'world' }
+await server("/routes", global).render("#root")
 ```
 
 ```tsx
