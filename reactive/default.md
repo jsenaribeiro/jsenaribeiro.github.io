@@ -305,7 +305,7 @@ It is possible custom props directives by dependency injection.
 ```tsx
 import { server } from 'reactive'
 const shown = props => ({ ...props, hidden: !props.shown })
-await server("#container").inject([ shown ]).render("#root")
+await server("#root").inject(shown).render("#root")
 ```
 ```ts
 export const Sample = prop => <div show={false}>sampling...</div>
@@ -323,7 +323,7 @@ Go to [review](./lib/binder.html) section for more details.
 Authorization is covered by @auth decorator with regex inspection.
 
 ```tsx
-@auth({ role: "user|admin" }) function Profile() { ... }
+@auth({ role: "user|admin" }) function Profile() { return <> content... </> }
 ```
 
 The authentication uses ajaxness 'auth api' lib for easy JWT and oAuth authentication.
@@ -338,9 +338,10 @@ export const session = auth()
    .catch(x => "Fails", "/login")
    .match(x => x.access, "/")
 
-const opts = { session }
+const config = { session }
 
-await server('#id',opts).render("#root")
+await server('/routes', config)
+     .render("#root")
 ```
 
 ```tsx
@@ -359,22 +360,25 @@ const Login= ({ usr, pwd }) => <>
 
 </aside>
 
-Ajaxness auth api easily integrates with any oAuth provider by OAuth interface.
+Ajaxness auth api easily integrates any oAuth provider with OAuth interface.
+
+<aside cols='4:5'>
 
 ```ts
 const googleAuth: OAuth = {
-   scopings:"public_profile,email,fullname",
-   clientId:"asdfasfsadfasdfasdfasdfasfsadfasdfasdf",
-   secretId:"asdfasdfasdfasdfasdasdfasdfasdfasdfasd",
+   scopings:"public_profile,email",
+   clientId:"asdfasfsadfasdfasdfa",
+   secretId:"asdfasdfasdfasdfasda",
 }
-
-interface Profile { iat:number, name:string, exp:number }
-
-const session = auth<Profile>(googleAuth)
-   .fetch("http://www.google.com/api2/oauth")
-   .catch(x => "Authentatication fails", "/login")
-   .match<Token>(x => x.token, "/home")
 ```
+```ts
+const session = auth(googleAuth)
+   .fetch("http://www.google.fake/oauth")
+   .catch(x => "Login fails", "/login")
+   .match(x => x.token, "/home")
+```
+
+</aside>
 
 Go to [review](./lib/bearer.html) section for more details.
 

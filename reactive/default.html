@@ -457,7 +457,7 @@ body.marp-vscode blockquote {
 <p>It is possible custom props directives by dependency injection.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactive&#x27;</span>
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">shown</span> = props =&gt; ({ ...props, <span class="hljs-attr">hidden</span>: !props.<span class="hljs-property">shown</span> })
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#container&quot;</span>).<span class="hljs-title function_">inject</span>([ shown ]).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>).<span class="hljs-title function_">inject</span>(shown).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 </code></pre>
 <pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Sample</span> = prop =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">show</span>=<span class="hljs-string">{false}</span>&gt;</span>sampling...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 <span class="hljs-keyword">declare</span> <span class="hljs-variable language_">module</span> <span class="hljs-string">&quot;react&quot;</span> { <span class="hljs-keyword">interface</span> <span class="hljs-title class_">HTMLAttribute</span> { show?: <span class="hljs-built_in">boolean</span> }}
@@ -468,7 +468,7 @@ body.marp-vscode blockquote {
 <legend><b>BEARER</b> authentication</legend>
 <a href="./lib/bearer.html" review> ( + )</a>
 <p>Authorization is covered by @auth decorator with regex inspection.</p>
-<pre><code class="language-tsx">@<span class="hljs-title function_">auth</span>({ <span class="hljs-attr">role</span>: <span class="hljs-string">&quot;user|admin&quot;</span> }) <span class="hljs-keyword">function</span> <span class="hljs-title function_">Profile</span>(<span class="hljs-params"></span>) { ... }
+<pre><code class="language-tsx">@<span class="hljs-title function_">auth</span>({ <span class="hljs-attr">role</span>: <span class="hljs-string">&quot;user|admin&quot;</span> }) <span class="hljs-keyword">function</span> <span class="hljs-title function_">Profile</span>(<span class="hljs-params"></span>) { <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span> content... <span class="hljs-tag">&lt;/&gt;</span></span> }
 </code></pre>
 <p>The authentication uses ajaxness 'auth api' lib for easy JWT and oAuth authentication.</p>
 <aside cols='4:5'>
@@ -479,9 +479,10 @@ body.marp-vscode blockquote {
    .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-string">&quot;Fails&quot;</span>, <span class="hljs-string">&quot;/login&quot;</span>)
    .<span class="hljs-title function_">match</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-property">access</span>, <span class="hljs-string">&quot;/&quot;</span>)
 
-<span class="hljs-keyword">const</span> opts = { session }
+<span class="hljs-keyword">const</span> config = { session }
 
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;#id&#x27;</span>,opts).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;/routes&#x27;</span>, config)
+     .<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 </code></pre>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { session } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;.&#x27;</span>
 
@@ -496,20 +497,20 @@ body.marp-vscode blockquote {
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 </aside>
-<p>Ajaxness auth api easily integrates with any oAuth provider by OAuth interface.</p>
+<p>Ajaxness auth api easily integrates any oAuth provider with OAuth interface.</p>
+<aside cols='4:5'>
 <pre><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-attr">googleAuth</span>: <span class="hljs-title class_">OAuth</span> = {
-   <span class="hljs-attr">scopings</span>:<span class="hljs-string">&quot;public_profile,email,fullname&quot;</span>,
-   <span class="hljs-attr">clientId</span>:<span class="hljs-string">&quot;asdfasfsadfasdfasdfasdfasfsadfasdfasdf&quot;</span>,
-   <span class="hljs-attr">secretId</span>:<span class="hljs-string">&quot;asdfasdfasdfasdfasdasdfasdfasdfasdfasd&quot;</span>,
+   <span class="hljs-attr">scopings</span>:<span class="hljs-string">&quot;public_profile,email&quot;</span>,
+   <span class="hljs-attr">clientId</span>:<span class="hljs-string">&quot;asdfasfsadfasdfasdfa&quot;</span>,
+   <span class="hljs-attr">secretId</span>:<span class="hljs-string">&quot;asdfasdfasdfasdfasda&quot;</span>,
 }
-
-<span class="hljs-keyword">interface</span> <span class="hljs-title class_">Profile</span> { <span class="hljs-attr">iat</span>:<span class="hljs-built_in">number</span>, <span class="hljs-attr">name</span>:<span class="hljs-built_in">string</span>, <span class="hljs-attr">exp</span>:<span class="hljs-built_in">number</span> }
-
-<span class="hljs-keyword">const</span> session = auth&lt;<span class="hljs-title class_">Profile</span>&gt;(googleAuth)
-   .<span class="hljs-title function_">fetch</span>(<span class="hljs-string">&quot;http://www.google.com/api2/oauth&quot;</span>)
-   .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-string">&quot;Authentatication fails&quot;</span>, <span class="hljs-string">&quot;/login&quot;</span>)
-   .<span class="hljs-property">match</span>&lt;<span class="hljs-title class_">Token</span>&gt;(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-property">token</span>, <span class="hljs-string">&quot;/home&quot;</span>)
 </code></pre>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> session = <span class="hljs-title function_">auth</span>(googleAuth)
+   .<span class="hljs-title function_">fetch</span>(<span class="hljs-string">&quot;http://www.google.fake/oauth&quot;</span>)
+   .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-string">&quot;Login fails&quot;</span>, <span class="hljs-string">&quot;/login&quot;</span>)
+   .<span class="hljs-title function_">match</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-property">token</span>, <span class="hljs-string">&quot;/home&quot;</span>)
+</code></pre>
+</aside>
 <p>Go to <a href="./lib/bearer.html">review</a> section for more details.</p>
 </fieldset>
 </article>
