@@ -128,7 +128,7 @@ export function Sample() { ... }
 ```
 
 ```tsx
-await server("#root").inject(Error).render()
+await server("/routes").inject(Error).render("#root")
 const Error = (status, errors) => <>...</>
 ```
 
@@ -188,12 +188,12 @@ Go to [review](./lib/styler.html) section for more details.
 Stateful proxy object with **local** (stateful props), **global** and **contextual** scope.
 
 ```tsx
-import sharing from './store'
+import share from './store'
 
-const Component = (props, ({ stores: global })) => <>
+const Component = (props, ({ store })) => <>
    <input value={props.name} onChange={e => props.name=e.taget.value} />
-   <input value={global.name} onChange={e => global.name=e.taget.value} />
-   <input value={sharing.name} onChange={e => sharing.name=e.taget.value} />
+   <input value={store.name} onChange={e => store.name=e.taget.value} />
+   <input value={share.name} onChange={e => share.name=e.taget.value} />
 </>
 ```
 
@@ -202,19 +202,15 @@ Global states are injectables, meanwhile createState generates the modular state
 <aside cols='2'>
 
 ```tsx
-await server("#root")
-  .inject({ global: { name:'word' }})
-  .render()
+await server("/routes").render("#root")
 ```
 
 ```tsx
 import { createState } from 'reactive'
-const store = { name: 'world' }
-export default createState(store)
+export default createState({ name: 'world' })
 ```
 
 </aside>
-
 
 Go to [review](./lib/stater.html) section for more details.
 
@@ -308,7 +304,7 @@ It is possible custom props directives by dependency injection.
 ```tsx
 import { server } from 'reactive'
 const shown = props => ({ ...props, hidden: !props.shown })
-await server("#container").inject([ shown ]).render()
+await server("#container").inject([ shown ]).render("#root")
 ```
 ```ts
 export const Sample = prop => <div show={false}>sampling...</div>
@@ -343,7 +339,7 @@ export const session = auth()
 
 const opts = { session }
 
-await server('#id',opts).render()
+await server('#id',opts).render("#root")
 ```
 
 ```tsx
