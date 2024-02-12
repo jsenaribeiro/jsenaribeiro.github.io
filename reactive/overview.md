@@ -9,7 +9,7 @@
    • [lean](#) 
    • [fast](#) 
    • [full](#) 
-   • [bold](#) 
+   • [flex](#) 
    • [nice](#)
 
 </section>
