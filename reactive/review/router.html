@@ -285,14 +285,19 @@ body.marp-vscode blockquote {
 </tr>
 </tbody>
 </table>
-<h2 id="nesting-routes">Nesting routes</h2>
-<p>Since reactive routes starts with '/', nesting routing reuse './' syntax to enable nesting routing, so, server-side and client-side href or link will consider './' as current path.</p>
+<h2 id="nesting-routing">Nesting routing</h2>
+<style>
+   aside[nesting] table td { padding:0; }
+   aside[nesting] table tr { padding:0; }
+</style>
+<aside nesting cols='4:5'>
+<p>Normal routes starts with slash (<strong>/</strong>), meanwhile nesting routes starts with dot slash syntax (<strong>./</strong>) based on current file path.</p>
 <table>
 <thead>
 <tr>
-<th>directory</th>
-<th>declaration</th>
-<th>resolution</th>
+<th></th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
@@ -313,8 +318,9 @@ body.marp-vscode blockquote {
 </tr>
 </tbody>
 </table>
+</aside>
 <h2 id="dynamic-routes">Dynamic routes</h2>
-<p>Dynamic routes (a.k.a route params) is supported by @route decorator, that overrides the default folder routing resolutiion with a component-wise specif url routing.</p>
+<p>The @route functions decorator support route params with priority above folder routing.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { route } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactive&#x27;</span>
 
 @<span class="hljs-title function_">route</span>(<span class="hljs-string">&#x27;/whatever/profile/:id&#x27;</span>)
@@ -329,7 +335,7 @@ body.marp-vscode blockquote {
 }
 </span></code></pre>
 <h2 id="props-routing">Props routing</h2>
-<p>THe new props routing directive with [route] and [link] props, enables component-based routing with client-side conditional rendering (meanwhile [href] props is 'server-side').</p>
+<p>The <code>[route]</code> and <code>[link]</code> props  enable client-side routing for element conditional.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = (<span class="hljs-params">props</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Menu<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
 
@@ -340,9 +346,10 @@ body.marp-vscode blockquote {
    <span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
 &lt;/!-&gt;
 </span></code></pre>
-<h2 id="lazy-component">Lazy component</h2>
-<p>As props routing, lazy components (a.k.a code spliting) is enabled as a Promise prototype extension with <code>asLazyComponent(exportedName: string)</code>.</p>
+<p>Client-side route component is lazy loaded by promise extension <code>asLazyComponent</code>.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Sample</span> = <span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./main&#x27;</span>).<span class="hljs-title function_">asLazyComponent</span>(<span class="hljs-string">&#x27;Sample&#x27;</span>)
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Sample</span> = <span class="hljs-title function_">importComponent</span>(<span class="hljs-string">&#x27;./main&#x27;</span>, <span class="hljs-string">&#x27;Sample&#x27;</span>)
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Sample</span> = <span class="hljs-title function_">useRoute</span>(<span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./main&#x27;</span>), <span class="hljs-string">&#x27;Sample&#x27;</span>)
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = (<span class="hljs-params">props</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Menu<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
@@ -354,6 +361,7 @@ body.marp-vscode blockquote {
    <span class="hljs-tag">&lt;<span class="hljs-name">Sample</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;./lazy&#x27;</span> /&gt;</span>
 &lt;/!-&gt;
 </span></code></pre>
+<p><strong>WARNING</strong>! Since it is client-side, props routing not work by request or refresh.</p>
 <h2 id="full-stack-routing">Full stack routing</h2>
 <p>All routing content is prefetch and send to client-side to full client-side routing, except for dynamic SSR. All the routing content works both client-side and server-side mode.</p>
 <br/>
