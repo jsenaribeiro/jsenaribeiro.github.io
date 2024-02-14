@@ -74,13 +74,13 @@ Static, dynamic and periodic SSR is supported sing @server function decorator as
 
 ```tsx
 @server('static') // default
-export default const StaticRendered = props => <>...</>
+export default const Static = props => <>...</>
 
 @server('dynamic')  
-export default const DynamicRendered = props => <>...</>
+export default const Dynamic = props => <>...</>
 
 @server('periodic', "36h") 
-export default const PeriodicRendered = props => <>...</>
+export default const Periodic = props => <>...</>
 ```
 
 React server component enables async components, supporting Suspense component API.

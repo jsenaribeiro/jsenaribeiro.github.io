@@ -22,6 +22,20 @@ The `[data]` and `[bind]` props directive enables data binding in read-write inp
 <input bind='name' />
 ```
 
+```tsx
+// controlled components
+export const Data = props => <>
+   <input data={props} bind='name' />
+</>
+
+// uncontrolled components
+export const Form = props => <form> 
+   Name: <input bind='name' maxlength={50} />
+   Mail: <input bind='mail' pattern="\w+" />    
+   <button>Submit</button>
+</form>
+```
+
 The props directive maps in background each value and event with its correct type. When the stateful object is the props, the `[data]` is optional (props is its default).
 
 
