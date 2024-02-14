@@ -129,9 +129,9 @@ Stateful proxy object for **local** (stateful props), **global** and **orbital**
 import share from './store'
 
 const Component = (props, { store }) => <>
-   <input value={props.name} onChange={e => props.name=e.target.value} />
-   <input value={store.name} onChange={e => store.name=e.target.value} />
-   <input value={share.name} onChange={e => share.name=e.target.value} />
+   <input value={props.name} onChange={e => props.name = e.target.value} />
+   <input value={store.name} onChange={e => store.name = e.target.value} />
+   <input value={share.name} onChange={e => share.name = e.target.value} />
 </>
 ```
 
@@ -255,13 +255,7 @@ Go to <a href='#' onclick='goto("./review/binder.html")'>review</a> section for 
 <fieldset id='helper' onclick='onPreview(this.id)'>
 <legend><b>HELPER</b> prototyping</legend>
 
-Some prototype extension utiliies is offered with reactive/helper.
-
-| resource | extensions |
-|-|-|
-| array | |
-| object | |
-| promise | |
+Sorry, work in progress...
 
 Go to <a href='#' onclick='goto("./review/helper.html")'>review</a> section for more details.
 
