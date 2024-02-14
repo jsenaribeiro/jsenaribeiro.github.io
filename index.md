@@ -1,7 +1,7 @@
 # Documentations
 
-## [Reactive](./reactive/)
+## [Reactive documentation](./readme/)
 <sup>SSR React framework</sup>
 
-## [Reactive Slide](./reactive-slide/SLIDEME.html)
+## [Reactive slides](./slideme/SLIDEME.html)
 <sup>SSR React framework</sup>
