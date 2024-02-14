@@ -255,8 +255,8 @@ body.marp-vscode blockquote {
 <pre><code class="language-tsx">@<span class="hljs-title function_">error</span>(<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Custom error...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>)
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Sample</span>(<span class="hljs-params"></span>) { ... }
 </code></pre>
-<pre><code class="language-tsx"><span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>).<span class="hljs-title function_">inject</span>(<span class="hljs-title class_">Error</span>).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">Error</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">failure</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>, { failure }).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 </code></pre>
 </aside>
 <p>Go to <a href='#' onclick='goto("./review/server.html")'>review</a> section for more details.</p>

@@ -68,8 +68,8 @@ export function Sample() { ... }
 ```
 
 ```tsx
-await server("/routes").inject(Error).render("#root")
-const Error = (status, errors) => <>...</>
+const failure = (status, errors) => <>...</>
+await server("/routes", { failure }).render("#root")
 ```
 
 </aside>
