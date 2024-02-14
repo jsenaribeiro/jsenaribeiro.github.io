@@ -886,7 +886,7 @@ bun create reactive@latest
 
 ---
 
-### `server` root
+### `server` rendering
 
 <main cols='3:5'><div>
 
@@ -929,19 +929,26 @@ button.App { background-color: 'yellow' }
 
 ---
 
-### `stater` IoC
+### `stater` handling
 
 <main cols='3:5'><div>
 
-Stateful proxy object with local (stateful props), global and orbital states.
-> ...
+Stateful proxy object for local (stateful props), global (by DI) and orbital states for regional subtree sharing data.
 
 </div><div>
 
 ```tsx
 const show = p => ({...p, p.hidden: !p.show})
 
-React.server(true).inject(show).render(App)
+import share from './store'
+
+const onChange = state => e => state.name = e.target.value
+
+const Component = (props, ({ store })) => <>
+   <input value={props.name} onChange={e => props.name=e.taget.value} />
+   <input value={store.name} onChange={e => store.name=e.taget.value} />
+   <input value={share.name} onChange={e => share.name=e.taget.value} />
+</>
 ```
 
 </div></main>

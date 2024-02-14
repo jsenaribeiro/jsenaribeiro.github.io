@@ -129,9 +129,9 @@ Stateful proxy object for **local** (stateful props), **global** and **orbital**
 import share from './store'
 
 const Component = (props, ({ store })) => <>
-   <input value={props.name} onChange={e => props.name=e.taget.value} />
-   <input value={store.name} onChange={e => store.name=e.taget.value} />
-   <input value={share.name} onChange={e => share.name=e.taget.value} />
+   <input value={props.name} onChange={e => props.name=e.target.value} />
+   <input value={store.name} onChange={e => store.name=e.target.value} />
+   <input value={share.name} onChange={e => share.name=e.target.value} />
 </>
 ```
 
