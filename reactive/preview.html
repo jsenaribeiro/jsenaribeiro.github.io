@@ -292,7 +292,7 @@ body.marp-vscode blockquote {
 <p>Stateful proxy object for <strong>local</strong> (stateful props), <strong>global</strong> and <strong>orbital</strong> states.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> share <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./store&#x27;</span>
 
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = (<span class="hljs-params">props, ({ store })</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = (<span class="hljs-params">props, { store }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> props.name=e.target.value} /&gt;
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{store.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> store.name=e.target.value} /&gt;
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{share.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> share.name=e.target.value} /&gt;

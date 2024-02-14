@@ -938,17 +938,15 @@ Stateful proxy object for local (stateful props), global (by DI) and orbital sta
 </div><div>
 
 ```tsx
-const show = p => ({...p, p.hidden: !p.show})
-
 import share from './store'
 
-const onChange = state => e => state.name = e.target.value
-
-const Component = (props, ({ store })) => <>
-   <input value={props.name} onChange={e => props.name=e.taget.value} />
-   <input value={store.name} onChange={e => store.name=e.taget.value} />
-   <input value={share.name} onChange={e => share.name=e.taget.value} />
+const Component = (props, { store }) => <>
+   <input value={props.name} onChange={on(props)} />
+   <input value={store.name} onChange={on(store)} />
+   <input value={share.name} onChange={on(share)} />
 </>
+
+const on = state => e => state.name = e.target.value
 ```
 
 </div></main>

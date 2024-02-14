@@ -128,7 +128,7 @@ Stateful proxy object for **local** (stateful props), **global** and **orbital**
 ```tsx
 import share from './store'
 
-const Component = (props, ({ store })) => <>
+const Component = (props, { store }) => <>
    <input value={props.name} onChange={e => props.name=e.target.value} />
    <input value={store.name} onChange={e => store.name=e.target.value} />
    <input value={share.name} onChange={e => share.name=e.target.value} />
