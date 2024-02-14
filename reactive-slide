@@ -739,16 +739,18 @@ function Component() {
 ## APROACHES
 
 <style>
-   table th { font-weight:300; font-size: 1.2em; }
+   table th { border:0; color:wheat; }
+   table th { font-weight:100; font-size: 1.3em; }
    table th { border-bottom-color:white; }
    table tr td:not(:first-of-type) { font-weight:100 }
    table td, table tr { border:0 }
    table * { background-color: transparent !important }
    aside p { padding-right: 50px; }
-</>
+</style>
 
 <style scoped>
-   table { margin-top: -90px; }
+   table { margin-top: -80px; }
+   h2 { border-bottom: solid 1px }
 </style>
 
 <aside cols='4:5'>
@@ -769,7 +771,6 @@ A standard vanilla-like approach that intruces new features like function decora
 
 ## PROPOSAL
 
-<br/>
 
 + **full SSR**: static, dynamic and periodic rendering 
 + **flex render**: support to JSX, HTML and markdown
@@ -887,36 +888,17 @@ bun create reactive@latest
 
 ### `server` root
 
-<main cols='2:5'><div>
+<main cols='3:5'><div>
 
-Webserver startup for SSR with React Server Components support
+Server startup root for SSR with high-order component error handling with support to JSX, HTML and markdown.
 </div><div>
 
 ```tsx
 import { server } from 'reactive/server'
 
-await server('/routes').render("#root")
-```
+const failure = (status, errors) => <>...</>
 
-</div></main>
-
-
-
----
-
-### `render` IoC
-
-<main cols='2:5'><div>
-
-IoC container with built-in property directives.
-> ...
-
-</div><div>
-
-```tsx
-const show = p => ({...p, p.hidden: !p.show})
-
-React.server(true).inject(show).render(App)
+await server('/routes', { failure }).render("#root")
 ```
 
 </div></main>
@@ -925,24 +907,41 @@ React.server(true).inject(show).render(App)
 
 ### `styler` plugin
 
-<main cols='2:5'><div>
+<main cols='3:5'><div>
 
-Scoped modular CSS imports with className component tag
-
-> React.js
-> CSS modules
-> styled components
+Fixed CSS imports adding a className component and @style decorator for component-scoped CSS.
 
 </div><div>
 
+```tsx
+import './module.css' // only applied here!
+
+@style('./component.css')
+const App = props => <h1>Only here</h1>
+```
+
 ```css
+/* 'automatic' className component tag */
 button.App { background-color: 'yellow' } 
 ```
 
-```tsx
-import './App.css' // only applied here!
+</div></main>
 
-const App = props => <h1>Only here</h1>
+---
+
+### `stater` IoC
+
+<main cols='3:5'><div>
+
+Stateful proxy object with local (stateful props), global and orbital states.
+> ...
+
+</div><div>
+
+```tsx
+const show = p => ({...p, p.hidden: !p.show})
+
+React.server(true).inject(show).render(App)
 ```
 
 </div></main>

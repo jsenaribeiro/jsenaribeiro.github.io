@@ -123,7 +123,7 @@ Go to <a href='#' onclick='goto("./review/styler.html")'>review</a> section for 
 <fieldset id='stater' onclick='onPreview(this.id)'>
 <legend><b>STATER</b> handling</legend>
 
-Stateful proxy object with **local** (stateful props), **global** and **orbital** states.
+Stateful proxy object for **local** (stateful props), **global** and **orbital** states.
 
 ```tsx
 import share from './store'
