@@ -4,4 +4,4 @@ function goto(href) {
 
 function delay(timeout, fn) { setTimeout(fn, timeout) }
 
-delay(99, () => document.body.style.zoom = 1.11)
+delay(99, () => document.body.style.zoom = 1.25)

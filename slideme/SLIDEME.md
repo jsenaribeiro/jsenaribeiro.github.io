@@ -343,7 +343,7 @@ export function About() { return <>...</> }
 
 ### `router` modelling
 
-Reactive support static folder routing (with no conventions), decorator routing for dynamic routes, and props routing for client-side rouring with support to lazy component import.
+Reactive support static folder routing (with no conventions), decorator routing for dynamic routes, and props routing for client-side routing with support to lazy component import.
 
 </div><div>
 
@@ -413,12 +413,12 @@ advantages, innovations and highlights.
 
 ## ADVANTAGES
 
-* `FULL` SSG with SSR and ISR
+* `FULL` SSR with SSG and ISR
 * `FAST` rendering with bun.js + SSR
 * `LITE` bundle with partial hydration
 * `LEAN` state handling with stateful objects
 * `FLEX` routing by props, folder and decorator
-* `LITE` bundle with partial hydration
+* `NICE` devex with cleaner and clearer code
 * `EASY` SEO with function decorators
 
 <!-- transition: fade-out -->
