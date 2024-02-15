@@ -255,9 +255,21 @@ Go to <a href='#' onclick='goto("./review/binder.html")'>review</a> section for 
 <fieldset id='helper' onclick='onPreview(this.id)'>
 <legend><b>HELPER</b> prototyping</legend>
 
-Sorry, work in progress...
+Prototype extensions used by framework is available in `reactive/extensions`.
+
+| | |
+|-|-|
+| Function | `isAsync()` |
+| JSON | `scriptify(object)` |
+| Promise | `asLazyComponent(member: string)` |
+| Object | `valueOf(field: string, value?: any)` |
+| Number | `format(commas: boolean, digits: number)` |
+| String | `toArray()`, `toObject()`, `toNumber()` |
+| Array | `distinct()`, `first()`, `pairs()`, `Array.range()` |
 
 Go to <a href='#' onclick='goto("./review/helper.html")'>review</a> section for more details.
 
 </fieldset>
 </article>
+
+<br/><br/>
