@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Modular state object</title>
+            <title>Stateful objects</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -217,8 +217,8 @@ body.marp-vscode blockquote {
 <blockquote>
 <p>stateful proxy object • stateful props<br/>modular state • global state<br/> OOP state handling</p>
 </blockquote>
-<h2 id="modular-state-object">Modular state object</h2>
-<p>Stateful proxy object (SRO) is a brand new hookless stateful React concept that encapsulates a useState hook within a javascript Proxy object. It enables a easy, leaner and intuitive OOP state handling, where the each object change triggers the render.</p>
+<h2 id="stateful-objects">Stateful objects</h2>
+<p>Stateful proxy object (SRO) brings a new hookless concept for state handling with functional components using javascript Proxy object for a more leaner, friendly and intuitive OOP stateful components.</p>
 <h2 id="local-stateful-props">Local stateful props</h2>
 <p>Stateful props bring out-of-the-box local state handling as SRO component props.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
@@ -230,7 +230,7 @@ body.marp-vscode blockquote {
 </code></pre>
 <h2 id="global-state-injection">Global state injection</h2>
 <p>The global state is passed in server settings as storage field.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactive/server&#x27;</span>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactful/server&#x27;</span>
 
 <span class="hljs-keyword">const</span> user = { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span>, <span class="hljs-attr">now</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() } 
 <span class="hljs-keyword">const</span> settings = { <span class="hljs-attr">storage</span>: user }
@@ -247,11 +247,14 @@ body.marp-vscode blockquote {
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">onChange</span> = e =&gt; props.<span class="hljs-property">name</span> = e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>
 </code></pre>
 <h2 id="orbital-modular-states">Orbital modular states</h2>
-<p>Orbital states covers partial component tree (similar to React context API), its useful for sharing states for a limited components using just module semantics. Its less minimalist alternative than local and global state, but yet considerably much less verbose than conventional React Context API.</p>
-<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> user = <span class="hljs-title function_">createState</span>({ <span class="hljs-attr">guid</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;john&#x27;</span> })
+<p>This escope enables a Redux semantics with contextual subtree of components for shared states like React Context API. It enable a more controlled and determined shared states between components.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> myStore = <span class="hljs-title function_">useStore</span>({ <span class="hljs-attr">guid</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;john&#x27;</span>, <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() })
 </code></pre>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { user } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./states&#x27;</span>
+<p>After useStore object is changed, the render only will call in components where @state maps.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { state } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/web&#x27;</span>
+<span class="hljs-keyword">import</span> { myStore } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./stores&#x27;</span>
 
+@<span class="hljs-title function_">state</span>(myStore)
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
    Local Hello { store.name } !
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{store.name}</span> {<span class="hljs-attr">onChange</span>} /&gt;</span>

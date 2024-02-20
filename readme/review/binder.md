@@ -159,7 +159,7 @@ const Home = (props, { logon }) => <h1>current user name: { logon.name }</h1>
 
 Props binding is a props transformation enabled by the new props directive feature. Custom props directive is supported using a similar functional component syntax. 
 ```tsx
-import { server } from 'reactive'
+import { server } from '@reactful/web'
 
 // simple custom directive for hidden opposite behavior
 const shown = props => ({ ...props, hidden: !props.shown })
@@ -175,6 +175,6 @@ export const Sample = prop => <div shown={false}>sampling...</div>
 
 ```
 
-**WARNING!** Custom props directive has limited support to module paradigm. Any import in its module will not work and it will crash the reactive server during build time. 
+**WARNING!** Custom props directive has limited support to module paradigm. Any import in its module will not work and it will crash the reactful server during build time. 
 
 <br/><br/>

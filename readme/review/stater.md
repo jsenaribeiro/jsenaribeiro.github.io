@@ -29,7 +29,7 @@ const onChange = e => props.name = e.taget.value
 The global state is passed in server settings as storage field.
 
 ```tsx
-import { server } from 'reactive/server'
+import { server } from 'reactful/server'
 
 const user = { name: 'world', now: new Date() } 
 const settings = { storage: user }
@@ -60,7 +60,7 @@ export const myStore = useStore({ guid: 0, name: 'john', date: new Date() })
 After useStore object is changed, the render only will call in components where @state maps.
 
 ```tsx
-import { state } from 'reactive'
+import { state } from '@reactful/web'
 import { myStore } from './stores'
 
 @state(myStore)
