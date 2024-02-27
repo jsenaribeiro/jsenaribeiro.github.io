@@ -2,6 +2,7 @@
 <style>@import url(./index.css);</style>
 
 <article>
+<embed type='text/html' src='./header.html' />
 
 <h1 title> 
    <a href='#' onclick="goto('./overview.html')">overview</a> 
@@ -113,4 +114,4 @@ JSON.scriptify(myObject)
 </aside>
 
 </article>
-<br/><br/>
+<br/>

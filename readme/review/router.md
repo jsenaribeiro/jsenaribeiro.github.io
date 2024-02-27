@@ -65,26 +65,26 @@ Normal routes starts with slash (**/**), meanwhile nesting routes starts with do
 React server components, enabling async components and easier data fetching. 
 
 ```tsx
-async function AsyncComponent(props) {
-   const text = await fetch('url....')
-   return <h1>...loaded { text }</h1>
+async function AsyncSample(props) {
+   const text = await fetch('http://www.some-url.com')
+   return <h1>awaited content = { text }</h1>
 }
 ```
 
 Reactful async components supports React Suspense API.
 
 ```tsx
-const SuspenseApi = async props => <>
-   <Suspense fallback={<h1>loading...</h1>}>
-      <AsyncComponent />
+const SuspenseSample = async props => <>
+   <Suspense fallback={<b>loading...</b>}>
+      <AsyncSample />
    </Suspense>
 </>
 ```
 
-It introduces Suspense API simpler alternative as await props. It replaces the element children with resolved component promise with a inverse approach.
+It introduces an inverse props-driven Suspense alternative as await props. It works replacing its children after its await component is loaded by component streaming. 
 
 ```tsx
-const AwaitProps = async props => <h1 await={AsyncComponent}>loading...</h1>
+const AwaitPropsSample = async props => <h1 await={AsyncSample}>loading...</h1>
 ```
 
 ## Dynamic routes
