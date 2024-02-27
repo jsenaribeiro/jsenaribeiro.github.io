@@ -25,13 +25,13 @@ Simple folder routing with no extranaming conventions to serve in static routes.
    table tr td:nth-of-type(3) { color:grey; }
 </style>
 
-| DIRECTORY                 | ROUTING                 | RESOLUTION          |
-| ------------------------- | ----------------------- | ------------------- |
-| /routes/index.tsx         | localhost:3000/         | index JSX           |
-| /routes/about.tsx         | localhost:3000/about    | filename JSX        |
-| /routes/sample.html       | localhost:3000/sample/  | filename HTML       |
-| /routes/example.md        | localhost:3000/example/ | filename markdown   |
-| /routes/profile/index.tsx | localhost:3000/profile/ | subfolder index JSX |
+| DIRECTORY                 | ROUTING                | RESOLUTION          |
+| ------------------------- | ---------------------- | ------------------- |
+| /routes/index.tsx         | localhost:3000/        | index JSX           |
+| /routes/about.tsx         | localhost:3000/about   | filename JSX        |
+| /routes/sample.html       | localhost:3000/sample  | filename HTML       |
+| /routes/example.md        | localhost:3000/example | filename markdown   |
+| /routes/profile/index.tsx | localhost:3000/profile | subfolder index JSX |
 
 Resolution conflicts will throw exception in build time. 
 
@@ -52,11 +52,11 @@ Resolution conflicts will throw exception in build time.
 
 Normal routes starts with slash (**/**), meanwhile nesting routes starts with dot slash syntax (**./**) based on current file path.
 
-|               |  |             |
-| ---------------------- | ----------- | --------------------- |
-| /                      | ./about     | /about                |
-| /admin/system          | ./account   | /admin/account        |
-| /user/profile/overview | ./details   | /user/profile/details |
+|                        |           |                       |
+| ---------------------- | --------- | --------------------- |
+| /                      | ./about   | /about                |
+| /admin/system          | ./account | /admin/account        |
+| /user/profile/overview | ./details | /user/profile/details |
 
 </aside>
 
@@ -164,11 +164,11 @@ The reactful routing come with some new concepts, behaviors and approachs that k
 
 <section concept>
 
-| CONCEPT | DESCRIPTION |
-|-|-|
-| declarative redirects | Redirect is declarativilly handled with conditional returns. |
-| fullstack routing | Server routing sends prefetched routes to client-side usage |
-| fallback falts | Not found route fallbacks to its nearest available route in URL |
+| CONCEPT               | DESCRIPTION                                                     |
+| --------------------- | --------------------------------------------------------------- |
+| declarative redirects | Redirect is declarativilly handled with conditional returns.    |
+| fullstack routing     | Server routing sends prefetched routes to client-side usage     |
+| fallback falts        | Not found route fallbacks to its nearest available route in URL |
 
 </section>
 
