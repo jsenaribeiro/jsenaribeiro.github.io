@@ -25,4 +25,12 @@ header {
 
 }
 
+blockquote {
+   font-size: 13px !important;
+   text-align: center;
+   margin-top: -15px;
+   margin-left: -3px;   
+   line-height: 20px;
+}
+
 [menu-top] { margin-bottom: -5px; }
