@@ -165,3 +165,13 @@ main[iframe] > iframe {
    padding: 0;
    border: 0;
 }
+
+blockquote[index] {
+   font-size: 1.7rem !important;
+   line-height: 2.2rem;
+   margin-top: -25px;   
+}
+
+a[index] {
+   font-size: 2rem;
+}

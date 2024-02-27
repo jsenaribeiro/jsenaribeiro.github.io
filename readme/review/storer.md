@@ -9,7 +9,7 @@
 
 ## Stateful objects
 
-Stateful proxy object (SRO) brings a new hookless concept for state handling with functional components using javascript Proxy object for a more leaner, friendly and intuitive OOP stateful components. 
+Stateful proxy object (SRO) brings a new hookless concept for state handling with functional components using javascript Proxy object for a more leaner, friendly and intuitive OOP stateful components. SRO uses **delayed render** algorithm that enables a performatic approach batching successives changes in a single render call in each 0.1 second range.
 
 ## Local stateful props
 
