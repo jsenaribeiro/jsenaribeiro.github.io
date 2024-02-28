@@ -1,7 +1,15 @@
+<style>
+   @import url(./readme/index.css);
+   body { margin: 0 auto; width: 500px; }
+</style>
+
 # Documentations
 
-## [Reactive documentation](./readme/)
-<sup>SSR React framework</sup>
+### [Reactful documentation](./readme/)
+<sup>SSR React framework techinical documentation</sup>
 
-## [Reactive slides](./slideme/SLIDEME.html)
-<sup>SSR React framework</sup>
+### [Reactful presentation](./slideme)
+<sup>State handling with stateful objects </sup>
+
+### [Reactful proposal](./slideme)
+<sup>Stateful objects proposal</sup>
