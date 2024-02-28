@@ -12,7 +12,7 @@ class:
    section { text-align:center; }
 </style>
 
-<img src='./img/reactful.png' />
+<img src='../img/reactful.png' />
 
 # reactful.**js**
 fullstack react framework
