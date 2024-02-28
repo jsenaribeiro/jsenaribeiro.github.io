@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Data binding props</title>
+            <title>Data binding</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -222,7 +222,7 @@ body.marp-vscode blockquote {
 <blockquote>
 <p>data binding • form binding • props directives<br/>RESTful actions • validation api</p>
 </blockquote>
-<h2 id="data-binding-props">Data binding props</h2>
+<h2 id="data-binding">Data binding</h2>
 <p>The <code>[data]</code> and <code>[bind]</code> props directive enables data binding in read-write input elements, where <code>[data]</code> props is a target stateful object and <code>[bind]</code> props its mapped member field.</p>
 <pre><code class="language-html"><span class="hljs-comment">&lt;!-- without data binding props --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> props.name = e.target.value} /&gt; 
@@ -246,7 +246,7 @@ body.marp-vscode blockquote {
 <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
 </code></pre>
 <p>The props directive maps in background each value and event with its correct type. When the stateful object is the props, the <code>[data]</code> is optional (props is its default).</p>
-<h2 id="form-binding-props">Form binding props</h2>
+<h2 id="form-binding">Form binding</h2>
 <p>Form binding enables uncontrolled components binding approach with <code>form[data]</code> and <code>children[bind]</code>, with full HTML <code>validation API</code> support.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Form</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span> 
    Name: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> <span class="hljs-attr">maxlength</span>=<span class="hljs-string">{50}</span> /&gt;</span>
