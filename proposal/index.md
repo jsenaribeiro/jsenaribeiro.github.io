@@ -1,5 +1,5 @@
 <style>
-@import url(./overview.css);
+@import url(../overview.css);
 
 body {
     width: 700px !important;
