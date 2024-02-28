@@ -102,4 +102,9 @@ Como cronograma, segue o status atual de alguns tópicos relacionado a esse proj
 - projeto de pesquisa: **50%**
 - artigo cientifíco: **0%**
 
+## PENDÊNCIAS
+
+- evidenciar inovação pesquisando em banco de dados de artigos científicos e outras tecnologias de framework, libraries ou patterns
+- modificar o slide para se focar no problema de pesquisa que é state handling no React
+
 <br><br>
