@@ -81,11 +81,11 @@ Como metodologia ele abrange revisão de literatura e prototipação empirica co
 
 ## LIMITAÇÕES
 
-Algumas limitações relacionados ao uso do framework Reactful, o framework é necessário para implementar suporte server-side rendering aos stateful objects.
+Há algumas limitações relacionados ao uso do framework Reactful. O framework é necessário para o suporte nos stateful objects a renderizações server-side.
 
 - customs props directive é limitado ( nao suporta 'imports' de modulos )
 - warning no IDE nos function decorators (contornável com //@ts-ignore )
-- import CSS modular sem nao suporta CSS pseudo-selectors (:hover, :active, :etc)
+- import CSS modular sem suporte a CSS pseudo-selectors (:hover, :active, etc)
 
 ## TRABALHOS FUTUROS
 
