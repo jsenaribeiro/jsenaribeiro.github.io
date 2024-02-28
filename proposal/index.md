@@ -89,7 +89,7 @@ Algumas limitações relacionados ao uso do framework Reactful, o framework é n
 
 ## TRABALHOS FUTUROS
 
-Atualmente o framework Reactful é implementado para aplicacoes Web (no pacote @reactful/web), como ele já foi projetado de modo modularizável, ele já está projetado para postar futuramente para aplicações mobile (seja PWA, híbrida ou nativas) através do (@reactful/app), assim como outras possíveis plataformas.
+Atualmente o framework Reactful é implementado para aplicacoes Web (no pacote @reactful/web). Como ele já foi projetado de modo modularizável, já está preparado para facilmente portar aplicações mobile em um futuro pacote @reactful/app, assim como outras possíveis plataformas.
 
 ## CRONOGRAMA
 
