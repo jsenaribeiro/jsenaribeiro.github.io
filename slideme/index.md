@@ -353,27 +353,13 @@ advantages, innovations and highlights.
 
 ---
 
-## ADVANTAGES
-
-* `FULL` SSR with SSG and ISR
-* `FAST` rendering with bun.js + SSR
-* `LITE` bundle with partial hydration
-* `LEAN` state handling with stateful objects
-* `FLEX` routing by props, folder and decorator
-* `NICE` devex with cleaner and clearer code
-* `EASY` SEO with function decorators
-
-<!-- transition: coverflow -->
-
----
-
 </center>
 
 ## HIGHLIGHTS
 
-* **SOLVES** | react.js complexity, verbosity and modular issues
-* **REDUCES** | boilerplate code with stateful objects props binding
-* **PREVENTS** | extra learning curve with no proprietary conventions
+* **SOLVES** | stateful complexity and verbosity
+* **REDUCES** | boilerplate code with stateful objects
+* **PREVENTS** | low learning curve reusing OOP paradigm
 
 <style scoped>
    li strong { color:wheat; }
@@ -394,7 +380,7 @@ advantages, innovations and highlights.
 # `THANKS!` 
 
 check out our documentation
-[jsenaribeiro.github.com/reactful](#)
+[jsenaribeiro.github.com](#)
 
 
 <style scoped>
