@@ -72,7 +72,7 @@ A fundamentação aborda os conceitos relacionado ao objeto de pesquisa
 
 ## METODOLOGIA
 
-Como metodologia ele abrange revisão de literatura e prototipação empirica com comparações qualitativas de desempenho e produtividade (em termos de sintaxe).
+Como metodologia, esta pesquisa abrange revisão de literatura e prototipação empirica com comparações qualitativas de desempenho e produtividade (em termos de sintaxe).
 
 - **revisão da literatura**, envolvendos os fundamentos conceituais
 - **experimentação empírica**, caso de uso do software em um aplicação real
