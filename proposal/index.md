@@ -45,11 +45,11 @@ Solucionar a complexidade e verbosidade no tratamento de estado no React com uma
 
 CONCEITO | DESCRIÇÃO |
 |:-:|-|
-| **states store** (produtividade) | oferece vários estados na forma de campos de objeto, ao invés de uma invocacao de hook para cada estado |
-| **stateful props** (produtividade) | reusa propriedades como estados locais, tornando as propriedades em **stateful objects** |
-| **delayed render** (desempenho) | algoritmo que oferece alto desempenho no fluxo de renderização dos **stateful objects** |
-| **server rendering** (desempenho) | suporta server-side rendering de componentes, reduzindo o custo de renderização do client-side ao mínimo |
-| **hookless design** (produtividade) | substitui a maioria dos casos de uso dos principais do function hooks (useState, useContext e useReducer), desempenho (useMemo, useCallback) e fetching (use) |
+| **states store** (maintenance) | oferece vários estados na forma de campos de objeto, ao invés de uma invocacao de hook para cada estado |
+| **stateful props** (maintenance) | reusa as propriedades do componente como estados locais, ao tornar essas propriedades em **stateful objects** |
+| **delayed render** (performance) | algoritmo de renderização que disponibiliza alto desempenho no fluxo de renderização no uso de  **stateful objects** |
+| **server rendering** (performance) | suporta server-side rendering de componentes React através do Reactful framework, reduzindo a renderização do client-side ao mínimo |
+| **hookless design** (maintenance) | substitui a maioria dos principais hooks de estado (useState, useContext e useReducer), desempenho (useMemo, useCallback) e fetching (use) |
 
 ## FUNDAMENTAÇÃOS
 
