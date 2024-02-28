@@ -1,7 +1,7 @@
 ---
 marp: true
 theme: default
-transition: fade-out 1s
+transition: fade 1s
 class:
   - invert
 ---
@@ -10,10 +10,7 @@ class:
 
 <style scoped>
    section { text-align:center; }
-   img {
-      text-align:center;
-      margin: 0 auto;
-   }
+   img { margin: 0 auto; }
 </style>
 
 <img src='../img/reactful.png' width='150px' />
@@ -38,82 +35,69 @@ Introduction, challenges and proposal
 <!-- transition: coverflow -->
 
 
-## INTRODUCTION
+## CONTEXTUALIZATION
 
 
 - React is more than 80% of frontend development
-- React docs recommends its use only by frameworks
+- React docs recommends be used only by frameworks
 - Next.js is the most popular React framework
-- Bun is the most performatic JS bundler
 
 ---
 <!-- transition: coverflow -->
 
 ## CHALLENGES
-> ### **react**.js
+
+<style scoped>
+   [vertical] {  
+      zoom: 0.9;
+      display: flex;
+      align-items: center;
+   }   
+   aside[right] { padding-top: 30px; }
+</style>
 
 <aside right cols='3:5'>
-<section>
+<section vertical>
 
-
-
-- **scopeless CSS**
-- hard state handling
-- context API overnesting
+- **boilerplate code**
+-  pyramid of doom
+- counter-intuitive rules
 
 </section>
 
 ```tsx
-// this import will ovehides global CSS
-// instead to be applied in components 
-// declared in this current module
+import React from 'react'
 
-import './app.css'
-```
-
-<!-- transition: fade-out -->
----
-
-## CHALLENGES
-> ### **react**.js
-
-<aside right cols='3:5'>
-<section>
-
-- scopeless CSS
-- **hard state handling**
-- context API overnesting
-
-</section>
-
-```tsx
 function Example() {
    const [count, setCount] = useState(0)
-   const changeTitle = n => document.title = 'counter:${n}'
-   const increment = () => setCount(value => value+1)
-
-   useEffect(() => { changeTitle(count) }, [count])
-
-   // useMemo, usCallback, useReducer, etc...
+   const on = () => setCount(count + 1)
 
    return <>
       <h1>Counter: {count}</h1>
-      <button onClick={increment}>+</button>
+      <button onClick={on}>+</button>
    </>
 };
 ```
 
 ---
-
 ## CHALLENGES
-> ### **react**.js
+
+
+<style scoped>
+   [vertical] {  
+      zoom: 0.9;
+      display: flex;
+      align-items: center;
+   }   
+   aside[right] { padding-top: 30px; }
+</style>
 
 <aside right cols='3:5'>
-<section>
+<section vertical>
 
-- scopeless CSS
-- hard state handling
-- **context API overnesting**
+- boilerplate code
+- **pyramid of doom**
+- counter-intuitive rules
 
 </section>
 
@@ -133,103 +117,56 @@ const Overnesting = () => <Router>
 </Router>
 ```
 
-<!-- transition: coverflow -->
 ---
 
 ## CHALLENGES
-> ### **next**.js
+
+<style scoped>
+   [vertical] {  
+      zoom: 0.9;
+      display: flex;
+      align-items: center;
+   }   
+   aside[right] { padding-top: 30px; }
+</style>
 
 <aside right cols='3:5'>
-<section>
+<section vertical>
 
-- **unsolved react issues**
-- overhead conventions 
-- lack of metadata scope 
-  
+- boilerplate code
+- pyramid of doom
+- **counter-intuitive rules**
+
 </section>
 
-```ts
-UNSOLVED ISSUES
-= scopeless css
-= hard state handling
-= context api overnesting
+```
+Some Hook rules and concerns:
 
-NEXT.JS CLONES
-- gatsby: no ssr
-- fresh: no ssr
-- remix: nor ssg, or isr
+- Don't call inside loops
+- Don't call inside conditions
+- Don't call inside nested functions
+- Don't call after a return statements
+- Must keep same order in every render cycle
+- Must be called in top-level functional components
+- Asynchronous states requires useState + useEffect
+- Manual risk management of useEffect endless loops
+- Risk of low-performance (useMemo + useCallback)
 ```
 
-</aside>
-
-<!-- transition: fade-out -->
----
-
-## CHALLENGES
-> ### **next**.js
-
-<aside right cols='3:5'>
-<section>
-
-- unsolved react issues
-- **overhead conventions**
-- lack of metadata scope 
-  
-</section>
-
-```ts
-FILE NAME CONVENTIONS 
-layout, loading, error, page
-
-FOLDER NAME CONVENTIONS
-folder, [dynamic], (group)
-
-PROPRIETARY CONVENTIONS
-non-stardard JS solutions
-```
-
-</aside>
-
----
-
-## CHALLENGES
-> ### **next**.js
-
-<aside right cols='3:5'>
-<section>
-
-- unsolved react issues
-- overhead conventions
-- **lack of metadata scope**
-  
-</section>
-
-```ts
-"use client" // outer scope for 'use side'
-
-function Component() { 
-
-   // inner scope for rendering model
-   fetch({ cache: { next: revalidate:10 }})
-}
-```
-
-</aside>
 
 <!-- transition: coverflow -->
 ---
 
 ## PROPOSAL
 
-A bun-based vanilla-like server-side rendering with evolved stateful client-side rendering, that brings some new features like function decorators, props binding, stateful object, etc. 
+A stateful handling using javascript Proxy object that encapsulates a `useState` hook within a server-side rendering framework to maximize its performance.
 <br/>
 
-* **full SSR** with static, dynamic and periodic rendering 
-* **multi renders** with support to JSX, HTML and markdown  
-* **minimalist states** with simplified OOP stateful objects
-* **versatile routing** with decorator, folder and props routing 
-* **props binding** for controlled/uncontrolled component props 
-* **scoped CSS** with modular CSS imports with component-scope CSS
+* **stateful objects**: reactive self-rendering objects (during changes)
+* **relayed render**: batching render algorithm for stateful objects 
+* **local stateful props**: component props to handle local states 
+* **global state injection**: global states handled by framework IoC container
+* **orbital context states**: shared states within a sliced component tree
 
 
 <!-- transition: swap 1500ms -->
@@ -425,7 +362,7 @@ advantages, innovations and highlights.
 * `NICE` devex with cleaner and clearer code
 * `EASY` SEO with function decorators
 
-<!-- transition: fade-out -->
+<!-- transition: fade -->
 ---
 
 ## INNOVATIONS 
