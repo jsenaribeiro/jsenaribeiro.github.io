@@ -164,9 +164,9 @@ A stateful handling using javascript Proxy object that encapsulates a `useState`
 
 * **stateful objects**: reactive self-rendering objects (during changes)
 * **relayed render**: batching render algorithm for stateful objects 
-* **stateful props**: component props to handle local states 
-* **state injection**: global states handled by framework IoC container
-* **orbital states**: shared states within a component tree (context API)
+* **local stateful props**: component props to handle local states 
+* **global state injection**: global states handled by framework IoC container
+* **orbital context states**: shared states within a sliced component tree
 
 
 <!-- transition: swap 1500ms -->
@@ -191,6 +191,49 @@ Samples from framework features
 
 <main cols='3:5'><div text>
 
+### `server` rendering
+
+Server startup root for SSR with high-order component error handling with support to JSX, HTML and markdown.
+</div><div>
+
+```tsx
+import { server } from 'reactful/server'
+
+const failure = (status, errors) => <>...</>
+
+await server('/routes', { failure }).render("#root")
+```
+
+</div></main>
+
+---
+
+<main cols='3:5'><div text>
+
+### `styler` plugin
+
+Fixed CSS imports adding a className component and @style decorator for component-scoped CSS.
+
+</div><div>
+
+```tsx
+import './module.css' // only applied here!
+
+@style('./component.css')
+const App = props => <h1>Only here</h1>
+```
+
+```css
+/* 'automatic' className component tag */
+button.App { background-color: 'yellow' } 
+```
+
+</div></main>
+
+---
+
+<main cols='3:5'><div text>
+
 ### `stater` handling
 
 Stateful proxy object for local (stateful props), global (by DI) and orbital states for regional subtree sharing data.
@@ -207,6 +250,88 @@ const Component = (props, { store }) => <>
 </>
 
 const on = state => e => state.name = e.target.value
+```
+
+</div></main>
+
+---
+
+<main cols='2:5'><div text>
+
+### `ranker` coding
+
+Seach Engine Optimization (SEO) is handled by function decorators with full metatags object model.
+
+</div><div>
+
+```tsx
+import { seo, MetaTags } from '@reactful/web'
+
+// title + description
+@seo('Home', 'A home page...')
+export function Home() { return <>...</> }
+
+// title + full metatags object
+@seo('About', { charset: 'UTF-8', keywords: 'about,etc' })
+export function About() { return <>...</> }
+```
+
+</div></main>
+
+---
+
+<main cols='3:5'><div text>
+
+### `router` modelling
+
+reactful support static folder routing (with no conventions), decorator routing for dynamic routes, and props routing for client-side routing with support to lazy component import.
+
+</div><div>
+
+```tsx
+const Hello = import('./hello')
+   .asLazyComponent('Sample')
+
+@route('/whatever/params/:id')
+const Sample(props, { params }) => 
+   <h1>ID: { params.id }</h1>
+
+export const Menu = (props, { route }) => <>
+   <a link='/hello'>Hello</a>
+   <a link='/about'>About</a>
+
+   <Hello route='/hello' >
+   <label route='/about'>About...</label>
+</>
+```
+
+</div></main>
+
+---
+
+<main cols='3:5'><div text>
+
+### `binder` props
+
+Binding props simplifies controlled and uncontrolled components with stateful objects, supporting validation API and RESTful actions.
+
+</div><div>
+
+```jsx
+const Hi = props => <input data={props} bind='name' /> 
+```
+
+```tsx
+const Form = (props, { errors }) => <>
+   <form data={props} {onSubmit} {onValidate}
+      method="post" action="http://api.com"> 
+      Name: <input bind='name' required /> 
+      <button>Submit</button>
+   </form>
+</>
+
+function onSubmit(data) { /* handling data */ }
+function onValidate(errs) { /* handling errs */ }
 ```
 
 </div></main>
