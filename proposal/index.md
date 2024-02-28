@@ -22,14 +22,6 @@ Essa pesquisa soluciona o problema introduzindo o conceito de 'stateful objects'
 
 O conceito é implementado e apresentado através do framework Reactful, um framework React moderno e abrangente que fornece suporte a server-side rendering completo para os stateful objects.
 
-## RELEVÂNCIA
-
-Esse tema tem grande alcance e apelo dado o domínio do React no desenvolvimento frontend e a considerável inferioridade do seu tratamento de estado em relação a tecnologias concorrentes.
-
-- mais de 80% de todo desenvolvimento frontend é feito em React
-- tratamento de estado em React é muito inferior a outras libs
-- outros frameworks React atuais não abordam o problema
-
 ## OBJETIVOS
 Solucionar a complexidade e verbosidade no tratamento de estado no React com uma solução compatível com componentes funcionais. O objetivo geral será tratado nos seguintes objetivos específicos:
 
@@ -38,6 +30,14 @@ Solucionar a complexidade e verbosidade no tratamento de estado no React com uma
 - apresentar a solução dos stateful objects para tratamento de estados
 - comparar a solução com o tratamento de estados no React atualmente
 - demonstrar o stateful object através de umo framework aplicado em um projeto real
+
+## RELEVÂNCIAS
+
+Esse tema tem grande alcance e apelo dado o domínio do React no desenvolvimento frontend e a considerável inferioridade do seu tratamento de estado em relação a tecnologias concorrentes.
+
+- mais de 80% de todo desenvolvimento frontend é feito em React
+- tratamento de estado em React é muito inferior a outras libs
+- outros frameworks React atuais não abordam o problema
 
 ## CONTRIBUIÇÕES
 
@@ -51,7 +51,7 @@ CONCEITO | DESCRIÇÃO |
 | **server rendering** (performance) | suporta server-side rendering de componentes React através do Reactful framework, reduzindo a renderização do client-side ao mínimo |
 | **hookless design** (maintenance) | substitui a maioria dos principais hooks de estado (useState, useContext e useReducer), desempenho (useMemo, useCallback) e fetching (use) |
 
-## FUNDAMENTAÇÃOS
+## FUNDAMENTAÇÕES
 
 A fundamentação aborda os conceitos relacionado ao objeto de pesquisa
 
@@ -70,7 +70,7 @@ A fundamentação aborda os conceitos relacionado ao objeto de pesquisa
 | **server-side rendering** | renderização de componentes no servidor |
 | **react server component** | tecnologia de componentes de servidor |
 
-## METODOLOGIA
+## METODOLOGIAS
 
 Como metodologia, esta pesquisa abrange revisão de literatura e prototipação empirica com comparações qualitativas de desempenho e produtividade (em termos de sintaxe).
 
@@ -91,7 +91,7 @@ Há algumas limitações relacionados ao uso do framework Reactful. O framework 
 
 Atualmente o framework Reactful é implementado para aplicacoes Web (no pacote @reactful/web). Como ele já foi projetado de modo modularizável, já está preparado para facilmente portar aplicações mobile em um futuro pacote @reactful/app, assim como outras possíveis plataformas.
 
-## CRONOGRAMA
+## CRONOGRAMAS
 
 Como cronograma, segue o status atual de alguns tópicos relacionado a esse projeto. O slide ainda não está focado no problema de pesquisa (stateful objects), mas já está completo numa visão geral.
 
