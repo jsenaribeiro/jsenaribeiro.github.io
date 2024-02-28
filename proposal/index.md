@@ -12,7 +12,7 @@ body > * { margin-right: 20px; }
 
 # PESQUISA
 
-<center style='margin-top:-20px'>Stateful objects para tratamento de estados eficientes no React</center>
+<center style='margin-top:-20px; font-weight:400;'>Stateful objects para tratamento de estados eficientes no React</center>
 
 ## RESUMO
 
