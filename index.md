@@ -1,6 +1,6 @@
 <style>
    @import url(./readme/index.css);
-   body { margin: 0 auto; width: 500px; }
+   body { margin: 0 auto; width: 500px; padding-top: 30px; }
 </style>
 
 # Documentations
