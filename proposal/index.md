@@ -16,7 +16,7 @@ body > * { margin-right: 20px; }
 
 ## RESUMO
 
-React corresponde a mais de 80% de todo desenvolvimento frontend na atualidade, e um de seus aspectos mais problemático é o seu tratamento de estado complexo e verboso em comparação com outras tecnologias SPA component-based, como Svelt, Angular, Vue, entre outros.
+React corresponde a mais de 80% de todo desenvolvimento frontend na atualidade, e um de seus aspectos mais problemáticos é o seu tratamento de estado consideravelmente mais complexo e verboso em comparação com outras tecnologias SPA component-based, como Svelt, Angular, Vue, entre outros.
 
 Essa pesquisa soluciona o problema introduzindo o conceito de 'stateful objects': um objeto Proxy que encapsula a complexidade do tratamento de estado no React em uma abordagem orientada a objetos compatível com componentes funcionais.
 
