@@ -11,5 +11,5 @@
 ### [Reactful presentation](./slideme)
 <sup>State handling with stateful objects </sup>
 
-### [Reactful proposal](./slideme)
+### [Reactful proposal](./proposal)
 <sup>Stateful objects proposal</sup>
