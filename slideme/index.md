@@ -6,13 +6,17 @@ class:
   - invert
 ---
 
-<style>@import url(SLIDEME.css);</style>
+<style>@import url(index.css);</style>
 
 <style scoped>
    section { text-align:center; }
+   img {
+      text-align:center;
+      margin: 0 auto;
+   }
 </style>
 
-<img src='../img/reactful.png' />
+<img src='../img/reactful.png' width='150px' />
 
 # reactful.**js**
 fullstack react framework
