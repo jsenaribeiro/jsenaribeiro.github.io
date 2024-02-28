@@ -12,7 +12,7 @@ body > * { margin-right: 20px; }
 
 ## TEMA
 
-Stateful objects para tratamento de estados enxuto no React
+Stateful objects para tratamento de estados eficientes no React
 
 ## RESUMO
 
