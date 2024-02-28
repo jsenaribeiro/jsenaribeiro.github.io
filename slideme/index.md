@@ -191,25 +191,151 @@ Samples from framework features
 
 <main cols='3:5'><div text>
 
-### `stater` handling
+### `local` stateful props
 
-Stateful proxy object for local (stateful props), global (by DI) and orbital states for regional subtree sharing data.
+Stateful props is the framework transformation of all component props in stateful objects made by Reactful framework, unifying the React concepts of props and states. With the new binding props the code is even leaner.
 
 </div><div>
 
 ```tsx
-import share from './store'
+import React from 'react'
 
-const Component = (props, { store }) => <>
-   <input value={props.name} onChange={on(props)} />
-   <input value={store.name} onChange={on(store)} />
-   <input value={share.name} onChange={on(share)} />
-</>
-
-const on = state => e => state.name = e.target.value
+function React(props) {
+   const [name, setName] = React.useState('')
+   const onName = e => state.name = e.target.value
+   return <input value={name} onChange={onName(props)} />
+}
+```
+```tsx
+// Reactful: stateful props
+const Reactful = props => <input value={props.name} 
+   onChange={e => props.name = e.target.value} />
+```
+```tsx
+// Reactful: stateful props + binding props
+const Reactful = props => <input bind='name' />
 ```
 
 </div></main>
+
+---
+
+<main cols='3:5'><div text>
+
+### `global` state injection
+
+There is no global state properly in React, but just a contextual state that is generally put into root component (then the state works like a global one). In Reactful offers a global state as stateful object with dependency injection and framework IoC.
+
+</div><div>
+
+```tsx
+import server from '@reactful/server'
+
+const myGlobalState = { name: 'world' } 
+const settings = { storage:myGlobalState }
+
+// injecting a global state into IoC container
+await server("/routes", settings).render("#root")
+```
+```tsx
+// DI with 2nd argument destructring
+function Hello(p, { store }) {
+   const on = e => p.name = e.target.value
+   return <> Hello { store.name } !
+      <input value={store.name} onChange={on} />
+   </>
+}
+```
+
+</div></main>
+
+---
+
+<main cols='4:5'><div text>
+
+### `orbital` module state
+
+**React alternative**
+
+Reactful orbital state covers the React context API use case that demands:
+
+- export createContext object
+- useContext component wrap
+- put useStates inside context
+- import createContext object
+- extract injected useStates
+- useState normal usage
+
+</div><div>
+
+```tsx
+import React, { useContext } from 'react'
+
+const ThemeContext = React.createContext('light')
+
+function App() {   
+   const [theme, setTheme] = useState('light')
+   return <ThemeContext.Provider {value}>
+      <Sub />
+   </ThemeContext.Provider>
+}
+
+function Sub() {
+   const { theme } = useContext(ThemeContext)
+   return <p>Theme = {theme}</p>
+}
+```
+
+</div></main>
+
+---
+
+<main cols='4:5'><div text>
+
+### `orbital` module state
+**reactful alternative**
+
+Reactful orbital state works creating a stateful object with useStore function and associating this stateful object in component that want to be bound using a function decorator @state.
+
+- instantiate a useStore object
+- associated by @state decorator
+- bound-only reactive components 
+
+
+</div><div>
+
+```tsx
+import { useStore, state } from '@reactful/web'
+
+const theme = useStore({ mode:'light' })
+
+const App = () => <Child />
+
+@state(theme) 
+const Sub = () => <p>Theme = {theme.mode}</p>
+```
+
+</div></main>
+
+---
+
+<style scoped>
+   th { 
+      font-family: quicksand;
+      font-weight: 700 !important; 
+      font-size: 1rem;
+   }
+</style>
+
+### `orbital` module state
+**shared state comparisons**
+
+<br/>
+
+| React | Reactful |
+|-|-|
+| It renders all component subtree wrapped by context API. So, when the shared state is changed, all component inside of wrapped subtree will render. | It renders within bound components with @state associated with specific state. So, when the related stateful object is changed, it will only render the bound component and its children. |
+
 
 <!-- transition: swap 1500ms -->
 
@@ -236,66 +362,6 @@ advantages, innovations and highlights.
 * `FLEX` routing by props, folder and decorator
 * `NICE` devex with cleaner and clearer code
 * `EASY` SEO with function decorators
-
-<!-- transition: fade -->
----
-
-## INNOVATIONS 
-
-<aside cols='2:5'>
-
-- **IoC container** 
-- props directive
-- stateful object
-- data binding
-
-Introduces a new dependency injection system to handle global states, props directives, error handling and overall settings for server-side rendering.
-
-</aside>
-
-
---- 
-
-## INNOVATIONS 
-
-<aside cols='2:5'>
-
-- IoC container 
-- **props directive**
-- stateful object
-- data binding
-
-Props directive enables an injectable standalone props into JSX elements (avoiding over-componentization), similar to Angular attribute directive. It is widely use by reactful framework and support custom props directive.
-
-</aside>
-
---- 
-
-## INNOVATIONS 
-
-<aside cols='2:5'>
-
-- IoC container 
-- props directive
-- **stateful object**
-- data binding
-
-Stateful object deeply simplifies functional components state handling with OOP. It encapsulates an useState state hooks that triigers render when object is changed. It has a performatic delay render algorithm and allow multiple states as simpple object member fields.
-
-</aside>
-
---- 
-
-## INNOVATIONS 
-
-<aside cols='2:5'>
-
-- IoC container 
-- props directive
-- stateful object
-- **data binding**
-
-reactful data binding simplifies controlled and uncontrolled components with a data props that receives a stateful object, and a bind props that get its field name, mapping in background the value and event fields.
 
 <!-- transition: coverflow -->
 
