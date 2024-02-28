@@ -11,5 +11,5 @@
 ### [presentation](./slideme)
 <sup>Framework solutions for React issues</sup>
 
-### [proposal](./proposal)
+### [research](./proposal)
 <sup>Stateful object research project</sup>
