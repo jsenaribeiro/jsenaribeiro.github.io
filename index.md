@@ -9,7 +9,7 @@
 <sup>SSR React framework techinical documentation</sup>
 
 ### [Reactful presentation](./slideme)
-<sup>State handling with stateful objects </sup>
+<sup>React state handling as stateful objects </sup>
 
 ### [Reactful proposal](./proposal)
 <sup>Stateful objects proposal</sup>
