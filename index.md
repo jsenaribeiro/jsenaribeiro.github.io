@@ -3,13 +3,13 @@
    body { margin: 0 auto; width: 500px; padding-top: 30px; }
 </style>
 
-# Documentations
+# Menu
 
-### [Reactful documentation](./readme/)
-<sup>SSR React framework techinical documentation</sup>
+### [documentation](./readme/)
+<sup>Framework technical documentation</sup>
 
-### [Reactful presentation](./slideme)
-<sup>React state handling as stateful objects </sup>
+### [presentation](./slideme)
+<sup>Framework solutions for React issues</sup>
 
-### [Reactful proposal](./proposal)
-<sup>Stateful objects proposal</sup>
+### [proposal](./proposal)
+<sup>Stateful object research project</sup>
