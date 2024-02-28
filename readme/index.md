@@ -15,32 +15,32 @@ Stateful objects para tratamento de estados enxuto no React
 
 ## RESUMO
 
-React corresponde a mais de 80% de todo desenvolvimento frontend na atualidade, e um de seus aspectos mais controverso é sua excessiva complexidade e verbosidade no tratamento de estado em comparação com outras tecnologias SPA component-based, como Svelt, Angular, Vue, entre outros.
+React corresponde a mais de 80% de todo desenvolvimento frontend na atualidade, e um de seus aspectos mais problemático é o seu tratamento de estado complexo e verboso em comparação com outras tecnologias SPA component-based, como Svelt, Angular, Vue, entre outros.
 
-Essa pesquisa desenvolve e demonstra o conceito de 'stateful objects' na forma de um objeto Proxy do Javascript que encapsula a complexidade do tratamento de estado no React, oferecendo uma abordagem orientada a objetos compatível com componentes funcionais.
+Essa pesquisa soluciona o problema introduzindo o conceito de 'stateful objects': um objeto Proxy que encapsula a complexidade do tratamento de estado no React em uma abordagem orientada a objetos compatível com componentes funcionais.
 
-O conceito é implementado no framework Reactful que fornece, entre outros recursos, suporte a server-side rendering aos stateful objects.
+O conceito é implementado e apresentado através do framework Reactful, um framework React moderno e abrangente que fornece suporte a server-side rendering completo para os stateful objects.
 
 ## RELEVÂNCIA
 
-Esse tema tem grande alcance e apelo dado a popularidade do React e a considerável inferioridade do seu tratamento de estado em relação a tecnologias concorrentes.
+Esse tema tem grande alcance e apelo dado o domínio do React no desenvolvimento frontend e a considerável inferioridade do seu tratamento de estado em relação a tecnologias concorrentes.
 
-- aproximadamente 80% do desenvolvimento frontend é em React
+- mais de 80% de todo desenvolvimento frontend é feito em React
 - tratamento de estado em React é muito inferior a outras libs
-- os frameworks React atuais não resolvem esse problema
+- outros frameworks React atuais não abordam o problema
 
 ## OBJETIVOS
-Solucionar a complexidade (regras de hooks) e verbosidade no tratamento de estado no React através com uma solução compatível com componentes funcionais.
+Solucionar a complexidade e verbosidade no tratamento de estado no React com uma solução compatível com componentes funcionais. O objetivo geral será tratado nos seguintes objetivos específicos:
 
 - apresentar a revisão de literatura com as fundamentações conceituais do problema
-- comparar o tratamento de estado entre a 3 bibliotecas JS mais utilizadas
+- comparar o tratamento de estado do React com seu concorrentes direto: Angular
 - apresentar a solução dos stateful objects para tratamento de estados
 - comparar a solução com o tratamento de estados no React atualmente
-- demonstrar o uso do framework em um projeto real já ilicitado
+- demonstrar o stateful object através de umo framework aplicado em um projeto real
 
 ## CONTRIBUIÇÕES
 
-**Stateful objects** introduz um tratamento de estado orientada a objetos, abstraindo sua complexidade através do encapsulamento de um useState hook dentro de um objeto Proxy, resumindo as muitas regras contra-intuitivas dos hooks em uma única: o objeto para se manter stateful precisa se manter objeto (isto é, não suporta destructuring).
+**Stateful objects** introduz um tratamento de estado orientada a objetos, abstraindo sua complexidade através do encapsulamento de um useState hook dentro de um objeto Proxy, resumindo as muitas regras contra-intuitivas dos hooks em uma única: o objeto para se manter stateful precisa se manter objeto (não suporta destructuring).
 
 CONCEITO | DESCRIÇÃO |
 |:-:|-|
@@ -62,6 +62,10 @@ A fundamentação aborda os conceitos relacionado ao objeto de pesquisa
 | **web components** (custom elements) | conceito utilizado nos SPA |
 | **state handling** | tratamento de estado no React |
 | **unidirectional data flow** | arquitetura de dados do React |
+| **stateless component** | componentes React sem estado |
+| **stateful component** | componentes React com estado  |
+| **class component**| primeira geração de stateful React |
+| **function hooks**| segunda e atual geração de stateful React |
 | **server-side rendering** | renderização de componentes no servidor |
 | **react server component** | tecnologia de componentes de servidor |
 
@@ -96,3 +100,5 @@ Como cronograma, segue o status atual de alguns tópicos relacionado a esse proj
 - video introdutório: **100%**
 - projeto de pesquisa: **50%**
 - artigo cientifíco: **0%**
+
+<br><br>
