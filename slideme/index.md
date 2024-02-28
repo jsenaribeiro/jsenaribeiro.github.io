@@ -255,7 +255,7 @@ function Hello(p, { store }) {
 
 ### `orbital` module state
 
-**React alternative**
+**React useContext alternative**
 
 Reactful orbital state covers the React context API use case that demands:
 
@@ -293,7 +293,7 @@ function Sub() {
 <main cols='4:5'><div text>
 
 ### `orbital` module state
-**reactful alternative**
+**Reactful useStore alternative**
 
 Reactful orbital state works creating a stateful object with useStore function and associating this stateful object in component that want to be bound using a function decorator @state.
 
