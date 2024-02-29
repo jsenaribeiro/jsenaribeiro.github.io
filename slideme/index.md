@@ -35,7 +35,7 @@ Introduction, challenges and proposal
 <!-- transition: coverflow -->
 
 
-## CONTEXTUALIZATION
+## INTRODUCTION
 
 
 - React is more than 80% of frontend development
