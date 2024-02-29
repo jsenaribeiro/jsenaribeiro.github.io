@@ -357,9 +357,9 @@ advantages, innovations and highlights.
 
 ## HIGHLIGHTS
 
-* **SOLVES** | stateful complexity and verbosity
-* **REDUCES** | boilerplate code with stateful objects
-* **PREVENTS** | low learning curve reusing OOP paradigm
+* **SOLVES** stateful complexity and verbosity
+* **REDUCES** boilerplate code with stateful objects
+* **PREVENTS** low learning curve reusing OO paradigm
 
 <style scoped>
    li strong { color:wheat; }
