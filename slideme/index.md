@@ -34,16 +34,14 @@ Introduction, challenges and proposal
 ---
 <!-- transition: coverflow -->
 
-
 ## INTRODUCTION
-
 
 - React is more than 80% of frontend development
 - React docs recommends be used only by frameworks
 - Next.js is the most popular React framework
 
 ---
-<!-- transition: coverflow -->
+<!-- transition: fade-out -->
 
 ## CHALLENGES
 
@@ -250,6 +248,8 @@ function Hello(p, { store }) {
 </div></main>
 
 ---
+
+<!-- transition: fade-out -->
 
 ### `orbital` module state <span small>1/3</span>
 
