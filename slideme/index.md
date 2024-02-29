@@ -58,8 +58,8 @@ Introduction, challenges and proposal
 <section vertical>
 
 - **boilerplate code**
--  pyramid of doom
-- counter-intuitive rules
+- counterintuitive rules
+- context pyramid of doom
 
 </section>
 
@@ -78,44 +78,6 @@ function Example() {
 ```
 
 ---
-## CHALLENGES
-
-
-<style scoped>
-   [vertical] {  
-      zoom: 0.9;
-      display: flex;
-      align-items: center;
-   }   
-   aside[right] { padding-top: 30px; }
-</style>
-
-<aside right cols='3:5'>
-<section vertical>
-
-- boilerplate code
-- **pyramid of doom**
-- counter-intuitive rules
-
-</section>
-
-```tsx
-const Overnesting = () => <Router>
-   <RouterContext.Provider value={Router}>
-      <LanguageContext.Provider value={{ language, setLanguage }}>         
-         <ThemeContext.Provider value={{ theme, setTheme }}>
-            <QueryClientProvider client={queryClient}>
-               <I18nextProvider i18n={i18n}>
-                  <h1>pyramid of doom...</h1>
-               </I18nextProvider>
-            </QueryClientProvider>
-         </ThemeContext.Provider>
-      </LanguageContext.Provider>
-   </RouterContext.Provider>
-</Router>
-```
-
----
 
 ## CHALLENGES
 
@@ -126,14 +88,15 @@ const Overnesting = () => <Router>
       align-items: center;
    }   
    aside[right] { padding-top: 30px; }
+   code { zoom:0.9 }
 </style>
 
 <aside right cols='3:5'>
 <section vertical>
 
 - boilerplate code
-- pyramid of doom
-- **counter-intuitive rules**
+- **counterintuitive rules**
+- context pyramid of doom
 
 </section>
 
@@ -149,6 +112,47 @@ Some Hook rules and concerns:
 - Asynchronous states requires useState + useEffect
 - Manual risk management of useEffect endless loops
 - Risk of low-performance (useMemo + useCallback)
+```
+
+---
+
+## CHALLENGES
+
+
+<style scoped>
+   [vertical] {  
+      zoom: 0.9;
+      display: flex;
+      align-items: center;
+   }   
+   aside[right] { padding-top: 30px; }
+</style>
+
+<aside right cols='3:5'>
+<section vertical>
+
+- boilerplate code
+- counterintuitive rules
+- **context pyramid of doom**
+
+</section>
+
+```tsx
+const Overwraping = () => <>
+   <Router>
+      <RouterContext.Provider value={Router}>
+         <LanguageContext.Provider value={{ lang, setLang }}>         
+            <ThemeContext.Provider value={{ theme, setTheme }}>
+               <QueryClientProvider client={queryClient}>
+                  <I18nextProvider i18n={i18n}>
+                     <h1>pyramid of doom...</h1>
+                  </I18nextProvider>
+               </QueryClientProvider>
+            </ThemeContext.Provider>
+         </LanguageContext.Provider>
+      </RouterContext.Provider>
+   </Router>
+</>
 ```
 
 
@@ -176,7 +180,9 @@ A stateful handling using javascript Proxy object that encapsulates a `useState`
 
 <section preview>
 
-Samples from framework features
+Sampling code with stateful objects
+
+**local** | **global** | **orbital**
 
 </center>
 
@@ -187,9 +193,27 @@ Samples from framework features
 ---
 <!-- transition: coverflow -->
 
+<style scoped>
+   table * { border:0 }
+   table tr td:first-of-type { color: wheat }
+   h2 { color: silver !important }
+</style>
+
+## `stateful` scopes
+
+| | | 
+|-:|-|
+| LOCAL | when the state is changed, only in the component where the state ins created will trigger the render, impacting also its children components |
+| GLOBAL | all the component tree read and write the state, and when the state is changed, all the component tree will be re-rendered |
+| ORBITAL | state is accessible in a part of component tree, acting like multiple local states that could be trigger the render after the state is changed |
+
+---
+
 <main cols='3:5'><div text>
 
 ### `local` stateful props
+
+<p subtitle>unified state+props concept</p>
 
 Stateful props is the framework transformation of all component props in stateful objects made by Reactful framework, unifying the React concepts of props and states. With the new binding props the code is even leaner.
 
@@ -198,6 +222,7 @@ Stateful props is the framework transformation of all component props in statefu
 ```tsx
 import React from 'react'
 
+// React: useState
 function React(props) {
    const [name, setName] = React.useState('')
    const onName = e => state.name = e.target.value
@@ -208,8 +233,7 @@ function React(props) {
 // Reactful: stateful props
 const Reactful = props => <input value={props.name} 
    onChange={e => props.name = e.target.value} />
-```
-```tsx
+
 // Reactful: stateful props + binding props
 const Reactful = props => <input bind='name' />
 ```
@@ -222,6 +246,8 @@ const Reactful = props => <input bind='name' />
 
 ### `global` state injection
 
+<p subtitle>IoC container for global state</p>
+
 There is no global state properly in React, but just a contextual state that is generally put into root component (then the state works like a global one). In Reactful offers a global state as stateful object with dependency injection and framework IoC.
 
 </div><div>
@@ -230,7 +256,7 @@ There is no global state properly in React, but just a contextual state that is 
 import server from '@reactful/server'
 
 const myGlobalState = { name: 'world' } 
-const settings = { storage:myGlobalState }
+const settings = { storage: myGlobalState }
 
 // injecting a global state into IoC container
 await server("/routes", settings).render("#root")
@@ -251,98 +277,105 @@ function Hello(p, { store }) {
 
 <!-- transition: fade-out -->
 
-### `orbital` module state <span small>1/3</span>
-
-<p subtitle>Implementation steps comparison </p>
-
 <main cols='2'>
 <aside text>
 
-**REACT** CONTEXT API
+### `orbital` module state <span small>1/3</span>
 
-- import useState and createContext
-- create a createContext object
-- wrap top component with context
-- put useStates inside context value
-- import/use cystin  context object
-- extract the injected useStates
-
-</aside>
-<aside>
+<p subtitle>implementation steps comparison </p>
 
 **REACTFUL** ORBITAL STATE
 
 - import useStore and state
 - create a useStore object
-- decorate with @state(store)
+- decorated by @state(store)
+
+</aside>
+<aside>
+
+**REACT** CONTEXT API
+
+- import useState and createContext
+- create a createContext object
+- wrap parent component with Context
+- put useStates inside Context value
+- import/use custom Context object
+- import useContext
+- get the useStates with useContext
 
 </aside></main>
 
 ---
 
-### `orbital` module state <span small>2/3</span>
-
-<p subtitle>Implementation code comparison</p>
-
-<main cols='2'>
+<main cols='4:5'>
 <aside text>
 
-**REACT** CONTEXT API
+### `orbital` module state <span small>2/3</span>
 
-```tsx
-import {useContext,createContext} from 'react'
-
-const MyContext = createContext(null)
-
-function App() {   
-   const value = useState('light')
-   return <MyContext.Provider {value}>
-      <Sub />
-   </MyContext.Provider>
-}
-
-function Sub() {
-   const { mode } = useContext(MyContext)
-   return <div>Theme = {mode}</div>
-}
-```
-</aside>
-<aside>
-
+<p subtitle>implementation code comparison</p>
 
 **REACTFUL** ORBITAL STATE
 
 ```tsx
-import { useStore, state } from '@reactful/web'
+import { useStore } from '@reactful/web'
+import { state } from '@reactful/web'
 
-const theme = useStore({ mode:'light' })
+const theme = useStore({mode:'light'})
 
-@state(theme) const Sub = props => 
+@state(theme) const Hello = () => <>
    <div>Theme = {theme.mode}</div>
+</>
+```
+</aside>
+<aside>
+
+**REACT** CONTEXT API
+
+```tsx
+import React from 'react'
+
+const MyContext = React.createContext(null)
+
+function App() {   
+   const useTheme = React.useState('light')
+
+   return <>
+      <MyContext.Provider value={{useTheme}}>
+         <Hello />
+      </MyContext.Provider>
+   </>
+}
+
+function Hello() {
+   const useTheme = useContext(MyContext)
+   return <div>Theme = {useTheme[0]}</div>
+}
 ```
 
 </aside></main>
 
 ---
+
+<main cols='2'>
+<aside text>
+
 
 ### `orbital` module state <span small>3/3</span>
 
 <p subtitle>Render algorithm comparison</p>
 
-<main cols='2'>
-<aside text>
+**REACTFUL** ORBITAL STATE
 
-**REACT** CONTEXT API
-
-It renders all component subtree wrapped by context API. So, when the shared state is changed, all component inside of wrapped subtree will render.
+When an orbital state is changed, only the related components that uses an @state decorator with the related orbital state will render.
 
 </aside>
 <aside>
 
+**REACT** CONTEXT API
 
-**REACTFUL** ORBITAL STATE
+The component where the custom Context is wrapped enable its children to import and use the created custom context object (minimizes useless render). 
 
-It renders within bound components with @state associated with specific state. So, when the related stateful object is changed, it will only render the bound component and its children.
+When this context state is change, all the component tree wrapped by custom Context component will be render.
 
 </aside></main>
 
