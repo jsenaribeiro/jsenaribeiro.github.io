@@ -251,91 +251,100 @@ function Hello(p, { store }) {
 
 ---
 
-<main cols='4:5'><div text>
+### `orbital` module state <span small>1/3</span>
 
-### `orbital` module state
+<p subtitle>Implementation steps comparison </p>
 
-**React useContext alternative**
+<main cols='2'>
+<aside text>
 
-Reactful orbital state covers the React context API use case that demands:
+**REACT** CONTEXT API
 
-- export createContext object
-- useContext component wrap
-- put useStates inside context
-- import createContext object
-- extract injected useStates
-- useState normal usage
+- import useState and createContext
+- create a createContext object
+- wrap top component with context
+- put useStates inside context value
+- import/use cystin  context object
+- extract the injected useStates
 
-</div><div>
+</aside>
+<aside>
 
-```tsx
-import React, { useContext } from 'react'
+**REACTFUL** ORBITAL STATE
 
-const ThemeContext = React.createContext('light')
+- import useStore and state
+- create a useStore object
+- decorate with @state(store)
 
-function App() {   
-   const [theme, setTheme] = useState('light')
-   return <ThemeContext.Provider {value}>
-      <Sub />
-   </ThemeContext.Provider>
-}
-
-function Sub() {
-   const { theme } = useContext(ThemeContext)
-   return <p>Theme = {theme}</p>
-}
-```
-
-</div></main>
+</aside></main>
 
 ---
 
-<main cols='4:5'><div text>
+### `orbital` module state <span small>2/3</span>
 
-### `orbital` module state
-**Reactful useStore alternative**
+<p subtitle>Implementation code comparison</p>
 
-Reactful orbital state works creating a stateful object with useStore function and associating this stateful object in component that want to be bound using a function decorator @state.
+<main cols='2'>
+<aside text>
 
-- instantiate a useStore object
-- associated by @state decorator
-- bound-only reactive components 
+**REACT** CONTEXT API
+
+```tsx
+import {useContext,createContext} from 'react'
+
+const MyContext = createContext(null)
+
+function App() {   
+   const value = useState('light')
+   return <MyContext.Provider {value}>
+      <Sub />
+   </MyContext.Provider>
+}
+
+function Sub() {
+   const { mode } = useContext(MyContext)
+   return <div>Theme = {mode}</div>
+}
+```
+</aside>
+<aside>
 
 
-</div><div>
+**REACTFUL** ORBITAL STATE
 
 ```tsx
 import { useStore, state } from '@reactful/web'
 
 const theme = useStore({ mode:'light' })
 
-const App = () => <Child />
-
-@state(theme) 
-const Sub = () => <p>Theme = {theme.mode}</p>
+@state(theme) const Sub = props => 
+   <div>Theme = {theme.mode}</div>
 ```
 
-</div></main>
+</aside></main>
 
 ---
 
-<style scoped>
-   th { 
-      font-family: quicksand;
-      font-weight: 700 !important; 
-      font-size: 1rem;
-   }
-</style>
+### `orbital` module state <span small>3/3</span>
 
-### `orbital` module state
-**shared state comparisons**
+<p subtitle>Render algorithm comparison</p>
 
-<br/>
+<main cols='2'>
+<aside text>
 
-| React | Reactful |
-|-|-|
-| It renders all component subtree wrapped by context API. So, when the shared state is changed, all component inside of wrapped subtree will render. | It renders within bound components with @state associated with specific state. So, when the related stateful object is changed, it will only render the bound component and its children. |
+**REACT** CONTEXT API
 
+It renders all component subtree wrapped by context API. So, when the shared state is changed, all component inside of wrapped subtree will render.
+
+</aside>
+<aside>
+
+
+**REACTFUL** ORBITAL STATE
+
+It renders within bound components with @state associated with specific state. So, when the related stateful object is changed, it will only render the bound component and its children.
+
+</aside></main>
 
 <!-- transition: swap 1500ms -->
 
@@ -387,6 +396,5 @@ check out our documentation
    section { filter:invert(0.1) }
    h1 { font-size:3rem !important }
 </style>
-
 
 </center>
