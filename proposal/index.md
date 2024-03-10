@@ -43,32 +43,28 @@ Esse tema tem grande alcance e apelo dado o domínio do React no desenvolvimento
 
 **Stateful objects** introduz um tratamento de estado orientada a objetos, abstraindo sua complexidade através do encapsulamento de um useState hook dentro de um objeto Proxy, resumindo as muitas regras contra-intuitivas dos hooks em uma única: o objeto para se manter stateful precisa se manter objeto (não suporta destructuring).
 
-| CONCEITO | DESCRIÇÃO |
-|:-:|-|
-| **stateful object** (maintenance) | oferece vários estados na forma de campos de objeto, ao invés de uma invocacao de hook para cada estado |
-| **stateful props** (maintenance) | reusa as propriedades do componente como estados locais, ao tornar essas propriedades em **stateful objects** |
-| **delayed render** (performance) | algoritmo de renderização que disponibiliza alto desempenho no fluxo de renderização no uso de  **stateful objects** |
-| **server rendering** (performance) | suporta server-side rendering de componentes React através do Reactful framework, reduzindo a renderização do client-side ao mínimo |
-| **hookless design** (maintenance) | substitui a maioria dos principais hooks de estado (useState, useContext e useReducer), desempenho (useMemo, useCallback) e fetching (use) |
+* **stateful object** (maintenance): oferece vários estados na forma de campos de objeto, ao invés de uma invocacao de hook para cada estado 
+* **stateful props** (maintenance): reusa as propriedades do componente como estados locais, ao tornar essas propriedades em **stateful objects** 
+* **delayed render** (performance): algoritmo de renderização que disponibiliza alto desempenho no fluxo de renderização no uso de  **stateful objects** 
+* **server rendering** (performance): suporta server-side rendering de componentes React através do Reactful framework, reduzindo a renderização do client-side ao mínimo 
+* **hookless design** (maintenance): substitui a maioria dos principais hooks de estado (useState, useContext e useReducer), desempenho (useMemo, useCallback) e fetching (use) 
 
 ## FUNDAMENTAÇÕES
 
 A fundamentação aborda os conceitos relacionado ao objeto de pesquisa
 
-| CONCEITO | DESCRIÇÃO |
-|-|-|
-| **MPA: multi-page application** | arquitetura tradicional para aplicações web  |
-| **SPA: single-page application** | arquitetura dominante para aplicações web |
-| **AJAX: javascript asynchronous** | tecnologia que possibilita os SPAs |
-| **web components** (custom elements) | conceito utilizado nos SPA |
-| **state handling** | tratamento de estado no React |
-| **unidirectional data flow** | arquitetura de dados do React |
-| **stateless component** | componentes React sem estado |
-| **stateful component** | componentes React com estado  |
-| **class component**| primeira geração de stateful React |
-| **function hooks**| segunda e atual geração de stateful React |
-| **server-side rendering** | renderização de componentes no servidor |
-| **react server component** | tecnologia de componentes de servidor |
+* **multi-page application** (MPA): arquitetura tradicional para aplicações web  
+* **single-page application** (SPA): arquitetura dominante para aplicações web 
+* **asynchronous javascript** (AJAX): tecnologia que possibilita os SPAs 
+* **web components** (custom elements) | conceito utilizado nos SPA 
+* **state handling**: tratamento de estado no React 
+* **unidirectional data flow**: arquitetura de dados do React 
+* **stateless component**: componentes React sem estado 
+* **stateful component**: componentes React com estado  
+* **class component**: primeira geração de stateful React 
+* **function hooks**: segunda e atual geração de stateful React 
+* **server-side rendering**: renderização de componentes no servidor 
+* **react server component**: tecnologia de componentes de servidor 
 
 ## METODOLOGIAS
 
