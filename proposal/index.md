@@ -1,13 +1,7 @@
 <style>
+@import url(../index.css);
 @import url(../overview.css);
 @import url(../readme/overview.css);
-
-body {
-    width: 700px !important;
-    margin: 0 auto !important;
-}
-
-body > * { margin-right: 20px; }
 </style>
 
 # PESQUISA
