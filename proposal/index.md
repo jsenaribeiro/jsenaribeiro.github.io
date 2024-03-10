@@ -26,7 +26,7 @@ O conceito é implementado e apresentado através do framework Reactful, um fram
 Solucionar a complexidade e verbosidade no tratamento de estado no React com uma solução compatível com componentes funcionais. O objetivo geral será tratado nos seguintes objetivos específicos:
 
 - apresentar a revisão de literatura com as fundamentações conceituais do problema
-- comparar o tratamento de estado do React com seu concorrentes direto: Angular
+- comparar o tratamento de estado do React com seu concorrentes direto Angular
 - apresentar a solução dos stateful objects para tratamento de estados
 - comparar a solução com o tratamento de estados no React atualmente
 - demonstrar o stateful object através de umo framework aplicado em um projeto real
@@ -41,12 +41,12 @@ Esse tema tem grande alcance e apelo dado o domínio do React no desenvolvimento
 
 ## CONTRIBUIÇÕES
 
-**Stateful objects** introduz um tratamento de estado orientada a objetos, abstraindo sua complexidade através do encapsulamento de um useState hook dentro de um objeto Proxy, resumindo as muitas regras contra-intuitivas dos hooks em uma única: o objeto para se manter stateful precisa se manter objeto (não suporta destructuring).
+**Stateful objects** introduz um tratamento de estado orientada a objetos, abstraindo sua complexidade através do encapsulamento de um useState hook dentro de um objeto Proxy, resumindo as muitas regras contra-intuitivas dos hooks em uma única: o objeto para se manter stateful precisa se manter objeto (isto é, não suporta object destructuring).
 
-* **stateful object** (maintenance): oferece vários estados na forma de campos de objeto, ao invés de uma invocacao de hook para cada estado 
-* **stateful props** (maintenance): reusa as propriedades do componente como estados locais, ao tornar essas propriedades em **stateful objects** 
-* **delayed render** (performance): algoritmo de renderização que disponibiliza alto desempenho no fluxo de renderização no uso de  **stateful objects** 
-* **server rendering** (performance): suporta server-side rendering de componentes React através do Reactful framework, reduzindo a renderização do client-side ao mínimo 
+* **stateful object** (maintenance): na forma de objeto, oferece vários estados na forma de campos de objeto, ao invés de uma invocacao de hook para cada estado
+* **stateful props** (maintenance): reusa as propriedades do componente como estados locais, ao tornar essas propriedades em **stateful objects**
+* **delayed render** (performance): algoritmo de renderização que disponibiliza alto desempenho no fluxo de renderização no uso de  **stateful objects**
+* **server rendering** (performance): suporta server-side rendering de componentes React através do Reactful framework, reduzindo a renderização do client-side ao mínimo
 * **hookless design** (maintenance): substitui a maioria dos principais hooks de estado (useState, useContext e useReducer), desempenho (useMemo, useCallback) e fetching (use) 
 
 ## FUNDAMENTAÇÕES
@@ -82,8 +82,6 @@ Há algumas limitações relacionados ao uso do framework Reactful. O framework 
 - customs props directive é limitado ( nao suporta 'imports' de modulos )
 - warning no IDE nos function decorators (contornável com //@ts-ignore )
 - import CSS modular sem suporte a CSS pseudo-selectors (:hover, :active, etc)
-
-## DESDOBRAMENTOS
 
 Atualmente o framework Reactful é implementado para aplicacoes Web (no pacote @reactful/web). Como ele já foi projetado de modo modularizável, já está preparado para facilmente portar aplicações mobile em um futuro pacote @reactful/app, assim como outras possíveis plataformas.
 
