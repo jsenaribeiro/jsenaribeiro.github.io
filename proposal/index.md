@@ -25,7 +25,7 @@ Solucionar a complexidade e verbosidade no tratamento de estado no React com uma
 - comparar a solução com o tratamento de estados no React atualmente
 - demonstrar o stateful object através de umo framework aplicado em um projeto real
 
-## RELEVÂNCIAS
+## RELEVÂNCIA
 
 Esse tema tem grande alcance e apelo dado o domínio do React no desenvolvimento frontend e a considerável inferioridade do seu tratamento de estado em relação a tecnologias concorrentes.
 
@@ -60,7 +60,7 @@ A fundamentação aborda os conceitos relacionado ao objeto de pesquisa
 * **server-side rendering**: renderização de componentes no servidor 
 * **react server component**: tecnologia de componentes de servidor 
 
-## METODOLOGIAS
+## METODOLOGIA
 
 Como metodologia, esta pesquisa abrange revisão de literatura e prototipação empirica com comparações qualitativas de desempenho e produtividade (em termos de sintaxe).
 
