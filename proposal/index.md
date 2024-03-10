@@ -45,7 +45,7 @@ Esse tema tem grande alcance e apelo dado o domínio do React no desenvolvimento
 
 CONCEITO | DESCRIÇÃO |
 |:-:|-|
-| **states store** (maintenance) | oferece vários estados na forma de campos de objeto, ao invés de uma invocacao de hook para cada estado |
+| **stateful object** (maintenance) | oferece vários estados na forma de campos de objeto, ao invés de uma invocacao de hook para cada estado |
 | **stateful props** (maintenance) | reusa as propriedades do componente como estados locais, ao tornar essas propriedades em **stateful objects** |
 | **delayed render** (performance) | algoritmo de renderização que disponibiliza alto desempenho no fluxo de renderização no uso de  **stateful objects** |
 | **server rendering** (performance) | suporta server-side rendering de componentes React através do Reactful framework, reduzindo a renderização do client-side ao mínimo |
