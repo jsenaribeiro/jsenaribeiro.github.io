@@ -83,7 +83,7 @@ Há algumas limitações relacionados ao uso do framework Reactful. O framework 
 - warning no IDE nos function decorators (contornável com //@ts-ignore )
 - import CSS modular sem suporte a CSS pseudo-selectors (:hover, :active, etc)
 
-## TRABALHOS FUTUROS
+## DESDOBRAMENTOS
 
 Atualmente o framework Reactful é implementado para aplicacoes Web (no pacote @reactful/web). Como ele já foi projetado de modo modularizável, já está preparado para facilmente portar aplicações mobile em um futuro pacote @reactful/app, assim como outras possíveis plataformas.
 
