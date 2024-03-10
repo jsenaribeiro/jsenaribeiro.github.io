@@ -43,7 +43,7 @@ Esse tema tem grande alcance e apelo dado o domínio do React no desenvolvimento
 
 **Stateful objects** introduz um tratamento de estado orientada a objetos, abstraindo sua complexidade através do encapsulamento de um useState hook dentro de um objeto Proxy, resumindo as muitas regras contra-intuitivas dos hooks em uma única: o objeto para se manter stateful precisa se manter objeto (não suporta destructuring).
 
-CONCEITO | DESCRIÇÃO |
+| CONCEITO | DESCRIÇÃO |
 |:-:|-|
 | **stateful object** (maintenance) | oferece vários estados na forma de campos de objeto, ao invés de uma invocacao de hook para cada estado |
 | **stateful props** (maintenance) | reusa as propriedades do componente como estados locais, ao tornar essas propriedades em **stateful objects** |
@@ -55,7 +55,7 @@ CONCEITO | DESCRIÇÃO |
 
 A fundamentação aborda os conceitos relacionado ao objeto de pesquisa
 
-| Conceito | Descrição |
+| CONCEITO | DESCRIÇÃO |
 |-|-|
 | **MPA: multi-page application** | arquitetura tradicional para aplicações web  |
 | **SPA: single-page application** | arquitetura dominante para aplicações web |
