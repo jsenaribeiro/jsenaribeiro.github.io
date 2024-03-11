@@ -11,7 +11,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -210,32 +212,26 @@ body.marp-vscode blockquote {
         </head>
         <body class="vscode-body vscode-dark">
             <style>
+@import url(../index.css);
 @import url(../overview.css);
 @import url(../readme/overview.css);
-
-body {
-    width: 700px !important;
-    margin: 0 auto !important;
-}
-
-body > * { margin-right: 20px; }
 </style>
 <h1 id="pesquisa">PESQUISA</h1>
-<center style='margin-top:-23px; font-size:17px;'>Stateful objects para tratamento de estado enxuto com React</center>
+<center style='margin-top:-23px; font-size:17px;'>Stateful objects como tratamento de estado enxuto no React</center>
 <h2 id="resumo">RESUMO</h2>
 <p>React corresponde a mais de 80% de todo desenvolvimento frontend na atualidade, e um de seus aspectos mais problemáticos é o seu tratamento de estado consideravelmente mais complexo e verboso em comparação com outras tecnologias SPA component-based, como Svelt, Angular, Vue, entre outros.</p>
-<p>Essa pesquisa soluciona o problema introduzindo o conceito de 'stateful objects': um objeto Proxy que encapsula a complexidade do tratamento de estado no React em uma abordagem orientada a objetos compatível com componentes funcionais.</p>
-<p>O conceito é implementado e apresentado através do framework Reactful, um framework React moderno e abrangente que fornece suporte a server-side rendering completo para os stateful objects.</p>
+<p>Essa pesquisa soluciona o problema introduzindo o conceito de 'stateful objects': um objeto Proxy que encapsula a complexidade do tratamento de estado no React com seu modelo unidirecional de fluxo de dados em uma abordagem orientada a objetos compatível com componentes funcionais.</p>
+<p>Os stateful objects são implementado em três escopo (local, global e orbital) no framework Reactful, aprimorando não apenas a manutenibilidade através da simplificação do gerenciamento de estado no React, como também seu desempenho, através de algoritmos de renderização otimizado para Stateful Objects e suporte a renderização server-side.</p>
 <h2 id="objetivos">OBJETIVOS</h2>
 <p>Solucionar a complexidade e verbosidade no tratamento de estado no React com uma solução compatível com componentes funcionais. O objetivo geral será tratado nos seguintes objetivos específicos:</p>
 <ul>
 <li>apresentar a revisão de literatura com as fundamentações conceituais do problema</li>
-<li>comparar o tratamento de estado do React com seu concorrentes direto: Angular</li>
+<li>comparar o tratamento de estado do React com seu concorrentes direto Angular</li>
 <li>apresentar a solução dos stateful objects para tratamento de estados</li>
 <li>comparar a solução com o tratamento de estados no React atualmente</li>
 <li>demonstrar o stateful object através de umo framework aplicado em um projeto real</li>
 </ul>
-<h2 id="relevâncias">RELEVÂNCIAS</h2>
+<h2 id="relevância">RELEVÂNCIA</h2>
 <p>Esse tema tem grande alcance e apelo dado o domínio do React no desenvolvimento frontend e a considerável inferioridade do seu tratamento de estado em relação a tecnologias concorrentes.</p>
 <ul>
 <li>mais de 80% de todo desenvolvimento frontend é feito em React</li>
@@ -243,98 +239,31 @@ body > * { margin-right: 20px; }
 <li>outros frameworks React atuais não abordam o problema</li>
 </ul>
 <h2 id="contribuições">CONTRIBUIÇÕES</h2>
-<p><strong>Stateful objects</strong> introduz um tratamento de estado orientada a objetos, abstraindo sua complexidade através do encapsulamento de um useState hook dentro de um objeto Proxy, resumindo as muitas regras contra-intuitivas dos hooks em uma única: o objeto para se manter stateful precisa se manter objeto (não suporta destructuring).</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">CONCEITO</th>
-<th>DESCRIÇÃO</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><strong>states store</strong> (maintenance)</td>
-<td>oferece vários estados na forma de campos de objeto, ao invés de uma invocacao de hook para cada estado</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>stateful props</strong> (maintenance)</td>
-<td>reusa as propriedades do componente como estados locais, ao tornar essas propriedades em <strong>stateful objects</strong></td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>delayed render</strong> (performance)</td>
-<td>algoritmo de renderização que disponibiliza alto desempenho no fluxo de renderização no uso de  <strong>stateful objects</strong></td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>server rendering</strong> (performance)</td>
-<td>suporta server-side rendering de componentes React através do Reactful framework, reduzindo a renderização do client-side ao mínimo</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>hookless design</strong> (maintenance)</td>
-<td>substitui a maioria dos principais hooks de estado (useState, useContext e useReducer), desempenho (useMemo, useCallback) e fetching (use)</td>
-</tr>
-</tbody>
-</table>
+<p><strong>Stateful objects</strong> introduz um tratamento de estado orientada a objetos, abstraindo sua complexidade através do encapsulamento de um useState hook dentro de um objeto Proxy, resumindo as muitas regras contra-intuitivas dos hooks em uma única: o objeto para se manter stateful precisa se manter objeto (isto é, não suporta object destructuring).</p>
+<ul>
+<li><strong>stateful object</strong> (maintenance): na forma de objeto, oferece vários estados na forma de campos de objeto, ao invés de uma invocacao de hook para cada estado</li>
+<li><strong>stateful props</strong> (maintenance): reusa as propriedades do componente como estados locais, ao tornar essas propriedades em <strong>stateful objects</strong></li>
+<li><strong>delayed render</strong> (performance): algoritmo de renderização que disponibiliza alto desempenho no fluxo de renderização no uso de  <strong>stateful objects</strong></li>
+<li><strong>server rendering</strong> (performance): suporta server-side rendering de componentes React através do Reactful framework, reduzindo a renderização do client-side ao mínimo</li>
+<li><strong>hookless design</strong> (maintenance): substitui a maioria dos principais hooks de estado (useState, useContext e useReducer), desempenho (useMemo, useCallback) e fetching (use)</li>
+</ul>
 <h2 id="fundamentações">FUNDAMENTAÇÕES</h2>
 <p>A fundamentação aborda os conceitos relacionado ao objeto de pesquisa</p>
-<table>
-<thead>
-<tr>
-<th>Conceito</th>
-<th>Descrição</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>MPA: multi-page application</strong></td>
-<td>arquitetura tradicional para aplicações web</td>
-</tr>
-<tr>
-<td><strong>SPA: single-page application</strong></td>
-<td>arquitetura dominante para aplicações web</td>
-</tr>
-<tr>
-<td><strong>AJAX: javascript asynchronous</strong></td>
-<td>tecnologia que possibilita os SPAs</td>
-</tr>
-<tr>
-<td><strong>web components</strong> (custom elements)</td>
-<td>conceito utilizado nos SPA</td>
-</tr>
-<tr>
-<td><strong>state handling</strong></td>
-<td>tratamento de estado no React</td>
-</tr>
-<tr>
-<td><strong>unidirectional data flow</strong></td>
-<td>arquitetura de dados do React</td>
-</tr>
-<tr>
-<td><strong>stateless component</strong></td>
-<td>componentes React sem estado</td>
-</tr>
-<tr>
-<td><strong>stateful component</strong></td>
-<td>componentes React com estado</td>
-</tr>
-<tr>
-<td><strong>class component</strong></td>
-<td>primeira geração de stateful React</td>
-</tr>
-<tr>
-<td><strong>function hooks</strong></td>
-<td>segunda e atual geração de stateful React</td>
-</tr>
-<tr>
-<td><strong>server-side rendering</strong></td>
-<td>renderização de componentes no servidor</td>
-</tr>
-<tr>
-<td><strong>react server component</strong></td>
-<td>tecnologia de componentes de servidor</td>
-</tr>
-</tbody>
-</table>
-<h2 id="metodologias">METODOLOGIAS</h2>
+<ul>
+<li><strong>multi-page application</strong> (MPA): arquitetura tradicional para aplicações web</li>
+<li><strong>single-page application</strong> (SPA): arquitetura dominante para aplicações web</li>
+<li><strong>asynchronous javascript</strong> (AJAX): tecnologia que possibilita os SPAs</li>
+<li><strong>web components</strong> (custom elements) | conceito utilizado nos SPA</li>
+<li><strong>state handling</strong>: tratamento de estado no React</li>
+<li><strong>unidirectional data flow</strong>: arquitetura de dados do React</li>
+<li><strong>stateless component</strong>: componentes React sem estado</li>
+<li><strong>stateful component</strong>: componentes React com estado</li>
+<li><strong>class component</strong>: primeira geração de stateful React</li>
+<li><strong>function hooks</strong>: segunda e atual geração de stateful React</li>
+<li><strong>server-side rendering</strong>: renderização de componentes no servidor</li>
+<li><strong>react server component</strong>: tecnologia de componentes de servidor</li>
+</ul>
+<h2 id="metodologia">METODOLOGIA</h2>
 <p>Como metodologia, esta pesquisa abrange revisão de literatura e prototipação empirica com comparações qualitativas de desempenho e produtividade (em termos de sintaxe).</p>
 <ul>
 <li><strong>revisão da literatura</strong>, envolvendos os fundamentos conceituais</li>
@@ -349,7 +278,6 @@ body > * { margin-right: 20px; }
 <li>warning no IDE nos function decorators (contornável com //@ts-ignore )</li>
 <li>import CSS modular sem suporte a CSS pseudo-selectors (:hover, :active, etc)</li>
 </ul>
-<h2 id="trabalhos-futuros">TRABALHOS FUTUROS</h2>
 <p>Atualmente o framework Reactful é implementado para aplicacoes Web (no pacote @reactful/web). Como ele já foi projetado de modo modularizável, já está preparado para facilmente portar aplicações mobile em um futuro pacote @reactful/app, assim como outras possíveis plataformas.</p>
 <h2 id="cronogramas">CRONOGRAMAS</h2>
 <p>Como cronograma, segue o status atual de alguns tópicos relacionado a esse projeto. O slide ainda não está focado no problema de pesquisa (stateful objects), mas já está completo numa visão geral.</p>
