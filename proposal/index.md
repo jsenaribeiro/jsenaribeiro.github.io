@@ -12,7 +12,7 @@
 
 React corresponde a mais de 80% de todo desenvolvimento frontend na atualidade, e um de seus aspectos mais problemáticos é o seu tratamento de estado consideravelmente mais complexo e verboso em comparação com outras tecnologias SPA component-based, como Svelt, Angular, Vue, entre outros.
 
-Essa pesquisa soluciona o problema introduzindo o conceito de 'stateful objects': um objeto Proxy que encapsula a complexidade do tratamento de estado no React com seu modelo unidirecional de fluxo de dados em uma abordagem orientada a objetos compatível com componentes funcionais.
+Essa pesquisa soluciona o problema introduzindo o conceito de 'stateful objects': um objeto Proxy que encapsula a complexidade do tratamento de estado no React e seu modelo unidirecional de fluxo de dados, em uma abordagem orientada a objetos, compatível com componentes funcionais, e que elimina ou reduz consideravelmente o boilerplate code exigido no tratamento de estados no desenvolvimento com a biblioteca React.
 
 Os stateful objects são implementado em três escopo (local, global e orbital) no framework Reactful, aprimorando não apenas a manutenibilidade através da simplificação do gerenciamento de estado no React, como também seu desempenho, através de algoritmos de renderização otimizado para Stateful Objects e suporte a renderização server-side.
 
