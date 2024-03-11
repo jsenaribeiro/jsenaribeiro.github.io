@@ -34,6 +34,12 @@ Esse tema tem grande alcance e apelo dado o domínio do React no desenvolvimento
 - tratamento de estado em React é muito inferior a outras libs
 - outros frameworks React atuais não abordam o problema
 
+A relevância dessa solução está em abordar um se seus principais problemas. Ao resolver sua complexidade e verbosidade no tratamento de estado, melhora: 
+
+* sua **produtividade**, ao permitir uma codificação mais enxuta e simples; 
+* sua **manutenibilidade**, ao reduzir sua propensão ao erro dado sua complexidade; 
+* sua **competitividade**, dado que esse aspecto é um dos principais pontos em que React é inferior a seus principais concorrentes.
+
 ## CONTRIBUIÇÕES
 
 **Stateful objects** introduz um tratamento de estado orientada a objetos, abstraindo sua complexidade através do encapsulamento de um useState hook dentro de um objeto Proxy, resumindo as muitas regras contra-intuitivas dos hooks em uma única: o objeto para se manter stateful precisa se manter objeto (isto é, não suporta object destructuring).
@@ -46,24 +52,25 @@ Esse tema tem grande alcance e apelo dado o domínio do React no desenvolvimento
 
 ## FUNDAMENTAÇÃO
 
-Revisão bibliográfica dos conceitos relacionados ao objeto de pesquisa, que são:
+Revisão bibliográfica dos conceitos relacionados ao objeto de pesquisa. Segue aqui os conceitos relacionados que terão suas definições apresentadas na redação da pesquisa.
 
 * **multi-page application** (MPA): arquitetura tradicional para aplicações web  
-* **single-page application** (SPA): arquitetura dominante para aplicações web 
-* **asynchronous javascript** (AJAX): tecnologia que possibilita os SPAs 
-* **web components** (custom elements) | conceito utilizado nos SPA 
-* **state handling**: tratamento de estado no React 
+* **single-page application** (SPA): arquitetura moderna usada pelo React
+* **asynchronous javascript** (AJAX): tecnologia que possibilita as libs SPAs 
+* **web components** (custom elements): tecnologia utilizada em algumas libs SPAs
+* **state handling**: conceito de tratamento de estado utilizado no React 
 * **unidirectional data flow**: arquitetura de dados do React 
+* **bidirectional data flow**: arquitetura no Angular, oposto ao do React 
 * **stateless component**: componentes React sem estado 
 * **stateful component**: componentes React com estado  
-* **class component**: primeira geração de stateful React 
+* **class component**: primeira geração de stateful components 
 * **function hooks**: segunda e atual geração de stateful React 
 * **server-side rendering**: renderização de componentes no servidor 
-* **react server component**: tecnologia de componentes de servidor 
+* **react server component**: executa componentes no lado do servidor 
 
 ## METODOLOGIA
 
-Como metodologia, esta pesquisa abrange revisão de literatura e prototipação empirica com comparações qualitativas de desempenho e produtividade (em termos de sintaxe).
+Como metodologia, esta pesquisa abrange revisão de literatura e prototipação empirica com comparações qualitativas de desempenho e manutenibilidade (considerando a sintaxe).
 
 - **revisão da literatura**, envolvendos os fundamentos conceituais
 - **experimentação empírica**, caso de uso do software em um aplicação real
