@@ -106,15 +106,15 @@ Há algumas limitações não relacionadas aos Stateful Objects em si, mas ao fr
 
 Segue o status atual de alguns tópicos relacionado a esse projeto.
 
-| atividade | status | estimativa |
-|-|:-:|:-:|
-| video introdutório | **100%** | pronto |
-| slide de apresentação | **85%**  | 3 dias |
-| protótipo funcional | **95%** | 2 semanas |
-| documentação técnica | **95%** | 1 semana |
-| projeto usando framework | **15%** | 2 meses |
-| projeto de pesquisa | **58%** | 1 semana |
-| artigo da dissertação | **0%** | 3 meses |
+| atividade                |  status  | estimativa | relacionado |
+| ------------------------ | :------: | :--------: | ----------- |
+| video introdutório       | **100%** |   pronto   | framework   |
+| slide de apresentação    | **85%**  |   3 dias   | pesquisa    |
+| protótipo funcional      | **95%**  | 2 semanas  | framework   |
+| documentação técnica     | **95%**  |  1 semana  | framework   |
+| projeto usando framework | **15%**  |  2 meses   | framework   |
+| projeto de pesquisa      | **58%**  |  1 semana  | pesquisa    |
+| artigo da dissertação    |  **0%**  |  3 meses   | pesquisa    |
 
 ## RISCOS
 
