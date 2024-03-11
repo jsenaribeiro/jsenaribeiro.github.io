@@ -6,8 +6,10 @@ body {
 
 body > * { margin-right: 20px; }
 
-p[subtitle] {
+[subtitle] {
+   font-weight: 400;
    text-align: center !important;
    margin-top:-23px; 
    font-size:17px;
+   color: #BBB;
 }

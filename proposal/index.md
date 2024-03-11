@@ -4,9 +4,9 @@
 @import url(../readme/overview.css);
 </style>
 
-# PESQUISA
+# **PESQUISA**
 
-<p subtitle>Stateful objects como tratamento de estado enxuto no React</p>
+<p subtitle>Stateful Objects como tratamento de estado enxuto no React</p>
 
 ## RESUMO
 
