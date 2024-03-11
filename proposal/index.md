@@ -43,9 +43,9 @@ Esse tema tem grande alcance e apelo dado o domínio do React no desenvolvimento
 * **server rendering** (performance): suporta server-side rendering de componentes React através do Reactful framework, reduzindo a renderização do client-side ao mínimo
 * **hookless design** (maintenance): substitui a maioria dos principais hooks de estado (useState, useContext e useReducer), desempenho (useMemo, useCallback) e fetching (use) 
 
-## FUNDAMENTAÇÕES
+## FUNDAMENTAÇÃO
 
-A fundamentação aborda os conceitos relacionado ao objeto de pesquisa
+A fundamentação realiza uma revisão bibliográfica dos conceitos relacionados ao objeto de pesquisa, que são:
 
 * **multi-page application** (MPA): arquitetura tradicional para aplicações web  
 * **single-page application** (SPA): arquitetura dominante para aplicações web 
@@ -79,7 +79,7 @@ Há algumas limitações relacionados ao uso do framework Reactful. O framework 
 
 Atualmente o framework Reactful é implementado para aplicacoes Web (no pacote @reactful/web). Como ele já foi projetado de modo modularizável, já está preparado para facilmente portar aplicações mobile em um futuro pacote @reactful/app, assim como outras possíveis plataformas.
 
-## CRONOGRAMAS
+## CRONOGRAMA
 
 Como cronograma, segue o status atual de alguns tópicos relacionado a esse projeto. O slide ainda não está focado no problema de pesquisa (stateful objects), mas já está completo numa visão geral.
 
@@ -92,6 +92,9 @@ Como cronograma, segue o status atual de alguns tópicos relacionado a esse proj
 
 ## PENDÊNCIAS
 
+Segue aqui as pendencias que serão atendidas, caso o tema seja aceito:
+
+- formalizar um projeto de pesquisa seguindo o padrão acadêmico
 - evidenciar inovação pesquisando em banco de dados de artigos científicos e outras tecnologias de framework, libraries ou patterns
 - modificar o slide para se focar no problema de pesquisa que é state handling no React
 
