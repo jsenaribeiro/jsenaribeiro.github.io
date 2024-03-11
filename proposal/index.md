@@ -88,7 +88,7 @@ Revisão bibliográfica dos seguintes conceitos relacionados:
 
 ## LIMITAÇÕES
 
-Há algumas limitações não relacionadas aos Stateful Objects em si, mas a recursos do framework Reactful, que fornece suporte a renderizações server-side para os Stateful Objects. 
+Há algumas limitações não relacionadas aos Stateful Objects em si, mas ao framework Reactful que fornece renderizações server-side aos Stateful Objects. São eles:
 
 <style>
    table { zoom: 0.9 }
