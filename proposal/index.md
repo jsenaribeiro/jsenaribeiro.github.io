@@ -34,7 +34,7 @@ Esse tema tem grande alcance e apelo dado o domínio do React no desenvolvimento
 - tratamento de estado em React é muito inferior a outras libs
 - outros frameworks React atuais não abordam o problema
 
-A relevância dessa solução está em abordar um se seus principais problemas. Ao resolver sua complexidade e verbosidade no tratamento de estado, melhora: 
+A relevância dessa solução está em abordar um de seus principais problemas. Ao resolver sua complexidade e verbosidade no tratamento de estado, melhora: 
 
 * sua **produtividade**, ao permitir uma codificação mais enxuta e simples; 
 * sua **manutenibilidade**, ao reduzir sua propensão ao erro dado sua complexidade; 
