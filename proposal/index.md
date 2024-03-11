@@ -25,9 +25,18 @@ Solucionar a complexidade e verbosidade no tratamento de estado da biblioteca Re
 - demonstrar as vantagens do Stateful Objects para tratamento de estados no React;
 - apresentar o Stateful Object em um projeto real através do framework Reactful;
 
+## METODOLOGIA
+
+Como metodologia, esta pesquisa abrange revisão de literatura e caso de estudo empírico utilizando comparativos quantitativos de desempenho e qualitativos de manutenibilidade.
+
+- **caso de estudo** com uso do framework em uma aplicação real;
+- **revisão da literatura** dos fundamentos conceituais do problema;
+- **comparação quantitativa** do desempenho do algoritmo de renderização;
+- **comparação qualitativa** da sintaxe de tratamento de estado;
+
 ## RELEVÂNCIA
 
-O tema tem grande alcance dado o domínio do React no desenvolvimento frontend e sua inferioridade no tratamento de estado em relação a tecnologias concorrentes.
+O tema tem grande alcance, dado o domínio do React no desenvolvimento frontend e sua inferioridade no tratamento de estado em relação a tecnologias concorrentes.
 
 - mais de 80% de todo desenvolvimento frontend é feito em React;
 - tratamento de estado em React é muito inferior a outras libs;
@@ -39,11 +48,13 @@ A solução resolve um dos maiores pontos fracos do React, melhorando sua:
 * **manutenibilidade**, ao reduzir sua propensão ao erro dado sua complexidade; 
 * **competitividade**, dado que esse aspecto é inferior a seus principais concorrentes;
 
-Stateful Objects são uma terceira evolução/geração no tratamento de estados no React, que iniciou com os `class components` e segue atualmente com os `function hooks`. Como os hooks, ele suporta componentes funcionais, mas com ainda maior intuitividade, praticidade e simplicidade. 
-
 ## CONTRIBUIÇÕES
 
-**Stateful objects** introduz um tratamento de estado orientada a objetos, abstraindo sua complexidade através do encapsulamento de um `useState` hook dentro de um objeto `Proxy`, resumindo as regras contra intuitivas dos hooks a uma única: para se manter stateful, basta se manter objeto.
+Algo é stateful no contexto do React, quando ao mudar o seu estado (mudança de valor de uma variável), os componentes relacionados ao estado invocam uma nova renderização, para assim permitir redesenhar os componentes com a nova informação alterada.
+
+Após os  `class components` e os `function hooks`, `stateful objects` seriam uma terceira geração no tratamento de estados no React, que encapsula a complexidade do tratamento de estado dentro de uma classe Proxy do JavaScript usando um algorítmo otimizado de renderização.
+
+Através de estados na forma de campos de um objeto, ele consegue resumir todas as várias regras pouco intuitivas dos hooks a uma única: para se manter stateful, basta se manter objeto. Ou seja, se o objeto for desconstruído (destructuring), assim deixando de ser objeto, ele deixa de ser stateful.
 
 Conceitos aplicados que aprimoram a manutenibilidade (simplicidade):
 
@@ -57,10 +68,9 @@ Conceitos aplicados que aprimoram o desempenho (responsividade):
 * **delayed render**: algoritmo de renderização que disponibiliza alto desempenho no fluxo de renderização para o uso de  **stateful objects**;
 * **render refocus**: recupera o foco nos elementos de formulário em componentes-filho quando o componente-pai dispara um novo render para responder a mudança de estado;
 
-
 ## FUNDAMENTAÇÃO
 
-Para a revisão bibliográfica, segue aqui os conceitos relacionados que terão suas definições apresentadas na redação da pesquisa.
+Revisão bibliográfica dos seguintes conceitos relacionados:
 
 * **multi-page application** (MPA): arquitetura tradicional para aplicações web ;
 * **single-page application** (SPA): arquitetura moderna usada pelo React;
@@ -76,33 +86,20 @@ Para a revisão bibliográfica, segue aqui os conceitos relacionados que terão 
 * **server-side rendering**: renderização de componentes no servidor;
 * **react server component**: executa componentes no lado do servidor;
 
-## METODOLOGIA
-
-Como metodologia, esta pesquisa abrange revisão de literatura e prototipação empírica com comparações qualitativas de desempenho e manutenibilidade (considerando a sintaxe).
-
-- **revisão da literatura**, envolvendo os fundamentos conceituais;
-- **experimentação empírica**, caso de uso do software em uma aplicação real;
-- **comparação quantitativa** do desempenho do algoritmo de renderização;
-- **comparação quantitativa** da sintaxe de tratamento de estado;
-
 ## LIMITAÇÕES
 
-Há algumas limitações não relacionadas aos Stateful Objects em si, mas a outros recursos direta ou indiretamente relacionados que estão no framework Reactful, que fornece suporte a renderizações server-side para os Stateful Objects. As limitações são:
+Há algumas limitações não relacionadas aos Stateful Objects em si, mas a recursos do framework Reactful, que fornece suporte a renderizações server-side para os Stateful Objects. 
 
 <style>
    table { zoom: 0.9 }
-   [limit] tr:nth-of-type(1) td { padding-top: 15px; }
-   [limit] tr th { font-family: agave;  }
-   [limit] tr td:nth-of-type(1) { font-family: agave }
-   [limit] tr td:nth-of-type(3) { color: #AAA; }
 </style>
 
 | recurso | problema | contorno |
 |-:|-|-|
-| function decorators | warning de sintaxe no IDE | adicionar comentário `//@ts-ignore` |
-| props directive | não suporta importações | correção projetada em futuras versões |
-| @reactful/web | suporta apenas aplicações web | suporte mobile em futuras versões |
-| modular CSS | não suporta pseudo-selectors | usar HTML link[href] nesses casos |
+| **props directive** | não suporta importações | correção agendada para futuras versões |
+| **function decorators** | warning de sintaxe no IDE | ignorar adicionando comentário `//@ts-ignore` |
+| **@reactful/web** | suporta apenas aplicações web | suporte mobile em futuras versões |
+| **modular CSS** | não suporta pseudo-selectors | usar HTML link[href] nesses casos |
 
 
 ## CRONOGRAMA 

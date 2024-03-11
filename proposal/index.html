@@ -230,8 +230,16 @@ body.marp-vscode blockquote {
 <li>demonstrar as vantagens do Stateful Objects para tratamento de estados no React;</li>
 <li>apresentar o Stateful Object em um projeto real através do framework Reactful;</li>
 </ul>
+<h2 id="metodologia">METODOLOGIA</h2>
+<p>Como metodologia, esta pesquisa abrange revisão de literatura e caso de estudo empírico utilizando comparativos quantitativos de desempenho e qualitativos de manutenibilidade.</p>
+<ul>
+<li><strong>caso de estudo</strong> com uso do framework em uma aplicação real;</li>
+<li><strong>revisão da literatura</strong> dos fundamentos conceituais do problema;</li>
+<li><strong>comparação quantitativa</strong> do desempenho do algoritmo de renderização;</li>
+<li><strong>comparação qualitativa</strong> da sintaxe de tratamento de estado;</li>
+</ul>
 <h2 id="relevância">RELEVÂNCIA</h2>
-<p>O tema tem grande alcance dado o domínio do React no desenvolvimento frontend e sua inferioridade no tratamento de estado em relação a tecnologias concorrentes.</p>
+<p>O tema tem grande alcance, dado o domínio do React no desenvolvimento frontend e sua inferioridade no tratamento de estado em relação a tecnologias concorrentes.</p>
 <ul>
 <li>mais de 80% de todo desenvolvimento frontend é feito em React;</li>
 <li>tratamento de estado em React é muito inferior a outras libs;</li>
@@ -243,9 +251,10 @@ body.marp-vscode blockquote {
 <li><strong>manutenibilidade</strong>, ao reduzir sua propensão ao erro dado sua complexidade;</li>
 <li><strong>competitividade</strong>, dado que esse aspecto é inferior a seus principais concorrentes;</li>
 </ul>
-<p>Stateful Objects são uma terceira evolução/geração no tratamento de estados no React, que iniciou com os <code>class components</code> e segue atualmente com os <code>function hooks</code>. Como os hooks, ele suporta componentes funcionais, mas com ainda maior intuitividade, praticidade e simplicidade.</p>
 <h2 id="contribuições">CONTRIBUIÇÕES</h2>
-<p><strong>Stateful objects</strong> introduz um tratamento de estado orientada a objetos, abstraindo sua complexidade através do encapsulamento de um <code>useState</code> hook dentro de um objeto <code>Proxy</code>, resumindo as regras contra intuitivas dos hooks a uma única: para se manter stateful, basta se manter objeto.</p>
+<p>Algo é stateful no contexto do React, quando ao mudar o seu estado (mudança de valor de uma variável), os componentes relacionados ao estado invocam uma nova renderização, para assim permitir redesenhar os componentes com a nova informação alterada.</p>
+<p>Após os  <code>class components</code> e os <code>function hooks</code>, <code>stateful objects</code> seriam uma terceira geração no tratamento de estados no React, que encapsula a complexidade do tratamento de estado dentro de uma classe Proxy do JavaScript usando um algorítmo otimizado de renderização.</p>
+<p>Através de estados na forma de campos de um objeto, ele consegue resumir todas as várias regras pouco intuitivas dos hooks a uma única: para se manter stateful, basta se manter objeto. Ou seja, se o objeto for desconstruído (destructuring), assim deixando de ser objeto, ele deixa de ser stateful.</p>
 <p>Conceitos aplicados que aprimoram a manutenibilidade (simplicidade):</p>
 <ul>
 <li><strong>object store</strong>: na forma de objeto, oferece vários estados na forma de campos de objeto, ao invés de uma invocacao de hook para cada estado individual;</li>
@@ -259,7 +268,7 @@ body.marp-vscode blockquote {
 <li><strong>render refocus</strong>: recupera o foco nos elementos de formulário em componentes-filho quando o componente-pai dispara um novo render para responder a mudança de estado;</li>
 </ul>
 <h2 id="fundamentação">FUNDAMENTAÇÃO</h2>
-<p>Para a revisão bibliográfica, segue aqui os conceitos relacionados que terão suas definições apresentadas na redação da pesquisa.</p>
+<p>Revisão bibliográfica dos seguintes conceitos relacionados:</p>
 <ul>
 <li><strong>multi-page application</strong> (MPA): arquitetura tradicional para aplicações web ;</li>
 <li><strong>single-page application</strong> (SPA): arquitetura moderna usada pelo React;</li>
@@ -275,22 +284,10 @@ body.marp-vscode blockquote {
 <li><strong>server-side rendering</strong>: renderização de componentes no servidor;</li>
 <li><strong>react server component</strong>: executa componentes no lado do servidor;</li>
 </ul>
-<h2 id="metodologia">METODOLOGIA</h2>
-<p>Como metodologia, esta pesquisa abrange revisão de literatura e prototipação empírica com comparações qualitativas de desempenho e manutenibilidade (considerando a sintaxe).</p>
-<ul>
-<li><strong>revisão da literatura</strong>, envolvendo os fundamentos conceituais;</li>
-<li><strong>experimentação empírica</strong>, caso de uso do software em uma aplicação real;</li>
-<li><strong>comparação quantitativa</strong> do desempenho do algoritmo de renderização;</li>
-<li><strong>comparação quantitativa</strong> da sintaxe de tratamento de estado;</li>
-</ul>
 <h2 id="limitações">LIMITAÇÕES</h2>
-<p>Há algumas limitações não relacionadas aos Stateful Objects em si, mas a outros recursos direta ou indiretamente relacionados que estão no framework Reactful, que fornece suporte a renderizações server-side para os Stateful Objects. As limitações são:</p>
+<p>Há algumas limitações não relacionadas aos Stateful Objects em si, mas a recursos do framework Reactful, que fornece suporte a renderizações server-side para os Stateful Objects.</p>
 <style>
    table { zoom: 0.9 }
-   [limit] tr:nth-of-type(1) td { padding-top: 15px; }
-   [limit] tr th { font-family: agave;  }
-   [limit] tr td:nth-of-type(1) { font-family: agave }
-   [limit] tr td:nth-of-type(3) { color: #AAA; }
 </style>
 <table>
 <thead>
@@ -302,22 +299,22 @@ body.marp-vscode blockquote {
 </thead>
 <tbody>
 <tr>
-<td style="text-align:right">function decorators</td>
-<td>warning de sintaxe no IDE</td>
-<td>adicionar comentário <code>//@ts-ignore</code></td>
-</tr>
-<tr>
-<td style="text-align:right">props directive</td>
+<td style="text-align:right"><strong>props directive</strong></td>
 <td>não suporta importações</td>
-<td>correção projetada em futuras versões</td>
+<td>correção agendada para futuras versões</td>
 </tr>
 <tr>
-<td style="text-align:right">@reactful/web</td>
+<td style="text-align:right"><strong>function decorators</strong></td>
+<td>warning de sintaxe no IDE</td>
+<td>ignorar adicionando comentário <code>//@ts-ignore</code></td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>@reactful/web</strong></td>
 <td>suporta apenas aplicações web</td>
 <td>suporte mobile em futuras versões</td>
 </tr>
 <tr>
-<td style="text-align:right">modular CSS</td>
+<td style="text-align:right"><strong>modular CSS</strong></td>
 <td>não suporta pseudo-selectors</td>
 <td>usar HTML link[href] nesses casos</td>
 </tr>
