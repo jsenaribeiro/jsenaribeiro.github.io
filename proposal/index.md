@@ -17,6 +17,7 @@ Essa pesquisa soluciona o problema introduzindo o conceito de 'stateful objects'
 Os stateful objects são implementado em três escopo (local, global e orbital) no framework Reactful, aprimorando não apenas a manutenibilidade através da simplificação do gerenciamento de estado no React, como também seu desempenho, através de algoritmos de renderização otimizado para Stateful Objects e suporte a renderização server-side.
 
 ## OBJETIVOS
+
 Solucionar a complexidade e verbosidade no tratamento de estado no React com uma solução compatível com componentes funcionais. O objetivo geral será tratado nos seguintes objetivos específicos:
 
 - apresentar a revisão de literatura com as fundamentações conceituais do problema
@@ -45,7 +46,7 @@ Esse tema tem grande alcance e apelo dado o domínio do React no desenvolvimento
 
 ## FUNDAMENTAÇÃO
 
-A fundamentação realiza uma revisão bibliográfica dos conceitos relacionados ao objeto de pesquisa, que são:
+Revisão bibliográfica dos conceitos relacionados ao objeto de pesquisa, que são:
 
 * **multi-page application** (MPA): arquitetura tradicional para aplicações web  
 * **single-page application** (SPA): arquitetura dominante para aplicações web 
