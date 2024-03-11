@@ -279,13 +279,13 @@ body.marp-vscode blockquote {
 <li><strong>comparação quantitativa</strong> da sintaxe de tratamento de estado</li>
 </ul>
 <h2 id="limitações">LIMITAÇÕES</h2>
-<p>Há algumas limitações relacionados ao uso do framework Reactful. O framework é necessário para o suporte nos stateful objects a renderizações server-side.</p>
+<p>Há algumas limitações não relacionadas ao conceito os stateful objects em si, mas a outros recursos direta ou indiretamente relacionados que estão no framework Reactful. Esse framework é o que possibilita renderizações server-side para os Stateful Objects. Essas limitações gerais do framework são:</p>
 <ul>
-<li>customs props directive é limitado ( nao suporta 'imports' de modulos )</li>
-<li>warning no IDE nos function decorators (contornável com //@ts-ignore )</li>
-<li>import CSS modular sem suporte a CSS pseudo-selectors (:hover, :active, etc)</li>
+<li><code>function decorators</code> tem warnings de sintaxe (ignora com <code>//@ts-ignore</code>)</li>
+<li><code>props directive</code> customizados não suporta o statement de  <code>import</code></li>
+<li><code>CSS modular</code> não suporta pseudo-selectors (<code>:hover</code>, <code>:active</code>, etc)</li>
+<li>suporta apenas aplicações web (pacote <code>@reactful/web</code>)</li>
 </ul>
-<p>Atualmente o framework Reactful é implementado para aplicacoes Web (no pacote @reactful/web). Como ele já foi projetado de modo modularizável, já está preparado para facilmente portar aplicações mobile em um futuro pacote @reactful/app, assim como outras possíveis plataformas.</p>
 <h2 id="cronograma">CRONOGRAMA</h2>
 <p>Como cronograma, segue o status atual de alguns tópicos relacionado a esse projeto. O slide ainda não está focado no problema de pesquisa (stateful objects), mas já está completo numa visão geral.</p>
 <ul>
