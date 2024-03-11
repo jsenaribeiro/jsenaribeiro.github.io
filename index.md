@@ -1,15 +1,21 @@
 <style>
    @import url(./readme/index.css);
    body { margin: 0 auto; width: 500px; padding-top: 30px; }
+   sup { margin-top:-10px; display:block; margin-bottom:30px }
+   h3::before { content:'' }
 </style>
 
-# Menu
+# menu
+
+<center>
 
 ### [documentation](./readme/)
-<sup>Framework technical documentation</sup>
+<sup>technical documentation</sup>
 
 ### [presentation](./slideme)
-<sup>Framework solutions for React issues</sup>
+<sup>framework overview</sup>
 
 ### [research](./proposal)
-<sup>Stateful object research project</sup>
+<sup>research project</sup>
+
+</center>

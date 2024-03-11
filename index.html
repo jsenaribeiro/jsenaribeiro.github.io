@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Menu</title>
+            <title>menu</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -11,7 +11,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -212,14 +214,18 @@ body.marp-vscode blockquote {
             <style>
    @import url(./readme/index.css);
    body { margin: 0 auto; width: 500px; padding-top: 30px; }
+   sup { margin-top:-10px; display:block; margin-bottom:30px }
+   h3::before { content:'' }
 </style>
-<h1 id="menu">Menu</h1>
+<h1 id="menu">menu</h1>
+<center>
 <h3 id="documentation"><a href="./readme/">documentation</a></h3>
-<p><sup>Framework technical documentation</sup></p>
+<p><sup>technical documentation</sup></p>
 <h3 id="presentation"><a href="./slideme">presentation</a></h3>
-<p><sup>Framework solutions for React issues</sup></p>
+<p><sup>framework overview</sup></p>
 <h3 id="research"><a href="./proposal">research</a></h3>
-<p><sup>Stateful object research project</sup></p>
+<p><sup>research project</sup></p>
+</center>
 
             
             <script async type="text/javascript">
