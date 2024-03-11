@@ -4,7 +4,7 @@
 @import url(../readme/overview.css);
 </style>
 
-# **PESQUISA**
+# **ESBOÇO DE PROJETO DE PESQUISA**
 
 <p subtitle>Stateful Objects como tratamento de estado enxuto no React</p>
 
@@ -18,46 +18,52 @@ Os stateful objects são implementado em três escopo (local, global e orbital) 
 
 ## OBJETIVOS
 
-Solucionar a complexidade e verbosidade no tratamento de estado no React com uma solução compatível com componentes funcionais. O objetivo geral será tratado nos seguintes objetivos específicos:
+Solucionar a complexidade e verbosidade no tratamento de estado da biblioteca React em  uma solução compatível com componentes funcionais através dos seguintes objetivos específicos:
 
 - apresentar a revisão de literatura com as fundamentações conceituais do problema
-- comparar o tratamento de estado do React com seu concorrentes direto Angular
-- apresentar a solução dos stateful objects para tratamento de estados
-- comparar a solução com o tratamento de estados no React atualmente
-- demonstrar o stateful object através de umo framework aplicado em um projeto real
+- comparar a sintaxe de tratamento entre React e seu maior concorrente: Angular
+- demonstrar a solução dos Stateful Objects para tratamento de estados no React
+- demonstrar o Stateful Object em um framework aplicado em um projeto real
 
 ## RELEVÂNCIA
 
-Esse tema tem grande alcance e apelo dado o domínio do React no desenvolvimento frontend e a considerável inferioridade do seu tratamento de estado em relação a tecnologias concorrentes.
+O tema tem grande alcance dado o domínio do React no desenvolvimento frontend e sua inferioridade no tratamento de estado em relação a tecnologias concorrentes.
 
 - mais de 80% de todo desenvolvimento frontend é feito em React
 - tratamento de estado em React é muito inferior a outras libs
 - outros frameworks React atuais não abordam o problema
 
-A relevância dessa solução está em abordar um de seus principais problemas. Ao resolver sua complexidade e verbosidade no tratamento de estado, melhora: 
+A relevância da solução está em abordar um dos principais pontos fracos dao React, a complexidade e verbosidade no tratamento de estado, oferecendo uma melhora na sua: 
 
-* sua **produtividade**, ao permitir uma codificação mais enxuta e simples; 
-* sua **manutenibilidade**, ao reduzir sua propensão ao erro dado sua complexidade; 
-* sua **competitividade**, dado que esse aspecto é um dos principais pontos em que React é inferior a seus principais concorrentes.
+* **produtividade**, ao permitir uma codificação mais enxuta e simples; 
+* **manutenibilidade**, ao reduzir sua propensão ao erro dado sua complexidade; 
+* **competitividade**, dado que esse aspecto é inferior a seus principais concorrentes.
 
 ## CONTRIBUIÇÕES
 
-**Stateful objects** introduz um tratamento de estado orientada a objetos, abstraindo sua complexidade através do encapsulamento de um useState hook dentro de um objeto Proxy, resumindo as muitas regras contra-intuitivas dos hooks em uma única: o objeto para se manter stateful precisa se manter objeto (isto é, não suporta object destructuring).
+**Stateful objects** introduz um tratamento de estado orientada a objetos, abstraindo sua complexidade através do encapsulamento de um `useState` hook dentro de um objeto `Proxy`, resumindo as regras contra intuitivas dos hooks a uma única: para se manter stateful, precisa se manter objeto.
 
-* **stateful object** (maintenance): na forma de objeto, oferece vários estados na forma de campos de objeto, ao invés de uma invocacao de hook para cada estado
-* **stateful props** (maintenance): reusa as propriedades do componente como estados locais, ao tornar essas propriedades em **stateful objects**
-* **delayed render** (performance): algoritmo de renderização que disponibiliza alto desempenho no fluxo de renderização no uso de  **stateful objects**
-* **server rendering** (performance): suporta server-side rendering de componentes React através do Reactful framework, reduzindo a renderização do client-side ao mínimo
-* **hookless design** (maintenance): substitui a maioria dos principais hooks de estado (useState, useContext e useReducer), desempenho (useMemo, useCallback) e fetching (use) 
+Conceitos aplicados que aprimoram a manutenibilidade (simplicidade):
+
+* **object store**: na forma de objeto, oferece vários estados na forma de campos de objeto, ao invés de uma invocacao de hook para cada estado
+* **stateful props**: reusa as propriedades do componente como estados locais, ao tornar o objeto de propriedades em **stateful objects**
+* **hookless design**: substitui a maioria dos principais hooks de estado (useState, useContext e useReducer), desempenho (useMemo, useCallback) e fetching (use)
+
+Conceitos aplicados que aprimoram o desempenho (responsividade):
+
+* **delayed render**: algoritmo de renderização que disponibiliza alto desempenho no fluxo de renderização no uso de  **stateful objects**
+* **server rendering**: suporta server-side rendering de componentes React através do Reactful framework, reduzindo a renderização do client-side ao mínimo
+* **render refocus**: recupera o foco nos elementos de formulário em componentes-filho quando o componente-pai dispara um novo render para responder a mudança de estado.
+
 
 ## FUNDAMENTAÇÃO
 
-Revisão bibliográfica dos conceitos relacionados ao objeto de pesquisa. Segue aqui os conceitos relacionados que terão suas definições apresentadas na redação da pesquisa.
+Para a revisão bibliográfica, segue aqui os conceitos relacionados que terão suas definições apresentadas na redação da pesquisa.
 
 * **multi-page application** (MPA): arquitetura tradicional para aplicações web  
 * **single-page application** (SPA): arquitetura moderna usada pelo React
 * **asynchronous javascript** (AJAX): tecnologia que possibilita as libs SPAs 
-* **web components** (custom elements): tecnologia utilizada em algumas libs SPAs
+* **custom elements**: conceito em component-based SPAs
 * **state handling**: conceito de tratamento de estado utilizado no React 
 * **unidirectional data flow**: arquitetura de dados do React 
 * **bidirectional data flow**: arquitetura no Angular, oposto ao do React 
@@ -70,39 +76,57 @@ Revisão bibliográfica dos conceitos relacionados ao objeto de pesquisa. Segue 
 
 ## METODOLOGIA
 
-Como metodologia, esta pesquisa abrange revisão de literatura e prototipação empirica com comparações qualitativas de desempenho e manutenibilidade (considerando a sintaxe).
+Como metodologia, esta pesquisa abrange revisão de literatura e prototipação empírica com comparações qualitativas de desempenho e manutenibilidade (considerando a sintaxe).
 
-- **revisão da literatura**, envolvendos os fundamentos conceituais
-- **experimentação empírica**, caso de uso do software em um aplicação real
+- **revisão da literatura**, envolvendo os fundamentos conceituais
+- **experimentação empírica**, caso de uso do software em uma aplicação real
 - **comparação quantitativa** do desempenho do algoritmo de renderização
 - **comparação quantitativa** da sintaxe de tratamento de estado
 
 ## LIMITAÇÕES
 
-Há algumas limitações não relacionadas ao conceito os stateful objects em si, mas a outros recursos direta ou indiretamente relacionados que estão no framework Reactful. Esse framework é o que possibilita renderizações server-side para os Stateful Objects. Essas limitações gerais do framework são:
+Há algumas limitações não relacionadas aos Stateful Objects em si, mas a outros recursos direta ou indiretamente relacionados que estão no framework Reactful, que fornece suporte a renderizações server-side para os Stateful Objects. As limitações são:
 
-- `function decorators` tem warnings de sintaxe (ignora com `//@ts-ignore`)
-- `props directive` customizados não suporta o statement de  `import`
-- `CSS modular` não suporta pseudo-selectors (`:hover`, `:active`, etc)
-- suporta apenas aplicações web (pacote `@reactful/web`)
+<style>
+   table { zoom: 0.9 }
+   [limit] tr:nth-of-type(1) td { padding-top: 15px; }
+   [limit] tr th { font-family: agave;  }
+   [limit] tr td:nth-of-type(1) { font-family: agave }
+   [limit] tr td:nth-of-type(3) { color: #AAA; }
+</style>
 
-## CRONOGRAMA
+| recurso | problema | contorno |
+|-:|-|-|
+| function decorators | warning de sintaxe no IDE | adicionar comentário `//@ts-ignore` |
+| props directive | não suporta importações | correção projetada em futuras versões |
+| @reactful/web | suporta apenas aplicações web | suporte mobile em futuras versões |
+| modular CSS | não suporta pseudo-selectors | usar HTML link[href] nesses casos |
 
-Como cronograma, segue o status atual de alguns tópicos relacionado a esse projeto. O slide ainda não está focado no problema de pesquisa (stateful objects), mas já está completo numa visão geral.
 
-- protótipo funcional: **90%**
-- documentacao técnica: **95%**
-- slide de apresentação: **50%** 
-- video introdutório: **100%**
-- projeto de pesquisa: **50%**
-- artigo cientifíco: **0%**
+## CRONOGRAMA 
 
-## PENDÊNCIAS
+Segue o status atual de alguns tópicos relacionado a esse projeto.
 
-Segue aqui as pendencias que serão atendidas, caso o tema seja aceito:
+| atividade | status | estimativa |
+|-|:-:|:-:|
+| video introdutório | **100%** | pronto |
+| slide de apresentação | **85%**  | 3 dias |
+| protótipo funcional | **95%** | 2 semanas |
+| documentação técnica | **95%** | 1 semana |
+| projeto usando framework | **15%** | 2 meses |
+| projeto de pesquisa | **58%** | 1 semana |
+| artigo da dissertação | **0%** | 3 meses |
 
-- formalizar um projeto de pesquisa seguindo o padrão acadêmico
-- evidenciar inovação pesquisando em banco de dados de artigos científicos e outras tecnologias de framework, libraries ou patterns
-- modificar o slide para se focar no problema de pesquisa que é state handling no React
+
+## RISCOS
+
+Listado alguns riscos de impedimento ou atraso relacionado a esse tema.
+
+| risco | descrição | mitigação |
+|-:|-|-|
+| **montagem do comparativo de desempenho** | montar o ambiente e monitorar o desempenho de em vários cenários de uso pode ser desafiador, complicado pelo fato que não tenho muita experiência em montar esse tipo de teste de desempenho | estudar mais esse tipo de teste, baixar projetos que já implementam testes de desempenho entre várias bibliotecas SPA, etc |
+| **falta de artigos científicos sobre o state handling** | dificuldade em encontrar artigos científicos que abordem o tema específico de tratamento de estado no React, ou mesmo o tratamento de estado em geral | avaliar se documentação técnica como literatura cinza pode substituir totalmente a bibliografia acadêmica |
+
+
 
 <br><br>
