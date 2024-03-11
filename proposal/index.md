@@ -1,12 +1,12 @@
 <style>
-@import url(../index.css);
+@import url(./index.css);
 @import url(../overview.css);
 @import url(../readme/overview.css);
 </style>
 
 # PESQUISA
 
-<center style='margin-top:-23px; font-size:17px;'>Stateful objects como tratamento de estado enxuto no React</center>
+<p subtitle>Stateful objects como tratamento de estado enxuto no React</p>
 
 ## RESUMO
 
