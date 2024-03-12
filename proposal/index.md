@@ -121,7 +121,7 @@ Segue o status atual de alguns tópicos relacionado a esse projeto.
 
 ## RISCOS
 
-Listado alguns riscos de impedimento ou atraso relacionado a esse tema. As estratégias de mitigação serão aplicadas apenas se houver aprovação do tema proposto.
+Segue aqui alguns riscos identifiacos que podem gerar impedimento ou atraso ao desenvolvimento do projeto ou da pesquisa. As estratégias de mitigação serão aplicadas após aprovação do tema proposto.
 
 | RISCO | DESCRIÇÃO | MITIGAÇÃO |
 |-:|-|-|
