@@ -104,13 +104,12 @@ Não há limitações identificadas no Stateful Objects, mas ocorre algumas rela
 | **@reactful/web** | suporta apenas aplicações web | suporte mobile em futuras versões |
 | **modular CSS** | não suporta pseudo-selectors | usar HTML link[href] nesses casos |
 
-
 ## CRONOGRAMA 
 
 Segue o status atual de alguns tópicos relacionado a esse projeto.
 
 | ATIVIDADE                |  STATUS  | ESTIMATIVA | RELACIONADO | DEPENDÊNCIA         |
-| ------------------------ | :------: | :--------: | ----------- | ------------------- |
+| ------------------------ | :------: | :--------: | ----------- | :-----------------: |
 | video introdutório       | **100%** |   pronto   | framework   | ...                 |
 | slide de apresentação    | **85%**  |   3 dias   | pesquisa    | projeto de pesquisa |
 | protótipo funcional      | **95%**  | 2 semanas  | framework   | ...                 |
