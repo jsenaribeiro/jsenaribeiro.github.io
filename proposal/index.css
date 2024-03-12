@@ -13,3 +13,6 @@ body > * { margin-right: 20px; }
    font-size:17px;
    color: #BBB;
 }
+
+table { zoom: 0.9 }
+table th { font-weight:100 }
