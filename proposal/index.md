@@ -131,7 +131,7 @@ Segue o status atual de alguns tópicos relacionado a esse projeto.
 
 ## RISCOS
 
-Segue aqui alguns riscos identifiacos que podem gerar impedimento ou atraso ao desenvolvimento do projeto ou da pesquisa. As estratégias de mitigação serão aplicadas após aprovação do tema proposto.
+Segue alguns riscos que podem gerar impedimento ou atraso ao desenvolvimento do projeto ou da pesquisa. As estratégias de mitigação serão aplicadas após aprovação do tema proposto.
 
 | RISCO | DESCRIÇÃO | MITIGAÇÃO |
 |-:|-|-|
@@ -142,5 +142,6 @@ Segue aqui alguns riscos identifiacos que podem gerar impedimento ou atraso ao d
 ## REFERÊNCIAS
 
 obra em progresso...
+(work in progress)
 
 <br><br>
