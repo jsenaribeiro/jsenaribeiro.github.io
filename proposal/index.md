@@ -128,8 +128,8 @@ Listado alguns riscos de impedimento ou atraso relacionado a esse tema. As estra
 
 | RISCO | DESCRIÇÃO | MITIGAÇÃO |
 |-:|-|-|
-| **montagem do comparativo de desempenho** | montar o ambiente e monitorar o desempenho de em vários cenários de uso pode ser desafiador, complicado pelo fato que não tenho muita experiência em montar esse tipo de teste de desempenho | estudar mais esse tipo de teste, baixar projetos que já implementam testes de desempenho entre várias bibliotecas SPA, etc |
-| **falta de artigos científicos sobre o state handling** | dificuldade em encontrar artigos científicos que abordem o tema específico de tratamento de estado no React, ou mesmo o tratamento de estado em geral | avaliar se documentação técnica como literatura cinza pode substituir totalmente a bibliografia acadêmica |
-| **implementação do framework ainda não está totalmente estável** | framework está implementado, mas ainda tem uma cobertura baixa de testes automatizados e não foi ainda aplicado em um projeto real | aplicar amplamente o framework em um projeto já em andamento e melhorar a cobertura de testes |
+| **montagem do comparativo de desempenho** | ambiente para monitorar desempenho pode ser desafiador por eu não ter muita experiência nesse tipo de teste | estudar mais esse tipo de teste, baixar projetos do github que implementa comparativos |
+| **falta de artigos científicos sobre o state handling** | artigos científicos não encontrados sobre tratamento de estado, seja no React, seja no geral | avaliar literatura cinza via documentação como substituto da literatura acadêmica |
+| **implementação do framework ainda não está totalmente estável** | framework ainda com cobertura baixa de testes automatizados e ainda sem aplicação concluída em um projeto real | aplicar amplamente o framework em um projeto já em andamento e melhorar a cobertura de testes |
 
 <br><br>
