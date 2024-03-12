@@ -14,7 +14,7 @@ Atualmente, mais de 80% de todo desenvolvimento de software frontend é feito em
 
 Esta pesquisa propõe os Stateful Objects como uma nova geração de tratamento de estados no React. Ele encapsula sua complexidade em uma classe Proxy, adotando uma abordagem orientada a objetos simples e intuitiva, que mantém a compatibilidade com componentes funcionais.
 
-A proposta aprimora não apenas a manutenibildiade, enxugando a codificação do tratamento de estados, reduzindo as várias regras de estados dos atuais function hooks, mas também garantindo alto desempenho através de renderização otimizada e server-side dos Stateful Objects.
+A proposta aprimora não apenas a manutenibildiade, enxugando a codificação do tratamento de estados, reduzindo a uma as várias regras de estados dos atuais function hooks, mas também oferece alto desempenho através de renderização otimizada e server-side dos Stateful Objects.
 
 **palavras-chaves**: state handling, single-page application, maintenance, frontend, React
 
