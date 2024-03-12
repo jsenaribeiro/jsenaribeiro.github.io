@@ -12,11 +12,11 @@
 
 Mais de 80% desenvolvimento frontend é feito em React, contudo, essa tecnologia detém um dos tratamentos de estado mais complexo e verboso em comparação a seus concorrentes SPA component-base como Angular, Vue, entre outros.
 
-Esta pesquisa propõe os 'stateful objects', uma nova geração de tratamento de estados no React que encapsula sua complexidade em um Proxy adotando uma abordagem orientada a objetos compatível com componentes funcionais através do framework Reactful.
+Esta pesquisa propõe os Stateful Objects, uma nova geração de tratamento de estados no React que encapsula sua complexidade em um Proxy adotando uma abordagem orientada a objetos compatível com componentes funcionais através do framework Reactful.
 
 A proposta aprimora não apenas a manutenibildiade, simplificando o tratamento de estados mas também garantindo alto desempenho através de renderização otimizada e server-side dos Stateful Objects.
 
-**palavras-chaves**: single-page application, state handling, frontend, React
+**palavras-chaves**: state handling, single-page application, maintenance, frontend, React
 
 ## OBJETIVOS
 
@@ -52,11 +52,11 @@ A solução resolve um dos maiores pontos fracos do React, melhorando sua:
 
 ## CONTRIBUIÇÕES
 
-No React, algo é stateful quando o estado (variável) inicia uma nova renderização do componente para mostrar o novo valor atualizado. Os  `stateful objects` seriam uma terceira geração no tratamento de estados no React após os legados `class components` e os atuais `function hooks`, compatíveis com componentes funcionais, e com ainda maior praticidade que os hooks.
+Algo é stateful no React quando quando a mudança do estado (variável) dispara uma nova renderização do componente para assim mostrar o novo valor atualizado. Renderização é o processo de desenhar graficamente o componente na tela. 
 
-Enquanto objeto que encapsula a complexidade do tratamento em uma classe Proxy, ele resume as várias regras pouco intuitivas dos hooks a uma única: para se manter stateful, basta se manter objeto. Ou seja, ele não suporta destructuring.
+Stateful Objects seriam uma terceira geração no tratamento de estados no React, após os depreciados `class components` e os atuais `function hooks`, sendo também compatível com componentes funcionais, só que menos verboso (exige menos codificação) e menos complexo: resume as várias regras dos hooks a uma única, não usar destructring para se manter stateful.
 
-Stateful Objects melhoram a manutenibilidade com sua maior simplicidade, oferecendo bom desempenho e trazendo melhoria na recuperação de foco após o render nos elementos de formulário.
+Stateful Objects são implementados como instancias de classes Proxy que encapsulam a complexidade do tratamento de estado e são executados e manipulados através de introspecção funcional do algoritmo de renderização client-side do React DOM.
 
 **Melhora manutenibilidade**
 
