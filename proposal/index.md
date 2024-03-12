@@ -52,22 +52,24 @@ A solução resolve um dos maiores pontos fracos do React, melhorando sua:
 
 ## CONTRIBUIÇÕES
 
-No React, algo é stateful quando ao mudar a variável (seu estado) é disparado uma nova renderização para redesenhar o valor atualizado no compoente. Nesse contexto,  `stateful objects` seriam uma terceira geração no tratamento de estados no React após os legados `class components` e os atuais `function hooks`, mantendo a compatibildiade com componentes funcionais, e agregando mais praticidade ao atratamento de estado.
+No React, algo é stateful quando o estado (variável) inicia uma nova renderização do componente para mostrar o novo valor atualizado. Os  `stateful objects` seriam uma terceira geração no tratamento de estados no React após os legados `class components` e os atuais `function hooks`, compatíveis com componentes funcionais, e com ainda maior praticidade que os hooks.
 
-Enquanto objeto que coleciona vários estados na forma de atributos do objeto, ele simplificaas várias regras pouco intuitivas dos hooks a uma única: para se manter stateful, basta se manter objeto. Ou seja, ele não suporta destructuring.
+Enquanto objeto que encapsula a complexidade do tratamento em uma classe Proxy, ele resume as várias regras pouco intuitivas dos hooks a uma única: para se manter stateful, basta se manter objeto. Ou seja, ele não suporta destructuring.
 
-Melhora manutenibilidade:
+Stateful Objects melhoram a manutenibilidade com sua maior simplicidade, oferecendo bom desempenho e trazendo melhoria na recuperação de foco após o render nos elementos de formulário.
+
+**Melhora manutenibilidade**
 
 * **object store**: como objeto, reúne múltiplos estados na forma de campos de objeto, ao invés de criar cada estado individualmente em uma invocacao de hook;
 * **stateful props**: reusa as propriedades do componente como estados locais, por tornar automaticamente o objeto de propriedades em **stateful objects**;
 * **hookless design**: substitui a maioria dos principais hooks de estado (useState, useContext e useReducer), desempenho (useMemo, useCallback) e fetching (use);
 
-Aprimora desempenho:
+**Aprimora desempenho**
 
 * **server rendering**: suporta server-side rendering de componentes React através do Reactful framework, reduzindo a renderização do client-side ao mínimo;
 * **delayed render**: algoritmo de renderização que disponibiliza alto desempenho no fluxo de renderização para o uso de  **stateful objects**;
 
-Corrige instabilidade:
+**Recupera foco**
 
 * **render refocus**: recupera o foco nos elementos de formulário em componentes-filho quando o componente-pai dispara um novo render para responder a mudança de estado;
 

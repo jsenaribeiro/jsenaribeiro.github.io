@@ -219,11 +219,12 @@ body.marp-vscode blockquote {
 <h1 id="esboço-de-projeto-de-pesquisa"><strong>ESBOÇO DE PROJETO DE PESQUISA</strong></h1>
 <p subtitle>Stateful Objects como tratamento de estado enxuto no React</p>
 <h2 id="resumo">RESUMO</h2>
-<p>React corresponde a mais de 80% de todo desenvolvimento frontend na atualidade, e um de seus aspectos mais problemáticos é o seu tratamento de estado consideravelmente mais complexo e verboso em comparação com outras tecnologias SPA component-based, como Svelt, Angular, Vue, entre outros.</p>
-<p>Essa pesquisa soluciona o problema introduzindo o conceito de 'stateful objects': um objeto Proxy que encapsula a complexidade do tratamento de estado no React e seu modelo unidirecional de fluxo de dados, em uma abordagem orientada a objetos, compatível com componentes funcionais, e que elimina ou reduz consideravelmente o boilerplate code exigido em seu tratamento de estados.</p>
-<p>Os Stateful Objects são implementado no framework Reactful, aprimorando não apenas a manutenibilidade através da simplificação do gerenciamento de estado no React, como também seu desempenho, através de renderização server-side e otimizada para Stateful Objects.</p>
+<p>Mais de 80% desenvolvimento frontend é feito em React, contudo, essa tecnologia detém um dos tratamentos de estado mais complexo e verboso em comparação a seus concorrentes SPA component-base como Angular, Vue, entre outros.</p>
+<p>Esta pesquisa propõe os 'stateful objects', uma nova geração de tratamento de estados no React que encapsula sua complexidade em um Proxy adotando uma abordagem orientada a objetos compatível com componentes funcionais através do framework Reactful.</p>
+<p>A proposta aprimora não apenas a manutenibildiade, simplificando o tratamento de estados mas também garantindo alto desempenho através de renderização otimizada e server-side dos Stateful Objects.</p>
+<p><strong>palavras-chaves</strong>: single-page application, state handling, frontend, React</p>
 <h2 id="objetivos">OBJETIVOS</h2>
-<p>Solucionar a complexidade e verbosidade no tratamento de estado da biblioteca React, em  uma solução compatível com componentes funcionais, através dos seguintes objetivos específicos:</p>
+<p>Propor uma solução para a complexidade e verbosidade do tratamento de estado no desenvolvimento frontend com React, através dos seguintes objetivos específicos:</p>
 <ul>
 <li>apresentar a revisão de literatura com as fundamentações conceituais do problema;</li>
 <li>comparar a sintaxe de tratamento de estado entre React e Angular (concorrente);</li>
@@ -231,7 +232,7 @@ body.marp-vscode blockquote {
 <li>apresentar o Stateful Object em um projeto real através do framework Reactful;</li>
 </ul>
 <h2 id="metodologia">METODOLOGIA</h2>
-<p>Como metodologia, esta pesquisa abrange revisão de literatura e caso de estudo empírico utilizando comparativos quantitativos de desempenho e qualitativos de manutenibilidade.</p>
+<p>Como metodologia, esta pesquisa realizará uma revisão de literatura com caso de estudo e comparativos quantitativos e qualitativos de manutenibilidade.</p>
 <ul>
 <li><strong>caso de estudo</strong> com uso do framework em uma aplicação real;</li>
 <li><strong>revisão da literatura</strong> dos fundamentos conceituais do problema;</li>
@@ -239,7 +240,7 @@ body.marp-vscode blockquote {
 <li><strong>comparação qualitativa</strong> da sintaxe de tratamento de estado;</li>
 </ul>
 <h2 id="relevância">RELEVÂNCIA</h2>
-<p>O tema tem grande alcance, dado o domínio do React no desenvolvimento frontend e sua inferioridade no tratamento de estado em relação a tecnologias concorrentes.</p>
+<p>O domínio do React no desenvolvimento frontend e sua inferioridade no tratamento de estado em relação a tecnologias concorrentes atrai muito interesse e relevância a esse tema.</p>
 <ul>
 <li>mais de 80% de todo desenvolvimento frontend é feito em React;</li>
 <li>tratamento de estado em React é muito inferior a outras libs;</li>
@@ -252,19 +253,22 @@ body.marp-vscode blockquote {
 <li><strong>competitividade</strong>, dado que esse aspecto é inferior a seus principais concorrentes;</li>
 </ul>
 <h2 id="contribuições">CONTRIBUIÇÕES</h2>
-<p>Algo é stateful no contexto do React, quando ao mudar o seu estado (mudança de valor de uma variável), os componentes relacionados ao estado invocam uma nova renderização, para assim permitir redesenhar os componentes com a nova informação alterada.</p>
-<p>Após os  <code>class components</code> e os <code>function hooks</code>, <code>stateful objects</code> seriam uma terceira geração no tratamento de estados no React, que encapsula a complexidade do tratamento de estado dentro de uma classe Proxy do JavaScript usando um algorítmo otimizado de renderização.</p>
-<p>Através de estados na forma de campos de um objeto, ele consegue resumir todas as várias regras pouco intuitivas dos hooks a uma única: para se manter stateful, basta se manter objeto. Ou seja, se o objeto for desconstruído (destructuring), assim deixando de ser objeto, ele deixa de ser stateful.</p>
-<p>Conceitos aplicados que aprimoram a manutenibilidade (simplicidade):</p>
+<p>No React, algo é stateful quando o estado (variável) inicia uma nova renderização do componente para mostrar o novo valor atualizado. Os  <code>stateful objects</code> seriam uma terceira geração no tratamento de estados no React após os legados <code>class components</code> e os atuais <code>function hooks</code>, compatíveis com componentes funcionais, e com ainda maior praticidade que os hooks.</p>
+<p>Enquanto objeto que encapsula a complexidade do tratamento em uma classe Proxy, ele resume as várias regras pouco intuitivas dos hooks a uma única: para se manter stateful, basta se manter objeto. Ou seja, ele não suporta destructuring.</p>
+<p>Stateful Objects melhoram a manutenibilidade com sua maior simplicidade, oferecendo bom desempenho e trazendo melhoria na recuperação de foco após o render nos elementos de formulário.</p>
+<p><strong>Melhora manutenibilidade</strong></p>
 <ul>
-<li><strong>object store</strong>: na forma de objeto, oferece vários estados na forma de campos de objeto, ao invés de uma invocacao de hook para cada estado individual;</li>
+<li><strong>object store</strong>: como objeto, reúne múltiplos estados na forma de campos de objeto, ao invés de criar cada estado individualmente em uma invocacao de hook;</li>
 <li><strong>stateful props</strong>: reusa as propriedades do componente como estados locais, por tornar automaticamente o objeto de propriedades em <strong>stateful objects</strong>;</li>
 <li><strong>hookless design</strong>: substitui a maioria dos principais hooks de estado (useState, useContext e useReducer), desempenho (useMemo, useCallback) e fetching (use);</li>
 </ul>
-<p>Conceitos aplicados que aprimoram o desempenho (responsividade):</p>
+<p><strong>Aprimora desempenho</strong></p>
 <ul>
 <li><strong>server rendering</strong>: suporta server-side rendering de componentes React através do Reactful framework, reduzindo a renderização do client-side ao mínimo;</li>
 <li><strong>delayed render</strong>: algoritmo de renderização que disponibiliza alto desempenho no fluxo de renderização para o uso de  <strong>stateful objects</strong>;</li>
+</ul>
+<p><strong>Recupera foco</strong></p>
+<ul>
 <li><strong>render refocus</strong>: recupera o foco nos elementos de formulário em componentes-filho quando o componente-pai dispara um novo render para responder a mudança de estado;</li>
 </ul>
 <h2 id="fundamentação">FUNDAMENTAÇÃO</h2>
@@ -285,16 +289,17 @@ body.marp-vscode blockquote {
 <li><strong>react server component</strong>: executa componentes no lado do servidor;</li>
 </ul>
 <h2 id="limitações">LIMITAÇÕES</h2>
-<p>Há algumas limitações não relacionadas aos Stateful Objects em si, mas ao framework Reactful que fornece renderizações server-side aos Stateful Objects. São eles:</p>
+<p>Não há limitações identificadas no Stateful Objects, mas ocorre algumas relacionadas a alguns recursos do framework Reactful. O framework é necessário para suprir server-side render nos Stateful Objects.</p>
 <style>
    table { zoom: 0.9 }
+   table th { font-weight:100 }
 </style>
 <table>
 <thead>
 <tr>
-<th style="text-align:right">recurso</th>
-<th>problema</th>
-<th>contorno</th>
+<th style="text-align:right">RECURSO</th>
+<th>PROBLEMA</th>
+<th>CONTORNO</th>
 </tr>
 </thead>
 <tbody>
@@ -325,10 +330,10 @@ body.marp-vscode blockquote {
 <table>
 <thead>
 <tr>
-<th>atividade</th>
-<th style="text-align:center">status</th>
-<th style="text-align:center">estimativa</th>
-<th>relacionado</th>
+<th>ATIVIDADE</th>
+<th style="text-align:center">STATUS</th>
+<th style="text-align:center">ESTIMATIVA</th>
+<th>RELACIONADO</th>
 </tr>
 </thead>
 <tbody>
@@ -377,13 +382,13 @@ body.marp-vscode blockquote {
 </tbody>
 </table>
 <h2 id="riscos">RISCOS</h2>
-<p>Listado alguns riscos de impedimento ou atraso relacionado a esse tema.</p>
+<p>Listado alguns riscos de impedimento ou atraso relacionado a esse tema. As estratégias de mitigação serão aplicadas apenas se houver aprovação do tema proposto.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:right">risco</th>
-<th>descrição</th>
-<th>mitigação</th>
+<th style="text-align:right">RISCO</th>
+<th>DESCRIÇÃO</th>
+<th>MITIGAÇÃO</th>
 </tr>
 </thead>
 <tbody>
@@ -396,6 +401,11 @@ body.marp-vscode blockquote {
 <td style="text-align:right"><strong>falta de artigos científicos sobre o state handling</strong></td>
 <td>dificuldade em encontrar artigos científicos que abordem o tema específico de tratamento de estado no React, ou mesmo o tratamento de estado em geral</td>
 <td>avaliar se documentação técnica como literatura cinza pode substituir totalmente a bibliografia acadêmica</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>implementação do framework ainda não está totalmente estável</strong></td>
+<td>framework está implementado, mas ainda tem uma cobertura baixa de testes automatizados e não foi ainda aplicado em um projeto real</td>
+<td>aplicar amplamente o framework em um projeto já em andamento e melhorar a cobertura de testes</td>
 </tr>
 </tbody>
 </table>
