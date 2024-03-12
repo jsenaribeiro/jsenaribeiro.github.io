@@ -4,7 +4,7 @@
 @import url(../readme/overview.css);
 </style>
 
-# **ESBOÇO DE PROJETO DE PESQUISA**
+# ESBOÇO DE PROJETO DE PESQUISA
 
 <p subtitle>Stateful Objects como tratamento de estado enxuto no React</p>
 
@@ -94,11 +94,6 @@ Revisão bibliográfica dos seguintes conceitos relacionados:
 ## LIMITAÇÕES
 
 Não há limitações identificadas no Stateful Objects, mas ocorre algumas relacionadas a alguns recursos do framework Reactful. O framework é necessário para suprir server-side render nos Stateful Objects. 
-
-<style>
-   table { zoom: 0.9 }
-   table th { font-weight:100 }
-</style>
 
 | RECURSO | PROBLEMA | CONTORNO |
 |-:|-|-|

@@ -16,3 +16,5 @@ body > * { margin-right: 20px; }
 
 table { zoom: 0.9 }
 table th { font-weight:100 }
+
+h1 { font-weight: bolder !important; }
