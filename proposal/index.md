@@ -109,15 +109,15 @@ Não há limitações identificadas no Stateful Objects, mas ocorre algumas rela
 
 Segue o status atual de alguns tópicos relacionado a esse projeto.
 
-| ATIVIDADE                |  STATUS  | ESTIMATIVA | RELACIONADO |
-| ------------------------ | :------: | :--------: | ----------- |
-| video introdutório       | **100%** |   pronto   | framework   |
-| slide de apresentação    | **85%**  |   3 dias   | pesquisa    |
-| protótipo funcional      | **95%**  | 2 semanas  | framework   |
-| documentação técnica     | **95%**  |  1 semana  | framework   |
-| projeto usando framework | **15%**  |  2 meses   | framework   |
-| projeto de pesquisa      | **58%**  |  1 semana  | pesquisa    |
-| artigo da dissertação    |  **0%**  |  3 meses   | pesquisa    |
+| ATIVIDADE                |  STATUS  | ESTIMATIVA | RELACIONADO | DEPENDÊNCIA         |
+| ------------------------ | :------: | :--------: | ----------- | ------------------- |
+| video introdutório       | **100%** |   pronto   | framework   | ...                 |
+| slide de apresentação    | **85%**  |   3 dias   | pesquisa    | projeto de pesquisa |
+| protótipo funcional      | **95%**  | 2 semanas  | framework   | ...                 |
+| documentação técnica     | **95%**  |  1 semana  | framework   | ...                 |
+| projeto usando framework | **15%**  |  2 meses   | framework   | protótipo funcional |
+| projeto de pesquisa      | **58%**  |  1 semana  | pesquisa    | ...                 |
+| artigo da dissertação    |  **0%**  |  3 meses   | pesquisa    | projeto de pesquisa |
 
 ## RISCOS
 
