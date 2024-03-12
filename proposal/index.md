@@ -18,6 +18,17 @@ A proposta aprimora não apenas a manutenibildiade, enxugando a codificação do
 
 **palavras-chaves**: state handling, single-page application, maintenance, frontend, React
 
+## SUMÁRIO
+
+* [Objetivos](#objetivos): objetivo geral e específico da pesquisa
+* [Metodologia](#metodologia): metodos aplicados na pesquisa
+* [Fundamentação](#fundamentação): definição dos conceitos relacionados
+* [Contribuições](#contribuições): inovações oferecidas pelas pesquisa
+* [Relevância](#relevância): importância das contribuições
+* [Limitações](#limitações): limitações relacionadas
+* [Cronograma](#cronograma): status e previsão
+* [Referências](#referencias): bibliografia (WIP)
+
 ## OBJETIVOS
 
 Propor uma solução para a complexidade e verbosidade do tratamento de estado no desenvolvimento frontend com React, através dos seguintes objetivos específicos:
@@ -56,20 +67,6 @@ Revisão bibliográfica dos seguintes conceitos relacionados:
 * **server-side rendering**: renderização de componentes no servidor;
 * **react server component**: executa componentes no lado do servidor;
 
-## RELEVÂNCIA
-
-O domínio do React no desenvolvimento frontend e sua inferioridade no tratamento de estado em relação a tecnologias concorrentes atrai muito interesse e relevância a esse tema.
-
-- mais de 80% de todo desenvolvimento frontend é feito em React;
-- tratamento de estado em React é muito inferior a outras libs;
-- frameworks React atuais não abordam o problema;
-
-A solução resolve um dos maiores pontos fracos do React, melhorando sua: 
-
-* **produtividade**, ao permitir uma codificação mais enxuta e simples; 
-* **manutenibilidade**, ao reduzir sua propensão ao erro dado sua complexidade; 
-* **competitividade**, dado que esse aspecto é inferior a seus principais concorrentes;
-
 ## CONTRIBUIÇÕES
 
 Algo é stateful no React quando sua mudança do estado (variável) dispara uma nova renderização do componente para assim mostrar o novo valor. Renderização é o processo de desenhar graficamente o componente na tela baseado em suas informacoes atualizadas. 
@@ -92,6 +89,20 @@ Stateful Objects são implementados como instancias de classes Proxy que encapsu
 **Recupera foco**
 
 * **render refocus**: recupera o foco nos elementos de formulário em componentes-filho quando o componente-pai dispara um novo render para responder a mudança de estado;
+
+## RELEVÂNCIA
+
+O domínio do React no desenvolvimento frontend e sua inferioridade no tratamento de estado em relação a tecnologias concorrentes atrai muito interesse e relevância a esse tema.
+
+- mais de 80% de todo desenvolvimento frontend é feito em React;
+- tratamento de estado em React é muito inferior a outras libs;
+- frameworks React atuais não abordam o problema;
+
+A solução resolve um dos maiores pontos fracos do React, melhorando sua: 
+
+* **produtividade**, ao permitir uma codificação mais enxuta e simples; 
+* **manutenibilidade**, ao reduzir sua propensão ao erro dado sua complexidade; 
+* **competitividade**, dado que esse aspecto é inferior a seus principais concorrentes;
 
 ## LIMITAÇÕES
 
@@ -127,5 +138,9 @@ Segue aqui alguns riscos identifiacos que podem gerar impedimento ou atraso ao d
 | **montagem do comparativo de desempenho** | ambiente para monitorar desempenho pode ser desafiador por eu não ter muita experiência nesse tipo de teste | estudar mais esse tipo de teste, baixar projetos do github que implementa comparativos |
 | **falta de artigos científicos sobre o state handling** | artigos científicos não encontrados sobre tratamento de estado, seja no React, seja no geral | avaliar literatura cinza via documentação como substituto da literatura acadêmica |
 | **implementação do framework ainda não está totalmente estável** | framework ainda com cobertura baixa de testes automatizados e ainda sem aplicação concluída em um projeto real | aplicar amplamente o framework em um projeto já em andamento e melhorar a cobertura de testes |
+
+## REFERÊNCIAS
+
+obra em progresso...
 
 <br><br>
