@@ -52,7 +52,7 @@ A solução resolve um dos maiores pontos fracos do React, melhorando sua:
 
 ## CONTRIBUIÇÕES
 
-Algo é stateful no React quando quando a mudança do estado (variável) dispara uma nova renderização do componente para assim mostrar o novo valor atualizado. Renderização é o processo de desenhar graficamente o componente na tela. 
+Algo é stateful no React quando sua mudança do estado (variável) dispara uma nova renderização do componente para assim mostrar o novo valor. Renderização é o processo de desenhar graficamente o componente na tela baseado em suas informacoes atualizadas. 
 
 Stateful Objects seriam uma terceira geração no tratamento de estados no React, após os depreciados `class components` e os atuais `function hooks`, sendo também compatível com componentes funcionais, só que menos verboso (exige menos codificação) e menos complexo: resume as várias regras dos hooks a uma única, não usar destructring para se manter stateful.
 
@@ -77,6 +77,8 @@ Stateful Objects são implementados como instancias de classes Proxy que encapsu
 
 Revisão bibliográfica dos seguintes conceitos relacionados:
 
+* **render**: processo de desenhar algo no monitor do computador;
+* **stateful**: variável que reage com renderização ao ser alterada;
 * **multi-page application** (MPA): arquitetura tradicional para aplicações web ;
 * **single-page application** (SPA): arquitetura moderna usada pelo React;
 * **asynchronous javascript** (AJAX): tecnologia que possibilita os SPAs;
