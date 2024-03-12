@@ -10,11 +10,11 @@
 
 ## RESUMO
 
-Mais de 80% desenvolvimento frontend é feito em React, contudo, essa tecnologia detém um dos tratamentos de estado mais complexo e verboso em comparação a seus concorrentes SPA component-base como Angular, Vue, entre outros.
+Atualmente, mais de 80% de todo desenvolvimento de software frontend é feito em React. Contudo, essa tecnologia detém um dos tratamentos de estado mais complexos e verbosos em comparação a seus concorrentes SPA component-base, como Angular, Vue, Svelt, entre outros.
 
-Esta pesquisa propõe os Stateful Objects, uma nova geração de tratamento de estados no React que encapsula sua complexidade em um Proxy adotando uma abordagem orientada a objetos compatível com componentes funcionais através do framework Reactful.
+Esta pesquisa propõe os Stateful Objects como uma nova geração de tratamento de estados no React que encapsula sua complexidade em uma classe Proxy, adotando uma abordagem orientada a objetos compatível com componentes funcionais através de seu framework Reactful.
 
-A proposta aprimora não apenas a manutenibildiade, simplificando o tratamento de estados mas também garantindo alto desempenho através de renderização otimizada e server-side dos Stateful Objects.
+A proposta aprimora não apenas a manutenibildiade, enxugando a codificação do tratamento de estados, reduzindo as várias regras de estados com hooks, mas também garantindo alto desempenho através de renderização otimizada e server-side dos Stateful Objects.
 
 **palavras-chaves**: state handling, single-page application, maintenance, frontend, React
 
