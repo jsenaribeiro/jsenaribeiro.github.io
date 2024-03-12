@@ -36,6 +36,26 @@ Como metodologia, esta pesquisa realizará uma revisão de literatura com caso d
 - **comparação quantitativa** do desempenho do algoritmo de renderização;
 - **comparação qualitativa** da sintaxe de tratamento de estado;
 
+## FUNDAMENTAÇÃO
+
+Revisão bibliográfica dos seguintes conceitos relacionados:
+
+* **render**: processo de desenhar algo no monitor do computador;
+* **stateful**: variável que reage com renderização ao ser alterada;
+* **multi-page application** (MPA): arquitetura tradicional para aplicações web ;
+* **single-page application** (SPA): arquitetura moderna usada pelo React;
+* **asynchronous javascript** (AJAX): tecnologia que possibilita os SPAs;
+* **custom elements**: conceito aplicado em component-based SPA;
+* **state handling**: conceito de tratamento de estado do React;
+* **unidirectional data flow**: arquitetura de dados do React;
+* **bidirectional data flow**: arquitetura concorrente ao do React;
+* **stateless component**: componentes sem estado (imutáveis);
+* **stateful component**: componentes com estado (view-model);
+* **class component**: primeira geração de stateful components;
+* **function hooks**: segunda e atual geração de stateful components;
+* **server-side rendering**: renderização de componentes no servidor;
+* **react server component**: executa componentes no lado do servidor;
+
 ## RELEVÂNCIA
 
 O domínio do React no desenvolvimento frontend e sua inferioridade no tratamento de estado em relação a tecnologias concorrentes atrai muito interesse e relevância a esse tema.
@@ -72,26 +92,6 @@ Stateful Objects são implementados como instancias de classes Proxy que encapsu
 **Recupera foco**
 
 * **render refocus**: recupera o foco nos elementos de formulário em componentes-filho quando o componente-pai dispara um novo render para responder a mudança de estado;
-
-## FUNDAMENTAÇÃO
-
-Revisão bibliográfica dos seguintes conceitos relacionados:
-
-* **render**: processo de desenhar algo no monitor do computador;
-* **stateful**: variável que reage com renderização ao ser alterada;
-* **multi-page application** (MPA): arquitetura tradicional para aplicações web ;
-* **single-page application** (SPA): arquitetura moderna usada pelo React;
-* **asynchronous javascript** (AJAX): tecnologia que possibilita os SPAs;
-* **custom elements**: conceito aplicado em component-based SPA;
-* **state handling**: conceito de tratamento de estado do React;
-* **unidirectional data flow**: arquitetura de dados do React;
-* **bidirectional data flow**: arquitetura concorrente ao do React;
-* **stateless component**: componentes sem estado (imutáveis);
-* **stateful component**: componentes com estado (view-model);
-* **class component**: primeira geração de stateful components;
-* **function hooks**: segunda e atual geração de stateful components;
-* **server-side rendering**: renderização de componentes no servidor;
-* **react server component**: executa componentes no lado do servidor;
 
 ## LIMITAÇÕES
 
