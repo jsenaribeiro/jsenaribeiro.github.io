@@ -11,7 +11,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -279,7 +281,7 @@ body.marp-vscode blockquote {
 <center index style='zoom:0.7'>
 <h1 id="getting-started">Getting started...</h1>
 </center>
-<p>The <code>@reactful/create</code> package enables easy project scaffold with multiple templates, flat folder structure and full settings for vscode with debug ready support with no extra configuration.</p>
+<p>The <code>@reactful/create</code> package enables easy project scaffold with multiple templates, flat folder structure and full settings for vscode with debug ready support with no extra configuration. After</p>
 <aside cols='4:5' style='zoom:0.9'>
 <pre><code class="language-ps"><span class="hljs-variable">$</span> bunx @reactful/create@latest
 
@@ -287,8 +289,12 @@ body.marp-vscode blockquote {
 - project name? Sample
 - vs code IDE? (Y/n) y
 - install? yes
+
+<span class="hljs-variable">$</span> bunx <span class="hljs-built_in">start</span>
 </code></pre>
-<pre><code class="language-bash">\apis          <span class="hljs-comment"># restiful apis      </span>
+<pre><code class="language-bash"><span class="hljs-comment"># STRUCTURE    # DESCRIPTION</span>
+
+\apis          <span class="hljs-comment"># restiful apis      </span>
 \assets        <span class="hljs-comment"># public static files</span>
 \builds        <span class="hljs-comment"># bundle and SSG htmls</span>
 \components    <span class="hljs-comment"># common jsx components</span>

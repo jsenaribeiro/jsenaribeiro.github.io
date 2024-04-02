@@ -40,7 +40,7 @@
 
 </center>
 
-The `@reactful/create` package enables easy project scaffold with multiple templates, flat folder structure and full settings for vscode with debug ready support with no extra configuration.
+The `@reactful/create` package enables easy project scaffold with multiple templates, flat folder structure and full settings for vscode with debug ready support with no extra configuration. After 
 
 <aside cols='4:5' style='zoom:0.9'>
 
@@ -51,9 +51,13 @@ $ bunx @reactful/create@latest
 - project name? Sample
 - vs code IDE? (Y/n) y
 - install? yes
+
+$ bunx start
 ```
 
 ```bash
+# STRUCTURE    # DESCRIPTION
+
 \apis          # restiful apis      
 \assets        # public static files
 \builds        # bundle and SSG htmls
