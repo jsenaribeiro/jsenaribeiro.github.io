@@ -253,7 +253,7 @@ Go to <a href='#' onclick='goto("./review/binder.html")'>review</a> section for 
 
 </fieldset>
 
-<fieldset id='helper' onclick='onPreview(this.id)' hide>
+<fieldset id='helper' onclick='onPreview(this.id)'>
 <legend><b>HELPER</b> utilities</legend>
 
 Type, retype and prototypes are available with `@reactful/extensions` npm package.

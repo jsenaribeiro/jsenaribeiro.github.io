@@ -10,7 +10,7 @@
    | <b>review</b>
 </h1>
 
-<header>ranker optimizing</header>
+<header>routing component pages</header>
 
 > simple folder routing • routing decorator • route params<br/>props routing • extended HTML • markdown support<br/>  lazy components • prefetch route • nested routes
 

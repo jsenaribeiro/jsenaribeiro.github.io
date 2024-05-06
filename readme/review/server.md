@@ -10,7 +10,7 @@
    | <b>review</b>
 </h1>
 
-<header>server rendering</header>
+<header>server-side rendering</header>
 
 > static rendering • dynamic rendering • periodic rendering <br/>react server components • partial hydration • web apis<br/>extended html • error handling • markdown
 

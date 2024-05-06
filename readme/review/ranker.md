@@ -10,7 +10,7 @@
    | <b>review</b>
 </h1>
 
-<header>ranker optimizing</header>
+<header>search engine optimization</header>
 
 > search engine optimization • metatag args<br/>function decorator • html metatags
 

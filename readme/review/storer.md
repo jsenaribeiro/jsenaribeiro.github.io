@@ -10,7 +10,7 @@
    | <b>review</b>
 </h1>
 
-<header>storer handling</header>
+<header>object state handling</header>
 
 > stateful proxy object • stateful props<br/>modular state • global state<br/> OOP state handling
 

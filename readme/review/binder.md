@@ -10,7 +10,7 @@
    | <b>review</b>
 </h1>
 
-<header>binder properting</header>
+<header>props binding</header>
 
 > data binding • form binding • props directives<br/>RESTful actions • validation api
 

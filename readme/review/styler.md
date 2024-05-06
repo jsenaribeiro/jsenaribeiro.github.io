@@ -10,7 +10,7 @@
    | <b>review</b>
 </h1>
 
-<header>styler scopings</header>
+<header>CSS style scopings</header>
 
 > module scope CSS • component scope CSS • layout props <br/>function decorator • SoC styling • vanilla-like CSS
 
