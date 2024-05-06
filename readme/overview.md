@@ -5,7 +5,7 @@
 
 # **overview** | <a href='#' onclick='goto("./preview.html")'>preview</a> | <a href='#'>review</a>
 
-> SSR • SEO • scoped CSS • stateful objects • easy routing<br/>API routes • props binding • function decorators<br/>markdown support • RESTful actions
+> SSR • SEO • scoped CSS • stateful objects • routing<br/>API routes • props binding • function decorators<br/>RESTful actions • markdown * JSX-in-HTML
 
 <style>
    [specs] tr td:nth-of-type(3) { zoom:0.9; line-height:15px; }
