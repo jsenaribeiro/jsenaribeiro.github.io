@@ -213,17 +213,32 @@ body.marp-vscode blockquote {
         </head>
         <body class="vscode-body vscode-dark">
             <script src='./overview.js'></script>
-<style>@import url(./overview.css);</style>
+<style>
+@import url(./overview.css);
+
+section[features] ul {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+}
+
+section[features] li {
+   display: block;
+   font-size: 13px;
+   padding: 0 10px;
+   text-align: center; 
+   margin-bottom: 15px;
+}
+
+section[features] a {
+   display: block;
+   font-size: 1.3em;
+   text-align: center;
+   letter-spacing: 5px;
+   margin-bottom: -3px;
+}
+
+</style>
 <article overview>
-<section menu center menu-top>
-<p><a href="#" title="vanilla-like low learning-curve">easy</a>
-• <a href="#">lite</a>
-• <a href="#">lean</a>
-• <a href="#">fast</a>
-• <a href="#">full</a>
-• <a href="#">flex</a>
-• <a href="#">nice</a></p>
-</section>
 <h1 id="overview--preview--review"><strong>overview</strong> | <a href='#' onclick='goto("./preview.html")'>preview</a> | <a href='#'>review</a></h1>
 <blockquote>
 <p>SSR • SEO • scoped CSS • stateful objects • easy routing<br/>API routes • props binding • function decorators<br/>markdown support • RESTful actions</p>
@@ -231,8 +246,18 @@ body.marp-vscode blockquote {
 <style>
    [specs] tr td:nth-of-type(3) { zoom:0.9; line-height:15px; }
 </style>
-<section specs>
-<main>
+<section features>
+<ul>
+<li><a href='#' onclick='goto("./preview.html#server")'>server</a> full SSR with static, dynamic and periodic rendering</li>
+<li><a href='#' onclick='goto("./preview.html#styler")'>styler</a> scoped CSS by import, decorator and classNames</li>
+<li><a href='#' onclick='goto("./preview.html#storer")'>storer</a> OOP stateful handling with proxy objects</li>
+<li><a href='#' onclick='goto("./preview.html#ranker")'>ranker</a> SEO by function decorators with metatags types</li>
+<li><a href='#' onclick='goto("./preview.html#router")'>router</a>  routing by props, folder and decorator designing</li>
+<li><a href='#' onclick='goto("./preview.html#binder")'>binder</a> controlled and uncontrolled props bindings</li>
+</ul>
+</section>
+<section specs >
+<main summary cols='2' style='display:none'>
 <table>
 <thead>
 <tr>
@@ -244,42 +269,48 @@ body.marp-vscode blockquote {
 <tbody>
 <tr>
 <td style="text-align:center"><a href='#' onclick='goto("./preview.html#server")'>server</a></td>
-<td>full SSR with JSX, markdown and extended HTML support</td>
+<td>full SSR with static, dynamic and periodic rendering</td>
 <td></td>
 </tr>
 <tr>
 <td style="text-align:center"><a href='#' onclick='goto("./preview.html#styler")'>styler</a></td>
-<td>scoped CSS with @style decorator, global className tag, and fixed modular CSS imports</td>
+<td>scoped CSS by import, decorator and classNames</td>
 <td></td>
 </tr>
 <tr>
 <td style="text-align:center"><a href='#' onclick='goto("./preview.html#storer")'>storer</a></td>
-<td>stateful handling with proxy objects for local, global and 'orbital' component scope</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center"><a href='#' onclick='goto("./preview.html#ranker")'>ranker</a></td>
-<td>SEO using function decorators with metatags and open graph protocol support</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center"><a href='#' onclick='goto("./preview.html#router")'>router</a></td>
-<td>advanced routing with props, folder and decorator routing declarative approaches</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center"><a href='#' onclick='goto("./preview.html#binder")'>binder</a></td>
-<td>props bindings for simplified controlled and uncontrolled components approach</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center"><a href='#' onclick='goto("./preview.html#helper")'>helper</a></td>
-<td>types, retypes and prototypes extensions for typed and extended resources</td>
+<td>OOP stateful handling with proxy objects</td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<main>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><a href='#' onclick='goto("./preview.html#ranker")'>ranker</a></td>
+<td>SEO by function decorators with metatags types</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href='#' onclick='goto("./preview.html#router")'>router</a></td>
+<td>routing by props, folder and decorator designing</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href='#' onclick='goto("./preview.html#binder")'>binder</a></td>
+<td>controlled and uncontrolled props bindings</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</main>
 <center index style='zoom:0.7'>
 <h1 id="getting-started">Getting started...</h1>
 </center>
