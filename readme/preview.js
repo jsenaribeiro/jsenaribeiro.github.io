@@ -1,6 +1,6 @@
 function onPreview(id) {
    setTimeout(previewing, 111)
-   location.href = `#${id}`
+   if (id) location.href = `#${id}`
 }
 
 function previewing() {
@@ -12,6 +12,10 @@ function previewing() {
    location.hash && document
       .querySelector(location.hash)
       .classList.remove('hidden')   
+   
+   if (!location.hash.trim()) 
+      document.querySelector('#server')
+         .classList.remove('hidden') 
 }
 
 setTimeout(previewing, 111)

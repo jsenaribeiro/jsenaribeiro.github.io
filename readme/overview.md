@@ -1,29 +1,5 @@
 <script src='./overview.js'></script>
-<style>
-@import url(./overview.css);
-
-section[features] ul {
-   display: grid;
-   grid-template-columns: repeat(3, 1fr);
-}
-
-section[features] li {
-   display: block;
-   font-size: 13px;
-   padding: 0 10px;
-   text-align: center; 
-   margin-bottom: 15px;
-}
-
-section[features] a {
-   display: block;
-   font-size: 1.3em;
-   text-align: center;
-   letter-spacing: 5px;
-   margin-bottom: -3px;
-}
-
-</style>
+<style>@import url(./overview.css);</style>
 
 <article overview>
 

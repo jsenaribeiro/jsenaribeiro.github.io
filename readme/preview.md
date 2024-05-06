@@ -41,8 +41,8 @@ Static files is server by /assets and restful apis in /apis folder.
 
 ```py
 /assets
-  /styles.css
-  /favicon.ico
+   ├┈┈ /styles.css
+   └┈┈ /favicon.ico
 ```
 ```ts
 // exported as HTTP verb method naming
@@ -54,7 +54,7 @@ export const get = (request: Request) =>
 
 Exceptions are handled by local @error decorator and global component injection.
 
-<aside cols='3:5'>
+<aside cols='4:5'>
 
 ```tsx
 @error(<h1>Custom error...</h1>)
@@ -63,7 +63,7 @@ export function Sample() { ... }
 
 ```tsx
 const failure = (status, errors) => <>...</>
-await server("/routes", { failure }).render("#root")
+await server("/routes", { failure }).render()
 ```
 
 </aside>
