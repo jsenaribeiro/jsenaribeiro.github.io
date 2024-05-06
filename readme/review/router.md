@@ -92,7 +92,7 @@ const AwaitPropsSample = async props => <h1 await={AsyncSample}>loading...</h1>
 The @route functions decorator support route params with priority above folder routing.
 
 ```tsx
-import { route } from '@reactful/web'
+import { route } from '@reactful/client'
 
 @route('/whatever/profile/:id')
 export default async function Profile(props, { params }) {

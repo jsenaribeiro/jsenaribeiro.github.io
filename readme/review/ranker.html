@@ -11,7 +11,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -225,16 +227,16 @@ body.marp-vscode blockquote {
 </blockquote>
 <h2 id="seo-decorator">SEO decorator</h2>
 <p>SEO is achieved by @seo function decorator with title and description.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { seo } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/web&#x27;</span>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { seo } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
 
 @<span class="hljs-title function_">seo</span>(<span class="hljs-string">&#x27;title&#x27;</span>, <span class="hljs-string">&#x27;description&#x27;</span>)
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">About</span>(props) {
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">About</span>(<span class="hljs-params">props</span>) {
    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>About...<span class="hljs-tag">&lt;/&gt;</span></span>
 }
 </code></pre>
 <h2 id="seo-metatags">SEO metatags</h2>
 <p>The @seo decorator overload receives the main SEO metatags as object.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { seo, <span class="hljs-title class_">MetaTag</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/web&#x27;</span>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { seo, <span class="hljs-title class_">MetaTag</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
 
 <span class="hljs-keyword">const</span> <span class="hljs-attr">metatags</span>: <span class="hljs-title class_">MetaTag</span> = { <span class="hljs-attr">chartset</span>: <span class="hljs-string">&#x27;UTF-8&#x27;</span>, <span class="hljs-attr">keywords</span>: <span class="hljs-string">&#x27;key1, key2&#x27;</span> }
 
@@ -253,7 +255,7 @@ body.marp-vscode blockquote {
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
 <h2 id="dynamic-seo">Dynamic SEO</h2>
-<p>reactful supports dynamic SEO (request-time) with title and metatags directly in JSX. Those tags will be discarded in rendered JSX and inserted/replaced into current HTML head.</p>
+<p>Reactful supports dynamic SEO (request-time) with title and metatags directly in JSX. Those tags will be discarded in rendered JSX and inserted/replaced into current HTML head.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Todo</span>(<span class="hljs-params">props</span>) {
    <span class="hljs-keyword">const</span> todo = <span class="hljs-title function_">fetch</span>(<span class="hljs-string">`<span class="hljs-subst">${url}</span>/<span class="hljs-subst">${props.id}</span>`</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-title function_">json</span>())
 
@@ -266,7 +268,7 @@ body.marp-vscode blockquote {
 </span></code></pre>
 <h2 id="open-graph-protocol">Open Graph Protocol</h2>
 <p>reactful supports Open Graph Protocol metatags as metatag object and inner JSX elements.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { seo } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/web&#x27;</span>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { seo } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
 
 <span class="hljs-keyword">const</span> <span class="hljs-attr">metatags</span>: <span class="hljs-title class_">ImageMetaTagOG</span> = { 
    <span class="hljs-attr">chartset</span>: <span class="hljs-string">&#x27;UTF-8&#x27;</span>, 

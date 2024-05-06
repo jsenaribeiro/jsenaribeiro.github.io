@@ -141,7 +141,7 @@ await server("#root", settings).render("#root")
 With `@error` decorator, specific error handlers could be shared between components.
 
 ```tsx
-import { error } from '@reactful/web'
+import { error } from '@reactful/client'
 
 // sampling a custom high-order component error
 const mySpecificErrorComponent = (status, errors) => <p>

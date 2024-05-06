@@ -226,12 +226,13 @@ body.marp-vscode blockquote {
 </section>
 <h1 id="overview--preview--review"><strong>overview</strong> | <a href='#' onclick='goto("./preview.html")'>preview</a> | <a href='#'>review</a></h1>
 <blockquote>
-<p>server-side rendering • stateful objects • props directives • scoped CSS • dependency injection<br/>advanced routing • search engine optimization • function decorator • reactive forms<br/>api routes • props binding • JSX-in-HTML • RESTful action • delayed render<br/>markdown support • lazy components • fallback routing</p>
+<p>SSR • SEO • scoped CSS • stateful objects • easy routing<br/>API routes • props binding • function decorators<br/>markdown support • RESTful actions</p>
 </blockquote>
 <style>
    [specs] tr td:nth-of-type(3) { zoom:0.9; line-height:15px; }
 </style>
 <section specs>
+<main>
 <table>
 <thead>
 <tr>
@@ -278,29 +279,47 @@ body.marp-vscode blockquote {
 </tr>
 </tbody>
 </table>
+<main>
 <center index style='zoom:0.7'>
 <h1 id="getting-started">Getting started...</h1>
 </center>
-<p>The <code>@reactful/create</code> package enables easy project scaffold with multiple templates, flat folder structure and full settings for vscode with debug ready support with no extra configuration. After</p>
-<aside cols='4:5' style='zoom:0.9'>
+<p>Creating a new <strong>@reactful</strong> project using <code>@reactful/create</code> scaffold binaries.</p>
+<aside cols='4:5' style='zoom:0.9; margin-bottom:-15px;'>
 <pre><code class="language-ps"><span class="hljs-variable">$</span> bunx @reactful/create@latest
 
 - template? empty|minimal|sampling
 - project name? Sample
 - vs code IDE? (Y/n) y
 - install? yes
-
-<span class="hljs-variable">$</span> bunx <span class="hljs-built_in">start</span>
 </code></pre>
-<pre><code class="language-bash"><span class="hljs-comment"># STRUCTURE    # DESCRIPTION</span>
-
-\apis          <span class="hljs-comment"># restiful apis      </span>
-\assets        <span class="hljs-comment"># public static files</span>
-\builds        <span class="hljs-comment"># bundle and SSG htmls</span>
-\components    <span class="hljs-comment"># common jsx components</span>
-\directives    <span class="hljs-comment"># custom props directives</span>
-\routes        <span class="hljs-comment"># pages with md, jsx and html</span>
+<pre><code class="language-c">\apis          <span class="hljs-meta"># restiful apis      </span>
+\assets        <span class="hljs-meta"># public static files</span>
+\builds        <span class="hljs-meta"># bundle and SSG htmls</span>
+\components    <span class="hljs-meta"># common jsx components</span>
+\directives    <span class="hljs-meta"># custom props directives</span>
+\routes        <span class="hljs-meta"># pages with md, jsx and html</span>
 </code></pre>
+</aside>
+<p>Starting the <strong>@reactful</strong> server at <code>/index.ts</code> and routed client component in <code>/routes/hello.tsx</code></p>
+<aside cols='4:5' style='zoom:0.9'>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> server <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/server&#x27;</span>
+
+<span class="hljs-keyword">const</span> <span class="hljs-variable language_">global</span> = { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;World&#x27;</span> }
+
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>)
+     .<span class="hljs-title function_">inject</span>(<span class="hljs-variable language_">global</span>)
+     .<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
+</code></pre>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { client, useState } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful&#x27;</span>
+
+<span class="hljs-meta">@client</span>(<span class="hljs-literal">true</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params">props, { store }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Hello { store.name }<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{store}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+<br/>
+</aside>
 </section>
 </article>
             <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>

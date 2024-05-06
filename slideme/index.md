@@ -288,7 +288,7 @@ function Hello(p, { store }) {
 
 - import useStore and state
 - create a useStore object
-- decorated by @state(store)
+- use @client(true, state?)
 
 </aside>
 <aside>
@@ -318,11 +318,12 @@ function Hello(p, { store }) {
 
 ```tsx
 import { useStore } from '@reactful/web'
-import { state } from '@reactful/web'
+import { client } from '@reactful/web'
 
 const theme = useStore({mode:'light'})
 
-@state(theme) const Hello = () => <>
+@client(true, theme) 
+const Hello = props => <>
    <div>Theme = {theme.mode}</div>
 </>
 ```
@@ -366,7 +367,7 @@ function Hello() {
 
 **REACTFUL** ORBITAL STATE
 
-When an orbital state is changed, only the related components that uses an @state decorator with the related orbital state will render.
+When an orbital state is changed, only the related components that uses an @client(true, object) decorator with the related orbital state will render.
 
 </aside>
 <aside>

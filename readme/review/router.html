@@ -11,7 +11,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 .vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only] {
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
 	display: none;
 }
 
@@ -343,7 +345,7 @@ body.marp-vscode blockquote {
 </code></pre>
 <h2 id="dynamic-routes">Dynamic routes</h2>
 <p>The @route functions decorator support route params with priority above folder routing.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { route } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/web&#x27;</span>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { route } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
 
 @<span class="hljs-title function_">route</span>(<span class="hljs-string">&#x27;/whatever/profile/:id&#x27;</span>)
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Profile</span>(<span class="hljs-params">props, { params }</span>) {

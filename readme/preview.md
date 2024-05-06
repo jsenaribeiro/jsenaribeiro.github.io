@@ -17,9 +17,6 @@
 
 # <a href='#' onclick='goto("./overview.html")'>overview</a> | **preview** | <a href='#'>review</a>
 
-> server rendering • styler scoping • storer handling<br/>ranker mechanism • router modeling<br/>binder props • helper utilities
-
-
 <fieldset id='server' onclick='onPreview(this.id)'>
 <legend><b>SERVER</b> rendering</legend>
 
@@ -143,9 +140,9 @@ await server("/routes", { store })
 ```
 
 ```tsx
-import { useStore } from '@reactful/web'
+import { client, useStore } from '@reactful/client'
 const store = useStore({ name: 'world' })
-@state(store) const Hi = props => etc...
+@client(true, store) const Hi = props => etc...
 ```
 
 </aside>
@@ -162,7 +159,7 @@ Simple SEO using function decorators by @seo decorator with metatags support.
 <aside cols=2>
 
 ```tsx
-import { seo } from '@reactful/web'
+import { seo } from '@reactful/client'
 
 @seo('Home', 'A home page...')
 export function Home() { ... }
@@ -244,7 +241,7 @@ const Form = (props, { errors }) => <form data={props}
 It is possible custom props directives by dependency injection.
 
 ```tsx
-import { server } from '@reactful/web'
+import { server } from '@reactful/client'
 const shown = props => ({ ...props, hidden: !props.shown })
 await server("#root").inject(shown).render("#root")
 

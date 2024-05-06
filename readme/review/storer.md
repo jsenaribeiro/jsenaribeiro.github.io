@@ -68,13 +68,13 @@ This escope enables a Redux semantics with contextual subtree of components for 
 export const myStore = useStore({ guid: 0, name: 'john', date: new Date() })
 ```
 
-After useStore changed, the render calls in components where @state maps.
+After useStore changed, the render calls in components where @client(true, object?) maps.
 
 ```tsx
-import { state } from '@reactful/web'
+import { client } from '@reactful/client'
 import { myStore } from './stores'
 
-@state(myStore)
+@client(true, myStore)
 const Hello = props => <>   
    Hello { store.name } !
    <input value={store.name} {onChange} />
