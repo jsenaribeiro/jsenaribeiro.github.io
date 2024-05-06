@@ -10,9 +10,9 @@
    | <b>review</b>
 </h1>
 
-<header>props binding</header>
+<header>two-way data binding</header>
 
-> data binding • form binding • props directives<br/>RESTful actions • validation api
+> data binding • form binding • RESTful actions<br/>props directives • validation api • auth
 
 ## Data binding
 
@@ -118,8 +118,6 @@ async function onPost(response: Response) {
 ```
 
 </aside>
-
-
 
 ## Standard authentication
 

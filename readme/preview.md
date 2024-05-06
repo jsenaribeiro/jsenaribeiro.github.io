@@ -220,7 +220,7 @@ Go to <a href='#' onclick='goto("./review/router.html")'>review</a> section for 
 </fieldset>
 
 <fieldset id='binder' onclick='onPreview(this.id)'>
-<legend><b>BOUND</b> properting</legend>
+<legend><b>PROPS</b> bindings</legend>
 
 Controlled component **props binding** with `[data]` and `[bind]` props.
 
