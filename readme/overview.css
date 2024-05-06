@@ -56,3 +56,8 @@ a[review] {
 center[index] h1 {
    letter-spacing: 7px;
 }
+
+main[summary] table tbody td {
+   zoom: 0.9;
+   font-family: 11px;
+}

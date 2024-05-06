@@ -1,18 +1,31 @@
 <script src='./overview.js'></script>
-<style>@import url(./overview.css);</style>
+<style>
+@import url(./overview.css);
+
+section[features] ul {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+}
+
+section[features] li {
+   display: block;
+   font-size: 13px;
+   padding: 0 10px;
+   text-align: center; 
+   margin-bottom: 15px;
+}
+
+section[features] a {
+   display: block;
+   font-size: 1.3em;
+   text-align: center;
+   letter-spacing: 5px;
+   margin-bottom: -3px;
+}
+
+</style>
 
 <article overview>
-<section menu center menu-top>
-   
-   [easy](# 'vanilla-like low learning-curve') 
-   • [lite](#) 
-   • [lean](#) 
-   • [fast](#) 
-   • [full](#) 
-   • [flex](#) 
-   • [nice](#)
-
-</section>
 
 # **overview** | <a href='#' onclick='goto("./preview.html")'>preview</a> | <a href='#'>review</a>
 
@@ -22,22 +35,35 @@
    [specs] tr td:nth-of-type(3) { zoom:0.9; line-height:15px; }
 </style>
 
-<section specs>
 
+<section features>
 
-<main>
+- <a href='#' onclick='goto("./preview.html#server")'>server</a> full SSR with static, dynamic and periodic rendering
+- <a href='#' onclick='goto("./preview.html#styler")'>styler</a> scoped CSS by import, decorator and classNames 
+- <a href='#' onclick='goto("./preview.html#storer")'>storer</a> OOP stateful handling with proxy objects
+- <a href='#' onclick='goto("./preview.html#ranker")'>ranker</a> SEO by function decorators with metatags types 
+- <a href='#' onclick='goto("./preview.html#router")'>router</a>  routing by props, folder and decorator designing
+- <a href='#' onclick='goto("./preview.html#binder")'>binder</a> controlled and uncontrolled props bindings
 
-|                                                                |                                                                                       |     |
-| :------------------------------------------------------------: | ------------------------------------------------------------------------------------- | --- |
-| <a href='#' onclick='goto("./preview.html#server")'>server</a> | full SSR with JSX, markdown and extended HTML support                                 |
-| <a href='#' onclick='goto("./preview.html#styler")'>styler</a> | scoped CSS with @style decorator, global className tag, and fixed modular CSS imports |
-| <a href='#' onclick='goto("./preview.html#storer")'>storer</a> | stateful handling with proxy objects for local, global and 'orbital' component scope  |
-| <a href='#' onclick='goto("./preview.html#ranker")'>ranker</a> | SEO using function decorators with metatags and open graph protocol support           |
-| <a href='#' onclick='goto("./preview.html#router")'>router</a> | advanced routing with props, folder and decorator routing declarative approaches      |
-| <a href='#' onclick='goto("./preview.html#binder")'>binder</a> | props bindings for simplified controlled and uncontrolled components approach         |
-| <a href='#' onclick='goto("./preview.html#helper")'>helper</a> | types, retypes and prototypes extensions for typed and extended resources             |
+</section>
 
-<main>
+<section specs >
+
+<main summary cols='2' style='display:none'>
+
+|                                                                |                                                            |     |
+| :------------------------------------------------------------: | ---------------------------------------------------------- | --- |
+| <a href='#' onclick='goto("./preview.html#server")'>server</a> | full SSR with static, dynamic and periodic rendering       |
+| <a href='#' onclick='goto("./preview.html#styler")'>styler</a> | scoped CSS by import, decorator and classNames             |
+| <a href='#' onclick='goto("./preview.html#storer")'>storer</a> | OOP stateful handling with proxy objects        |
+
+|                                                                |                                                            |     |
+| :------------------------------------------------------------: | ---------------------------------------------------------- | --- |
+| <a href='#' onclick='goto("./preview.html#ranker")'>ranker</a> | SEO by function decorators with metatags types             |
+| <a href='#' onclick='goto("./preview.html#router")'>router</a> |  routing by props, folder and decorator designing |
+| <a href='#' onclick='goto("./preview.html#binder")'>binder</a> | controlled and uncontrolled props bindings |
+
+</main>
 
 <center index style='zoom:0.7'>
 
