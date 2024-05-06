@@ -18,7 +18,7 @@
 # <a href='#' onclick='goto("./overview.html")'>overview</a> | **preview** | <a href='#'>review</a>
 
 <fieldset id='server' onclick='onPreview(this.id)'>
-<legend><b>SERVER</b> rendering</legend>
+<legend><b>SERVE</b> rendering</legend>
 
 Full server-side rendering with simple function @decorators.
 
@@ -73,7 +73,7 @@ Go to <a href='#' onclick='goto("./review/server.html")'>review</a> section for 
 </fieldset>
 
 <fieldset id ='styler' onclick='onPreview(this.id)'>
-<legend><b>STYLER</b> scoping</legend>
+<legend><b>STYLE</b> scoping</legend>
 
 Fixed modular CSS with component-scoped by decorators or className tag.
 
@@ -115,7 +115,7 @@ Go to <a href='#' onclick='goto("./review/styler.html")'>review</a> section for 
 </fieldset>
 
 <fieldset id='storer' onclick='onPreview(this.id)'>
-<legend><b>STORER</b> handling</legend>
+<legend><b>STATE</b> handling</legend>
 
 Stateful proxy object for **local** (stateful props), **global** and **orbital** states.
 
@@ -151,8 +151,8 @@ Go to <a href='#' onclick='goto("./review/storer.html")'>review</a> section for 
 
 </fieldset>
 
-<fieldset id='ranker' onclick='onPreview(this.id)'>
-<legend><b>RANKER</b> mechanism</legend>
+<fieldset id='SEO' onclick='onPreview(this.id)'>
+<legend><b>INDEX</b> ranking</legend>
 
 Simple SEO using function decorators by @seo decorator with metatags support.
 
@@ -184,7 +184,7 @@ Go to <a href='#' onclick='goto("./review/ranker.html")'>review</a> section for 
 </fieldset>
 
 <fieldset id='router' onclick='onPreview(this.id)'>
-<legend><b>ROUTER</b> modeling</legend>
+<legend><b>ROUTE</b> modeling</legend>
 
 The `@route` decorator enables params (dynamic routes) by dependency injection.
 
@@ -220,7 +220,7 @@ Go to <a href='#' onclick='goto("./review/router.html")'>review</a> section for 
 </fieldset>
 
 <fieldset id='binder' onclick='onPreview(this.id)'>
-<legend><b>BINDER</b> properting</legend>
+<legend><b>BOUND</b> properting</legend>
 
 Controlled component **props binding** with `[data]` and `[bind]` props.
 
@@ -253,7 +253,7 @@ Go to <a href='#' onclick='goto("./review/binder.html")'>review</a> section for 
 
 </fieldset>
 
-<fieldset id='helper' onclick='onPreview(this.id)'>
+<fieldset id='helper' onclick='onPreview(this.id)' hide>
 <legend><b>HELPER</b> utilities</legend>
 
 Type, retype and prototypes are available with `@reactful/extensions` npm package.

@@ -226,7 +226,7 @@ body.marp-vscode blockquote {
 </section>
 <h1 id="overview--preview--review"><a href='#' onclick='goto("./overview.html")'>overview</a> | <strong>preview</strong> | <a href='#'>review</a></h1>
 <fieldset id='server' onclick='onPreview(this.id)'>
-<legend><b>SERVER</b> rendering</legend>
+<legend><b>SERVE</b> rendering</legend>
 <p>Full server-side rendering with simple function @decorators.</p>
 <aside cols='2' >
 <pre><code class="language-tsx">@<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;dynamic&#x27;</span>)  
@@ -259,7 +259,7 @@ body.marp-vscode blockquote {
 <p>Go to <a href='#' onclick='goto("./review/server.html")'>review</a> section for more details.</p>
 </fieldset>
 <fieldset id ='styler' onclick='onPreview(this.id)'>
-<legend><b>STYLER</b> scoping</legend>
+<legend><b>STYLE</b> scoping</legend>
 <p>Fixed modular CSS with component-scoped by decorators or className tag.</p>
 <aside cols='2'><div>
 <pre><code class="language-css"><span class="hljs-comment">/* file: module.css */</span>
@@ -285,7 +285,7 @@ body.marp-vscode blockquote {
 <p>Go to <a href='#' onclick='goto("./review/styler.html")'>review</a> section for more details.</p>
 </fieldset>
 <fieldset id='storer' onclick='onPreview(this.id)'>
-<legend><b>STORER</b> handling</legend>
+<legend><b>STATE</b> handling</legend>
 <p>Stateful proxy object for <strong>local</strong> (stateful props), <strong>global</strong> and <strong>orbital</strong> states.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> share <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./store&#x27;</span>
 
@@ -308,8 +308,8 @@ body.marp-vscode blockquote {
 </aside>
 <p>Go to <a href='#' onclick='goto("./review/storer.html")'>review</a> section for more details.</p>
 </fieldset>
-<fieldset id='ranker' onclick='onPreview(this.id)'>
-<legend><b>RANKER</b> mechanism</legend>
+<fieldset id='SEO' onclick='onPreview(this.id)'>
+<legend><b>INDEX</b> ranking</legend>
 <p>Simple SEO using function decorators by @seo decorator with metatags support.</p>
 <aside cols=2>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { seo } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
@@ -332,7 +332,7 @@ body.marp-vscode blockquote {
 <p>Go to <a href='#' onclick='goto("./review/ranker.html")'>review</a> section for more details.</p>
 </fieldset>
 <fieldset id='router' onclick='onPreview(this.id)'>
-<legend><b>ROUTER</b> modeling</legend>
+<legend><b>ROUTE</b> modeling</legend>
 <p>The <code>@route</code> decorator enables params (dynamic routes) by dependency injection.</p>
 <pre><code class="language-ts"><span class="hljs-meta">@route</span>(<span class="hljs-string">&#x27;/whatever-route-you-want/params/:id&#x27;</span>)
 <span class="hljs-keyword">const</span> <span class="hljs-title class_">Params</span>(props, { params }) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>ID: { params.id }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
@@ -356,7 +356,7 @@ body.marp-vscode blockquote {
 <p>Go to <a href='#' onclick='goto("./review/router.html")'>review</a> section for more details.</p>
 </fieldset>
 <fieldset id='binder' onclick='onPreview(this.id)'>
-<legend><b>BINDER</b> properting</legend>
+<legend><b>BOUND</b> properting</legend>
 <p>Controlled component <strong>props binding</strong> with <code>[data]</code> and <code>[bind]</code> props.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span></span> 
 </code></pre>
@@ -377,7 +377,7 @@ declare <span class="hljs-variable language_">module</span> <span class="hljs-st
 </code></pre>
 <p>Go to <a href='#' onclick='goto("./review/binder.html")'>review</a> section for more details.</p>
 </fieldset>
-<fieldset id='helper' onclick='onPreview(this.id)'>
+<fieldset id='helper' onclick='onPreview(this.id)' hide>
 <legend><b>HELPER</b> utilities</legend>
 <p>Type, retype and prototypes are available with <code>@reactful/extensions</code> npm package.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">import</span> <span class="hljs-string">`@reactful/extensions`</span>
