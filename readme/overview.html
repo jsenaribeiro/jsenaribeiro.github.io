@@ -257,98 +257,33 @@ section[features] a {
 </ul>
 </section>
 <section specs >
-<main summary cols='2' style='display:none'>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><a href='#' onclick='goto("./preview.html#server")'>server</a></td>
-<td>full SSR with static, dynamic and periodic rendering</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center"><a href='#' onclick='goto("./preview.html#styler")'>styler</a></td>
-<td>scoped CSS by import, decorator and classNames</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center"><a href='#' onclick='goto("./preview.html#storer")'>storer</a></td>
-<td>OOP stateful handling with proxy objects</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><a href='#' onclick='goto("./preview.html#ranker")'>ranker</a></td>
-<td>SEO by function decorators with metatags types</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center"><a href='#' onclick='goto("./preview.html#router")'>router</a></td>
-<td>routing by props, folder and decorator designing</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center"><a href='#' onclick='goto("./preview.html#binder")'>binder</a></td>
-<td>controlled and uncontrolled props bindings</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</main>
-<center index style='zoom:0.7'>
+<center index style='zoom:0.7' >
 <h1 id="getting-started">Getting started...</h1>
-</center>
 <br/>
+</center>
 <aside cols='4:5' style='zoom:0.9; margin-bottom:-15px;'>
 <pre><code class="language-ps"><span class="hljs-variable">$</span> bunx @reactful/create@latest
-
 - template? empty|minimal|sampling
 - project name? Sample
 - vs code IDE? (Y/n) y
 - install? yes
-</code></pre>
-<pre><code class="language-c">\apis          <span class="hljs-meta"># restiful apis      </span>
-\assets        <span class="hljs-meta"># public static files</span>
-\builds        <span class="hljs-meta"># bundle and SSG htmls</span>
-\components    <span class="hljs-meta"># common jsx components</span>
-\directives    <span class="hljs-meta"># custom props directives</span>
-\routes        <span class="hljs-meta"># pages with md, jsx and html</span>
-</code></pre>
-</aside>
-<aside cols='4:5' style='zoom:0.9'>
-<pre><code class="language-typescript"><span class="hljs-keyword">import</span> server <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/server&#x27;</span>
 
-<span class="hljs-keyword">const</span> <span class="hljs-variable language_">global</span> = { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;World&#x27;</span> }
-
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>)
-     .<span class="hljs-title function_">inject</span>(<span class="hljs-variable language_">global</span>)
-     .<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
+<span class="hljs-variable">$</span> bun <span class="hljs-built_in">start</span>
+- building...
+- bundling...
+- serving...
 </code></pre>
-<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { client, useState } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful&#x27;</span>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/server&#x27;</span>
+<span class="hljs-keyword">import</span> { client, useState } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful&#x27;</span>
+
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 
 <span class="hljs-meta">@client</span>(<span class="hljs-literal">true</span>)
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params">props, { store }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Hello { store.name }<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{store}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Hello { props.name }<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<br/>
 </aside>
 </section>
 </article>

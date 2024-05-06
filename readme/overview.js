@@ -1,6 +1,6 @@
 function delay(timeout, fn) { setTimeout(fn, timeout) }
 
-delay(99, () => document.body.style.zoom = 1.2)
+delay(99, () => document.body.style.zoom = 1.3)
 
 function onOverview() {
    document.querySelector('article[overview]').hidden = false
