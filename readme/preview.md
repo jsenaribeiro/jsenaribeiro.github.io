@@ -15,7 +15,7 @@
    
 </section>
 
-# <a href='#' onclick='goto("./overview.html")'>overview</a> | **preview** | <a href='#'>review</a>
+# <a href='#' onclick='goto("./overview.html")'>overview</a> | **preview** 
 
 <fieldset id='server' onclick='onPreview(this.id)'>
 <legend><b>SERVE</b> rendering</legend>

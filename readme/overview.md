@@ -3,7 +3,7 @@
 
 <article overview>
 
-# **overview** | <a href='#' onclick='goto("./preview.html")'>preview</a> | <a href='#'>review</a>
+# **overview** 
 
 > SSR • SEO • scoped CSS • stateful objects • routing<br/>API routes • props binding • function decorators<br/>RESTful actions • markdown * JSX-in-HTML
 

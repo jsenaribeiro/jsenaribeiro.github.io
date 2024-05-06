@@ -11,7 +11,7 @@ h1 em { color:dimgrey !important }
 h1 { 
    border:0;
    font-size:27px !important; 
-   letter-spacing:-1px; 
+   letter-spacing: 3px; 
    line-height: 51px;
 }
 
