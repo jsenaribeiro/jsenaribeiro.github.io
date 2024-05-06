@@ -40,10 +40,10 @@ section[features] a {
 
 - <a href='#' onclick='goto("./preview.html#server")'>server</a> full SSR with static, dynamic and periodic rendering
 - <a href='#' onclick='goto("./preview.html#styler")'>styler</a> scoped CSS by import, decorator and classNames 
-- <a href='#' onclick='goto("./preview.html#storer")'>storer</a> OOP stateful handling with proxy objects
+- <a href='#' onclick='goto("./preview.html#storer")'>storer</a> OOP stateful handling as stateful proxy objects
 - <a href='#' onclick='goto("./preview.html#ranker")'>ranker</a> SEO by function decorators with metatags types 
-- <a href='#' onclick='goto("./preview.html#router")'>router</a>  routing by props, folder and decorator designing
-- <a href='#' onclick='goto("./preview.html#binder")'>binder</a> controlled and uncontrolled props bindings
+- <a href='#' onclick='goto("./preview.html#router")'>router</a>  routing desgined by props, folder and function decorator
+- <a href='#' onclick='goto("./preview.html#binder")'>binder</a> props bindings for controlled and uncontrolled components
 
 </section>
 
@@ -70,8 +70,8 @@ section[features] a {
 # Getting started...
 
 </center>
+<br/>
 
-Creating a new **@reactful** project using `@reactful/create` scaffold binaries.
 
 <aside cols='4:5' style='zoom:0.9; margin-bottom:-15px;'>
 
@@ -94,8 +94,6 @@ $ bunx @reactful/create@latest
 ```
 
 </aside>
-
-Starting the **@reactful** server at `/index.ts` and routed client component in `/routes/hello.tsx`
 
 <aside cols='4:5' style='zoom:0.9'>
 
