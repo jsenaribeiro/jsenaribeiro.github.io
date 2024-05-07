@@ -143,8 +143,32 @@ Go to <a href='#' onclick='goto("./review/ranker.html")'>review</a> section for 
 
 </fieldset>
 
+<fieldset id='binder' onclick='onPreview(this.id)'>
+<legend><b>PROPS</b> binding  </legend>
+
+Controlled component **props binding** with `[data]` and `[bind]` props.
+
+```tsx
+const Hello = props => <input data={props} bind='name' /> 
+```
+
+Uncontroled component `form[data]` with actions, validation, and authentication.
+
+```tsx
+const Form = (props, { errors }) => <form data={props} 
+   method="post" action="http://api.sample.com"> 
+   Name: <input bind='name' maxlength={50} /> 
+   <button>Submit</button>
+</form>
+```
+
+
+Go to <a href='#' onclick='goto("./review/binder.html")'>review</a> section for more details.
+
+</fieldset>
+
 <fieldset id='router' onclick='onPreview(this.id)'>
-<legend><b>ROUTE</b> modeling</legend>
+<legend><b>ROUTE</b> design</legend>
 
 The `@route` decorator enables params (dynamic routes) by dependency injection.
 
@@ -169,30 +193,6 @@ const Menu = (props) => <>
 </aside>
 
 Go to <a href='#' onclick='goto("./review/router.html")'>review</a> section for more details.
-
-</fieldset>
-
-<fieldset id='binder' onclick='onPreview(this.id)'>
-<legend><b>PROPS</b> bindings</legend>
-
-Controlled component **props binding** with `[data]` and `[bind]` props.
-
-```tsx
-const Hello = props => <input data={props} bind='name' /> 
-```
-
-Uncontroled component `form[data]` with actions, validation, and authentication.
-
-```tsx
-const Form = (props, { errors }) => <form data={props} 
-   method="post" action="http://api.sample.com"> 
-   Name: <input bind='name' maxlength={50} /> 
-   <button>Submit</button>
-</form>
-```
-
-
-Go to <a href='#' onclick='goto("./review/binder.html")'>review</a> section for more details.
 
 </fieldset>
 

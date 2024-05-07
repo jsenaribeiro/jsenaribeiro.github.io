@@ -10,9 +10,9 @@
    | <b>review</b>
 </h1>
 
-<header>two-way data binding</header>
-
 > data binding • form binding • RESTful actions<br/>props directives • validation api • auth
+
+<header>props binding</header>
 
 ## Data binding
 

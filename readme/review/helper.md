@@ -10,9 +10,9 @@
    | <b>review</b>
 </h1>
 
-<header>helper utilities</header>
-
 > function • object • string<br/>number • JSON • array
+
+<header>helper utilities</header>
 
 ## Function
 

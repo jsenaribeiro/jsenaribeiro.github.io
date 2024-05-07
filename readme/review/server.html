@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Server startup API</title>
+            <title>Server startup</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -220,12 +220,12 @@ body.marp-vscode blockquote {
    | <a href='#' onclick="goto('./preview.html#server')">preview</a> 
    | <b>review</b>
 </h1>
-<header>server-side rendering</header>
 <blockquote>
 <p>static rendering • dynamic rendering • periodic rendering <br/>react server components • partial hydration • web apis<br/>extended html • error handling • markdown</p>
 </blockquote>
-<h2 id="server-startup-api">Server startup API</h2>
-<p>reactful startup is a server function that serves a routes folder with its container routes/index.html. Its host port default is 3000 in .env file.</p>
+<header>server-side rendering</header>
+<h2 id="server-startup">Server startup</h2>
+<p>Reactful starts with a server function in port 3000 (defined in .env file).</p>
 <pre><code class="language-ts"><span class="hljs-comment">/* define the route folder and customize settings */</span>
 <span class="hljs-title function_">server</span>(<span class="hljs-attr">routes</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">&#x27;/routes&#x27;</span>, <span class="hljs-attr">settings</span>: { etc... })
 
@@ -235,7 +235,7 @@ body.marp-vscode blockquote {
 <span class="hljs-comment">/* pass the query selector for root element */</span>
 <span class="hljs-title function_">render</span>(<span class="hljs-attr">query</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">&quot;#root&quot;</span>)
 </code></pre>
-<p>Here a sample of startup reactful index file in /index.ts</p>
+<p>Bellow reactful startup sample with some props directive injections.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactful/server&#x27;</span>
 <span class="hljs-keyword">import</span> { directive1, directive2 } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./directives&#x27;</span>
 
@@ -244,8 +244,8 @@ body.marp-vscode blockquote {
      .<span class="hljs-title function_">inject</span>(directive2)
      .<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 </code></pre>
-<h2 id="server-folder-models">Server folder models</h2>
-<p>reactful <code>/apis</code>, <code>/assets</code>, and <code>/routes</code>, where <strong>'/api'</strong> servers RESTful APIs with as exported functions.</p>
+<h2 id="folder-structure">Folder structure</h2>
+<p>Reactful server works with <code>/apis</code>, <code>/assets</code>, and <code>/routes</code> folders. The /apis folders serve as <strong>'/api'</strong> routes for RESTful APIs as exported functions with HTTP verb names.</p>
 <pre><code class="language-ts"><span class="hljs-comment">// file: /apis/sample.ts</span>
 <span class="hljs-comment">// route: http://localhost:3000/api/sample</span>
 <span class="hljs-comment">// warning: route is both resolved as /api and /apis</span>
@@ -254,16 +254,16 @@ body.marp-vscode blockquote {
 <p>The <strong>/assets</strong> folder serves all static content as images, styles, sounds, etc.</p>
 <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/assets/styles.css&quot;</span> /&gt;</span>
 </code></pre>
-<p>The <strong>/routes</strong> folder supports JSX, HTML and markdown by filename and folder/index.</p>
-<pre><code class="language-ts"><span class="hljs-comment">// routing name conflict will throw a build exception </span>
-&gt;&gt; about.<span class="hljs-property">md</span> x about.<span class="hljs-property">tsx</span> x about.<span class="hljs-property">html</span> x about/index.<span class="hljs-property">tsx</span>
+<p>The <strong>/routes</strong> folder is default routing for routing page components. It supports rendering to JSX, HTML and markdown files and also resolve /name/index.tsx as /name routing.</p>
+<pre><code class="language-ts"><span class="hljs-meta">@server</span>(<span class="hljs-string">&#x27;static&#x27;</span>) <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>Home page<span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<h2 id="client-side-components">Client-side components</h2>
+<p>Conflicting routing resolution will throw an exception in build time.</p>
+<h2 id="client-component">Client component</h2>
 <p>Client components are modelled with @client function decorators. A more component-scope alternative than next.js modular 'use client' and intra-component fetch api extensions.</p>
-<pre><code class="language-tsx">@client
+<pre><code class="language-tsx">@<span class="hljs-title function_">client</span>(<span class="hljs-literal">true</span>)
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">ClientSideRendered</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<h2 id="server-side-components">Server-side components</h2>
+<h2 id="server-component">Server component</h2>
 <p>Static, dynamic and periodic SSR is supported sing @server function decorator as metadata for default exported components. The static SSR is the default rendering model (implicit).</p>
 <pre><code class="language-tsx">@<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;static&#x27;</span>) <span class="hljs-comment">// default</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Static</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
@@ -286,32 +286,23 @@ body.marp-vscode blockquote {
    <span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span>&gt;</span></span>
 }
 </code></pre>
-<h2 id="extended-renders">Extended renders</h2>
-<p>Markdown and HTML are supported a new <code>&lt;link&gt;</code> extension for JSX usage inside HTML.</p>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;component&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;../components/header.tsx&quot;</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;Header&quot;</span> /&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>   
-   <span class="hljs-tag">&lt;<span class="hljs-name">Header</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;HTML-X&quot;</span> /&gt;</span> <span class="hljs-comment">&lt;!-- JSX into HTML --&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-</code></pre>
-<h2 id="exception-components">Exception components</h2>
-<p>reactful renderas a default global error component that could be replaceable in failure member in reactful settings object in server call.</p>
+<h2 id="error-component">Error component</h2>
+<p>Reactful has a default global error component that could by replaced by a custom failure high-order component in reactful settings during server call.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactful/server&#x27;</span>
 
 <span class="hljs-comment">// sampling a custom high-order component error</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">myGenericErrorComponent</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">myCustomErrorComponent</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My generic error page...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>{ errors.map((x,i) =&gt; <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{i}</span>&gt;</span>{ x }<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>) }<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
 
 <span class="hljs-comment">// replacing default failure HOC for error handling</span>
-<span class="hljs-keyword">const</span> settings = { <span class="hljs-attr">failure</span>: <span class="hljs-title class_">MyGenericErrorComponent</span> }
+<span class="hljs-keyword">const</span> settings = { <span class="hljs-attr">failure</span>: myCustomErrorComponent }
 
 <span class="hljs-comment">// starting reactful server with custom error component</span>
 <span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>, settings).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 </code></pre>
-<p>With <code>@error</code> decorator, specific error handlers could be shared between components.</p>
+<p>Local error handling is covered by <code>@error</code> component decorator, passing specific error high-order component for each specific component if there is any exception at rendering.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { error } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
 
 <span class="hljs-comment">// sampling a custom high-order component error</span>
@@ -325,6 +316,20 @@ body.marp-vscode blockquote {
 
 @<span class="hljs-title function_">error</span>(mySpecificErrorComponent)
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Example</span>(<span class="hljs-params"></span>) { ... }
+</code></pre>
+<h2 id="jsx-in-html-extension">JSX-in-HTML extension</h2>
+<p>Markdown and HTML support an extended <code>&lt;link&gt;</code> tag for JSX import inside HTML. This enables importing React component inside a HTML with server-side static rendering.</p>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;react&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;../components/header.tsx&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">Header</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;HTML-X&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span> <span class="hljs-comment">&lt;!-- JSX into HTML --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p>Use the <code>rel</code> attribute in <code>&lt;link /&gt;</code> to import an exported named component, otherwise, it will import the default component in defined in <code>href</code> path to component.</p>
+<pre><code class="language-html"><span class="hljs-comment">&lt;!-- default component in /components/header.tsx&quot; --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;react&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;../components/header.tsx&quot;</span> /&gt;</span>
+
+<span class="hljs-comment">&lt;!-- &#x27;Header&#x27; component in /components/header.tsx&quot; --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;Header&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;react&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;../components/header.tsx&quot;</span> /&gt;</span>
 </code></pre>
 <br/>
             

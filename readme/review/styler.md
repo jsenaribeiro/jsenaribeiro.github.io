@@ -10,9 +10,9 @@
    | <b>review</b>
 </h1>
 
-<header>CSS style scopings</header>
-
 > module scope CSS • component scope CSS • layout props <br/>function decorator • SoC styling • vanilla-like CSS
+
+<header>CSS style scoping</header>
 
 
 ## Modular scoped CSS (import)
