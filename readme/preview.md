@@ -3,7 +3,7 @@
 <script src='./preview.js'></script>
 
 <article id='preview' preview>
-<section menu center menu-top>
+<section menu center menu-top hidden>
    
    [easy](# 'vanilla-like low learning-curve') 
    • [lite](#) 
@@ -15,7 +15,11 @@
    
 </section>
 
-# <a href='#' onclick='goto("./overview.html")'>overview</a> | **preview** 
+<title>REACTFUL</title>
+
+# <a href='#' onclick='goto("./overview.html")'>overview</a> | **preview**
+
+> SSR • SEO • scoped CSS • stateful objects • routing<br/>API routes • props binding • function decorators<br/>RESTful actions • markdown * JSX-in-HTML
 
 <fieldset id='server' onclick='onPreview(this.id)'>
 <legend><b>SERVE</b> rendering</legend>
@@ -107,7 +111,7 @@ Go to <a href='#' onclick='goto("./review/storer.html")'>review</a> section for 
 
 </fieldset>
 
-<fieldset id='SEO' onclick='onPreview(this.id)'>
+<fieldset id='ranker' onclick='onPreview(this.id)'>
 <legend><b>INDEX</b> ranking</legend>
 
 Simple SEO using function decorators by @seo decorator with metatags support.

@@ -215,7 +215,7 @@ body.marp-vscode blockquote {
 <script src='./overview.js'></script>
 <script src='./preview.js'></script>
 <article id='preview' preview>
-<section menu center menu-top>
+<section menu center menu-top hidden>
 <p><a href="#" title="vanilla-like low learning-curve">easy</a>
 • <a href="#">lite</a>
 • <a href="#">lean</a>
@@ -224,7 +224,11 @@ body.marp-vscode blockquote {
 • <a href="#">flex</a>
 • <a href="#">nice</a></p>
 </section>
+<title>REACTFUL</title>
 <h1 id="overview--preview"><a href='#' onclick='goto("./overview.html")'>overview</a> | <strong>preview</strong></h1>
+<blockquote>
+<p>SSR • SEO • scoped CSS • stateful objects • routing<br/>API routes • props binding • function decorators<br/>RESTful actions • markdown * JSX-in-HTML</p>
+</blockquote>
 <fieldset id='server' onclick='onPreview(this.id)'>
 <legend><b>SERVE</b> rendering</legend>
 <p>Reactful server has support to /apis, /assets and /routes with full server-side render.</p>
@@ -282,7 +286,7 @@ body.marp-vscode blockquote {
 </code></pre>
 <p>Go to <a href='#' onclick='goto("./review/storer.html")'>review</a> section for more details.</p>
 </fieldset>
-<fieldset id='SEO' onclick='onPreview(this.id)'>
+<fieldset id='ranker' onclick='onPreview(this.id)'>
 <legend><b>INDEX</b> ranking</legend>
 <p>Simple SEO using function decorators by @seo decorator with metatags support.</p>
 <aside cols=2>

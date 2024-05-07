@@ -3,9 +3,15 @@
 
 <article overview>
 
+<title>REACTFUL</title>
+
+<section title>
+
 # **overview** 
 
-> SSR • SEO • scoped CSS • stateful objects • routing<br/>API routes • props binding • function decorators<br/>RESTful actions • markdown * JSX-in-HTML
+> modern stateful framework for react
+
+</section>
 
 <style>
    [specs] tr td:nth-of-type(3) { zoom:0.9; line-height:15px; }
@@ -27,7 +33,7 @@
 
 <center index style='zoom:0.7' >
 
-# Getting started...
+# getting started
 <br/>
 
 </center>

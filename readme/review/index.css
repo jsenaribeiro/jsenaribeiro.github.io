@@ -2,7 +2,7 @@
 
 div[title] { margin-top:-19px; }
 
-h1 > a { letter-spacing: -1px; }
+h1 > b, h1 > a { letter-spacing: -1px; }
 
 /* h1[title] {
    border:0;
@@ -22,7 +22,7 @@ h2 {
    border-bottom-color: #555 !important;
 }
 
-embed { height: 110px; }
+embed { height: 115px; }
 
 header {   
    margin-bottom: 20px;

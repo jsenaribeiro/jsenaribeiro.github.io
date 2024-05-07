@@ -14,9 +14,9 @@
 
 > static rendering • dynamic rendering • periodic rendering <br/>react server components • partial hydration • web apis<br/>extended html • error handling • markdown
 
-## Server startup API
+## Server startup
 
-reactful startup is a server function that serves a routes folder with its container routes/index.html. Its host port default is 3000 in .env file.
+Reactful starts with a server function in port 3000 (defined in .env file).
 
 ```ts
 /* define the route folder and customize settings */
@@ -29,7 +29,7 @@ inject(directive: Proper)
 render(query: string = "#root")
 ```
 
-Here a sample of startup reactful index file in /index.ts
+Bellow reactful startup sample with some props directive injections.
 
 ```ts
 import { server } from 'reactful/server'
@@ -41,9 +41,9 @@ await server("/routes", { etc... })
      .render("#root")
 ```
 
-## Server folder models
+## Folder structure
 
-reactful `/apis`, `/assets`, and `/routes`, where **'/api'** servers RESTful APIs with as exported functions. 
+Reactful server works with `/apis`, `/assets`, and `/routes` folders. The /apis folders serve as **'/api'** routes for RESTful APIs as exported functions with HTTP verb names. 
 
 ```ts
 // file: /apis/sample.ts
@@ -58,24 +58,26 @@ The **/assets** folder serves all static content as images, styles, sounds, etc.
 <link rel="stylesheet" href="/assets/styles.css" />
 ```
 
-The **/routes** folder supports JSX, HTML and markdown by filename and folder/index.
+The **/routes** folder is default routing for routing page components. It supports rendering to JSX, HTML and markdown files and also resolve /name/index.tsx as /name routing. 
+
 
 ```ts
-// routing name conflict will throw a build exception 
->> about.md x about.tsx x about.html x about/index.tsx
+@server('static') export default props => <>Home page</>
 ```
 
+Conflicting routing resolution will throw an exception in build time.
 
-## Client-side components
+
+## Client component
 
 Client components are modelled with @client function decorators. A more component-scope alternative than next.js modular 'use client' and intra-component fetch api extensions. 
 
 ```tsx
-@client
+@client(true)
 export default const ClientSideRendered = props => <>...</>
 ```
 
-## Server-side components
+## Server component
 
 Static, dynamic and periodic SSR is supported sing @server function decorator as metadata for default exported components. The static SSR is the default rendering model (implicit).
 
@@ -105,40 +107,27 @@ export default async function AsyncComponent(props) {
 }
 ```
 
-## Extended renders
+## Error component
 
-Markdown and HTML are supported a new `<link>` extension for JSX usage inside HTML.
-
-```html
-<head>
-   <link type="component" href="../components/header.tsx" rel="Header" />
-</head>
-<body>   
-   <Header title="HTML-X" /> <!-- JSX into HTML -->
-</body>
-```
-
-## Exception components
-
-reactful renderas a default global error component that could be replaceable in failure member in reactful settings object in server call.
+Reactful has a default global error component that could by replaced by a custom failure high-order component in reactful settings during server call.
 
 ```tsx
 import { server } from 'reactful/server'
 
 // sampling a custom high-order component error
-const myGenericErrorComponent = (status, errors) => <p>
+const myCustomErrorComponent = (status, errors) => <p>
    <h1>My generic error page...</h1>
    <ul>{ errors.map((x,i) => <li key={i}>{ x }</li>) }</ul>
 </p>
 
 // replacing default failure HOC for error handling
-const settings = { failure: MyGenericErrorComponent }
+const settings = { failure: myCustomErrorComponent }
 
 // starting reactful server with custom error component
 await server("#root", settings).render("#root")
 ```
 
-With `@error` decorator, specific error handlers could be shared between components.
+Local error handling is covered by `@error` component decorator, passing specific error high-order component for each specific component if there is any exception at rendering.
 
 ```tsx
 import { error } from '@reactful/client'
@@ -154,6 +143,27 @@ export function Sample() { ... }
 
 @error(mySpecificErrorComponent)
 export function Example() { ... }
+```
+
+## JSX-in-HTML extension
+
+Markdown and HTML support an extended `<link>` tag for JSX import inside HTML. This enables importing React component inside a HTML with server-side static rendering.
+
+```html
+<html>
+<head><link type="react" href="../components/header.tsx" /></head>
+<body><Header title="HTML-X" /></body> <!-- JSX into HTML -->
+</html>
+```
+
+Use the `rel` attribute in `<link />` to import an exported named component, otherwise, it will import the default component in defined in `href` path to component. 
+
+```html
+<!-- default component in /components/header.tsx" -->
+<link type="react" href="../components/header.tsx" />
+
+<!-- 'Header' component in /components/header.tsx" -->
+<link rel="Header" type="react" href="../components/header.tsx" />
 ```
 
 <br/>

@@ -10,3 +10,7 @@ fieldset:not(.hidden) > legend > b {
 }
 
 [id='helper'] { display:none !important }
+
+title {
+   margin-bottom: -10px;
+}

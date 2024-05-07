@@ -11,7 +11,7 @@ h1 em { color:dimgrey !important }
 h1 { 
    border:0;
    font-size:27px !important; 
-   letter-spacing: 7px; 
+   letter-spacing: 13px; 
    line-height: 51px;
 }
 
@@ -81,4 +81,13 @@ section[features] a {
    text-align: center;
    letter-spacing: 5px;
    margin-bottom: -3px;
+}
+
+title {
+   color: wheat;
+   display: block;
+   font-size: 2rem;
+   text-align: center;
+   margin-bottom: -20px;
+   letter-spacing: 9px;
 }
