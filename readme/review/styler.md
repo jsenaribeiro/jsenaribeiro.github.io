@@ -15,18 +15,12 @@
 > module scope CSS • component scope CSS • layout props <br/>function decorator • SoC styling • vanilla-like CSS
 
 
-## Modular CSS imports
-
-reactful fixes global CSS leaking in CSS imports, applying CSS imports only in module components.
+## Modular scoped CSS (import)
+Reactful fixes global CSS leaking in CSS imports, applying CSS imports only in module components. Notice that this kind of CSS has no support for pseudo-selectors (:hover, :active, etc).
 
 
 <aside cols='2'>
 <section>
-
-```tsx
-export const About = () => 
-   <h1>About Hello!</h1>
-```
 
 ```tsx
 import './hello.css'
@@ -37,11 +31,6 @@ export const Hello = () =>
 </section><section>
 
 ```css
-/* global.css */
-h1 { color: blue; }
-```
-
-```css
 /* modular css sample */
 /* file: ./hello.css */
 h1 { color: black; }
@@ -49,18 +38,19 @@ h1 { color: black; }
 
 </section></aside>
 
-**WARNING!** Modular CSS imports has no support for pseudo-selectors (:hover, :active, etc).
 
-## Component scope CSS
+## Component-scoped CSS (decorator)
 
-The `@style` decorator enables component-scope CSS programmatically in JSX.
+A component-scope CSS could be achived by `@style` decorator with a function component, refering a path file CSS as argument to a related function component.
 
 ```tsx
 @style('./hello.css')
 export default const Hello = () => <h1>Hello World!</h1>
 ```
 
-In global CSS is also possible achive component-scope CSS using component name as className CSS. reactful transform all component name as className CSS for its children.
+## Component-scoped CSS (className)
+
+A component-scope CSS also could be achived within a global CSS just using the function component name as className tag in a global CSS.
 
 <aside cols='2'>
 
@@ -82,7 +72,7 @@ button.Hello {
 
 </aside>
 
-## Grid layout props
+## Extended layout CSS props
 
 New style props directive, enable easy grid layout with `[grid]` setting `display:grid` and `[cols]` enabling equal spliting size with number or string grid-column-template syntax.
 

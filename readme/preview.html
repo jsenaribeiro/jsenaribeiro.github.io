@@ -227,32 +227,19 @@ body.marp-vscode blockquote {
 <h1 id="overview--preview"><a href='#' onclick='goto("./overview.html")'>overview</a> | <strong>preview</strong></h1>
 <fieldset id='server' onclick='onPreview(this.id)'>
 <legend><b>SERVE</b> rendering</legend>
-<p>Full server-side rendering with simple function @decorators.</p>
-<aside cols='2' >
-<pre><code class="language-tsx">@<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;dynamic&#x27;</span>)  
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">About</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
+<p>Reactful server has support to /apis, /assets and /routes with full server-side render.</p>
+<pre><code class="language-ts"><span class="hljs-meta">@server</span>(<span class="hljs-string">&#x27;static&#x27;</span>) <span class="hljs-keyword">const</span> <span class="hljs-title function_">About</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
+<span class="hljs-meta">@server</span>(<span class="hljs-string">&#x27;dynamic&#x27;</span>) <span class="hljs-keyword">const</span> <span class="hljs-title function_">About</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
+<span class="hljs-meta">@server</span>(<span class="hljs-string">&#x27;Periodic&#x27;</span>, <span class="hljs-string">&#x27;1h&#x27;</span>) <span class="hljs-keyword">const</span> <span class="hljs-title function_">About</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<pre><code class="language-tsx">@<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;periodic&#x27;</span>, <span class="hljs-string">&quot;36h&quot;</span>) 
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">Sample</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-</aside>
-<p>Static files is server by /assets and restful apis in /apis folder.</p>
-<aside cols='4:5' >
-<pre><code class="language-py">/assets
-   ├┈┈ /styles.css
-   └┈┈ /favicon.ico
-</code></pre>
-<pre><code class="language-ts"><span class="hljs-comment">// exported as HTTP verb method naming</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">get</span> = (<span class="hljs-params">request: Request</span>) =&gt;
-   <span class="hljs-keyword">new</span> <span class="hljs-title class_">Response</span>(<span class="hljs-string">&#x27;hello world&#x27;</span>)
-</code></pre>
-</aside>
-<p>Exceptions are handled by local @error decorator and global component injection.</p>
+<p>Exception handling by component decorator and dependency injetion.</p>
 <aside cols='4:5'>
-<pre><code class="language-tsx">@<span class="hljs-title function_">error</span>(<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Custom error...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>)
+<pre><code class="language-tsx"><span class="hljs-comment">// by component decorator (local)</span>
+@<span class="hljs-title function_">error</span>(<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Custom error...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>)
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Sample</span>(<span class="hljs-params"></span>) { ... }
 </code></pre>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">failure</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
+<pre><code class="language-tsx"><span class="hljs-comment">// by dependency injection (global)</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">failure</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
 <span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>, { failure }).<span class="hljs-title function_">render</span>()
 </code></pre>
 </aside>
@@ -279,33 +266,20 @@ body.marp-vscode blockquote {
 </code></pre>
 </div></aside>
 <style>pre { margin: 7px 0px; }</style>
-<p>New easy grid layout style prop directives for lean and fast structuring.</p>
-<pre><code class="language-jsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Grid</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">grid</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">&#x27;2&#x27;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>cols 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>cols 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
-</code></pre>
 <p>Go to <a href='#' onclick='goto("./review/styler.html")'>review</a> section for more details.</p>
 </fieldset>
 <fieldset id='storer' onclick='onPreview(this.id)'>
 <legend><b>STATE</b> handling</legend>
-<p>Stateful proxy object for <strong>local</strong> (stateful props), <strong>global</strong> and <strong>orbital</strong> states.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> share <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./store&#x27;</span>
+<p>Stateful proxy object for <strong>local</strong> (stateful props), <strong>global</strong> and <strong>partial</strong> scope.</p>
+<pre><code class="language-ts"><span class="hljs-meta">@client</span>(<span class="hljs-literal">true</span>) <span class="hljs-keyword">const</span> <span class="hljs-title function_">Local</span> = props =&gt; 
+   <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{on(props)}</span> /&gt;</span></span>
 
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">Component</span> = (<span class="hljs-params">props, { store }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> props.name = e.target.value} /&gt;
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{store.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> store.name = e.target.value} /&gt;
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{share.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> share.name = e.target.value} /&gt;
-<span class="hljs-tag">&lt;/&gt;</span></span>
+<span class="hljs-meta">@client</span>(<span class="hljs-literal">true</span>) <span class="hljs-keyword">const</span> <span class="hljs-title function_">Global</span> = (<span class="hljs-params">props, { store }</span>) =&gt; 
+   <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{store.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{on(store)}</span> /&gt;</span></span>
+
+<span class="hljs-meta">@client</span>(<span class="hljs-literal">true</span>, partial) <span class="hljs-keyword">const</span> <span class="hljs-title function_">Partial</span> = props =&gt; 
+   <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{share.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{on(share)}</span> /&gt;</span></span>
 </code></pre>
-<p>A global state is passed by settings, meanwhile orbital states uses createState function.</p>
-<aside cols='2'>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> store = { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span> }
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>, { store })
-     .<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
-</code></pre>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { client, useStore } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
-<span class="hljs-keyword">const</span> store = <span class="hljs-title function_">useStore</span>({ <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span> })
-@<span class="hljs-title function_">client</span>(<span class="hljs-literal">true</span>, store) <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hi</span> = props =&gt; etc...
-</code></pre>
-</aside>
 <p>Go to <a href='#' onclick='goto("./review/storer.html")'>review</a> section for more details.</p>
 </fieldset>
 <fieldset id='SEO' onclick='onPreview(this.id)'>
@@ -349,10 +323,6 @@ body.marp-vscode blockquote {
 &lt;/!-&gt;
 </span></code></pre>
 </aside>
-<p>It supports async components with Suspense component or by the new await props.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">SuspenseApi</span> = <span class="hljs-keyword">async</span> props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">{</span>&lt;<span class="hljs-attr">Loading</span>/&gt;</span>}&gt;<span class="hljs-tag">&lt;<span class="hljs-name">Async</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span>&gt;</span></span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">AwaitProps</span> = <span class="hljs-keyword">async</span> props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">await</span>=<span class="hljs-string">{Loading}</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span> 
-</code></pre>
 <p>Go to <a href='#' onclick='goto("./review/router.html")'>review</a> section for more details.</p>
 </fieldset>
 <fieldset id='binder' onclick='onPreview(this.id)'>
@@ -366,14 +336,6 @@ body.marp-vscode blockquote {
    Name: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> <span class="hljs-attr">maxlength</span>=<span class="hljs-string">{50}</span> /&gt;</span> 
    <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span>
-</code></pre>
-<p>It is possible custom props directives by dependency injection.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">shown</span> = props =&gt; ({ ...props, <span class="hljs-attr">hidden</span>: !props.<span class="hljs-property">shown</span> })
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>).<span class="hljs-title function_">inject</span>(shown).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Sample</span> = prop =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">show</span>=<span class="hljs-string">{false}</span>&gt;</span>sampling...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-declare <span class="hljs-variable language_">module</span> <span class="hljs-string">&quot;react&quot;</span> { interface <span class="hljs-title class_">HTMLAttribute</span> { show?: boolean }}
 </code></pre>
 <p>Go to <a href='#' onclick='goto("./review/binder.html")'>review</a> section for more details.</p>
 </fieldset>

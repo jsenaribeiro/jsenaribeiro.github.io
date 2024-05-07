@@ -20,48 +20,27 @@
 <fieldset id='server' onclick='onPreview(this.id)'>
 <legend><b>SERVE</b> rendering</legend>
 
-Full server-side rendering with simple function @decorators.
+Reactful server has support to /apis, /assets and /routes with full server-side render.
 
-<aside cols='2' >
-
-```tsx
-@server('dynamic')  
-const About = props => <>...</>
-```
-```tsx
-@server('periodic', "36h") 
-const Sample = props => <>...</>
-```
-
-</aside>
-
-Static files is server by /assets and restful apis in /apis folder.
-
-<aside cols='4:5' >
-
-```py
-/assets
-   ├┈┈ /styles.css
-   └┈┈ /favicon.ico
-```
 ```ts
-// exported as HTTP verb method naming
-export const get = (request: Request) =>
-   new Response('hello world')
+@server('static') const About = props => <>...</>
+@server('dynamic') const About = props => <>...</>
+@server('Periodic', '1h') const About = props => <>...</>
 ```
 
-</aside>
 
-Exceptions are handled by local @error decorator and global component injection.
+Exception handling by component decorator and dependency injetion.
 
 <aside cols='4:5'>
 
 ```tsx
+// by component decorator (local)
 @error(<h1>Custom error...</h1>)
 export function Sample() { ... }
 ```
 
 ```tsx
+// by dependency injection (global)
 const failure = (status, errors) => <>...</>
 await server("/routes", { failure }).render()
 ```
@@ -104,12 +83,6 @@ const ComponentA = () => <>
 
 <style>pre { margin: 7px 0px; }</style>
 
-New easy grid layout style prop directives for lean and fast structuring.
-
-```jsx
-const Grid = props => <p grid cols='2'><div>cols 1</div><div>cols 2</div></p>
-```
-
 Go to <a href='#' onclick='goto("./review/styler.html")'>review</a> section for more details.
 
 </fieldset>
@@ -117,35 +90,18 @@ Go to <a href='#' onclick='goto("./review/styler.html")'>review</a> section for 
 <fieldset id='storer' onclick='onPreview(this.id)'>
 <legend><b>STATE</b> handling</legend>
 
-Stateful proxy object for **local** (stateful props), **global** and **orbital** states.
+Stateful proxy object for **local** (stateful props), **global** and **partial** scope.
 
-```tsx
-import share from './store'
+```ts
+@client(true) const Local = props => 
+   <input value={props.name} onChange={on(props)} />
 
-const Component = (props, { store }) => <>
-   <input value={props.name} onChange={e => props.name = e.target.value} />
-   <input value={store.name} onChange={e => store.name = e.target.value} />
-   <input value={share.name} onChange={e => share.name = e.target.value} />
-</>
+@client(true) const Global = (props, { store }) => 
+   <input value={store.name} onChange={on(store)} />
+
+@client(true, partial) const Partial = props => 
+   <input value={share.name} onChange={on(share)} />
 ```
-
-A global state is passed by settings, meanwhile orbital states uses createState function.
-
-<aside cols='2'>
-
-```tsx
-const store = { name: 'world' }
-await server("/routes", { store })
-     .render("#root")
-```
-
-```tsx
-import { client, useStore } from '@reactful/client'
-const store = useStore({ name: 'world' })
-@client(true, store) const Hi = props => etc...
-```
-
-</aside>
 
 Go to <a href='#' onclick='goto("./review/storer.html")'>review</a> section for more details.
 
@@ -208,13 +164,6 @@ const Menu = (props) => <>
 ```
 </aside>
 
-It supports async components with Suspense component or by the new await props.
-
-```tsx
-const SuspenseApi = async props => <Suspense fallback={<Loading/>}><Async /></Suspense>
-const AwaitProps = async props => <h1 await={Loading}>...</h1> 
-```
-
 Go to <a href='#' onclick='goto("./review/router.html")'>review</a> section for more details.
 
 </fieldset>
@@ -238,16 +187,6 @@ const Form = (props, { errors }) => <form data={props}
 </form>
 ```
 
-It is possible custom props directives by dependency injection.
-
-```tsx
-import { server } from '@reactful/client'
-const shown = props => ({ ...props, hidden: !props.shown })
-await server("#root").inject(shown).render("#root")
-
-export const Sample = prop => <div show={false}>sampling...</div>
-declare module "react" { interface HTMLAttribute { show?: boolean }}
-```
 
 Go to <a href='#' onclick='goto("./review/binder.html")'>review</a> section for more details.
 
