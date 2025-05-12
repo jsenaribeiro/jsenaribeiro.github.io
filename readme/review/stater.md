@@ -7,13 +7,13 @@
 
 > stateful proxy object • stateful props<br/>modular state • global state<br/> OOP state handling
 
-## Stateful objects
+## Self-rendering stateful objects
 
-Stateful proxy object (SRO) brings a new hookless concept for state handling with functional components using javascript Proxy object for a more leaner, friendly and intuitive OOP stateful components. 
+Stateful proxy object (SRO) is a hookless self-rendering state object concept taht enable simple OOP interation as state, without any extra coding.
 
-## Local stateful props
+## Local props
 
-Stateful props bring out-of-the-box local state handling as SRO component props.
+Stateful props turns native props in self-rendering state.
 
 ```tsx
 const Hello = props => <>   
@@ -24,9 +24,9 @@ const Hello = props => <>
 const onChange = e => props.name = e.taget.value
 ```
 
-## Global state injection
+## Global stores
 
-The global state is passed in server settings as storage field.
+Injectable self-rendering global states as simple objects.
 
 ```tsx
 import { server } from 'reactful/server'
@@ -38,7 +38,7 @@ await server("/routes", settings)
      .render("#root")
 ```
 
-DI is resolve in 2nd functional component arg by stores object deconstrution.
+The injected state in second parameter as store member.
 
 ```tsx
 const Hello = (props, { store }) => <>   
@@ -49,15 +49,14 @@ const Hello = (props, { store }) => <>
 const onChange = e => props.name = e.target.value
 ```
 
-## Orbital modular states
+## Orbital states
 
-This escope enables a Redux semantics with contextual subtree of components for shared states like React Context API. It enable a more controlled and determined shared states between components.
+Orbital states allows modular semantics with function decorators.
 
 ```ts
+import { useStore } from '@reactful/web'
 export const myStore = useStore({ guid: 0, name: 'john', date: new Date() })
 ```
-
-After useStore object is changed, the render only will call in components where @state maps.
 
 ```tsx
 import { state } from '@reactful/web'
@@ -69,7 +68,6 @@ const Hello = props => <>
    <input value={store.name} {onChange} />
 </>
 
-// it will trigger the render inside a component
 const onChange = e => props.name = e.taget.value
 ```
 
