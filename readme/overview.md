@@ -13,7 +13,7 @@
 <article overview>
 <title>REACTFUL</title>
 
-<center style='margin-bottom:-15px; font-size: 1.1em'>
+<center style='margin-bottom:-5px; font-size: 1.1em; margin-top:5px;'>
 <a href='#' onclick='goto("./preview.html#server")'>server</a> | <a href='#' onclick='goto("./preview.html#styler")'>styler</a> | <a href='#' onclick='goto("./preview.html#storer")'>storer</a> | <a href='#' onclick='goto("./preview.html#ranker")'>ranker</a> 
 | <a href='#' onclick='goto("./preview.html#router")'>router</a> | <a href='#' onclick='goto("./preview.html#binder")'>binder</a> 
 </center>
@@ -25,6 +25,38 @@
 > A minimalist stateful react framework with stateful objects, full SSR, scoped CSS, stateful object, versatile routing and data binding.
 
 </section>
+
+
+<center index>
+
+# project structure
+
+Some default folders has semantic rule in framework.
+
+</center>
+<center cols='2'>
+<aside>
+
+|                  |                        |
+| ---------------- | ---------------------- |
+| [/apis](#)       | RESTful requests       |
+| [/assets](#)     | public static contents |
+| [/routes](#)     | page components        |
+| [/controls](#)   | control components     |
+| [/directives](#) | custom props handlers  |
+
+</aside><aside>
+
+|                 |                   |
+| --------------- | ----------------- |
+| [.env](#)       | Environment file  |
+| [.ignore](#)    | Git ignored files |
+| [index.ts](#)   | Startup HTML      |
+| [index.html](#) | Startup HTML      |
+
+</aside>
+</center>
+
 <section specs >
 
 <center index>
@@ -65,38 +97,4 @@ export const Hello = props => <>
 
 </aside>
 </section>
-
-
-<center index>
-
-# project structure
-
-Some default folders has semantic rule in framework.
-
-</center>
-
-<center cols='2'>
-<aside>
-
-
-|             |                                |
-| ----------- | ------------------------------ |
-| [/apis](#)   | RESTful requests               |
-| [/assets](#)     | public static contents |
-| [/routes](#)     | page components        |
-| [/controls](#)   | control components     |
-| [/directives](#) | custom props handlers  |
-
-</aside><aside>
-
-|                 |                        |
-| --------------- | ---------------------- |
-| [.env](#)       | Environment file       |
-| [.ignore](#)       | Git ignored files       |
-| [index.ts](#)       | Startup HTML       |
-| [index.html](#)       | Startup HTML       |
-
-
-</aside>
-</center>
 </article>
