@@ -250,7 +250,7 @@ body.marp-vscode blockquote {
 <style>@import url(./overview.css);</style>
 <article overview>
 <title>REACTFUL</title>
-<center style='margin-bottom:-15px; font-size: 1.1em'>
+<center style='margin-bottom:-5px; font-size: 1.1em; margin-top:5px;'>
 <a href='#' onclick='goto("./preview.html#server")'>server</a> | <a href='#' onclick='goto("./preview.html#styler")'>styler</a> | <a href='#' onclick='goto("./preview.html#storer")'>storer</a> | <a href='#' onclick='goto("./preview.html#ranker")'>ranker</a> 
 | <a href='#' onclick='goto("./preview.html#router")'>router</a> | <a href='#' onclick='goto("./preview.html#binder")'>binder</a> 
 </center>
@@ -259,36 +259,6 @@ body.marp-vscode blockquote {
 <blockquote>
 <p>A minimalist stateful react framework with stateful objects, full SSR, scoped CSS, stateful object, versatile routing and data binding.</p>
 </blockquote>
-</section>
-<section specs >
-<center index>
-<h1 id="getting-started">getting started</h1>
-<p>Create a new project with use reactful template creator using bunx.</p>
-</center>
-<aside cols='4:5' style='zoom:0.9; margin-bottom:-15px;'>
-<pre><code class="language-ps"><span class="hljs-variable">$</span> bunx @reactful/create@latest
-- template? empty|minimal|sampling
-- project name? MyProjectName
-- is vsCode IDE? (Y/n) y
-- install? (Y/n) y
-- serve? (Y/n) y
-- installing...
-- serving...
-
-running at localhost:<span class="hljs-number">3000</span>
-</code></pre>
-<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/server&#x27;</span>
-<span class="hljs-keyword">import</span> { client } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful&#x27;</span>
-
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
-
-<span class="hljs-meta">@client</span>(<span class="hljs-literal">true</span>)
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Hello { props.name }<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-</aside>
 </section>
 <center index>
 <h1 id="project-structure">project structure</h1>
@@ -355,10 +325,35 @@ running at localhost:<span class="hljs-number">3000</span>
 </table>
 </aside>
 </center>
+<section specs >
 <center index>
-<h1 id="index-summary">index summary</h1>
+<h1 id="getting-started">getting started</h1>
+<p>Create a new project with use reactful template creator using bunx.</p>
 </center>
-<section >
+<aside cols='4:5' style='zoom:0.9; margin-bottom:-15px;'>
+<pre><code class="language-ps"><span class="hljs-variable">$</span> bunx @reactful/create@latest
+- template? empty|minimal|sampling
+- project name? MyProjectName
+- is vsCode IDE? (Y/n) y
+- install? (Y/n) y
+- serve? (Y/n) y
+- installing...
+- serving...
+
+running at localhost:<span class="hljs-number">3000</span>
+</code></pre>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/server&#x27;</span>
+<span class="hljs-keyword">import</span> { client } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful&#x27;</span>
+
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
+
+<span class="hljs-meta">@client</span>(<span class="hljs-literal">true</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Hello { props.name }<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+</aside>
 </section>
 </article>
             <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
