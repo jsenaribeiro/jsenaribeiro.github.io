@@ -337,7 +337,7 @@ body.marp-vscode blockquote {
 </fieldset>
 <fieldset id='binder' onclick='onPreview(this.id)'>
 <legend><b>PROPS</b> binding  </legend>
-<p>Data binding with props <code>[data]</code> and <code>[bind]</code> controlled components, and for for uncontroled component as <code>form[data]</code> with actions, validation and authentication.</p>
+<p>Controlled and uncontrole component data binding using props.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Controlled</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span></span> 
 
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">Uncontrolled</span> = (<span class="hljs-params">props, { errors }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
@@ -351,7 +351,7 @@ body.marp-vscode blockquote {
 </fieldset>
 <fieldset id='router' onclick='onPreview(this.id)'>
 <legend><b>ROUTE</b> design</legend>
-<p>It supports folder routing, routing decorators, nested routes and lazy louoding</p>
+<p>Folder routing, routing decorators, nested routes and lazy loading.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Sample</span> = <span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./main&#x27;</span>).<span class="hljs-title function_">asLazyComponent</span>(<span class="hljs-string">&#x27;Sample&#x27;</span>)
 
 <span class="hljs-meta">@route</span>(<span class="hljs-string">&#x27;/whatever/params/:id&#x27;</span>)

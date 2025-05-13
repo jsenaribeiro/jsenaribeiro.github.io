@@ -147,7 +147,7 @@ Go to <a href='#' onclick='goto("./review/ranker.html")'>review</a> section for 
 <fieldset id='binder' onclick='onPreview(this.id)'>
 <legend><b>PROPS</b> binding  </legend>
 
-Data binding with props `[data]` and `[bind]` controlled components, and for for uncontroled component as `form[data]` with actions, validation and authentication.
+Controlled and uncontrole component data binding using props.
 
 ```tsx
 const Controlled = props => <input data={props} bind='name' /> 
@@ -168,7 +168,7 @@ Go to <a href='#' onclick='goto("./review/binder.html")'>review</a> section for 
 <fieldset id='router' onclick='onPreview(this.id)'>
 <legend><b>ROUTE</b> design</legend>
 
-It supports folder routing, routing decorators, nested routes and lazy louoding
+Folder routing, routing decorators, nested routes and lazy loading.
 
 ```ts
 const Sample = import('./main').asLazyComponent('Sample')
