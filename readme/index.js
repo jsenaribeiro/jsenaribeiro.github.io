@@ -40,7 +40,7 @@ function createLogo(content) {
       const from0To3 = Math.floor(Math.random() * 3)
       const during = 150 + (100 * (from0To3 * 9))
 
-      document.querySelectorAll("logo div").forEach(div => 
-         div.style.animationDuration = `${during}ms`)
+      document.querySelectorAll("logo div")
+         .forEach(div => div.style.animationDuration = `${during}ms`)
    }, 3000)
 }
