@@ -11,13 +11,13 @@
 <script src='./overview.js'></script>
 <style>@import url(./overview.css);</style>
 <article overview>
-<title>REACTFUL</title>
 
 <center style='margin-bottom:-15px; font-size: 1.1em; margin-top:15px;'>
 <a href='#' onclick='goto("./preview.html#server")'>server</a> | <a href='#' onclick='goto("./preview.html#styler")'>styler</a> | <a href='#' onclick='goto("./preview.html#storer")'>storer</a> | <a href='#' onclick='goto("./preview.html#ranker")'>ranker</a> 
 | <a href='#' onclick='goto("./preview.html#router")'>router</a> | <a href='#' onclick='goto("./preview.html#binder")'>binder</a> 
 </center>
 
+<title>REACTFUL</title>
 <section title><h1>overview</h1></section>
 
 > A modern react framework with stateful objects, data binding, versatile routing,  compreensive SSR, scoped CSS and integrated SEO.
@@ -28,9 +28,7 @@
 
 Some default folders has semantic rule in framework.
 
-</center>
-<center cols='2'>
-<aside>
+</center><center cols='2'><aside>
 
 |                  |                        |
 | ---------------- | ---------------------- |
