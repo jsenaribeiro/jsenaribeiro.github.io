@@ -18,7 +18,7 @@
 
 Stateful proxy object (SRO) brings a new hookless concept for state handling with functional components using javascript Proxy object for a more leaner, friendly and intuitive OOP stateful components. SRO uses **delayed render** algorithm that enables a performatic approach batching successives changes in a single render call in each 0.1 second range.
 
-## Local stateful props
+## Local props
 
 Stateful props bring out-of-the-box local state handling as SRO component props.
 
@@ -31,7 +31,7 @@ const Hello = props => <>
 const onChange = e => props.name = e.taget.value
 ```
 
-## Global state injection
+## Global stores
 
 Global state is injected in Reactful server and resolved as store in component 2nd argument.
 
@@ -60,7 +60,7 @@ function Hello(p, { store }) {
 
 </aside>
 
-## Orbital modular states
+## Orbital states
 
 This escope enables a Redux semantics with contextual subtree of components for shared states like React Context API. It enable a more controlled and determined shared states between components.
 

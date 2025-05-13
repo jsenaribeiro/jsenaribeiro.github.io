@@ -14,8 +14,7 @@
 
 <header>CSS style scoping</header>
 
-
-## Modular scoped CSS (import)
+## Modular CSS import
 Reactful fixes global CSS leaking in CSS imports, applying CSS imports only in module components. Notice that this kind of CSS has no support for pseudo-selectors (:hover, :active, etc).
 
 
@@ -39,7 +38,7 @@ h1 { color: black; }
 </section></aside>
 
 
-## Component-scoped CSS (decorator)
+## Component style decorator
 
 A component-scope CSS could be achived by `@style` decorator with a function component, refering a path file CSS as argument to a related function component.
 
@@ -48,7 +47,7 @@ A component-scope CSS could be achived by `@style` decorator with a function com
 export default const Hello = () => <h1>Hello World!</h1>
 ```
 
-## Component-scoped CSS (className)
+## Component CSS className
 
 A component-scope CSS also could be achived within a global CSS just using the function component name as className tag in a global CSS.
 
@@ -72,7 +71,7 @@ button.Hello {
 
 </aside>
 
-## Extended layout CSS props
+## New layout CSS props
 
 New style props directive, enable easy grid layout with `[grid]` setting `display:grid` and `[cols]` enabling equal spliting size with number or string grid-column-template syntax.
 
