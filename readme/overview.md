@@ -78,7 +78,7 @@ export const Hello = props => <>
 
 <br/>
 
-Go to <a href='#' onclick='goto("./preview.html")'>preview</a> page to get more details about.
+Go to <a href='#' onclick='goto("./preview.html")'>preview</a> page to get more details about the framework capabilities and resources.
 
 <center links>
 <a href='#' onclick='goto("./preview.html#server")'>server</a> | <a href='#' onclick='goto("./preview.html#styler")'>styler</a> | <a href='#' onclick='goto("./preview.html#storer")'>storer</a> | <a href='#' onclick='goto("./preview.html#ranker")'>ranker</a> 
