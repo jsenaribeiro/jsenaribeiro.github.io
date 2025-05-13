@@ -16,7 +16,7 @@
 
 Stateful objects brings is a hookless concept for state handling with functional components. It uses performatic **delayed render** algorithm that enables that batchies successives changes (0.1 second range).
 
-## Local states 
+## Local props 
 
 Local states is handled as self-rendering stateful props.
 
@@ -78,7 +78,7 @@ const React19s = (props, ref) => <>...etc</>
 const Reactful = (props, { ref }) => <>...etc</>
 ```
 
-## Orbital states
+## Partial states
 
 States shared between modulesa and handled as second argument of @client(true) function decorator.
 

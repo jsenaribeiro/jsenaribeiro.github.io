@@ -24,7 +24,7 @@
 <fieldset id='server' onclick='onPreview(this.id)'>
 <legend><b>SERVE</b> rendering</legend>
 
-Reactful server has support to /apis, /assets and /routes with full server-side render.
+Comprehensive server-side render support.
 
 ```ts
 @server('static') const About = props => <>...</>
@@ -32,8 +32,7 @@ Reactful server has support to /apis, /assets and /routes with full server-side 
 @server('Periodic', '1h') const About = props => <>...</>
 ```
 
-
-Exception handling by component decorator and dependency injetion.
+Component-driven error handling by dependency injection.
 
 <aside cols='4:5'>
 
@@ -58,7 +57,7 @@ Go to <a href='#' onclick='goto("./review/server.html")'>review</a> section for 
 <fieldset id ='styler' onclick='onPreview(this.id)'>
 <legend><b>STYLE</b> scoping</legend>
 
-Fixed modular CSS with component-scoped by decorators or className tag.
+Modular and component-scoped CSS resources.
 
 <aside cols='2'><div>
 
@@ -94,7 +93,7 @@ Go to <a href='#' onclick='goto("./review/styler.html")'>review</a> section for 
 <fieldset id='storer' onclick='onPreview(this.id)'>
 <legend><b>STATE</b> handling</legend>
 
-Stateful proxy object for **local** (stateful props), **global** and **partial** scope.
+Stateful objects for **local**, **global** and **partial** scope.
 
 ```ts
 @client(true) const Local = props => 
@@ -114,7 +113,7 @@ Go to <a href='#' onclick='goto("./review/storer.html")'>review</a> section for 
 <fieldset id='ranker' onclick='onPreview(this.id)'>
 <legend><b>INDEX</b> ranking</legend>
 
-Simple SEO using function decorators by @seo decorator with metatags support.
+SEO support with metatag object and function decorators.
 
 <aside cols=2>
 
@@ -146,20 +145,17 @@ Go to <a href='#' onclick='goto("./review/ranker.html")'>review</a> section for 
 <fieldset id='binder' onclick='onPreview(this.id)'>
 <legend><b>PROPS</b> binding  </legend>
 
-Controlled component **props binding** with `[data]` and `[bind]` props.
+Data binding with props `[data]` and `[bind]` controlled components, and for for uncontroled component as `form[data]` with actions, validation and authentication.
 
 ```tsx
-const Hello = props => <input data={props} bind='name' /> 
-```
+const Controlled = props => <input data={props} bind='name' /> 
 
-Uncontroled component `form[data]` with actions, validation, and authentication.
-
-```tsx
-const Form = (props, { errors }) => <form data={props} 
-   method="post" action="http://api.sample.com"> 
-   Name: <input bind='name' maxlength={50} /> 
-   <button>Submit</button>
-</form>
+const Uncontrolled = (props, { errors }) => <>
+   <form data={props} method="post" action="www.api.com"> 
+      Name: <input bind='name' maxlength={50} /> 
+      <button>Submit</button>
+   </form>
+</>
 ```
 
 
@@ -170,14 +166,14 @@ Go to <a href='#' onclick='goto("./review/binder.html")'>review</a> section for 
 <fieldset id='router' onclick='onPreview(this.id)'>
 <legend><b>ROUTE</b> design</legend>
 
-The `@route` decorator enables params (dynamic routes) by dependency injection.
+Dynamic routing with function decourators.
 
 ```ts
 @route('/whatever-route-you-want/params/:id')
 const Params(props, { params }) => <h1>ID: { params.id }</h1>
 ```
 
-Routing props enable componented layouts, nested routes (`./`) and lazy routing.
+Routing props with nested routes (`./`) and lazy routing.
 
 ```tsx
 const Sample = import('./main').asLazyComponent('Sample')
@@ -186,8 +182,8 @@ const Menu = (props) => <>
    <h1>Menu</h1>
    <a href='/main'>Main</a>
    <a href='/main/lazy'>Lazy</a>   
-   <main route='/main'>Main</main>  <!-- conditional rendering -->   
-   <Sample route='./lazy' />        <!-- lazy component routing -->
+   <main route='/main'>Main</main>  <!-- props rendering -->   
+   <Sample route='./lazy' />        <!-- lazy routing -->
 </!->
 ```
 </aside>
