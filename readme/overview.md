@@ -22,7 +22,7 @@
 
 # **overview** 
 
-> A minimalist stateful react framework with stateful objects, full SSR, scoped CSS, stateful object, versatile routing and data binding.
+> A react framework with stateful objects, data binding, versatile routing,  compreensive SSR, scoped CSS and integrated SEO.
 
 </section>
 
