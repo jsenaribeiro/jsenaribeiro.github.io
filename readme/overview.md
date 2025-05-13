@@ -8,6 +8,7 @@
       border-bottom: grey solid 1px !important;
    }
    [links] {
+      margin-bottom: 20px;
       letter-spacing: 1px; 
       padding-bottom: 5px;
       border-bottom: dashed grey 1px; 
