@@ -1,62 +1,53 @@
 <script src='./overview.js'></script>
 <style>@import url(./overview.css);</style>
-
 <article overview>
-
 <title>REACTFUL</title>
-
 <section title>
+
+
+<style>
+   [index] h1 { margin-bottom:0; font-size: 1.3em !important; }
+   table tr:last-of-type td { border-bottom:0 !important }
+   table td {
+      padding: 3px;
+      font-size: 0.9em !important;
+      border-bottom: grey solid 1px !important;
+   }
+</style>
 
 # **overview** 
 
-> modern stateful framework for react
+> comprehensive stateful react framework
 
 </section>
-
-<style>
-   [specs] tr td:nth-of-type(3) { zoom:0.9; line-height:15px; }
-</style>
-
-
-<section features>
-
-- <a href='#' onclick='goto("./preview.html#server")'>server</a> full SSR with static, dynamic and periodic rendering
-- <a href='#' onclick='goto("./preview.html#styler")'>styler</a> scoped CSS by import, decorator and classNames 
-- <a href='#' onclick='goto("./preview.html#storer")'>storer</a> OOP stateful handling as stateful proxy objects
-- <a href='#' onclick='goto("./preview.html#ranker")'>ranker</a> SEO by function decorators with metatags types 
-- <a href='#' onclick='goto("./preview.html#router")'>router</a>  routing desgined by props, folder and function decorator
-- <a href='#' onclick='goto("./preview.html#binder")'>binder</a> props bindings for controlled and uncontrolled components
-
-</section>
-
 <section specs >
 
-<center index style='zoom:0.7' >
+<center index>
 
 # getting started
-<br/>
+
+Create a new project with use reactful template creator using bunx.
 
 </center>
-
 
 <aside cols='4:5' style='zoom:0.9; margin-bottom:-15px;'>
 
 ```ps
 $ bunx @reactful/create@latest
 - template? empty|minimal|sampling
-- project name? Sample
-- vs code IDE? (Y/n) y
-- install? yes
-
-$ bun start
-- building...
-- bundling...
+- project name? MyProjectName
+- is vsCode IDE? (Y/n) y
+- install? (Y/n) y
+- serve? (Y/n) y
+- installing...
 - serving...
+
+running at localhost:3000
 ```
 
 ```typescript
 import { server } from '@reactful/server'
-import { client, useState } from '@reactful'
+import { client } from '@reactful'
 
 await server("/routes").render("#root")
 
@@ -69,4 +60,50 @@ export const Hello = props => <>
 
 </aside>
 </section>
+
+
+<center index>
+
+# project structure
+
+Some default folders has semantic rule in framework.
+
+</center>
+
+<center cols='2'>
+<aside>
+
+
+|             |                                |
+| ----------- | ------------------------------ |
+| [/apis](#)   | RESTful requests               |
+| [/assets](#)     | public static contents |
+| [/routes](#)     | page components        |
+| [/controls](#)   | control components     |
+| [/directives](#) | custom props handlers  |
+
+</aside><aside>
+
+|                 |                        |
+| --------------- | ---------------------- |
+| [.env](#)       | Environment file       |
+| [.ignore](#)       | Git ignored files       |
+| [index.ts](#)       | Startup HTML       |
+| [index.html](#)       | Startup HTML       |
+
+
+</aside>
+</center>
+
+<section features>
+
+- <a href='#' onclick='goto("./preview.html#server")'>server</a> comprehensive SSR
+- <a href='#' onclick='goto("./preview.html#styler")'>styler</a> scoped CSS 
+- <a href='#' onclick='goto("./preview.html#storer")'>storer</a> stateful objects
+- <a href='#' onclick='goto("./preview.html#ranker")'>ranker</a> advanced SEO
+- <a href='#' onclick='goto("./preview.html#router")'>router</a> versatile routing
+- <a href='#' onclick='goto("./preview.html#binder")'>binder</a> data binding
+
+</section>
+
 </article>
