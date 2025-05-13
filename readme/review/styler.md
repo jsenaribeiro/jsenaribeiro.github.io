@@ -72,9 +72,9 @@ h1.Hello {
 
 </aside>
 
-## New layout CSS props
+## Grid layout props
 
-New style props directive, enable easy grid layout with `[grid]` setting `display:grid` and `[cols]` enabling equal spliting size with number or string grid-column-template syntax.
+Grid layout props directive with `[grid]`, `[cols]` and `[gaps]`.
 
 <aside cols='2'>
 
@@ -98,8 +98,6 @@ const Table = props =>  <>
 </>
 ```
 </aside>
-
-The `[gaps]` props sets the both or vertical-horizontal margin between columns.
 
 <aside cols='2'>
 
