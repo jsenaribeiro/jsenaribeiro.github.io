@@ -80,7 +80,7 @@ export const Hello = props => <>
 
 <center links>
 <a href='#' onclick='goto("./preview.html#server")'>server</a> | <a href='#' onclick='goto("./preview.html#styler")'>styler</a> | <a href='#' onclick='goto("./preview.html#storer")'>storer</a> | <a href='#' onclick='goto("./preview.html#ranker")'>ranker</a> 
-| <a href='#' onclick='goto("./preview.html#router")'>router</a> | <a href='#' onclick='goto("./preview.html#binder")'>binder</a>| <a href='#' onclick='goto("./preview.html#proper")'>proper</a> 
+| <a href='#' onclick='goto("./preview.html#router")'>router</a> | <a href='#' onclick='goto("./preview.html#binder")'>binder</a> | <a href='#' onclick='goto("./preview.html#proper")'>proper</a> 
 </center>
 
 </article>
