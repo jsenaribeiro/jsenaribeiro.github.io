@@ -3,7 +3,7 @@
 <article overview>
 
 <title>REACTFUL</title>
-<center style='zoom:0.8; margin-top: 5px;'>
+<center style='zoom:0.8; margin-top: 15px;'>
 
 # **overview** | <a href='#' onclick='goto("./preview.html")'>preview</a>
 
