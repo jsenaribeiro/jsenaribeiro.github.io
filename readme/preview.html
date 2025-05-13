@@ -352,20 +352,21 @@ body.marp-vscode blockquote {
 </fieldset>
 <fieldset id='router' onclick='onPreview(this.id)'>
 <legend><b>ROUTE</b> design</legend>
-<p>Dynamic routing with function decourators.</p>
-<pre><code class="language-ts"><span class="hljs-meta">@route</span>(<span class="hljs-string">&#x27;/whatever-route-you-want/params/:id&#x27;</span>)
-<span class="hljs-keyword">const</span> <span class="hljs-title class_">Params</span>(props, { params }) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>ID: { params.id }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
-</code></pre>
-<p>Routing props with nested routes (<code>./</code>) and lazy routing.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Sample</span> = <span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./main&#x27;</span>).<span class="hljs-title function_">asLazyComponent</span>(<span class="hljs-string">&#x27;Sample&#x27;</span>)
+<p>It supports folder routing, routing decorators, nested routes and lazy louoding</p>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Sample</span> = <span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./main&#x27;</span>).<span class="hljs-title function_">asLazyComponent</span>(<span class="hljs-string">&#x27;Sample&#x27;</span>)
+
+<span class="hljs-meta">@route</span>(<span class="hljs-string">&#x27;/whatever/params/:id&#x27;</span>)
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Dynamic</span>(props, { params }) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>ID: { params.id }<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+<span class="hljs-tag">&lt;/&gt;</span></span>
 
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = (<span class="hljs-params">props</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Menu<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&#x27;/main/lazy&#x27;</span>&gt;</span>Lazy<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>   
-   <span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>  <span class="hljs-comment">&lt;!-- props rendering --&gt;</span>   
+   <span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>  <span class="hljs-comment">&lt;!-- props route --&gt;</span>   
    <span class="hljs-tag">&lt;<span class="hljs-name">Sample</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;./lazy&#x27;</span> /&gt;</span>        <span class="hljs-comment">&lt;!-- lazy routing --&gt;</span>
-&lt;/!-&gt;
+<span class="hljs-tag">&lt;&gt;</span>
 </span></code></pre>
 </aside>
 <p>Go to <a href='#' onclick='goto("./review/router.html")'>review</a> section for more details.</p>

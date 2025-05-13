@@ -170,25 +170,23 @@ Go to <a href='#' onclick='goto("./review/binder.html")'>review</a> section for 
 <fieldset id='router' onclick='onPreview(this.id)'>
 <legend><b>ROUTE</b> design</legend>
 
-Dynamic routing with function decourators.
+It supports folder routing, routing decorators, nested routes and lazy louoding
 
 ```ts
-@route('/whatever-route-you-want/params/:id')
-const Params(props, { params }) => <h1>ID: { params.id }</h1>
-```
-
-Routing props with nested routes (`./`) and lazy routing.
-
-```tsx
 const Sample = import('./main').asLazyComponent('Sample')
+
+@route('/whatever/params/:id')
+const Dynamic(props, { params }) => <>
+    <label>ID: { params.id }</label>
+</>
 
 const Menu = (props) => <>
    <h1>Menu</h1>
    <a href='/main'>Main</a>
    <a href='/main/lazy'>Lazy</a>   
-   <main route='/main'>Main</main>  <!-- props rendering -->   
+   <main route='/main'>Main</main>  <!-- props route -->   
    <Sample route='./lazy' />        <!-- lazy routing -->
-</!->
+<>
 ```
 </aside>
 
