@@ -3,7 +3,11 @@
 <article overview>
 
 <title>REACTFUL</title>
-<section title><h1>overview</h1></section>
+<center style='zoom:0.7'>
+
+# **overview** | <a href='#' onclick='goto("./preview.html")'>preview</a>
+
+</center>
 
 > A react framework with function decorators, stateful objects, data binding, advanced routing, props directives, compreensive SSR, scoped CSS and SEO support.
 
