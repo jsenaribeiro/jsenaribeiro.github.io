@@ -18,14 +18,9 @@
 | <a href='#' onclick='goto("./preview.html#router")'>router</a> | <a href='#' onclick='goto("./preview.html#binder")'>binder</a> 
 </center>
 
-<section title>
-
-# **overview** 
+<section title><h1>overview</h1></section>
 
 > A modern react framework with stateful objects, data binding, versatile routing,  compreensive SSR, scoped CSS and integrated SEO.
-
-</section>
-
 
 <center index>
 
