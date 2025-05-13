@@ -5,7 +5,7 @@
 <title>REACTFUL</title>
 <section title><h1>overview</h1></section>
 
-> A modern react framework with stateful objects, data binding, versatile routing, props directive, compreensive SSR, scoped CSS and integrated SEO.
+> A modern react framework with function decorators,stateful objects, data binding, versatile routing, props directive, compreensive SSR, scoped CSS and SEO support.
 
 <center index>
 
@@ -77,6 +77,8 @@ export const Hello = props => <>
 </section>
 
 <br/>
+
+Go to <a href='#' onclick='goto("./preview.html")'>preview</a> page to get more details about.
 
 <center links>
 <a href='#' onclick='goto("./preview.html#server")'>server</a> | <a href='#' onclick='goto("./preview.html#styler")'>styler</a> | <a href='#' onclick='goto("./preview.html#storer")'>storer</a> | <a href='#' onclick='goto("./preview.html#ranker")'>ranker</a> 
