@@ -15,13 +15,13 @@ Some default folders has semantic rule in framework.
 
 </center><center cols='2'><aside>
 
-|                  |                        |
-| ---------------- | ---------------------- |
-| [/apis](#)       | RESTful requests       |
-| [/assets](#)     | public static contents |
-| [/routes](#)     | page components        |
-| [/controls](#)   | control components     |
-| [/directives](#) | custom props handlers  |
+|                                                                     |                        |
+| ------------------------------------------------------------------- | ---------------------- |
+| <a href='#' onclick='goto("./preview.html#server")'>/apis</a>       | RESTful requests       |
+| <a href='#' onclick=''>/assets</a>     | public static contents |
+| <a href='#' onclick='goto("./preview.html#router")'>/routes</a>     | page components        |
+| <a href='#' onclick=''>/controls</a>   | control components     |
+| <a href='#' onclick='goto("./preview.html#binder")'>/directives</a> | custom props handlers  |
 
 </aside><aside>
 
