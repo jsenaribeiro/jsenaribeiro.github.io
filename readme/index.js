@@ -21,9 +21,9 @@ function adjustZoom(content) {
 
 function createLink(iframe, content) {
    const links = content.querySelectorAll('[overview] a')
-   const found = x => x.href.split('#').at(-1)
+   const found = x => x.href.split('#').at(-1) ?? ''
    const apply = a => iframe.src = `./preview.html#${found(a)}`
-   const refix = () => setTimeout(() => adjustZoom(content), 1500)
+   const refix = () => setTimeout(() => adjustZoom(content), 999)
    const click = a => { apply(a); refix(); }
 
    links.forEach(a => a.onclick = () => click(a))
