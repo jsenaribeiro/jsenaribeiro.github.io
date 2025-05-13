@@ -5,7 +5,7 @@
 <title>REACTFUL</title>
 <section title><h1>overview</h1></section>
 
-> A modern react framework with function decorators,stateful objects, data binding, versatile routing, compreensive SSR, property directives, scoped CSS and SEO support.
+> A modern react framework with function decorators, stateful objects, data binding, advanced routing, props directives, compreensive SSR, scoped CSS and SEO support.
 
 <center index>
 
