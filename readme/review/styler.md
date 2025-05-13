@@ -15,7 +15,8 @@
 <header>CSS style scoping</header>
 
 ## Modular CSS import
-Reactful fixes global CSS leaking in CSS imports, applying CSS imports only in module components. Notice that this kind of CSS has no support for pseudo-selectors (:hover, :active, etc).
+
+Module-scoped CSS imports. Warning: no pseudo-selectors (:hover, :active, etc).
 
 
 <aside cols='2'>
@@ -40,7 +41,7 @@ h1 { color: black; }
 
 ## Component style decorator
 
-A component-scope CSS could be achived by `@style` decorator with a function component, refering a path file CSS as argument to a related function component.
+Component-scoped function decorator for path file CSS.
 
 ```tsx
 @style('./hello.css')
@@ -49,7 +50,7 @@ export default const Hello = () => <h1>Hello World!</h1>
 
 ## Component CSS className
 
-A component-scope CSS also could be achived within a global CSS just using the function component name as className tag in a global CSS.
+A component-scope using function component name as className tag in a global CSS.
 
 <aside cols='2'>
 
@@ -62,7 +63,7 @@ function Hello() {
 ```
 
 ```css
-button.Hello { 
+h1.Hello { 
    color: green;
    padding: 10px 20px;
    background-color: silver;
