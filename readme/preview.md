@@ -16,14 +16,18 @@
 </section>
 
 <title>REACTFUL</title>
+<section style='margin-top:7px'>
 
 # <a href='#' onclick='goto("./overview.html")'>overview</a> | **preview**
 
+</section>
 <div hidden>
 
 > SSR • SEO • scoped CSS • stateful objects • routing<br/>API routes • props binding • function decorators<br/>RESTful actions • markdown
 
 </div>
+
+> Click on framework resources menu section to expand.
 
 <fieldset id='ranker' onclick='onPreview(this.id)'>
 <legend><b>INDEX</b> ranking</legend>
