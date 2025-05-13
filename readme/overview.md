@@ -1,10 +1,3 @@
-<script src='./overview.js'></script>
-<style>@import url(./overview.css);</style>
-<article overview>
-<title>REACTFUL</title>
-<section title>
-
-
 <style>
    [index] h1 { margin-bottom:0; font-size: 1.3em !important; }
    table tr:last-of-type td { border-bottom:0 !important }
@@ -15,9 +8,21 @@
    }
 </style>
 
+<script src='./overview.js'></script>
+<style>@import url(./overview.css);</style>
+<article overview>
+<title>REACTFUL</title>
+
+<center style='margin-bottom:-15px; font-size: 1.1em'>
+<a href='#' onclick='goto("./preview.html#server")'>server</a> | <a href='#' onclick='goto("./preview.html#styler")'>styler</a> | <a href='#' onclick='goto("./preview.html#storer")'>storer</a> | <a href='#' onclick='goto("./preview.html#ranker")'>ranker</a> 
+| <a href='#' onclick='goto("./preview.html#router")'>router</a> | <a href='#' onclick='goto("./preview.html#binder")'>binder</a> 
+</center>
+
+<section title>
+
 # **overview** 
 
-> comprehensive stateful react framework
+> A minimalist stateful react framework with stateful objects, full SSR, scoped CSS, stateful object, versatile routing and data binding.
 
 </section>
 <section specs >
@@ -94,15 +99,15 @@ Some default folders has semantic rule in framework.
 
 </aside>
 </center>
+<center index>
 
-<section features>
+# index summary
 
-- <a href='#' onclick='goto("./preview.html#server")'>server</a> comprehensive SSR
-- <a href='#' onclick='goto("./preview.html#styler")'>styler</a> scoped CSS 
-- <a href='#' onclick='goto("./preview.html#storer")'>storer</a> stateful objects
-- <a href='#' onclick='goto("./preview.html#ranker")'>ranker</a> advanced SEO
-- <a href='#' onclick='goto("./preview.html#router")'>router</a> versatile routing
-- <a href='#' onclick='goto("./preview.html#binder")'>binder</a> data binding
+
+</center>
+<section >
+
+
 
 </section>
 

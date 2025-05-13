@@ -11,11 +11,13 @@ h1 em { color:dimgrey !important }
 h1 { 
    border:0;
    font-size:27px !important; 
-   letter-spacing: 13px; 
+   letter-spacing: 9px; 
    line-height: 51px;
 }
 
-fieldset legend:hover  { filter: hue-rotate(195deg) brightness(1.4) saturate(0.5);}
+fieldset legend:hover { 
+   filter: hue-rotate(195deg) brightness(1.4) saturate(0.5);
+}
 
 article { padding: 0 20px; }
 

@@ -237,12 +237,7 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <script src='./overview.js'></script>
-<style>@import url(./overview.css);</style>
-<article overview>
-<title>REACTFUL</title>
-<section title>
-<style>
+            <style>
    [index] h1 { margin-bottom:0; font-size: 1.3em !important; }
    table tr:last-of-type td { border-bottom:0 !important }
    table td {
@@ -251,9 +246,18 @@ body.marp-vscode blockquote {
       border-bottom: grey solid 1px !important;
    }
 </style>
+<script src='./overview.js'></script>
+<style>@import url(./overview.css);</style>
+<article overview>
+<title>REACTFUL</title>
+<center style='margin-bottom:-15px; font-size: 1.1em'>
+<a href='#' onclick='goto("./preview.html#server")'>server</a> | <a href='#' onclick='goto("./preview.html#styler")'>styler</a> | <a href='#' onclick='goto("./preview.html#storer")'>storer</a> | <a href='#' onclick='goto("./preview.html#ranker")'>ranker</a> 
+| <a href='#' onclick='goto("./preview.html#router")'>router</a> | <a href='#' onclick='goto("./preview.html#binder")'>binder</a> 
+</center>
+<section title>
 <h1 id="overview"><strong>overview</strong></h1>
 <blockquote>
-<p>comprehensive stateful react framework</p>
+<p>A minimalist stateful react framework with stateful objects, full SSR, scoped CSS, stateful object, versatile routing and data binding.</p>
 </blockquote>
 </section>
 <section specs >
@@ -351,15 +355,10 @@ running at localhost:<span class="hljs-number">3000</span>
 </table>
 </aside>
 </center>
-<section features>
-<ul>
-<li><a href='#' onclick='goto("./preview.html#server")'>server</a> comprehensive SSR</li>
-<li><a href='#' onclick='goto("./preview.html#styler")'>styler</a> scoped CSS</li>
-<li><a href='#' onclick='goto("./preview.html#storer")'>storer</a> stateful objects</li>
-<li><a href='#' onclick='goto("./preview.html#ranker")'>ranker</a> advanced SEO</li>
-<li><a href='#' onclick='goto("./preview.html#router")'>router</a> versatile routing</li>
-<li><a href='#' onclick='goto("./preview.html#binder")'>binder</a> data binding</li>
-</ul>
+<center index>
+<h1 id="index-summary">index summary</h1>
+</center>
+<section >
 </section>
 </article>
             <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
