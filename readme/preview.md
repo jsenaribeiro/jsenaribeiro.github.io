@@ -28,7 +28,7 @@
 <fieldset id='server' onclick='onPreview(this.id)'>
 <legend><b>SERVE</b> rendering</legend>
 
-Comprehensive SSR support with component-driven error handling.
+Comprehensive SSR with component-driven error handling.
 
 ```ts
 @server('static') const About = props => <>...</>
