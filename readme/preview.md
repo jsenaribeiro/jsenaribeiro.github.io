@@ -19,7 +19,11 @@
 
 # <a href='#' onclick='goto("./overview.html")'>overview</a> | **preview**
 
+<div hidden>
+
 > SSR • SEO • scoped CSS • stateful objects • routing<br/>API routes • props binding • function decorators<br/>RESTful actions • markdown * JSX-in-HTML
+
+</div>
 
 <fieldset id='server' onclick='onPreview(this.id)'>
 <legend><b>SERVE</b> rendering</legend>
