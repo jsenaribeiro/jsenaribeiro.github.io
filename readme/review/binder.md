@@ -10,7 +10,7 @@
    | <b>review</b>
 </h1>
 
-> data binding • form binding • RESTful actions<br/>props directives • validation api • auth
+> data binding • form binding • request actions<br/>props directives • validation api • authentication
 
 <header>props binding</header>
 
@@ -80,8 +80,6 @@ function onValidate(errors: { field, error, value }[]) {
 }
 ```
 
-## RESTful actions
-
 With `form[data]`, the `[action]` props is made RESTful, sending data object as a JSON as resolving response errors with fails array as dependency injection.
 
 ```tsx
@@ -119,7 +117,7 @@ async function onPost(response: Response) {
 
 </aside>
 
-## Standard authentication
+## JWT authentication
 
 The `[bearer]` and `[action]` props enables a easy standard authentication with use basic authentication request and JWT bearer authentication response with those rules:
 
@@ -159,10 +157,9 @@ A logged user JSON within sessionStorage.set('logon') is exposed by logon DI.
 const Home = (props, { logon }) => <h1>current user name: { logon.name }</h1>
 ```
 
+## Props directives
 
-## Custom props directives
-
-Props binding is a props transformation enabled by the new props directive feature. Custom props directive is supported using a similar functional component syntax. 
+Props directive is a props transformation enabled by the new props directive feature. Custom props directive is supported using a similar functional component syntax. 
 ```tsx
 import { server } from '@reactful/client'
 

@@ -88,4 +88,13 @@ export const Hello = props => <>
 <style>   
    [title] { margin: -9px 0 -25px 0 !important; }
    [title] h1 { letter-spacing: 13px !important; }
+   table tr:last-of-type td {
+      border-bottom: 0 !important
+   }
+
+   table td {
+      padding: 3px;
+      font-size: 0.9em !important;
+      border-bottom: grey solid 1px !important;
+   }
 </style>

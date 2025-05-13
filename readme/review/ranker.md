@@ -16,67 +16,31 @@
 
 ## SEO decorator
 
-SEO is achieved by @seo function decorator with title and description.
-
-```tsx
-import { seo } from '@reactful/client'
-
-@seo('title', 'description')
-export function About(props) {
-   return <>About...</>
-}
-```
-
-## SEO metatags
-
-The @seo decorator overload receives the main SEO metatags as object.
+Function decorator with title and description.
 
 ```tsx
 import { seo, MetaTag } from '@reactful/client'
 
-const metatags: MetaTag = { chartset: 'UTF-8', keywords: 'key1, key2' }
-
-@seo('title', metatags) const About = props => <label>etc...</label> 
-```
-
-## HTML metatags
-
-Since reactful supports HTML, HTML native metatags is supported.
-
-```html
-<html>
-<head>
-   <title>About</title>
-   <meta name='keywords' content='about' />
-</head>   
-<body>
-   etc...
-</body>   
-</html>
-```
-
-## Dynamic SEO
-
-Reactful supports dynamic SEO (request-time) with title and metatags directly in JSX. Those tags will be discarded in rendered JSX and inserted/replaced into current HTML head.
-
-```tsx
-async function Todo(props) {
-   const todo = fetch(`${url}/${props.id}`).then(x => x.json())
-
-   return <>
-      <title>{ todo.task }</title>
-      <meta name='keywords' content='key1, key2' />
-      <h1>{ todo.task }</title>      
-   </h1>
+@seo('title', 'description')
+export function Hi(props) {
+   return <>Hi...</>
 }
+
+const metatags: MetaTag = { 
+   chartset: 'UTF-8', 
+   keywords: 'key1, key2' 
+}
+
+@seo('title', metatags) 
+const About = props => <>etc...</> 
 ```
 
 ## Open Graph Protocol
 
-reactful supports Open Graph Protocol metatags as metatag object and inner JSX elements.
+It also supports Open Graph Protocol metatags.
 
 ```tsx
-import { seo } from '@reactful/client'
+import { seo, ImageMetaTagOG } from '@reactful/client'
 
 const metatags: ImageMetaTagOG = { 
    chartset: 'UTF-8', 
@@ -89,7 +53,8 @@ const metatags: ImageMetaTagOG = {
 
 @seo('Blah', metatags)
 async function Blah(props) {
-   const todo = fetch(`${url}/${props.id}`).then(x => x.json())
+   const url = `${url}/${props.id}`
+   const todo = fetch(url).then(x => x.json())
 
    return <>
       <title>{ todo.task }</title>

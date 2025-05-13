@@ -72,16 +72,6 @@ title {
    font-size: 1.3em !important;
 }
 
-table tr:last-of-type td {
-   border-bottom: 0 !important
-}
-
-table td {
-   padding: 3px;
-   font-size: 0.9em !important;
-   border-bottom: grey solid 1px !important;
-}
-
 [links] {
    letter-spacing: 1px;
    padding-bottom: 5px;
