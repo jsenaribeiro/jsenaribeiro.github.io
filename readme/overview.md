@@ -99,16 +99,4 @@ Some default folders has semantic rule in framework.
 
 </aside>
 </center>
-<center index>
-
-# index summary
-
-
-</center>
-<section >
-
-
-
-</section>
-
 </article>
