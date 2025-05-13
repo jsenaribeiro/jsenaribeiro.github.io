@@ -7,7 +7,7 @@
 
 > A react framework with function decorators, stateful objects, data binding, advanced routing, props directives, compreensive SSR, scoped CSS and SEO support.
 
-<center index>
+<center index style='margin-top:-10px'>
 
 # project structure
 
