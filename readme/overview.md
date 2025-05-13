@@ -18,7 +18,7 @@ Some default folders has semantic rule in framework.
 |                                                                     |                        |
 | ------------------------------------------------------------------- | ---------------------- |
 | <a href='#' onclick='goto("./preview.html#server")'>/apis</a>       | RESTful requests       |
-| <a href='#' onclick=''>/assets</a>     | public static contents |
+| <a href='#' onclick=''>/assets</a>     | static contents |
 | <a href='#' onclick='goto("./preview.html#router")'>/routes</a>     | page components        |
 | <a href='#' onclick=''>/controls</a>   | control components     |
 | <a href='#' onclick='goto("./preview.html#binder")'>/directives</a> | custom props handlers  |
