@@ -1,0 +1,46 @@
+@import url(../../css/index.css);
+
+.vscode-body { background-color: var(--darkest); }
+
+table th:empty { border: 0 !important; }
+
+section.infos table tr td,
+section.details td { padding: 3px 10px; }
+
+section.details tr:not(:last-of-type) td {
+   border-bottom: solid #555 1px !important;
+}
+
+section.details table tr td:first-of-type {
+   font-weight: 500 !important;
+   text-align: right;
+}
+
+section.divs table th,
+section.infos table th {
+   text-transform: uppercase !important;
+   color: var(--primary);
+   font-weight: bolder;
+   border:0;
+}
+
+section.divs table th { padding-bottom: 0; }
+section.divs table td { padding-top: 0; }
+
+section.infos table tr td:not(:last-of-type),
+section.divs table tr th:not(:last-of-type),
+section.divs table tr td:not(:last-of-type) {
+   border-right: solid grey 1px !important;
+}
+
+section.infos table tr td:first-of-type {
+   font-weight: 400 !important;
+   text-align: right;
+}
+
+blockquote p { margin-bottom:0 }
+blockquote { 
+   border-left: solid 15px #555;
+   background-color: #444; 
+   padding:10px 
+}
