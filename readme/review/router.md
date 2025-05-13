@@ -10,13 +10,25 @@
    | <b>review</b>
 </h1>
 
-> simple folder routing • routing decorator • route params<br/>props routing • extended HTML • markdown support<br/>  lazy components • prefetch route • nested routes
+> simple routing • routing decorator • route params<br/>props routing • extended HTML • markdown support<br/>  lazy components • prefetch route • nested routes
 
 <header>routing components</header>
 
+New concepts, behaviors and approachs that keep the code leaner, readable and intuitive, but is slightly differente from popular frameworks.
+
+<section concept>
+
+| CONCEPT               | DESCRIPTION                                                     |
+| --------------------- | --------------------------------------------------------------- |
+| declarative redirects | Redirect is declarativilly handled with conditional returns.    |
+| fullstack routing     | Server routing sends prefetched routes to client-side usage     |
+| fallback falts        | Not found route fallbacks to its nearest available route in URL |
+
+</section>
+
 ## Folder routing
 
-Simple folder routing with no extranaming conventions to serve in static routes.
+Static folder routing with no extra naming conventions.
 
 <style>
    table { zoom:0.9; line-height:11px; }
@@ -33,7 +45,15 @@ Simple folder routing with no extranaming conventions to serve in static routes.
 | /routes/example.md        | localhost:3000/example | filename markdown   |
 | /routes/profile/index.tsx | localhost:3000/profile | subfolder index JSX |
 
-Resolution conflicts will throw exception in build time. 
+**Nesting routes** with dot slash syntax (`./`).
+
+| CONTEXT                | ROUTING   | RESOLUTION            |
+| ---------------------- | --------- | --------------------- |
+| /                      | ./about   | /about                |
+| /admin/system          | ./account | /admin/account        |
+| /user/profile/overview | ./details | /user/profile/details |
+
+**Conflicts rules** with build time exception. 
 
 | CONTEXT SAMPLING                             | CONFLICT TYPE                 |
 | -------------------------------------------- | ----------------------------- |
@@ -41,55 +61,30 @@ Resolution conflicts will throw exception in build time.
 | file.html, file.tsx, file.md                 | filename x extensions         |
 | file.html, file.tsx, file.md, file/index.tsx | filename x extensions x index |
 
-## Nesting routing
-
-<style>
-   aside[nesting] table td { padding:0; }
-   aside[nesting] table tr { padding:0; }
-</style>
-
-<aside nesting cols='4:5'>
-
-Normal routes starts with slash (**/**), meanwhile nesting routes starts with dot slash syntax (**./**) based on current file path.
-
-|                        |           |                       |
-| ---------------------- | --------- | --------------------- |
-| /                      | ./about   | /about                |
-| /admin/system          | ./account | /admin/account        |
-| /user/profile/overview | ./details | /user/profile/details |
-
-</aside>
-
 ## Async components
 
-React server components, enabling async components and easier data fetching. 
+It supports async components and `Suspense` API with awaits props-driven  Suspense alternative.
 
 ```tsx
-async function AsyncSample(props) {
+async function Async(props) {
    const text = await fetch('http://www.some-url.com')
    return <h1>awaited content = { text }</h1>
 }
-```
 
-Reactful async components supports React Suspense API.
-
-```tsx
-const SuspenseSample = async props => <>
+const Hello = async props => <>
    <Suspense fallback={<b>loading...</b>}>
-      <AsyncSample />
+      <Async />
    </Suspense>
 </>
-```
 
-It introduces an inverse props-driven Suspense alternative as await props. It works replacing its children after its await component is loaded by component streaming. 
-
-```tsx
-const AwaitPropsSample = async props => <h1 await={AsyncSample}>loading...</h1>
+const Awaits = async props => <>
+   <h1 await={Async}>loading...</h1>
+</>
 ```
 
 ## Dynamic routes
 
-The @route functions decorator support route params with priority above folder routing.
+Functions decorator for dynamic routing (aka parametric route) that overrides default folder routing.
 
 ```tsx
 import { route } from '@reactful/client'
@@ -108,7 +103,7 @@ export default async function Profile(props, { params }) {
 
 ## Props routing
 
-The `[route]` and `[link]` props  enable client-side routing for element conditional.
+Client-side routing with `[route]` and `[link]` props.
 
 ```tsx
 export default const Menu = (props) => <>
@@ -122,29 +117,23 @@ export default const Menu = (props) => <>
 </!->
 ```
 
-## Lazy routing
+## Lazy loading
 
-Client-side route component is lazy loaded by promise extension `asLazyComponent`.
+Lazy routing using promise extension `asLazyComponent`.
 
 ```tsx
 const Sample = import('./main').asLazyComponent('Sample')
-const Sample = importComponent('./main', 'Sample')
-const Sample = useRoute(import('./main'), 'Sample')
 
 export default const Menu = (props) => <>
    <h1>Menu</h1>
-
-   <!-- [link] router -->
    <a link='/sample'>Sample</a>
-
-   <!-- [route] lazy routing -->
-   <Sample route='./lazy' />
+   <Sample route='/lazy' /> <!-- lazy routing -->
 </!->
 ```
 
-## Routed styling
+## Style routing
 
-A `routed` className is for current route is inserted in element`[link]` for 'active' styling.
+A `routed` className to style `[link]` active element.
 
 ```css
 button.routed { background: wheat; font-weight: bolder; }
@@ -152,30 +141,5 @@ button.routed { background: wheat; font-weight: bolder; }
 
 As client-side routing, props routing not renders by request or after refresh. When a not found happens, the reactful responde with nearest route available.
 
-## New concepts
-
-The reactful routing come with some new concepts, behaviors and approachs that keep the code more leaner, readable and intuitive, but is slightly differente from popular frameworks.
-
-<style>
-   [concept] table tr td:nth-of-type(1) {
-      font-weight: 500 !important;
-   }
-</style>
-
-<section concept>
-
-| CONCEPT               | DESCRIPTION                                                     |
-| --------------------- | --------------------------------------------------------------- |
-| declarative redirects | Redirect is declarativilly handled with conditional returns.    |
-| fullstack routing     | Server routing sends prefetched routes to client-side usage     |
-| fallback falts        | Not found route fallbacks to its nearest available route in URL |
-
-</section>
-
-
-Here a sample of a declarative redirect with a simple conditional component return.
-```tsx
-function Component(props) { return condition_1 ? <Redirect1 /> : <>etc...</> }
-```
 
 <br/><br/>

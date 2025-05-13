@@ -16,20 +16,7 @@
 
 ## Server startup
 
-Reactful starts with a server function in port 3000 (defined in .env file).
-
-```ts
-/* define the route folder and customize settings */
-server(routes: string = '/routes', settings: { etc... })
-
-/* inject custom props directives (see Binder section) */
-inject(directive: Proper)
-
-/* pass the query selector for root element */
-render(query: string = "#root")
-```
-
-Bellow reactful startup sample with some props directive injections.
+Startup sample with some injected props directives.
 
 ```ts
 import { server } from 'reactful/server'
@@ -41,45 +28,29 @@ await server("/routes", { etc... })
      .render("#root")
 ```
 
-## Folder structure
+## RESTful apis
 
-Reactful server works with `/apis`, `/assets`, and `/routes` folders. The /apis folders serve as **'/api'** routes for RESTful APIs as exported functions with HTTP verb names. 
+The `/apis` folders enables RESTful APIs with exported functions using HTTP verb names. 
 
 ```ts
 // file: /apis/sample.ts
 // route: http://localhost:3000/api/sample
 // warning: route is both resolved as /api and /apis
-export const get = (request: Request) => new Response('Hello World!')
+export const get = request => new Response('Hello World!')
 ```
-
-The **/assets** folder serves all static content as images, styles, sounds, etc. 
-
-```html
-<link rel="stylesheet" href="/assets/styles.css" />
-```
-
-The **/routes** folder is default routing for routing page components. It supports rendering to JSX, HTML and markdown files and also resolve /name/index.tsx as /name routing. 
-
-
-```ts
-@server('static') export default props => <>Home page</>
-```
-
-Conflicting routing resolution will throw an exception in build time.
-
 
 ## Client component
 
-Client components are modelled with @client function decorators. A more component-scope alternative than next.js modular 'use client' and intra-component fetch api extensions. 
+Client-component function decorators as component-scope alternative to modular `'use client'` conventional soluction.
 
 ```tsx
 @client(true)
-export default const ClientSideRendered = props => <>...</>
+export const Hi = props => <>...</>
 ```
 
 ## Server component
 
-Static, dynamic and periodic SSR is supported sing @server function decorator as metadata for default exported components. The static SSR is the default rendering model (implicit).
+Static, dynamic and periodic server-side rendering (SSR) by function decorators.
 
 ```tsx
 @server('static') // default
@@ -109,7 +80,7 @@ export default async function AsyncComponent(props) {
 
 ## Error component
 
-Reactful has a default global error component that could by replaced by a custom failure high-order component in reactful settings during server call.
+Component-driven global error handling using high-order component.
 
 ```tsx
 import { server } from 'reactful/server'
@@ -127,7 +98,7 @@ const settings = { failure: myCustomErrorComponent }
 await server("#root", settings).render("#root")
 ```
 
-Local error handling is covered by `@error` component decorator, passing specific error high-order component for each specific component if there is any exception at rendering.
+Local specific error handling with function decorator.
 
 ```tsx
 import { error } from '@reactful/client'
@@ -139,15 +110,12 @@ const mySpecificErrorComponent = (status, errors) => <p>
 </p>
 
 @error(mySpecificErrorComponent)
-export function Sample() { ... }
-
-@error(mySpecificErrorComponent)
 export function Example() { ... }
 ```
 
-## JSX-in-HTML extension
+## HTML extension
 
-Markdown and HTML support an extended `<link>` tag for JSX import inside HTML. This enables importing React component inside a HTML with server-side static rendering.
+Extended `<link>` tag for default JSX import inside HTML.
 
 ```html
 <html>
@@ -156,14 +124,11 @@ Markdown and HTML support an extended `<link>` tag for JSX import inside HTML. T
 </html>
 ```
 
-Use the `rel` attribute in `<link />` to import an exported named component, otherwise, it will import the default component in defined in `href` path to component. 
+Use `rel` enables to import named component. 
 
 ```html
-<!-- default component in /components/header.tsx" -->
-<link type="react" href="../components/header.tsx" />
-
-<!-- 'Header' component in /components/header.tsx" -->
-<link rel="Header" type="react" href="../components/header.tsx" />
+<!-- 'Header' component in /etc/header.tsx" -->
+<link rel="Header" type="react" href="../etc/header.tsx" />
 ```
 
 <br/>
