@@ -13,7 +13,7 @@
 <article overview>
 <title>REACTFUL</title>
 
-<center style='margin-bottom:-9px; font-size: 1.1em; margin-top:9px;'>
+<center style='margin-bottom:-15px; font-size: 1.1em; margin-top:15px;'>
 <a href='#' onclick='goto("./preview.html#server")'>server</a> | <a href='#' onclick='goto("./preview.html#styler")'>styler</a> | <a href='#' onclick='goto("./preview.html#storer")'>storer</a> | <a href='#' onclick='goto("./preview.html#ranker")'>ranker</a> 
 | <a href='#' onclick='goto("./preview.html#router")'>router</a> | <a href='#' onclick='goto("./preview.html#binder")'>binder</a> 
 </center>
