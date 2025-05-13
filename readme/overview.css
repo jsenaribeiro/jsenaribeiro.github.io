@@ -72,10 +72,6 @@ title {
    font-size: 1.3em !important;
 }
 
-[title] { margin: -9px 0 -25px 0 !important; }
-
-[title] h1 { letter-spacing: 13px !important; }
-
 table tr:last-of-type td {
    border-bottom: 0 !important
 }
