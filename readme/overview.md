@@ -1,10 +1,16 @@
 <style>
-   [index] h1 { margin-bottom:0; font-size: 1.3em !important; }
+   [index] h1 { margin-bottom:-13px; font-size: 1.3em !important; }
+   [title] { margin: -15px 0 -25px 0 !important;  }
    table tr:last-of-type td { border-bottom:0 !important }
    table td {
       padding: 3px;
       font-size: 0.9em !important;
       border-bottom: grey solid 1px !important;
+   }
+   [links] {
+      letter-spacing: 1px; 
+      padding-bottom: 5px;
+      border-bottom: dashed grey 1px; 
    }
 </style>
 
@@ -12,7 +18,7 @@
 <style>@import url(./overview.css);</style>
 <article overview>
 
-<center style='margin-bottom:-15px; font-size: 1.1em; margin-top:15px;'>
+<center links>
 <a href='#' onclick='goto("./preview.html#server")'>server</a> | <a href='#' onclick='goto("./preview.html#styler")'>styler</a> | <a href='#' onclick='goto("./preview.html#storer")'>storer</a> | <a href='#' onclick='goto("./preview.html#ranker")'>ranker</a> 
 | <a href='#' onclick='goto("./preview.html#router")'>router</a> | <a href='#' onclick='goto("./preview.html#binder")'>binder</a> 
 </center>
