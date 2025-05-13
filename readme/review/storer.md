@@ -14,7 +14,7 @@
 
 <header>OOP state handling</header>
 
-Stateful objects brings is a hookless concept for state handling with functional components. It uses performatic **delayed render** algorithm that enables that batchies successives changes (0.1 second range).
+Stateful objects is a hookless state handling concept for functional components. It uses performatic **delayed render** algorithm with 0.1s second interval.
 
 ## Local props 
 

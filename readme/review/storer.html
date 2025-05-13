@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Local states</title>
+            <title>Local props</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -249,8 +249,8 @@ body.marp-vscode blockquote {
 <p>stateful proxy object • stateful props<br/>modular state • global state<br/> OOP state handling</p>
 </blockquote>
 <header>OOP state handling</header>
-<p>Stateful objects brings is a hookless concept for state handling with functional components. It uses performatic <strong>delayed render</strong> algorithm that enables that batchies successives changes (0.1 second range).</p>
-<h2 id="local-states">Local states</h2>
+<p>Stateful objects is a hookless state handling concept for functional components. It uses performatic <strong>delayed render</strong> algorithm with 0.1s second interval.</p>
+<h2 id="local-props">Local props</h2>
 <p>Local states is handled as self-rendering stateful props.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
    Hello { props.name } !
@@ -294,7 +294,7 @@ body.marp-vscode blockquote {
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">React19s</span> = (<span class="hljs-params">props, ref</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...etc<span class="hljs-tag">&lt;/&gt;</span></span>
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">Reactful</span> = (<span class="hljs-params">props, { ref }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...etc<span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<h2 id="orbital-states">Orbital states</h2>
+<h2 id="partial-states">Partial states</h2>
 <p>States shared between modulesa and handled as second argument of @client(true) function decorator.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> myStore = <span class="hljs-title function_">useStore</span>({ <span class="hljs-attr">guid</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;john&#x27;</span>, <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() })
 </code></pre>

@@ -25,6 +25,38 @@
 
 </div>
 
+<fieldset id='ranker' onclick='onPreview(this.id)'>
+<legend><b>INDEX</b> ranking</legend>
+
+SEO support with metatag object and function decorators.
+
+<aside cols=2>
+
+```tsx
+import { seo } from '@reactful/client'
+
+@seo('Home', 'A home page...')
+export function Home() { ... }
+
+@seo('About', 'A about page...')
+export function About() { ... }
+```
+
+```tsx
+const metatags = { 
+   charset:'UTF-8', 
+   keywords: 'test, sample'
+}
+
+@seo('Example', metatags)
+export function Example() { ... }
+```
+</aside>
+
+Go to <a href='#' onclick='goto("./review/ranker.html")'>review</a> section for more details.
+
+</fieldset>
+
 <fieldset id='server' onclick='onPreview(this.id)'>
 <legend><b>SERVE</b> rendering</legend>
 
@@ -109,38 +141,6 @@ Stateful objects for **local**, **global** and **partial** scope.
 ```
 
 Go to <a href='#' onclick='goto("./review/storer.html")'>review</a> section for more details.
-
-</fieldset>
-
-<fieldset id='ranker' onclick='onPreview(this.id)'>
-<legend><b>INDEX</b> ranking</legend>
-
-SEO support with metatag object and function decorators.
-
-<aside cols=2>
-
-```tsx
-import { seo } from '@reactful/client'
-
-@seo('Home', 'A home page...')
-export function Home() { ... }
-
-@seo('About', 'A about page...')
-export function About() { ... }
-```
-
-```tsx
-const metatags = { 
-   charset:'UTF-8', 
-   keywords: 'test, sample'
-}
-
-@seo('Example', metatags)
-export function Example() { ... }
-```
-</aside>
-
-Go to <a href='#' onclick='goto("./review/ranker.html")'>review</a> section for more details.
 
 </fieldset>
 

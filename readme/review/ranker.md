@@ -14,6 +14,8 @@
 
 <header>search engine optimization</header>
 
+It supports static and dynamic SEO using built-in function decorators with client-side and server-side approaches.
+
 ## SEO decorator
 
 Function decorator with title and description.
