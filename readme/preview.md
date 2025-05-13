@@ -28,7 +28,7 @@
 <fieldset id='server' onclick='onPreview(this.id)'>
 <legend><b>SERVE</b> rendering</legend>
 
-Comprehensive server-side render support.
+Comprehensive SSR support with component-driven error handling.
 
 ```ts
 @server('static') const About = props => <>...</>
@@ -36,9 +36,7 @@ Comprehensive server-side render support.
 @server('Periodic', '1h') const About = props => <>...</>
 ```
 
-Component-driven error handling by dependency injection.
-
-<aside cols='4:5'>
+<aside cols='4:5' style='margin-top:-3px'>
 
 ```tsx
 // by component decorator (local)
