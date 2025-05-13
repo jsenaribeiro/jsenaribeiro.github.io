@@ -13,7 +13,7 @@
 
 Some default folders has semantic rule in framework.
 
-</center><center cols='2'><aside>
+</center><center cols='2'><aside style='justify-self: end;'>
 
 |                                                                     |                        |
 | ------------------------------------------------------------------- | ---------------------- |
@@ -23,7 +23,7 @@ Some default folders has semantic rule in framework.
 | <a href='#' onclick=''>/controls</a>   | control components     |
 | <a href='#' onclick='goto("./preview.html#binder")'>/directives</a> | custom props handlers  |
 
-</aside><aside>
+</aside><aside style='justify-self: start;'>
 
 |                 |                   |
 | --------------- | ----------------- |
