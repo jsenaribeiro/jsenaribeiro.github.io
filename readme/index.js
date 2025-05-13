@@ -8,6 +8,7 @@ function startup() {
 }
 
 function goto(href) {
+   console.log({ href })
    document.querySelector('main[iframe]').hidden = false
    document.querySelector('iframe').src = href
    document.querySelector('main[index]').hidden = true
