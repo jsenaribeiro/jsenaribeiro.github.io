@@ -13,9 +13,9 @@ function previewing() {
       .querySelector(location.hash)
       .classList.remove('hidden')   
    
-   if (!location.hash.trim()) 
-      document.querySelector('#server')
-         .classList.remove('hidden') 
+   // if (!location.hash.trim()) 
+   //    document.querySelector('#server')
+   //       .classList.remove('hidden') 
 }
 
 setTimeout(previewing, 111)

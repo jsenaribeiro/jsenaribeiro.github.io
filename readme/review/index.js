@@ -1,4 +1,5 @@
 function goto(href) {
+   console.log('review goto', { href })
    window.parent.parent.document.querySelector('iframe').src = href
 }
 
