@@ -1,8 +1,7 @@
 function startup() {
-   // setTimeout(interval, 333)
    createLinks('overview', document)
    createLogo(document)
-   resizeIframe()
+   resize(document)
 }
 
 function interval() {
@@ -11,24 +10,26 @@ function interval() {
    overview.focus()
 }
 
-function resizeIframe() {
-   const iframe = document.querySelector("iframe");
-   const total = iframe.contentWindow.document.body.scrollHeight + 50
-   iframe.style.height = total + "px";
+function resize(doc) {
+   const iframe = doc.querySelector("iframe");
+   const target = iframe.contentWindow.document.documentElement
+   const height = target.scrollHeight + 'px'
+
+   iframe.style.height = height
+
+   console.log('rezise', { height })
+
+   // window.addEventListener('resize', () =>  resize(iframe));
 }
  
-function adjustZoom(content) {
-   // content.style.zoom = 1.17
-   // content.style.padding = '50px !important'
-}
-
-function createLinks(where, content) {
-   const frame = content.querySelector("iframe")
-   const links = content.querySelectorAll(`#${where} a`)
+function createLinks(where, doc) {
+   const frame = doc.querySelector("iframe")
+   const links = doc.querySelectorAll(`#${where} a`)
    const maker = a => `./src/${where}/${a.id}.html`
    const refix = _ => setTimeout(adjustZoom, 999)
    const apply = a => frame.src = maker(a)
-   const click = a => { apply(a); refix(); }
+   const fresh = x => setTimeout(() => resize(x), 1999)
+   const click = a => { apply(a); refix();  }
 
    links.forEach(a => a.id = a.href.split('#').at(-1) ?? '')
    links.forEach(a => a.onclick = () => click(a))

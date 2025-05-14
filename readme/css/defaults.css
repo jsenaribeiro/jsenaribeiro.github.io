@@ -8,11 +8,13 @@
 
 .vscode-body { background-color: unset; }
 
+* { font-style: normal !important; }
+
 html,
 body {
    height: auto;
    min-height: 100%;
-   font-family: var(--code-font), monospace;
+   font-family: var(--text-font), monospace;
 }
 
 body {
@@ -41,15 +43,3 @@ input:checked {
    outline: none;
 }
 
-pre {
-   font-size: 1rem;
-   font-weight: 100;
-   font-family: var(--code-font), monospace;
-   background-color: var(--darkest);
-}
-
-p code { 
-   background-color: #333; 
-   border: solid 5px #333;
-   border-width: 3px 5px;
-}

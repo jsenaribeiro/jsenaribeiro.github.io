@@ -1,0 +1,13 @@
+pre {
+   font-size:1rem;
+   font-weight: 100;
+   background-color: var(--darkest);
+}
+
+p code { 
+   font-family: var(--code-font), monospace;
+   background-color: #444; 
+   border: solid 5px #444;
+   border-width: 2px 1px;
+   color: wheat;
+}

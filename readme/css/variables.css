@@ -5,6 +5,6 @@
    --inverse: #333;
    --subtile: #aaa;
    --darkest: #272727;
-   --code-font: agave;
+   --code-font: agave !important;
    --text-font: 'fira sans', sans-serif;
 }
