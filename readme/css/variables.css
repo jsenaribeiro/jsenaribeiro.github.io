@@ -2,6 +2,9 @@
    --default: #CCC;
    --primary: wheat;
    --outline: #F5DEB3;
-   --inverse: #222;
+   --inverse: #333;
+   --subtile: #aaa;
+   --darkest: #272727;
    --code-font: agave;
+   --text-font: 'fira sans', sans-serif;
 }

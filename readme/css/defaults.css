@@ -1,54 +1,32 @@
-@import url('https://fonts.cdnfonts.com/css/agave');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400&family=Quicksand:wght@300;400;500;600;700&display=swap');
-@import url('./variables.css');
-
 * {
    font-weight: 300;
    font-style: normal;
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
 }
 
-html {
-   height: 100%;
-   font-family: 'fira sans', sans-serif !important;
+html,
+body {
+   height: auto;
+   min-height: 100%;
+   font-family: var(--code-font), monospace;
 }
 
-body,
-embed {
-   font-size: 15px;
+body {
+   display: flex;
+   font-size: 1.1rem;
    color: var(--default);
-   background-color: var(--inverse);
-   display: block;
-   width: 100%;
+   background: var(--inverse);
+   flex-direction: column;
+   font-weight: 1000;
    height: 100%;
-   overflow-x: hidden;
-   padding: 10px;
 }
 
-pre { background-color: #2B2B2B; }
-img { width: 100%; }
-a { color: #4CA4ED }
-b, strong, th { font-weight: 700; }
-
-code, code * {
-   font-family: var(--code-font), monospace !important;
-   font-style: normal !important;
-   line-height: 15px;
-   font-size: 13px !important;
-}
-
-blockquote {
-   color: #999;
-   text-align: center;
-   background: transparent;
-   padding: 1px 19px 1px 19px;
-   margin: -11px 0 0 0;
-   font-size: 1.2em;
-   border: 0;
-}
-
-mark {
-   color: var(--outline);
+a {
+   color: #4CA4ED;
+   text-decoration: none;
+   font-family: var(--text-font), sans-serif;
 }
 
 a:hover,
@@ -56,43 +34,20 @@ a:focus,
 a:active,
 input:checked {
    text-decoration: none;
-   filter: saturate(125%) brightness(125%);
-   text-shadow: wheat 1px 0 10px;
+   text-shadow: wheat 1px 0 300px;
    color: wheat;
    outline: none;
 }
 
-table { margin-bottom: 15px; }
-
-table th:empty {
-   background-color: red !important;
-   display: none;
-   line-height: 0;
-   margin: 0 0 0 0;
-   margin-top: -100px;
-   padding: 0;
+pre {
+   font-size: 1rem;
+   font-weight: 100;
+   font-family: var(--code-font), monospace;
+   background-color: var(--darkest);
 }
 
-@media (prefers-color-scheme: dark) {
-   ::-webkit-scrollbar {
-      width: 10px;
-   }
-
-   ::-webkit-scrollbar-track {
-      background: var(--inverse);
-   }
-
-   ::-webkit-scrollbar-thumb {
-      background: #2F2F2F;
-   }
-
-   ::-webkit-scrollbar-thumb:hover {
-      background: #555;
-   }
-}
-
-@media (prefers-color-scheme: light) {
-   img {
-      filter: invert(1)
-   }
+p code { 
+   background-color: #333; 
+   border: solid 5px #333;
+   border-width: 3px 5px;
 }

@@ -1,38 +1,35 @@
 h1, h2, h3, h4, h5, h6 {
    font-weight: 700;
+   font-family: var(--text-font);
+   color: var(--primary);
 }
 
 h1 {
-   font-size: 3rem;
+   font-weight: 100;
+   font-size: 2.5rem;
    text-align: center;
    letter-spacing: 7px;
-   font-weight: 100;
+   border:0;
 }
 
 h2 {
-   font-size: 1.5rem;
-   font-weight: 700;
+   font-weight: 300;
+   font-size: 1.3rem;
+   margin-bottom: 7px;
+   border-bottom: 1px solid grey !important;
 }
 
 h3 {
-   font-size: 1.3rem;
+   font-size: 1.1rem;
    margin-top: 0 auto;
 }
 
-h4 {
-   font-size: 1.1rem;
-}
+h4 { font-size: 1.1rem; }
 
-h2 {
-   /* border-bottom: none; */
-}
-
-h2::before {
-   content: ' '
-}
 
 /* counting */
 
+/*
 body {
    counter-reset: h2;
 }
@@ -55,4 +52,4 @@ h3 {
    color: #AAA;
    font-weight: 300;
    margin-top: 0
-}
+} */
