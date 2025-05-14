@@ -2,45 +2,26 @@
 <html lang="en">
 
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Minimal React-Like Dark Theme</title>
    <link rel="stylesheet" href="./index.css">
+   <script src="./js/logo.js"></script>
    <script src="./index.js"></script>
    <title>reactful.js</title>
 </head>
 
 <body onload="startup()">
-   <style>
-      #title span { font-size: 39px }
-      a { font-size:19px; font-weight: bolder; }
-      html { overflow: hidden !important; }
-   </style>   
-
-   <main iframe hidden>
-      <iframe id="iframe"></iframe>
-   </main>
-   
-   <main index>
-      <h1 id='title'>
-         <logo></logo><code>eactful</code><span>.js</span>
-      </h1>
-      <hr />
-
-      <center style='text-align: center !important; padding: 15px;'>
-         <blockquote index> minimalist full-stack React Framework
-            <br />with full SSR and simplified states
-         </blockquote>
-         <br/><a index href='#' onclick="goto('./overview.html')">documentation</a>
-      </center>
-      
-      <video width="590" height="auto" autoplay loop muted onloadstart="this.playbackRate = 1.5;">
-         <source src="./avi/intro.mp4" type="video/mp4">
-         Seu navegador não suporta o elemento de vídeo.
-     </video>
+   <main>
+      <logo></logo>
+      <h1>reactful</h1>
+      <p>A minimalist React framework for state management, hybrid rendering and component routing with advanced features.</p>
+      <a href="default.html">documentation</a>
    </main>
 
-   <script>
-   </script>
+   <footer>
+      © 2025 reactful. All rights reserved.
+   </footer>
 </body>
 
 </html>
