@@ -1,6 +1,5 @@
 @import url('css/index.css');
 
-
 #content {
    height: 100%;
    display: grid; 
@@ -35,9 +34,7 @@ iframe {
    border: none;
 }
 
-pre {
-   height: 100% !important;
-}
+pre { height: 100% !important; }
 
 #reactful { color:wheat }
 #reactful:hover { filter:invert(1) brightness(5) }

@@ -1,6 +1,6 @@
 @import url(../../css/index.css);
 
-.vscode-body { background-color: var(--darkest); }
+.vscode-body { background-color: #333; }
 
 table th:empty { border: 0 !important; }
 

@@ -32,7 +32,7 @@ footer {
    text-align: center;
    padding: 2rem;
    font-size: 0.9rem;
-   background: #181a1f;
+   background: var(--darkest);
    color: var(--subtile);
 }
 
