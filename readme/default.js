@@ -3,6 +3,7 @@ function startup() {
 
    createLinks('overview', document)
    createLinks('preview', document)
+   createLinks('review', document)
 
    createLogo(document)
    resize(frame)
