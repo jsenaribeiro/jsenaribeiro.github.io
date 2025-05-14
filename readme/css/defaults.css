@@ -6,6 +6,8 @@
    padding: 0;
 }
 
+.vscode-body { background-color: unset; }
+
 html,
 body {
    height: auto;
