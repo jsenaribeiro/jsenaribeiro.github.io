@@ -241,8 +241,10 @@ body.marp-vscode blockquote {
 <!-- <script src='../../js/steps.js'></script> -->
 <h1 id="installation">Installation</h1>
 <h2 id="requirements">Requirements</h2>
+<blockquote>
 <p>bun • vs code • windows, mac or linux</p>
-<h2 id="templanting">Templanting</h2>
+</blockquote>
+<h2 id="creating">Creating</h2>
 <pre><code class="language-ps"><span class="hljs-variable">$</span> bunx @reactful/create@latest
 - template? empty|minimal|sampling
 - project name? MyProjectName
@@ -254,7 +256,10 @@ body.marp-vscode blockquote {
 
 running at localhost:<span class="hljs-number">3000</span>
 </code></pre>
-<h2 id="bootstraping">Bootstraping</h2>
+<h2 id="running">Running</h2>
+<pre><code class="language-ps"><span class="hljs-variable">$</span> bun run <span class="hljs-built_in">start</span> <span class="hljs-comment"># running at locahost:3000</span>
+</code></pre>
+<h2 id="starting">Starting</h2>
 <pre><code class="language-typescript"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/server&#x27;</span>
 <span class="hljs-keyword">import</span> { client } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful&#x27;</span>
 
