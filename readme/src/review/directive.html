@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Presentation</title>
+            <title>Property directives</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -236,81 +236,34 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <style>@import url(./index.css);</style>
-<h1 id="presentation">Presentation</h1>
-<center>
-<p>A react framemwork with comprehensive features, extensive support and new concepts with stateful objects, props directive and function decorators.</p>
-</center>
-<section class='divs'>
-<table>
-<thead>
-<tr>
-<th style="text-align:right">Stateful object</th>
-<th style="text-align:center">Props directive</th>
-<th style="text-align:left">Function decorator</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right">Self-rendering stateful objects</td>
-<td style="text-align:center">Angular-like injectable attribute directives</td>
-<td style="text-align:left">Built-time function decorator transpiler</td>
-</tr>
-</tbody>
-</table>
-</section>
-<h2 id="supported-features">Supported features</h2>
-<p>It supports all modern features (resource with * are in draft stage).</p>
-<blockquote>
-<p>server component (RSC) • server-side rendering (SSR) • static site generation (SSG) • search engine optimization (SEO) • resource compression* • i18n translation* • Suspense API • etc</p>
-</blockquote>
-<h2 id="framework-resources">Framework resources</h2>
-<p>Comprehensive framework for full SPA developement.</p>
-<section class='infos'>
-<table>
-<thead>
-<tr>
-<th style="text-align:right"></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right">easy data binding</td>
-<td>data binding designed to react components</td>
-</tr>
-<tr>
-<td style="text-align:right">lean stateful handing</td>
-<td>new hookless self-rendering stateful objects</td>
-</tr>
-<tr>
-<td style="text-align:right">nice component routing</td>
-<td>routing by props, pathing and decorators</td>
-</tr>
-<tr>
-<td style="text-align:right">flex hybrid rendering</td>
-<td>SSR, ISR and SSG with function decorators</td>
-</tr>
-<tr>
-<td style="text-align:right">bold props directive</td>
-<td>angular-like injectable props</td>
-</tr>
-<tr>
-<td style="text-align:right">full server components</td>
-<td>full support to server components</td>
-</tr>
-<tr>
-<td style="text-align:right">fast development tool</td>
-<td>designed with performatic bun bundler</td>
-</tr>
-</tbody>
-</table>
-</section>
-<style>
-   table tr td:first-of-type {
-      color: whitesmoke;
-   }
-</style>
+            <style>@import url(./index.css);</style> 
+<h1 id="property-directives">Property directives</h1>
+<h2 id="angular-directives">Angular directives</h2>
+<p>Directives are a core concept in Angular, everything is a kind of directive. The kind of directive emulated by props directive in Reactful is the attribute directive. With attribute directive is possible to create a attribute that you can shared between multiple components.</p>
+<h2 id="react-directives">React directives</h2>
+<p>In Reactful, directives (or props directive) enable a simple implementation of this concept of shareable props than encapsulate props transformation. The routing props and binding props in Reacful are built-in props directives.</p>
+<p>Custom directives are simple functions that receives and returns transformed props. Above, a simple custom props directive example.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
+
+<span class="hljs-comment">// simple custom directive for hidden opposite behavior</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">shown</span> = props =&gt; ({ ...props, <span class="hljs-attr">hidden</span>: !props.<span class="hljs-property">shown</span> })
+
+<span class="hljs-comment">// injecting the custom directive into IoC container</span>
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>).<span class="hljs-title function_">inject</span>([ shown ]).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
+
+<span class="hljs-comment">// declaring new attibute for intelisense support</span>
+declare <span class="hljs-variable language_">module</span> <span class="hljs-string">&quot;react&quot;</span> { interface <span class="hljs-title class_">HTMLAttribute</span> { show?:boolean }}
+
+<span class="hljs-comment">// example of a shown custom directive sample usage</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Ok</span> = prop =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">shown</span>=<span class="hljs-string">{true}</span>&gt;</span>Show me!<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+</code></pre>
+<h2 id="directive-limitations">Directive limitations</h2>
+<p>Custom props directive has a limited module support. Any import in its module will not work and it will crash the reactful server during build time. So, a directive could be imported, but cannot import anything. It means that a directive import ouly could be leaf in an import tree call.</p>
+<h2 id="performance-issues">Performance issues</h2>
+<p>Each registered (injected) directive in Reactful server, will be processed during rendering time, in each element of the component tree. If a small set of directive are a little impact in performance, for other hand, even if it is not necessary critical, a large set of custom directives, something above 20 or more, will have some sensible performance impact.</p>
+<h2 id="utility-issues">Utility issues</h2>
+<p>Directives are very powerful and versartile feature, but, its application is very specific, maybe much more useful as directive consumer, than custom directive producer. So, this main advantagens are with its built-in framework directives for routing and binding.</p>
+
             
             <script async type="text/javascript">
 /* From extension marp-team.marp-vscode */

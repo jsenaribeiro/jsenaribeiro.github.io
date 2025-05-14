@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Presentation</title>
+            <title>Stateful object</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -236,81 +236,68 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <style>@import url(./index.css);</style>
-<h1 id="presentation">Presentation</h1>
-<center>
-<p>A react framemwork with comprehensive features, extensive support and new concepts with stateful objects, props directive and function decorators.</p>
-</center>
-<section class='divs'>
-<table>
-<thead>
-<tr>
-<th style="text-align:right">Stateful object</th>
-<th style="text-align:center">Props directive</th>
-<th style="text-align:left">Function decorator</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right">Self-rendering stateful objects</td>
-<td style="text-align:center">Angular-like injectable attribute directives</td>
-<td style="text-align:left">Built-time function decorator transpiler</td>
-</tr>
-</tbody>
-</table>
-</section>
-<h2 id="supported-features">Supported features</h2>
-<p>It supports all modern features (resource with * are in draft stage).</p>
+            <style>
+@import url(./index.css);
+@import url(./stouring.css);
+</style> 
+<h1 id="stateful-object">Stateful object</h1>
 <blockquote>
-<p>server component (RSC) • server-side rendering (SSR) • static site generation (SSG) • search engine optimization (SEO) • resource compression* • i18n translation* • Suspense API • etc</p>
+<p>self-rendering state • stateful proxy object • stateful props • modular state • global state • object-oriented state handling • dependency injection</p>
 </blockquote>
-<h2 id="framework-resources">Framework resources</h2>
-<p>Comprehensive framework for full SPA developement.</p>
-<section class='infos'>
-<table>
-<thead>
-<tr>
-<th style="text-align:right"></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right">easy data binding</td>
-<td>data binding designed to react components</td>
-</tr>
-<tr>
-<td style="text-align:right">lean stateful handing</td>
-<td>new hookless self-rendering stateful objects</td>
-</tr>
-<tr>
-<td style="text-align:right">nice component routing</td>
-<td>routing by props, pathing and decorators</td>
-</tr>
-<tr>
-<td style="text-align:right">flex hybrid rendering</td>
-<td>SSR, ISR and SSG with function decorators</td>
-</tr>
-<tr>
-<td style="text-align:right">bold props directive</td>
-<td>angular-like injectable props</td>
-</tr>
-<tr>
-<td style="text-align:right">full server components</td>
-<td>full support to server components</td>
-</tr>
-<tr>
-<td style="text-align:right">fast development tool</td>
-<td>designed with performatic bun bundler</td>
-</tr>
-</tbody>
-</table>
-</section>
-<style>
-   table tr td:first-of-type {
-      color: whitesmoke;
-   }
-</style>
+<h2 id="local-props">Local props</h2>
+<p>Local states is handled as self-rendering stateful props. All props is transformed in stateful object inside Reactful framework.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
+   Hello { props.name } !
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> {<span class="hljs-attr">onChange</span>} /&gt;</span>
+<span class="hljs-tag">&lt;/&gt;</span></span>
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">onChange</span> = e =&gt; props.<span class="hljs-property">name</span> = e.<span class="hljs-property">taget</span>.<span class="hljs-property">value</span>
+</code></pre>
+<h2 id="global-stores">Global stores</h2>
+<p>Global store is a single application state by dependency injection. The depencey is resolved in component second argument as store object.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> settings = { <span class="hljs-attr">storage</span>: { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span> } }
+
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>, settings).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Hello</span>(<span class="hljs-params">p, { store }</span>) {
+   <span class="hljs-keyword">const</span> <span class="hljs-title function_">onValue</span> = e =&gt; p.<span class="hljs-property">hi</span> = e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>
+
+   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>   
+      Hello { store.name || &#x27;World&#x27; } !
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{store.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{onValue}</span> /&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></span>
+}
+</code></pre>
+<p>The second argument is typed by the Feed interface.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Feeds</span> {
+   <span class="hljs-attr">param</span>: record    <span class="hljs-comment">// route params</span>
+   <span class="hljs-attr">store</span>: record    <span class="hljs-comment">// global state</span>
+   <span class="hljs-attr">logon</span>: record    <span class="hljs-comment">// logged user</span>
+   <span class="hljs-attr">await</span>: <span class="hljs-built_in">boolean</span>   <span class="hljs-comment">// pending fetch</span>
+   <span class="hljs-attr">fails</span>: <span class="hljs-title class_">Invalid</span>[] <span class="hljs-comment">// fetch errors</span>
+   <span class="hljs-attr">ref</span>: <span class="hljs-built_in">any</span>         <span class="hljs-comment">// forwardRef (React 19)</span>
+}
+</code></pre>
+<p>The ref is realocated as ref field inside feeds object.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">React19s</span> = (<span class="hljs-params">props, ref</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...etc<span class="hljs-tag">&lt;/&gt;</span></span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Reactful</span> = (<span class="hljs-params">props, { ref }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...etc<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+<h2 id="partial-states">Partial states</h2>
+<p>Partial states enable modular state management between moduless and handled by second argument with @client(true) decorator.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> myStore = <span class="hljs-title function_">useStore</span>({ <span class="hljs-attr">guid</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;john&#x27;</span>, <span class="hljs-attr">date</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() })
+</code></pre>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { client } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
+<span class="hljs-keyword">import</span> { myStore } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./stores&#x27;</span>
+
+@<span class="hljs-title function_">client</span>(<span class="hljs-literal">true</span>, myStore)
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
+   Hello { store.name } !
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{store.name}</span> {<span class="hljs-attr">onChange</span>} /&gt;</span>
+<span class="hljs-tag">&lt;/&gt;</span></span>
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">onChange</span> = e =&gt; props.<span class="hljs-property">name</span> = e.<span class="hljs-property">taget</span>.<span class="hljs-property">value</span>
+</code></pre>
+
             
             <script async type="text/javascript">
 /* From extension marp-team.marp-vscode */

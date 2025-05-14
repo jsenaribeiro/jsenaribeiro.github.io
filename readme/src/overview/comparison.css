@@ -1,5 +1,6 @@
 table {
-   font-family: var(--text-font), sans-serif;   
+   font-family: var(--text-font), sans-serif;  
+   margin-top: 5px;
 }
 
 

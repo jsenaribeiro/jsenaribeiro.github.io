@@ -12,6 +12,11 @@
 
 nav { padding: 10px; }
 
+hr {  
+   border: solid 1px #555 !important;
+   margin: 10px 0 10px 0;
+}
+
 header {
    grid-template-columns: auto 1fr;
    align-items: center;

@@ -1,4 +1,4 @@
-[cols] { display:grid; gap:10px; }
+[cols] { display:grid; gap:10px; margin-bottom: 0; }
 
 [cols='2'] { grid-template-columns: repeat(2, 1fr); }
 [cols='3'] { grid-template-columns: repeat(3, 1fr); }

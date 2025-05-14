@@ -1,8 +1,7 @@
 @import url(../../css/index.css);
 
 table th:empty { border: 0 !important; }
-/* table tr td { border-bottom: dashed #222 1px !important; }
-table tr:last-of-type td { border-bottom: dashed #444 0px; } */
+pre { margin-bottom: 15px }
 
 section.infos table tr td,
 section.details td { padding: 3px 10px; }
@@ -31,8 +30,7 @@ section.divs table td { padding-top: 0; }
 section.infos table tr td:not(:last-of-type),
 section.divs table tr th:not(:last-of-type),
 section.divs table tr td:not(:last-of-type) {
-   /* border-right: solid grey 2px !important; */
-   /* background-color: #444; */
+   border-right: solid grey 2px !important;
    z-index: 1;
 }
 
@@ -41,9 +39,12 @@ section.infos table tr td:first-of-type {
    text-align: right;
 }
 
-blockquote p { margin-bottom:0 }
-blockquote { 
-   border-left: solid 15px #555;
-   background-color: #444; 
-   padding:10px 
+blockquote {
+   border: 0;
+   background-color: transparent;
+   text-align: center;
+   margin-top: -10px;
+   margin-bottom: -5px;
+   padding: 0 75px;
+   color: var(--subtile);
 }

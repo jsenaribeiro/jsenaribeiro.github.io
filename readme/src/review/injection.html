@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Presentation</title>
+            <title>Dependency Injection</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -236,81 +236,28 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <style>@import url(./index.css);</style>
-<h1 id="presentation">Presentation</h1>
-<center>
-<p>A react framemwork with comprehensive features, extensive support and new concepts with stateful objects, props directive and function decorators.</p>
-</center>
-<section class='divs'>
-<table>
-<thead>
-<tr>
-<th style="text-align:right">Stateful object</th>
-<th style="text-align:center">Props directive</th>
-<th style="text-align:left">Function decorator</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right">Self-rendering stateful objects</td>
-<td style="text-align:center">Angular-like injectable attribute directives</td>
-<td style="text-align:left">Built-time function decorator transpiler</td>
-</tr>
-</tbody>
-</table>
-</section>
-<h2 id="supported-features">Supported features</h2>
-<p>It supports all modern features (resource with * are in draft stage).</p>
-<blockquote>
-<p>server component (RSC) • server-side rendering (SSR) • static site generation (SSG) • search engine optimization (SEO) • resource compression* • i18n translation* • Suspense API • etc</p>
-</blockquote>
-<h2 id="framework-resources">Framework resources</h2>
-<p>Comprehensive framework for full SPA developement.</p>
-<section class='infos'>
-<table>
-<thead>
-<tr>
-<th style="text-align:right"></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right">easy data binding</td>
-<td>data binding designed to react components</td>
-</tr>
-<tr>
-<td style="text-align:right">lean stateful handing</td>
-<td>new hookless self-rendering stateful objects</td>
-</tr>
-<tr>
-<td style="text-align:right">nice component routing</td>
-<td>routing by props, pathing and decorators</td>
-</tr>
-<tr>
-<td style="text-align:right">flex hybrid rendering</td>
-<td>SSR, ISR and SSG with function decorators</td>
-</tr>
-<tr>
-<td style="text-align:right">bold props directive</td>
-<td>angular-like injectable props</td>
-</tr>
-<tr>
-<td style="text-align:right">full server components</td>
-<td>full support to server components</td>
-</tr>
-<tr>
-<td style="text-align:right">fast development tool</td>
-<td>designed with performatic bun bundler</td>
-</tr>
-</tbody>
-</table>
-</section>
-<style>
-   table tr td:first-of-type {
-      color: whitesmoke;
-   }
-</style>
+            <style>@import url(./index.css);</style> 
+<h1 id="dependency-injection">Dependency Injection</h1>
+<h2 id="architectural-motivation">Architectural motivation</h2>
+<p>To deal with directives and global store, Reactful framework uses a IoC container to inject the global store and the custom directives.</p>
+<h2 id="resolution-approach">Resolution approach</h2>
+<p>The dependency resolution approach uses the second parameter of functional component that, until the React 19, was useless. So, in framework life-cycle, this second argument receives a Feed interface with multiple.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Feeds</span> {
+   <span class="hljs-attr">param</span>: record    <span class="hljs-comment">// route params of dynamic routing</span>
+   <span class="hljs-attr">store</span>: record    <span class="hljs-comment">// custom global store by DI</span>
+   <span class="hljs-attr">logon</span>: record    <span class="hljs-comment">// current logged user by Reactful auth</span>
+   <span class="hljs-attr">await</span>: <span class="hljs-built_in">boolean</span>   <span class="hljs-comment">// global pending fetch for loading spine</span>
+   <span class="hljs-attr">fails</span>: <span class="hljs-title class_">Invalid</span>[] <span class="hljs-comment">// current fetch errors</span>
+}
+</code></pre>
+<h2 id="future-conflits-with-react-19">Future conflits with React 19</h2>
+<p>The canary version of React 19 will use the second parameter for pass the context of react server components. To deal with that, the Feeds interface will realocate as serve field.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Feeds</span> {
+   <span class="hljs-attr">serve</span>: <span class="hljs-title class_">Context</span>
+   ...,
+}
+</code></pre>
+
             
             <script async type="text/javascript">
 /* From extension marp-team.marp-vscode */

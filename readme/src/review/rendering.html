@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Presentation</title>
+            <title>Hybrid rendering</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -236,81 +236,52 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <style>@import url(./index.css);</style>
-<h1 id="presentation">Presentation</h1>
-<center>
-<p>A react framemwork with comprehensive features, extensive support and new concepts with stateful objects, props directive and function decorators.</p>
-</center>
-<section class='divs'>
+            <style>@import url(./index.css);</style> 
+<h1 id="hybrid-rendering">Hybrid rendering</h1>
+<h2 id="rendering-modes">Rendering modes</h2>
+<p>Reactful supports all major rendering strategies. Hybrid rendering aims to reduce to the maximum the client-side redering to improve the overall performance.</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:right">Stateful object</th>
-<th style="text-align:center">Props directive</th>
-<th style="text-align:left">Function decorator</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right">Self-rendering stateful objects</td>
-<td style="text-align:center">Angular-like injectable attribute directives</td>
-<td style="text-align:left">Built-time function decorator transpiler</td>
-</tr>
-</tbody>
-</table>
-</section>
-<h2 id="supported-features">Supported features</h2>
-<p>It supports all modern features (resource with * are in draft stage).</p>
-<blockquote>
-<p>server component (RSC) • server-side rendering (SSR) • static site generation (SSG) • search engine optimization (SEO) • resource compression* • i18n translation* • Suspense API • etc</p>
-</blockquote>
-<h2 id="framework-resources">Framework resources</h2>
-<p>Comprehensive framework for full SPA developement.</p>
-<section class='infos'>
-<table>
-<thead>
-<tr>
-<th style="text-align:right"></th>
+<th></th>
+<th></th>
+<th></th>
 <th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:right">easy data binding</td>
-<td>data binding designed to react components</td>
+<td>SSG</td>
+<td>Static Site Generation</td>
+<td>build-time rendering</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align:right">lean stateful handing</td>
-<td>new hookless self-rendering stateful objects</td>
+<td>ISR</td>
+<td>Incremental Static Generation</td>
+<td>periodic build-time rendering</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align:right">nice component routing</td>
-<td>routing by props, pathing and decorators</td>
+<td>SSR</td>
+<td>Server-Side Rendering</td>
+<td>request-time rendering</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align:right">flex hybrid rendering</td>
-<td>SSR, ISR and SSG with function decorators</td>
-</tr>
-<tr>
-<td style="text-align:right">bold props directive</td>
-<td>angular-like injectable props</td>
-</tr>
-<tr>
-<td style="text-align:right">full server components</td>
-<td>full support to server components</td>
-</tr>
-<tr>
-<td style="text-align:right">fast development tool</td>
-<td>designed with performatic bun bundler</td>
+<td>CSR</td>
+<td>Client-Side Rendering</td>
+<td>browser-time rendering</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</section>
-<style>
-   table tr td:first-of-type {
-      color: whitesmoke;
-   }
-</style>
+<p>The most performatic component will be SSG, a build-time render, here, the render never happens in running time. The second more performatic is ISR, that is a intervaled build-time render that happens in server-side, so, not impact the response time. The SSR is better to improve the performace, but need up to date information in current request time. The least performatic is the CSR, but it is required for any stateful component.</p>
+<h2 id="client-components">Client components</h2>
+<p>The React default rendering is the client-side rendering, and it is the only way to stateful components. The principle here is to minimize the scope the client-side component to the minimum, to maxime the performance gain of server-side component.</p>
+<h2 id="server-components">Server components</h2>
+<p>Server components that component is executed in server-side rendering, allowing not just performatic server-side rendering, but access to server-side resources with node.js environement, like database, etc. It also enable async component for easy fecthing data.</p>
+
             
             <script async type="text/javascript">
 /* From extension marp-team.marp-vscode */

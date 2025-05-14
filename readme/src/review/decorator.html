@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Presentation</title>
+            <title>Functional decorator</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -236,81 +236,15 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <style>@import url(./index.css);</style>
-<h1 id="presentation">Presentation</h1>
-<center>
-<p>A react framemwork with comprehensive features, extensive support and new concepts with stateful objects, props directive and function decorators.</p>
-</center>
-<section class='divs'>
-<table>
-<thead>
-<tr>
-<th style="text-align:right">Stateful object</th>
-<th style="text-align:center">Props directive</th>
-<th style="text-align:left">Function decorator</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right">Self-rendering stateful objects</td>
-<td style="text-align:center">Angular-like injectable attribute directives</td>
-<td style="text-align:left">Built-time function decorator transpiler</td>
-</tr>
-</tbody>
-</table>
-</section>
-<h2 id="supported-features">Supported features</h2>
-<p>It supports all modern features (resource with * are in draft stage).</p>
-<blockquote>
-<p>server component (RSC) • server-side rendering (SSR) • static site generation (SSG) • search engine optimization (SEO) • resource compression* • i18n translation* • Suspense API • etc</p>
-</blockquote>
-<h2 id="framework-resources">Framework resources</h2>
-<p>Comprehensive framework for full SPA developement.</p>
-<section class='infos'>
-<table>
-<thead>
-<tr>
-<th style="text-align:right"></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right">easy data binding</td>
-<td>data binding designed to react components</td>
-</tr>
-<tr>
-<td style="text-align:right">lean stateful handing</td>
-<td>new hookless self-rendering stateful objects</td>
-</tr>
-<tr>
-<td style="text-align:right">nice component routing</td>
-<td>routing by props, pathing and decorators</td>
-</tr>
-<tr>
-<td style="text-align:right">flex hybrid rendering</td>
-<td>SSR, ISR and SSG with function decorators</td>
-</tr>
-<tr>
-<td style="text-align:right">bold props directive</td>
-<td>angular-like injectable props</td>
-</tr>
-<tr>
-<td style="text-align:right">full server components</td>
-<td>full support to server components</td>
-</tr>
-<tr>
-<td style="text-align:right">fast development tool</td>
-<td>designed with performatic bun bundler</td>
-</tr>
-</tbody>
-</table>
-</section>
-<style>
-   table tr td:first-of-type {
-      color: whitesmoke;
-   }
-</style>
+            <style>@import url(./index.css);</style> 
+<h1 id="functional-decorator">Functional decorator</h1>
+<h2 id="motivations">Motivations</h2>
+<p>Decorators are designed only to classes in JavaScript. Since React is basically a functional designed coding, native JavaScript decoratores are useless in React. So, to achive function decorators, the Reactful implements a micro-transpiler using Bun. With function decorators, the functional component could deal with some semantics using decorators as metadatas.</p>
+<h2 id="transpiler">Transpiler</h2>
+<p>The decorator transpiler uses Bun tools for runtime and build-time transpiler, both time transpiling happens in decorator life-cycle.</p>
+<h2 id="limitations">Limitations</h2>
+<p>There is no limitation of use to function decorator besides the use of Bun environment tool.</p>
+
             
             <script async type="text/javascript">
 /* From extension marp-team.marp-vscode */

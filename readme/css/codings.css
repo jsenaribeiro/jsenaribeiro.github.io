@@ -1,13 +1,18 @@
 pre {
    font-size:1rem;
    font-weight: 100;
+   overflow: hidden !important;
    background-color: var(--darkest);
 }
 
 p code { 
    font-family: var(--code-font), monospace;
-   background-color: #444; 
-   border: solid 5px #444;
-   border-width: 2px 1px;
+   background-color: #292929; 
+   border: solid 5px #292929;
+   border-width: 5px 4px;
    color: wheat;
+}
+
+pre code {
+   transform: scaleX(0.97) !important;   
 }

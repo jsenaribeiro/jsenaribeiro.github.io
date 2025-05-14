@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Presentation</title>
+            <title>Routing page</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -116,7 +116,8 @@ body.marp-vscode blockquote {
 }
 
 </style>
-            
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
 <style>
@@ -236,82 +237,158 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <style>@import url(./index.css);</style>
-<h1 id="presentation">Presentation</h1>
-<center>
-<p>A react framemwork with comprehensive features, extensive support and new concepts with stateful objects, props directive and function decorators.</p>
-</center>
-<section class='divs'>
-<table>
-<thead>
-<tr>
-<th style="text-align:right">Stateful object</th>
-<th style="text-align:center">Props directive</th>
-<th style="text-align:left">Function decorator</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right">Self-rendering stateful objects</td>
-<td style="text-align:center">Angular-like injectable attribute directives</td>
-<td style="text-align:left">Built-time function decorator transpiler</td>
-</tr>
-</tbody>
-</table>
-</section>
-<h2 id="supported-features">Supported features</h2>
-<p>It supports all modern features (resource with * are in draft stage).</p>
+            <style>
+@import url(./index.css);
+@import url(./routing.css);
+</style> 
+<h1 id="routing-page">Routing page</h1>
 <blockquote>
-<p>server component (RSC) • server-side rendering (SSR) • static site generation (SSG) • search engine optimization (SEO) • resource compression* • i18n translation* • Suspense API • etc</p>
+<p>path routing • route decorator • dynamic route • props routing • extended HTML • markdown support • lazy components • prefetch route • nested routes</p>
 </blockquote>
-<h2 id="framework-resources">Framework resources</h2>
-<p>Comprehensive framework for full SPA developement.</p>
-<section class='infos'>
+<h2 id="folder-routing">Folder routing</h2>
+<p>Static folder routing with no extra naming conventions. Its routing fallbacks retries with nearest inner route until the root path (/).</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:right"></th>
-<th></th>
+<th>DIRECTORY</th>
+<th>ROUTING</th>
+<th>RESOLUTION</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:right">easy data binding</td>
-<td>data binding designed to react components</td>
+<td>/routes/index.tsx</td>
+<td>localhost:3000/</td>
+<td>index JSX</td>
 </tr>
 <tr>
-<td style="text-align:right">lean stateful handing</td>
-<td>new hookless self-rendering stateful objects</td>
+<td>/routes/about.tsx</td>
+<td>localhost:3000/about</td>
+<td>filename JSX</td>
 </tr>
 <tr>
-<td style="text-align:right">nice component routing</td>
-<td>routing by props, pathing and decorators</td>
+<td>/routes/sample.html</td>
+<td>localhost:3000/sample</td>
+<td>filename HTML</td>
 </tr>
 <tr>
-<td style="text-align:right">flex hybrid rendering</td>
-<td>SSR, ISR and SSG with function decorators</td>
+<td>/routes/example.md</td>
+<td>localhost:3000/example</td>
+<td>filename markdown</td>
 </tr>
 <tr>
-<td style="text-align:right">bold props directive</td>
-<td>angular-like injectable props</td>
-</tr>
-<tr>
-<td style="text-align:right">full server components</td>
-<td>full support to server components</td>
-</tr>
-<tr>
-<td style="text-align:right">fast development tool</td>
-<td>designed with performatic bun bundler</td>
+<td>/routes/profile/index.tsx</td>
+<td>localhost:3000/profile</td>
+<td>subfolder index JSX</td>
 </tr>
 </tbody>
 </table>
-</section>
-<style>
-   table tr td:first-of-type {
-      color: whitesmoke;
-   }
-</style>
-            
+<p><strong>Nesting routes</strong> with dot slash syntax:</p>
+<table>
+<thead>
+<tr>
+<th>CONTEXT</th>
+<th>ROUTING</th>
+<th>RESOLUTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/</td>
+<td>./about</td>
+<td>/about</td>
+</tr>
+<tr>
+<td>/admin/system</td>
+<td>./account</td>
+<td>/admin/account</td>
+</tr>
+<tr>
+<td>/user/profile/overview</td>
+<td>./details</td>
+<td>/user/profile/details</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conflicts rules</strong> with build time exception.</p>
+<table>
+<thead>
+<tr>
+<th>CONTEXT SAMPLING</th>
+<th>CONFLICT TYPE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file.tsx, file/index.tsx</td>
+<td>filename x index</td>
+</tr>
+<tr>
+<td>file.html, file.tsx, <a href="http://file.html">file.md</a></td>
+<td>filename x extensions</td>
+</tr>
+<tr>
+<td>file.html, file.tsx, <a href="http://file.html">file.md</a>, file/index.tsx</td>
+<td>filename x extensions x index</td>
+</tr>
+</tbody>
+</table>
+<h2 id="async-components">Async components</h2>
+<p>Ssync components with <code>Suspense</code> API and awaits Suspense alternative.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Async</span>(<span class="hljs-params">props</span>) {
+   <span class="hljs-keyword">const</span> text = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;http://www.some-url.com&#x27;</span>)
+   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>awaited content = { text }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+}
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = <span class="hljs-keyword">async</span> props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">{</span>&lt;<span class="hljs-attr">b</span>&gt;</span>loading...<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span>}&gt;
+      <span class="hljs-tag">&lt;<span class="hljs-name">Async</span> /&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span>&gt;</span>
+<span class="hljs-tag">&lt;/&gt;</span></span>
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Awaits</span> = <span class="hljs-keyword">async</span> props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">await</span>=<span class="hljs-string">{Async}</span>&gt;</span>loading...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+<h2 id="dynamic-routes">Dynamic routes</h2>
+<p>Dynamic routing (aka parametric route) is handled by functions decorator, overriding any conflict with default folder routing.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { route } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
+
+@<span class="hljs-title function_">route</span>(<span class="hljs-string">&#x27;/whatever/profile/:id&#x27;</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Profile</span>(<span class="hljs-params">props, { params }</span>) {
+   <span class="hljs-keyword">const</span> user = <span class="hljs-title function_">fetch</span>(<span class="hljs-string">`<span class="hljs-subst">${url}</span>/<span class="hljs-subst">${params.id}</span>`</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-title function_">json</span>())
+
+   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Profile<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>User ID: { params.id }<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>User name: { user.name }<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+}
+</span></code></pre>
+<h2 id="props-routing">Props routing</h2>
+<p>Client-side is routed by  <code>[route]</code> and <code>[link]</code> props directives, allowing an easy and intuitive declarative component-drive routing.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = (<span class="hljs-params">props</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Menu<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+   <span class="hljs-comment">&lt;!-- [link] client-side router --&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+
+   <span class="hljs-comment">&lt;!-- [route] conditional rendering --&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
+&lt;/!-&gt;
+</span></code></pre>
+<h2 id="lazy-loading">Lazy loading</h2>
+<p>Lazy routing is enabled by a global promise extension aplied by React framework with the name <code>asLazyComponent</code>. With lazy loading, the routed component is only imported when the component is routed.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Sample</span> = <span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./main&#x27;</span>).<span class="hljs-title function_">asLazyComponent</span>(<span class="hljs-string">&#x27;Sample&#x27;</span>)
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = (<span class="hljs-params">props</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Menu<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;/sample&#x27;</span>&gt;</span>Sample<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">Sample</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/lazy&#x27;</span> /&gt;</span> <span class="hljs-comment">&lt;!-- lazy routing --&gt;</span>
+&lt;/!-&gt;
+</span></code></pre>
+
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
             <script async type="text/javascript">
 /* From extension marp-team.marp-vscode */
 (()=>{var W=Object.defineProperty;var K=(w,h,x)=>h in w?W(w,h,{enumerable:!0,configurable:!0,writable:!0,value:x}):w[h]=x;var o=(w,h)=>W(w,"name",{value:h,configurable:!0});var v=(w,h,x)=>K(w,typeof h!="symbol"?h+"":h,x);(()=>{var w={32:(y,S,g)=>{y.exports=g(924)},924:(y,S)=>{"use strict";var g;g={value:!0};const E={h1:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:o(()=>HTMLSpanElement,"proto")},pre:{proto:o(()=>HTMLElement,"proto"),style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},A="data-marp-auto-scaling-wrapper",p="data-marp-auto-scaling-svg",c="data-marp-auto-scaling-container",T=class T extends HTMLElement{constructor(){super();v(this,"container");v(this,"containerSize");v(this,"containerObserver");v(this,"svg");v(this,"svgComputedStyle");v(this,"svgPreserveAspectRatio","xMinYMid meet");v(this,"wrapper");v(this,"wrapperSize");v(this,"wrapperObserver");const s=o(t=>([e])=>{const{width:n,height:r}=e.contentRect;this[t]={width:n,height:r},this.updateSVGRect()},"e");this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(s("containerSize")),this.wrapperObserver=new ResizeObserver((...t)=>{s("wrapperSize")(...t),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`
