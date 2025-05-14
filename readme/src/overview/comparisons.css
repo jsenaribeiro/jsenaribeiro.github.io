@@ -4,9 +4,14 @@ table {
 
 
 table th {
-   border-bottom: solid 0px #555 !important;
+   border-bottom: solid 2px #999 !important;
    color: var(--primary);
    text-transform: uppercase;;
+   text-align: center;
+}
+
+table th:first-of-type {
+   color:transparent
 }
 
 table tr td:first-child {
