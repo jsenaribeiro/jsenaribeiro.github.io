@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Render flow</title>
+            <title>Execution</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -116,7 +116,8 @@ body.marp-vscode blockquote {
 }
 
 </style>
-            
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
 <style>
@@ -236,99 +237,45 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <style>
-@import url(./index.css);
-@import url(./serving.css);
-</style> 
-<h1 id="render-flow">Render flow</h1>
+            <style>@import url(./index.css);</style>
+<!-- <script src='../../js/steps.js'></script> -->
+<h1 id="execution">Execution</h1>
 <blockquote>
-<p>hybrid rendering • server components • partial hydration • web apis • extended html • error handling • markdown support</p>
+<p>bun • templates • cli • server • script • typescript</p>
 </blockquote>
-<h2 id="server-startup">Server startup</h2>
-<p>Startup sample with some injected props directives.</p>
-<pre><code class="language-ts"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactful/server&#x27;</span>
-<span class="hljs-keyword">import</span> { directive1, directive2 } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./directives&#x27;</span>
+<h2 id="creating">Creating</h2>
+<pre><code class="language-ps"><span class="hljs-variable">$</span> bunx @reactful/create@latest
+- template? empty|minimal|sampling
+- project name? MyProjectName
+- is vsCode IDE? (Y/n) y
+- install? (Y/n) y
+- serve? (Y/n) y
+- installing...
+- serving...
 
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>, { etc... })
-     .<span class="hljs-title function_">inject</span>(directive1)
-     .<span class="hljs-title function_">inject</span>(directive2)
-     .<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
+running at localhost:<span class="hljs-number">3000</span>
 </code></pre>
-<h2 id="serving-apis">Serving apis</h2>
-<p>In <code>/apis</code> enables easy RESTful services using HTTP verb in function names.</p>
-<pre><code class="language-ts"><span class="hljs-comment">// file: /apis/sample.ts</span>
-<span class="hljs-comment">// route: http://localhost:3000/api/sample</span>
-<span class="hljs-comment">// warning: route is both resolved as /api and /apis</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">get</span> = request =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Response</span>(<span class="hljs-string">&#x27;Hello World!&#x27;</span>)
+<h2 id="running">Running</h2>
+<pre><code class="language-ps"><span class="hljs-variable">$</span> bun run <span class="hljs-built_in">start</span> <span class="hljs-comment"># running at locahost:3000</span>
 </code></pre>
-<h2 id="client-component">Client component</h2>
-<p>Client decorator is a component-scoped stateful client component enabler as alternative to commum module-scoped <code>'use server'</code> directive.</p>
-<pre><code class="language-tsx">@<span class="hljs-title function_">client</span>(<span class="hljs-literal">true</span>) <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hi</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
+<h2 id="starting">Starting</h2>
+<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/server&#x27;</span>
+<span class="hljs-keyword">import</span> { client } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful&#x27;</span>
+
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
+
+<span class="hljs-meta">@client</span>(<span class="hljs-literal">true</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Hello { props.name }<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<h2 id="server-component">Server component</h2>
-<p>Comprehensive support to static (SSG), dynamic (SSR) and periodic (ISR) hybrid rendering using straghtforward function decorators.</p>
-<pre><code class="language-tsx">@<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;static&#x27;</span>) <span class="hljs-comment">// default</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Static</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
+<!-- ## Next steps...
+- [Presentation](#)
+- [Conceptions](#)
+ -->
 
-@<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;dynamic&#x27;</span>)  
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Dynamic</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
-
-@<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;periodic&#x27;</span>, <span class="hljs-string">&quot;36h&quot;</span>) 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Periodic</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-<p>It supports async components with Suspense component API.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Suspense</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">AsyncComponent</span>(<span class="hljs-params">props</span>) {
-   <span class="hljs-keyword">const</span> user = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(url).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-title function_">json</span>())
-   <span class="hljs-keyword">const</span> loading = <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>loading...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
-
-   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">{loading}</span>&gt;</span>
-      Hello { hello.name }
-   <span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span>&gt;</span></span>
-}
-</code></pre>
-<h2 id="error-component">Error component</h2>
-<p>Component-driven error handling using high-order component argument.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactful/server&#x27;</span>
-
-<span class="hljs-comment">// sampling a custom high-order component error</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">myCustomErrorComponent</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My generic error page...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>{ errors.map((x,i) =&gt; <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{i}</span>&gt;</span>{ x }<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>) }<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
-
-<span class="hljs-comment">// replacing default failure HOC for error handling</span>
-<span class="hljs-keyword">const</span> settings = { <span class="hljs-attr">failure</span>: myCustomErrorComponent }
-
-<span class="hljs-comment">// starting reactful server with custom error component</span>
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>, settings).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
-</code></pre>
-<p>Local specific error is handled with function decorator.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { error } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
-
-<span class="hljs-comment">// sampling a custom high-order component error</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">mySpecificErrorComponent</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My specific error page...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>{ errors.map((x,i) =&gt; <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{i}</span>&gt;</span>{ x }<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>) }<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
-
-@<span class="hljs-title function_">error</span>(mySpecificErrorComponent)
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Example</span>(<span class="hljs-params"></span>) { ... }
-</code></pre>
-<h2 id="html-extension">HTML extension</h2>
-<p>Extended <code>&lt;link&gt;</code> tag allows JSX imports inside HTML.</p>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;react&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;../components/header.tsx&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">Header</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;HTML-X&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span> <span class="hljs-comment">&lt;!-- JSX into HTML --&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
-</code></pre>
-<p>The <code>rel</code> attribute enables specific named component imports.</p>
-<pre><code class="language-html"><span class="hljs-comment">&lt;!-- &#x27;Header&#x27; component in /etc/header.tsx&quot; --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;Header&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;react&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;../etc/header.tsx&quot;</span> /&gt;</span>
-</code></pre>
-
-            
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
             <script async type="text/javascript">
 /* From extension marp-team.marp-vscode */
 (()=>{var W=Object.defineProperty;var K=(w,h,x)=>h in w?W(w,h,{enumerable:!0,configurable:!0,writable:!0,value:x}):w[h]=x;var o=(w,h)=>W(w,"name",{value:h,configurable:!0});var v=(w,h,x)=>K(w,typeof h!="symbol"?h+"":h,x);(()=>{var w={32:(y,S,g)=>{y.exports=g(924)},924:(y,S)=>{"use strict";var g;g={value:!0};const E={h1:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:o(()=>HTMLSpanElement,"proto")},pre:{proto:o(()=>HTMLElement,"proto"),style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},A="data-marp-auto-scaling-wrapper",p="data-marp-auto-scaling-svg",c="data-marp-auto-scaling-container",T=class T extends HTMLElement{constructor(){super();v(this,"container");v(this,"containerSize");v(this,"containerObserver");v(this,"svg");v(this,"svgComputedStyle");v(this,"svgPreserveAspectRatio","xMinYMid meet");v(this,"wrapper");v(this,"wrapperSize");v(this,"wrapperObserver");const s=o(t=>([e])=>{const{width:n,height:r}=e.contentRect;this[t]={width:n,height:r},this.updateSVGRect()},"e");this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(s("containerSize")),this.wrapperObserver=new ResizeObserver((...t)=>{s("wrapperSize")(...t),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`

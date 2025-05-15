@@ -1,8 +1,8 @@
 fieldset {
    border:0;
-   border-top: solid 1px #555 !important;
    padding: 10px;
    margin: 20px 0 0 0;
+   border-top: solid 1px wheat;
 }
 
 legend {
@@ -11,4 +11,5 @@ legend {
    font-weight: 700;;
    color: var(--primary);
    padding: 0 10px;
+   text-align: center;
 }

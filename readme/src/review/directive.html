@@ -239,7 +239,7 @@ body.marp-vscode blockquote {
             <style>@import url(./index.css);</style> 
 <h1 id="property-directives">Property directives</h1>
 <h2 id="angular-directives">Angular directives</h2>
-<p>Directives are a core concept in Angular, everything is a kind of directive. The kind of directive emulated by props directive in Reactful is the attribute directive. With attribute directive is possible to create a attribute that you can shared between multiple components.</p>
+<p>Directives are a core concept in Angular. The kind of Angular-like directive emulated by props directive in Reactful is the attribute directive. With attribute directive is possible to create a attribute that you can shared between multiple components.</p>
 <h2 id="react-directives">React directives</h2>
 <p>In Reactful, directives (or props directive) enable a simple implementation of this concept of shareable props than encapsulate props transformation. The routing props and binding props in Reacful are built-in props directives.</p>
 <p>Custom directives are simple functions that receives and returns transformed props. Above, a simple custom props directive example.</p>
@@ -257,12 +257,10 @@ declare <span class="hljs-variable language_">module</span> <span class="hljs-st
 <span class="hljs-comment">// example of a shown custom directive sample usage</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Ok</span> = prop =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">shown</span>=<span class="hljs-string">{true}</span>&gt;</span>Show me!<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 </code></pre>
-<h2 id="directive-limitations">Directive limitations</h2>
-<p>Custom props directive has a limited module support. Any import in its module will not work and it will crash the reactful server during build time. So, a directive could be imported, but cannot import anything. It means that a directive import ouly could be leaf in an import tree call.</p>
 <h2 id="performance-issues">Performance issues</h2>
-<p>Each registered (injected) directive in Reactful server, will be processed during rendering time, in each element of the component tree. If a small set of directive are a little impact in performance, for other hand, even if it is not necessary critical, a large set of custom directives, something above 20 or more, will have some sensible performance impact.</p>
-<h2 id="utility-issues">Utility issues</h2>
-<p>Directives are very powerful and versartile feature, but, its application is very specific, maybe much more useful as directive consumer, than custom directive producer. So, this main advantagens are with its built-in framework directives for routing and binding.</p>
+<p>Directives are processed in rendering time for each element. In general, it has negligenciable impact in performance, but a large number of it could has somo significant performance impact to application. So, be aware of this.</p>
+<h2 id="utility-concern">Utility concern</h2>
+<p>Directives are very powerful and versartile feature, but its probably more useful as native framework directive, specially for enabling routing and binding.</p>
 
             
             <script async type="text/javascript">

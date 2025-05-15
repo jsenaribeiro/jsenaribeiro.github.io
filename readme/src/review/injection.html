@@ -250,8 +250,8 @@ body.marp-vscode blockquote {
    <span class="hljs-attr">fails</span>: <span class="hljs-title class_">Invalid</span>[] <span class="hljs-comment">// current fetch errors</span>
 }
 </code></pre>
-<h2 id="future-conflits-with-react-19">Future conflits with React 19</h2>
-<p>The canary version of React 19 will use the second parameter for pass the context of react server components. To deal with that, the Feeds interface will realocate as serve field.</p>
+<h2 id="conflits-with-react-19">Conflits with React 19</h2>
+<p>THe canary React 19 is using this component second parameter as server component context. If this will release, the Feeds interface will add him as serve field.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Feeds</span> {
    <span class="hljs-attr">serve</span>: <span class="hljs-title class_">Context</span>
    ...,

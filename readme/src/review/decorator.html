@@ -243,7 +243,7 @@ body.marp-vscode blockquote {
 <h2 id="transpiler">Transpiler</h2>
 <p>The decorator transpiler uses Bun tools for runtime and build-time transpiler, both time transpiling happens in decorator life-cycle.</p>
 <h2 id="limitations">Limitations</h2>
-<p>There is no limitation of use to function decorator besides the use of Bun environment tool.</p>
+<p>Custom decorators has no support to imports, it means that it could be imported, but it cannot import anything itself. If it this happens, the app will crash.</p>
 
             
             <script async type="text/javascript">

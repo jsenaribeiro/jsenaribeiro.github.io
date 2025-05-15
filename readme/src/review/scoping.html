@@ -239,7 +239,7 @@ body.marp-vscode blockquote {
             <style>@import url(./index.css);</style> 
 <h1 id="scoping-style">Scoping Style</h1>
 <h2 id="fake-css-imports">Fake CSS imports</h2>
-<p>All CSS imported in React in a module is leaked to global scope. Even importing in a given module, the CSS import is completelly fake in its sematics. It is the same to import a CSS using link[href] in HTML. So, CSS imports in React are useless and error phrone.</p>
+<p>All CSS imported in React is leaked to global scope. Even importing in a given module, the CSS import is completelly fake in its sematics. It is the same to import a CSS using link[href] in HTML. So, CSS imports in React are useless and error phrone.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;my.css&#x27;</span> <span class="hljs-comment">// global, not modular</span>
 </code></pre>
 <h2 id="alternative-solutions">Alternative solutions</h2>
@@ -252,7 +252,7 @@ body.marp-vscode blockquote {
 </code></pre>
 <h2 id="css-transpiler">CSS transpiler</h2>
 <p>To fix this, Reacftul create a micro-transpiler with Bun that manages all CSS imports in javascript module in a way that it work as it is expected. So,</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;my.css&#x27;</span> only applied into intra-<span class="hljs-variable language_">module</span> components
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;my.css&#x27;</span> <span class="hljs-comment">// only applied into intra-module components</span>
 </code></pre>
 <h2 id="transpiler-limitations">Transpiler limitations</h2>
 <p>This transpiler not work yet with pseudo-selector, so, for CSS with :first-of-type, :before, :hover, and others pseudo-selectors, the Reactful modular CSS will not work.</p>

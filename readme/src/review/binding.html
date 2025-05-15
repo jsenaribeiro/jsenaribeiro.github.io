@@ -239,18 +239,18 @@ body.marp-vscode blockquote {
             <style>@import url(./index.css);</style> 
 <h1 id="two-way-data-binding">Two Way Data binding</h1>
 <h2 id="architectural-considerations">Architectural considerations</h2>
-<p>Data flow architecture in React is a one-way data binding, meanwhile in Angular it follows a two-way data binding architecture. With the behavior of self-rendering states in stateful objects, the behavior of two-way data binding in Angular is emulated in React.</p>
-<h2 id="react-state-complexity">React state complexity</h2>
-<p>The main SPA techonologias, React and Angular are hard to compare. One is a library, another is a framework. React is easier until the stateful components, but the Angular advantage is lost by its horrible ngMogule design. The simplificty of create a functional component in React could not be comparable to intuitivity to create a class component in Angular.</p>
-<p>So, the trade-off with pros and cons between React and Angular is close enough to end as a personal choice. But, if Angular could erase is ngModule system and offer some kind of functional component, the winner will be clear; in other hand, if React could offer something so practical and intuitive like the two-way data binding of Angular, there is no competitor.</p>
-<p>But, creating a improved state management for React library is much more achievable than discard and replace all ngModule in Angular framework, and create out of nowhere a kind of Angular functional component. Here stats the concept of stateful object.</p>
+<p>React is a one-way data binding and Angular has two-way data binding. Reactful stateful objects emulates the two-way data binding in a React application keeping the more performatic React one-way data flow architecture.</p>
+<h2 id="react-versus-angular">React versus Angular</h2>
+<p>React and Angular are pretty uncomparable. One is a library, another is a framework. React is easier until starts its state management, but Angular destroy its advantage with its obscure ngModule. The nice simplicity of React functional component is hard to compare the clean organicity of Angular class component.</p>
+<p>So, the trade-offs between React and Angular are close enough to call it a personal choice. Unless Angular discards its ngModule or React evolves its state management to something more like Angular two-way data binding.</p>
+<p>Its obvious that evolves a library state management is more feaseable than untangle a framework. And here stats the idea of React stateful object.</p>
 <h2 id="stateful-object-concept">Stateful object concept</h2>
 <p>Any object is, by definition, stateful. But in React context, something stateful is a more specific domain. The concept of a stateful object is a way to deal simples object that tiggers the render when it is changed.</p>
 <p>Technically, a stateful object is a javascript proxy object that encapsulate the original object and state hooks. A proxy object can intercept each set and get behavior in object fields, and, this enable to triggers the render when the object field is changed, or and field in its inner objects.</p>
 <h2 id="performance-issues-and-delayed-render">Performance issues and delayed render</h2>
 <p>Meanwhile the Angular approache improves is more productive and maintenable than state management alterantives in React (hooks, redux, class components, etc), the one-way data binding allows a more performatic and organic approach.</p>
 <p>A naive designed stateful objects will implies multiple rendering, think somethin as holding a keyboard key, this will trigger multiples changes. Think define multiple field in a code, any field will trigger the render. To handle this, the Reactful framework implements a dealyed render algorithm.</p>
-<p>This algorithm only triggers the render after half second without any change, so, any change between this interval will trigger only one render. It not mean a trigger by each time, but only if there is a change. This interval is long enough to avoid uncessary renders, and small enough to not be perceivable by decay of performance by user.</p>
+<p>This algorithm triggers in every half second, so, any change between this interval will trigger only one render. This interval is long enough to avoid uncessary renders, and small enough to not be perceivable as a performance decay by user.</p>
 
             
             <script async type="text/javascript">

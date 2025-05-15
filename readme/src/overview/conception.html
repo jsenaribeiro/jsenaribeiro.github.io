@@ -241,19 +241,18 @@ body.marp-vscode blockquote {
 @import url(./conception.css);
 </style> 
 <h1 id="conception">Conception</h1>
-<p>Reactful framework is designed to elevate the way that React development is realized with new concepts, capabilities and resources.</p>
+<p>Reactful framework wain mainly designed to evolve the way that stateful React development is realized with new concepts, capabilities and resources.</p>
 <p><img src="../../img/overview.png" alt="overview"></p>
 <h2 id="self-rendering">Self-rendering</h2>
-<p>Self-rendering state is a Stateful Proxy Object (SRO) that encapsulates state hooks that renders the component when the object is changed, cutting all boilerplate code with class components,  hooks, imports, setState calls, and so on.</p>
+<p>Stateful Proxy Object (SRO) is a self-rendering state that renders when it is changed, cutting all boilerplate code with class components,  hooks, imports, setState calls, etc.</p>
 <p><img src="../../img/self-rendering-state-process.png" alt="self rendering object"></p>
-<p>All props are transformed in local stateful object (also supports global and partial states), triggering the render each props change.</p>
+<p>In Reactful, props are transformed in local stateful object, triggering the render each props change. It also supports global and partial states (see Data binding section).</p>
 <pre><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello {props.name ?? &#x27;world&#x27;}! <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{e</span> =&gt;</span> 
           props.name = e.target.value} /&gt;
 <span class="hljs-tag">&lt;&gt;</span>
 </span></code></pre>
-<p>The SRO encapsulates a delayed render algorithm where multiple calls is bacthed in a single call in each 0.5s, to avoid over-rendering.</p>
 <h2 id="data-binding">Data binding</h2>
 <p>Self-rendering states enable data binding with new global framework props, where <code>[data]</code>  receives the object and the <code>[binds]</code> maps its fields.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
@@ -269,25 +268,9 @@ body.marp-vscode blockquote {
 
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">Sample</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">hide</span>&gt;</span>Double zoom<span class="hljs-tag">&lt;<span class="hljs-name">div</span>/&gt;</span>
 </span></code></pre>
-<p>This useless example, a nickname to hidden, is just a showcase in how easy is create, inject and use a props directive in Reactful.</p>
 <h2 id="function-decorators">Function decorators</h2>
-<p>Native decorators just work with classes, being useless to the functional React world. Reactful design a function decator transpiler, enabling function metadada.</p>
+<p>Native decorators just work with classes, being useless to the functional React world. Reactful design a function decator transpiler, enabling function decorators.</p>
 <pre><code class="language-ts"><span class="hljs-meta">@server</span>(<span class="hljs-string">&#x27;static&#x27;</span>) <span class="hljs-keyword">const</span> <span class="hljs-title function_">About</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-<p>Here, instead of modular scoped <code>'user server'</code>, the decorator parameterize for specific functional component. It also supports custom function decorators.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
-
-<span class="hljs-comment">// simple custom directive for hidden opposite behavior</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">shown</span> = props =&gt; ({ ...props, <span class="hljs-attr">hidden</span>: !props.<span class="hljs-property">shown</span> })
-
-<span class="hljs-comment">// injecting the custom directive into IoC container</span>
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>).<span class="hljs-title function_">inject</span>([ shown ]).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
-
-<span class="hljs-comment">// declaring new attibute for intelisense support</span>
-declare <span class="hljs-variable language_">module</span> <span class="hljs-string">&quot;react&quot;</span> { interface <span class="hljs-title class_">HTMLAttribute</span> { show?: boolean }}
-
-<span class="hljs-comment">// example of a shown custom directive sample usage</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Sample</span> = prop =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">shown</span>=<span class="hljs-string">{false}</span>&gt;</span>sampling...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 </code></pre>
 
             

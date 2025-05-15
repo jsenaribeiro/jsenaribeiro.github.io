@@ -41,3 +41,17 @@ input:checked {
    outline: none;
 }
 
+p { margin-top: 15px }
+h2 + p, h1+p, h1+center { margin-top: 0px }
+p + p { margin-top: 5px }
+p+h2, img+h2, aside+h2, pre+h2 { margin-top: 10px; }
+
+blockquote {
+   border: 0;
+   background-color: transparent;
+   text-align: center;
+   margin-top: -20px;
+   margin-bottom: -5px;
+   padding: 0 75px;
+   color: var(--subtile);
+}

@@ -39,12 +39,3 @@ section.infos table tr td:first-of-type {
    text-align: right;
 }
 
-blockquote {
-   border: 0;
-   background-color: transparent;
-   text-align: center;
-   margin-top: -10px;
-   margin-bottom: -5px;
-   padding: 0 75px;
-   color: var(--subtile);
-}
