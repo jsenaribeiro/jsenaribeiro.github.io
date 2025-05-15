@@ -10,7 +10,14 @@
    grid-template-columns: auto 1fr;
 }
 
-nav { padding: 10px; }
+nav#menu { 
+   padding: 10px; 
+   position: fixed;
+   background: var(--darkest);
+   height: 100%;
+}
+
+
 
 hr {  
    border: solid 1px #555 !important;

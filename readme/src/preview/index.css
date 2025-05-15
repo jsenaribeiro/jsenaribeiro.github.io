@@ -1,7 +1,6 @@
 @import url(../../css/index.css);
 
 table th:empty { border: 0 !important; }
-pre { margin-bottom: 15px }
 
 section.infos table tr td,
 section.details td { padding: 3px 10px; }
