@@ -25,22 +25,6 @@ body {
    height: 100%;
 }
 
-a {
-   color: #4CA4ED;
-   text-decoration: none;
-   font-family: var(--text-font), sans-serif;
-}
-
-a:hover,
-a:focus,
-a:active,
-input:checked {
-   text-decoration: none;
-   text-shadow: wheat 1px 0 300px;
-   color: wheat;
-   outline: none;
-}
-
 p { margin-top: 15px }
 h2 + p, h1+p, h1+center { margin-top: 0px }
 p + p { margin-top: 5px }

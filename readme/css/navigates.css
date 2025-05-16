@@ -12,8 +12,8 @@ nav ul {
 nav li {
    list-style-type: none;
    color: var(--default);
-   padding: 5px 0 0 0;
-   font-size: 0.95rem;
+   padding: 3px 0 0 0;
+   font-size: 0.93rem;
 }
 
 nav li label {
@@ -42,7 +42,7 @@ nav ul:not(:first-of-type) li:first-of-type {
 }
 
 main {
-   border-left: ridge 3px #555;
+   /* border-left: ridge 3px #555; */
    padding-left: 20px;
 }
 
