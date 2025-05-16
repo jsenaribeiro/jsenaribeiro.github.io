@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Stateful object</title>
+            <title>Stateful objects</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -236,16 +236,17 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <style>
+            <script src='./index.js'></script>
+<style>
 @import url(./index.css);
 @import url(./stouring.css);
 </style> 
-<h1 id="stateful-object">Stateful object</h1>
+<h1 id="stateful-objects">Stateful objects</h1>
 <blockquote>
-<p>self-rendering state • stateful proxy object • stateful props • modular state • global state • object-oriented state handling • dependency injection</p>
+<p>self-rendering state • stateful proxy object • stateful props • modular state • global state • state handling • dependency injection</p>
 </blockquote>
 <h2 id="local-props">Local props</h2>
-<p>Local states with self-rendering props (all props are converted in stateful objects).</p>
+<p>Local states with <a href='#' onclick='goto("src/review/stateful.html")'>self-rendering</a> props (all props are converted in stateful objects).</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
    Hello { props.name } !
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> {<span class="hljs-attr">onChange</span>} /&gt;</span>
@@ -254,28 +255,16 @@ body.marp-vscode blockquote {
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">onChange</span> = e =&gt; props.<span class="hljs-property">name</span> = e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>
 </code></pre>
 <h2 id="global-stores">Global stores</h2>
-<p>Injectable global store is resolved in component second argument as store object.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> settings = { <span class="hljs-attr">storage</span>: { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span> } }
+<p>Injectable global store is resolved in <a href='#' onclick='goto("src/review/injection.html")'>component second argument</a> as store object.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>({ <span class="hljs-attr">store</span>: { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span> } }).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>, settings).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
-
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">Hello</span>(<span class="hljs-params">p, { store }</span>) {
-   <span class="hljs-keyword">const</span> <span class="hljs-title function_">onValue</span> = e =&gt; p.<span class="hljs-property">hi</span> = e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Hello</span>(<span class="hljs-params">props, feeds</span>) {
+   <span class="hljs-keyword">const</span> <span class="hljs-title function_">onValue</span> = e =&gt; props.<span class="hljs-property">name</span> = e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>
 
    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>   
-      Hello { store.name || &#x27;World&#x27; } !
-      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{store.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{onValue}</span> /&gt;</span>
+      Hello { feeds.store.name || &#x27;World&#x27; } !
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{feeds.store.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{onValue}</span> /&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></span>
-}
-</code></pre>
-<p>The second argument is the Feed interface.</p>
-<pre><code class="language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Feeds</span> {
-   <span class="hljs-attr">param</span>: record    <span class="hljs-comment">// route params</span>
-   <span class="hljs-attr">store</span>: record    <span class="hljs-comment">// global state</span>
-   <span class="hljs-attr">logon</span>: record    <span class="hljs-comment">// logged user</span>
-   <span class="hljs-attr">await</span>: <span class="hljs-built_in">boolean</span>   <span class="hljs-comment">// pending fetch</span>
-   <span class="hljs-attr">fails</span>: <span class="hljs-title class_">Invalid</span>[] <span class="hljs-comment">// fetch errors</span>
-   <span class="hljs-attr">refer</span>: <span class="hljs-built_in">any</span>       <span class="hljs-comment">// forwardRef (React 19)</span>
 }
 </code></pre>
 <h2 id="partial-states">Partial states</h2>

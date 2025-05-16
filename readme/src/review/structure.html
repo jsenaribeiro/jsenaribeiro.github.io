@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Conception</title>
+            <title>Routing structure</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -116,7 +116,8 @@ body.marp-vscode blockquote {
 }
 
 </style>
-            
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
 <style>
@@ -239,42 +240,152 @@ body.marp-vscode blockquote {
             <script src='./index.js'></script>
 <style>
 @import url(./index.css);
-@import url(./conception.css);
+@import url(./structure.css);
 </style> 
-<h1 id="conception">Conception</h1>
-<p>Reactful framework wain mainly designed to evolve the way that stateful React development is realized with new concepts, capabilities and resources.</p>
-<p><img src="../../img/overview.png" alt="overview"></p>
-<h2 id="self-rendering">Self-rendering</h2>
-<p>Stateful Proxy Object (SRO) is a self-rendering state that renders when it is changed, cutting all boilerplate code with class components,  hooks, imports, setState calls, etc.</p>
-<p><img src="../../img/self-rendering-state-process.png" alt="self rendering object"></p>
-<p>In Reactful, props are transformed in local stateful object, triggering the render each props change. It also supports global and partial states (see Data binding section).</p>
-<pre><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello {props.name ?? &#x27;world&#x27;}! <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{e</span> =&gt;</span> 
-          props.name = e.target.value} /&gt;
-<span class="hljs-tag">&lt;&gt;</span>
-</span></code></pre>
-<h2 id="data-binding">Data binding</h2>
-<p>Self-rendering states enable data binding with new global framework props, where <code>[data]</code>  receives the object and the <code>[binds]</code> maps its fields.</p>
-<pre><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello {props.name ?? &#x27;world&#x27;}! <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
-<span class="hljs-tag">&lt;&gt;</span>
-</span></code></pre>
-<h2 id="props-directives">Props directives</h2>
-<p>Data binding is enabled by props directives, a injectable global props that works in similar way to Angular attributes directives, with a new IoC container for React.</p>
-<pre><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-title function_">hide</span> = props =&gt; ({...props, <span class="hljs-attr">hidden</span>:<span class="hljs-literal">true</span> })
+<h1 id="routing-structure">Routing structure</h1>
+<h2 id="folder-routing">Folder routing</h2>
+<p>Static folder routing has no extra naming conventions (like in next.js). Its routing fallbacks retries into nearest inner route until achieve the root path (/).</p>
+<table>
+<thead>
+<tr>
+<th>DIRECTORY</th>
+<th>ROUTING</th>
+<th>RESOLUTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/routes/index.tsx</td>
+<td>localhost:3000/</td>
+<td>index JSX</td>
+</tr>
+<tr>
+<td>/routes/about.tsx</td>
+<td>localhost:3000/about</td>
+<td>filename JSX</td>
+</tr>
+<tr>
+<td>/routes/sample.html</td>
+<td>localhost:3000/sample</td>
+<td>filename HTML</td>
+</tr>
+<tr>
+<td>/routes/example.md</td>
+<td>localhost:3000/example</td>
+<td>filename markdown</td>
+</tr>
+<tr>
+<td>/routes/profile/index.tsx</td>
+<td>localhost:3000/profile</td>
+<td>subfolder index JSX</td>
+</tr>
+</tbody>
+</table>
+<h2 id="nesting-routes">Nesting routes</h2>
+<p>Nesting routes uses dot slash syntax for relative routing based on current file path.</p>
+<table>
+<thead>
+<tr>
+<th>CONTEXT</th>
+<th>ROUTING</th>
+<th>RESOLUTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/</td>
+<td>./about</td>
+<td>/about</td>
+</tr>
+<tr>
+<td>/admin/system</td>
+<td>./account</td>
+<td>/admin/account</td>
+</tr>
+<tr>
+<td>/user/profile/overview</td>
+<td>./details</td>
+<td>/user/profile/details</td>
+</tr>
+</tbody>
+</table>
+<h2 id="conflicts-rules">Conflicts rules</h2>
+<p>Considering the index and extension supression, there is some conflict cases listed below. All routing conflits throws exception in build time exception.</p>
+<table>
+<thead>
+<tr>
+<th>CONTEXT SAMPLING</th>
+<th>CONFLICT TYPE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file.tsx, file/index.tsx</td>
+<td>filename x index</td>
+</tr>
+<tr>
+<td>file.html, file.tsx, <a href="http://file.html">file.md</a></td>
+<td>filename x extensions</td>
+</tr>
+<tr>
+<td>file.html, file.tsx, <a href="http://file.html">file.md</a>, file/index.tsx</td>
+<td>filename x extensions x index</td>
+</tr>
+</tbody>
+</table>
+<h2 id="async-components-with-suspense-api">Async components with Suspense API</h2>
+<p>Async components is supported with React <code>Suspense API</code>.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Async</span>(<span class="hljs-params">props</span>) {
+   <span class="hljs-keyword">const</span> text = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;http://www.url.com&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-title function_">text</span>())
+   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>awaited content = { text }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+}
 
-<span class="hljs-title function_">server</span>().<span class="hljs-title function_">inject</span>(hide).<span class="hljs-title function_">render</span>() <span class="hljs-comment">// injected directive</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = <span class="hljs-keyword">async</span> props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">{</span>&lt;<span class="hljs-attr">b</span>&gt;</span>loading...<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span>}&gt;
+      <span class="hljs-tag">&lt;<span class="hljs-name">Async</span> /&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span>&gt;</span>
+<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+<h2 id="await-props-as-suspense-alternative">Await props as Suspense alternative</h2>
+<p>Await props directives is an alternative to Suspense API where the fallback is a children content and the async component is on <code>[await]</code> props directive.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = <span class="hljs-keyword">async</span> props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">await</span>=<span class="hljs-string">{Async}</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>loading...<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+</code></pre>
+<h2 id="dynamic-routes-by-function-decorators">Dynamic routes by function decorators</h2>
+<p>Dynamic routing (aka parametric route) handled by functions decorator. If there are conflits with folder routing, the routing decorator will overrides it as superior priority.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { route } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
 
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">Sample</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">hide</span>&gt;</span>Double zoom<span class="hljs-tag">&lt;<span class="hljs-name">div</span>/&gt;</span>
+@<span class="hljs-title function_">route</span>(<span class="hljs-string">&#x27;/whatever/profile/:id&#x27;</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Profile</span>(<span class="hljs-params">props, { params }</span>) {
+   <span class="hljs-keyword">const</span> user = <span class="hljs-title function_">fetch</span>(<span class="hljs-string">`<span class="hljs-subst">${url}</span>/<span class="hljs-subst">${params.id}</span>`</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-title function_">json</span>())
+
+   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Profile<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>User ID: { params.id }<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>User name: { user.name }<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+}
 </span></code></pre>
-<h2 id="function-decorators">Function decorators</h2>
-<p>Native decorators just work with classes, being useless to the functional React world. Reactful design a function decator transpiler, enabling function decorators.</p>
-<pre><code class="language-ts"><span class="hljs-meta">@server</span>(<span class="hljs-string">&#x27;static&#x27;</span>) <span class="hljs-keyword">const</span> <span class="hljs-title function_">About</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
+<h2 id="props-routing-directives">Props routing directives</h2>
+<p>A declarativerouting with <code>[route]</code> that renders when it matches with current route, meanwhile <code>[link]</code> adds a clickable behavior into its host element to switch routes.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Menu<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>   
+   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>         <span class="hljs-comment">&lt;!-- clicable router --&gt;</span>   
+   <span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>  <span class="hljs-comment">&lt;!-- conditional rendering --&gt;</span>
+<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+<h2 id="lazy-loading">Lazy loading</h2>
+<p>Lazy routing only import the lazy component when it is matched by route props. It is enabled by import using a promise extension polyfill called <code>asLazyComponent</code>. Then, the component imported with asLazyComponent and uset with route props, will only be importing in moment that is routed to its target route.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">MyLazyComponent</span> = <span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./main&#x27;</span>).<span class="hljs-title function_">asLazyComponent</span>(<span class="hljs-string">&#x27;Sample&#x27;</span>)
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = (<span class="hljs-params">props, feeds</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Menu<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;/sample&#x27;</span>&gt;</span>Sample<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">MyLazyComponent</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/lazy&#x27;</span> /&gt;</span> 
+   { feeds.await &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>importing component...<span class="hljs-tag">&lt;/&gt;</span>}
+<span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 
-            
+            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
             <script async type="text/javascript">
 /* From extension marp-team.marp-vscode */
 (()=>{var W=Object.defineProperty;var K=(w,h,x)=>h in w?W(w,h,{enumerable:!0,configurable:!0,writable:!0,value:x}):w[h]=x;var o=(w,h)=>W(w,"name",{value:h,configurable:!0});var v=(w,h,x)=>K(w,typeof h!="symbol"?h+"":h,x);(()=>{var w={32:(y,S,g)=>{y.exports=g(924)},924:(y,S)=>{"use strict";var g;g={value:!0};const E={h1:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:o(()=>HTMLSpanElement,"proto")},pre:{proto:o(()=>HTMLElement,"proto"),style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},A="data-marp-auto-scaling-wrapper",p="data-marp-auto-scaling-svg",c="data-marp-auto-scaling-container",T=class T extends HTMLElement{constructor(){super();v(this,"container");v(this,"containerSize");v(this,"containerObserver");v(this,"svg");v(this,"svgComputedStyle");v(this,"svgPreserveAspectRatio","xMinYMid meet");v(this,"wrapper");v(this,"wrapperSize");v(this,"wrapperObserver");const s=o(t=>([e])=>{const{width:n,height:r}=e.contentRect;this[t]={width:n,height:r},this.updateSVGRect()},"e");this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(s("containerSize")),this.wrapperObserver=new ResizeObserver((...t)=>{s("wrapperSize")(...t),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`

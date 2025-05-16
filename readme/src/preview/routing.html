@@ -236,7 +236,8 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <style>
+            <script src='./index.js'></script>
+<style>
 @import url(./index.css);
 @import url(./routing.css);
 table {  margin: 0 20px; zoom:0.85 !important }
@@ -244,7 +245,7 @@ table th { font-weight:700; border-bottom-style: dashed }
 </style> 
 <h1 id="routing-pages">Routing pages</h1>
 <blockquote>
-<p>path routing • route decorator • dynamic route • props routing • extended HTML • markdown support • lazy components • prefetch route • nested routes</p>
+<p>path routing • route decorator • dynamic route • props routing •  markdown support • lazy components • nested routes</p>
 </blockquote>
 <h2 id="folder-routing">Folder routing</h2>
 <p>Simple folder routing with inner fallbacks retries until the root path (/).</p>
@@ -266,26 +267,6 @@ table th { font-weight:700; border-bottom-style: dashed }
 </tr>
 </tbody>
 </table>
-<h2 id="async-components">Async components</h2>
-<p>Async components supports <code>Suspense API</code> with await directive alternative.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">AsyncSample</span>(<span class="hljs-params">props</span>) {
-   <span class="hljs-keyword">const</span> text = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;www.api.com/text&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-title function_">text</span>());
-   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>content response: { text }<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></span>
-}
-</code></pre>
-<section cols='2' style='margin-top: 10px'>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">SuspenseAlt</span> = <span class="hljs-keyword">async</span> _ =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">{</span>&lt;<span class="hljs-attr">Loading</span>/&gt;</span>}&gt;
-      <span class="hljs-tag">&lt;<span class="hljs-name">AsyncSample</span> /&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span>&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">AwaitAlt</span> = <span class="hljs-keyword">async</span> _ =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">await</span>=<span class="hljs-string">{AsyncSample}</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">Loading</span>/&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
 </section>
 <h2 id="dynamic-routes">Dynamic routes</h2>
 <p>Function decorator for dynamic routing and highest priority routing resolution.</p>
@@ -298,7 +279,7 @@ table th { font-weight:700; border-bottom-style: dashed }
 <p>Conditional render with <code>[route]</code> props and clickable router with <code>[link]</code> props.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>     <span class="hljs-comment">&lt;!-- clickable router --&gt;</span>   
-   <span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>  <span class="hljs-comment">&lt;!-- conditional render --&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>   <span class="hljs-comment">&lt;!-- conditional render --&gt;</span>
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 <h2 id="lazy-loading">Lazy loading</h2>

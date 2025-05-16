@@ -236,7 +236,8 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <style>@import url(./index.css);</style> 
+            <script src='./index.js'></script>
+<style>@import url(./index.css);</style> 
 <h1 id="functional-decorator">Functional decorator</h1>
 <h2 id="motivations">Motivations</h2>
 <p>Decorators are designed only to classes in JavaScript. Since React is basically a functional designed coding, native JavaScript decoratores are useless in React. So, to achive function decorators, the Reactful implements a micro-transpiler using Bun. With function decorators, the functional component could deal with some semantics using decorators as metadatas.</p>

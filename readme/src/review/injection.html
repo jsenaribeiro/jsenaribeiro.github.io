@@ -236,20 +236,22 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <style>@import url(./index.css);</style> 
+            <script src='./index.js'></script>
+<style>@import url(./index.css);</style> 
 <h1 id="dependency-injection">Dependency Injection</h1>
 <h2 id="architectural-motivation">Architectural motivation</h2>
 <p>To deal with directives and global store, Reactful framework uses a IoC container to inject the global store and the custom directives.</p>
 <h2 id="ioc-container">IoC Container</h2>
-<p>The Reactful IoC container handles two types of dependencies: global state and props directives. As a unique global state, it is injected in second parameter, the settings object, in storage field. Directives are injected in fluent inject function.</p>
+<p>The Reactful IoC container handles <a href='#' onclick='goto("src/review/stateful.html")'>global state</a>, <a href='#error-handling'>error components<a>, <a href='#' onclick='goto("src/review/directive.html")'>props directives</a> and <a href='#' onclick='goto("src/review/decorator.html")'>function decorators</a>. As a unique global state, it is injected in second parameter, the settings object, in storage field. Directives are injected in fluent inject function.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactful/server&#x27;</span>
-<span class="hljs-keyword">import</span> { directive1, directive2 } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./directives&#x27;</span>
+<span class="hljs-keyword">import</span> { directive } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./directives&#x27;</span>
+<span class="hljs-keyword">import</span> { decorator } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./decorators&#x27;</span>
 
 <span class="hljs-keyword">const</span> store = { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;john&#x27;</span>, <span class="hljs-attr">date</span>: <span class="hljs-string">&#x27;0001-01-01&#x27;</span> }
 
 <span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>({ store })
-     .<span class="hljs-title function_">inject</span>(directive1)
-     .<span class="hljs-title function_">inject</span>(directive2)
+     .<span class="hljs-title function_">inject</span>(directive)
+     .<span class="hljs-title function_">inject</span>(decorator)
      .<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 </code></pre>
 <p>The server parameter is typed by Settings interface</p>
@@ -274,6 +276,26 @@ body.marp-vscode blockquote {
    <span class="hljs-attr">await</span>: <span class="hljs-built_in">boolean</span>   <span class="hljs-comment">// global pending fetch for loading spine</span>
    <span class="hljs-attr">fails</span>: <span class="hljs-title class_">Invalid</span>[] <span class="hljs-comment">// current fetch errors</span>
 }
+</code></pre>
+<h2 id="error-handling">Error handling</h2>
+<p>The error component is a high-order component that receives an HTTP status code with an error array based in exception throws or HTTP response.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">errorComponent</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My custom error component...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+   { errors.map((e,i) =&gt; <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{i}</span>&gt;</span>{ e }<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>) }
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+</code></pre>
+<p>The error component uses dependency injection of global error handling for automatic redirect when exception throws.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>({ <span class="hljs-attr">error</span>: errorComponent }).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
+</code></pre>
+<p>For specific error component in special case, the <code>@error(component)</code> component allows to bind an specific error component with an specific component.</p>
+<pre><code class="language-tsx"><span class="hljs-comment">// specific error handling</span>
+@<span class="hljs-title function_">error</span>(customFailureHOC)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">SomeComponent</span>(<span class="hljs-params"></span>) { ... }
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">customFailureHOC</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My custom error component...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+   { errors.map((e,i) =&gt; <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{i}</span>&gt;</span>{ e }<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>) }
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
 </code></pre>
 <h2 id="conflits-with-react-19">Conflits with React 19</h2>
 <p>THe canary React 19 is using this component second parameter as server component context. If this will release, the Feeds interface will add him as serve field.</p>

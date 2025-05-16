@@ -41,3 +41,7 @@ blockquote {
    padding: 0 75px;
    color: var(--subtile);
 }
+
+[data-kantu] {
+   padding-left:0;
+}

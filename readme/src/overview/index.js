@@ -1,0 +1,1 @@
+const goto = window.parent.goto

@@ -2,12 +2,13 @@ a {
    color: #4CA4ED;
    text-decoration: none;
    font-family: var(--text-font), sans-serif;
-   display: block;
+   /* display: block; */
 }
 
 a:hover,
 a:focus,
 a:active,
+a.active,
 input:checked {
    text-decoration: none;
    text-shadow: wheat 1px 0 300px;

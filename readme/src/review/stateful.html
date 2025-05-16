@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Conception</title>
+            <title>Self rendering</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -237,42 +237,17 @@ body.marp-vscode blockquote {
         </head>
         <body class="vscode-body vscode-dark">
             <script src='./index.js'></script>
-<style>
-@import url(./index.css);
-@import url(./conception.css);
-</style> 
-<h1 id="conception">Conception</h1>
-<p>Reactful framework wain mainly designed to evolve the way that stateful React development is realized with new concepts, capabilities and resources.</p>
-<p><img src="../../img/overview.png" alt="overview"></p>
-<h2 id="self-rendering">Self-rendering</h2>
-<p>Stateful Proxy Object (SRO) is a self-rendering state that renders when it is changed, cutting all boilerplate code with class components,  hooks, imports, setState calls, etc.</p>
-<p><img src="../../img/self-rendering-state-process.png" alt="self rendering object"></p>
-<p>In Reactful, props are transformed in local stateful object, triggering the render each props change. It also supports global and partial states (see Data binding section).</p>
-<pre><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello {props.name ?? &#x27;world&#x27;}! <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{e</span> =&gt;</span> 
-          props.name = e.target.value} /&gt;
-<span class="hljs-tag">&lt;&gt;</span>
-</span></code></pre>
-<h2 id="data-binding">Data binding</h2>
-<p>Self-rendering states enable data binding with new global framework props, where <code>[data]</code>  receives the object and the <code>[binds]</code> maps its fields.</p>
-<pre><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello {props.name ?? &#x27;world&#x27;}! <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
-<span class="hljs-tag">&lt;&gt;</span>
-</span></code></pre>
-<h2 id="props-directives">Props directives</h2>
-<p>Data binding is enabled by props directives, a injectable global props that works in similar way to Angular attributes directives, with a new IoC container for React.</p>
-<pre><code class="language-ts"><span class="hljs-keyword">const</span> <span class="hljs-title function_">hide</span> = props =&gt; ({...props, <span class="hljs-attr">hidden</span>:<span class="hljs-literal">true</span> })
-
-<span class="hljs-title function_">server</span>().<span class="hljs-title function_">inject</span>(hide).<span class="hljs-title function_">render</span>() <span class="hljs-comment">// injected directive</span>
-
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">Sample</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">hide</span>&gt;</span>Double zoom<span class="hljs-tag">&lt;<span class="hljs-name">div</span>/&gt;</span>
-</span></code></pre>
-<h2 id="function-decorators">Function decorators</h2>
-<p>Native decorators just work with classes, being useless to the functional React world. Reactful design a function decator transpiler, enabling function decorators.</p>
-<pre><code class="language-ts"><span class="hljs-meta">@server</span>(<span class="hljs-string">&#x27;static&#x27;</span>) <span class="hljs-keyword">const</span> <span class="hljs-title function_">About</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
+<style>@import url(./index.css);</style> 
+<h1 id="self-rendering">Self rendering</h1>
+<h2 id="self-rendering-state">Self rendering state</h2>
+<p>Self rendering states is a concept that avoid any extra boilerplate code to handle states in react. It is a classless and hoockless solution fully based in objects.</p>
+<h2 id="stateful-object-concept">Stateful object concept</h2>
+<p>Any object is, by definition, stateful. But in React context, something stateful is a more specific domain. The concept of a stateful object is a way to deal simples object that tiggers the render when it is changed.</p>
+<p>Technically, a stateful object is a javascript proxy object that encapsulate the original object and state hooks. A proxy object can intercept each set and get behavior in object fields, and, this enable to triggers the render when the object field is changed, or and field in its inner objects.</p>
+<h2 id="performance-issues-and-delayed-render">Performance issues and delayed render</h2>
+<p>Meanwhile the Angular approache improves is more productive and maintenable than state management alterantives in React (hooks, redux, class components, etc), the one-way data binding allows a more performatic and organic approach.</p>
+<p>A naive designed stateful objects will implies multiple rendering, think somethin as holding a keyboard key, this will trigger multiples changes. Think define multiple field in a code, any field will trigger the render. To handle this, the Reactful framework implements a dealyed render algorithm.</p>
+<p>This algorithm triggers in every half second, so, any change between this interval will trigger only one render. This interval is long enough to avoid uncessary renders, and small enough to not be perceivable as a performance decay by user.</p>
 
             
             <script async type="text/javascript">

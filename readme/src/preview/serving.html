@@ -236,7 +236,8 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <style>
+            <script src='./index.js'></script>
+<style>
 @import url(./index.css);
 @import url(./serving.css);
 </style> 
@@ -244,89 +245,29 @@ body.marp-vscode blockquote {
 <blockquote>
 <p>hybrid rendering • server components • partial hydration • web apis • extended html • error handling • markdown support</p>
 </blockquote>
-<h2 id="server-startup">Server startup</h2>
-<p>Startup sample with some injected props directives.</p>
+<h2 id="server-launcher">Server launcher</h2>
+<p>Server launcher has an IoC container that supports dependency injection with <a href='#' onclick='goto("src/review/stateful.html")'>global states</a>, <a href='#' onclick='goto("src/review/injection.html#error-components")'>error components</a>, <a href='#' onclick='goto("src/review/directive.html")'>props directives</a>, <a href='#' onclick='goto("src/review/decorator.html")'>function decorators</a>.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactful/server&#x27;</span>
-<span class="hljs-keyword">import</span> { directive1, directive2 } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./directives&#x27;</span>
+<span class="hljs-keyword">import</span> { directive, decorator } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./directives&#x27;</span>
 
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>, { etc... })
-     .<span class="hljs-title function_">inject</span>(directive1)
-     .<span class="hljs-title function_">inject</span>(directive2)
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>({ <span class="hljs-attr">store</span>: { <span class="hljs-attr">ok</span>:<span class="hljs-literal">true</span> } })
+     .<span class="hljs-title function_">inject</span>(directive)
+     .<span class="hljs-title function_">inject</span>(decorator)
      .<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 </code></pre>
-<h2 id="serving-apis">Serving apis</h2>
-<p>In <code>/apis</code> enables easy RESTful services using HTTP verb in function names.</p>
-<pre><code class="language-ts"><span class="hljs-comment">// file: /apis/sample.ts</span>
-<span class="hljs-comment">// route: http://localhost:3000/api/sample</span>
-<span class="hljs-comment">// warning: route is both resolved as /api and /apis</span>
+<p>It also serves <a href='#' onclick='goto("src/review/rendering.html#restful-apis-folder")'>RESTful APIs</a> with exported functions using HTTP verb names in <code>/apis</code>.</p>
+<pre><code class="language-ts"><span class="hljs-comment">// /apis/sample.ts as http://localhost:3000/api/sample</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">get</span> = request =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Response</span>(<span class="hljs-string">&#x27;Hello World!&#x27;</span>)
 </code></pre>
-<h2 id="client-component">Client component</h2>
-<p>Client decorator is a component-scoped stateful client component enabler as alternative to commum module-scoped <code>'use server'</code> directive.</p>
+<h2 id="decorator-side">Decorator side</h2>
+<p>Component-scoped <a href='#' onclick='goto("src/review/decorator.html")'>function decorators</a> as alternative to modular-scoped <code>'use client'</code> and <code>'use server'</code> for <strong>SSG</strong>(static), <strong>SSR</strong>(dynamic) and <strong>ISR</strong>(periodic) <a href='#' onclick='goto("src/review/hybriding.html")'>rendering</a>.</p>
 <pre><code class="language-tsx">@<span class="hljs-title function_">client</span>(<span class="hljs-literal">true</span>) <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hi</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
+@<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;static&#x27;</span>) <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Static</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
+@<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;dynamic&#x27;</span>) <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Dynamic</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
+@<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;periodic&#x27;</span>, <span class="hljs-string">&quot;36h&quot;</span>)  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Periodic</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<h2 id="server-component">Server component</h2>
-<p>Comprehensive support to static (SSG), dynamic (SSR) and periodic (ISR) hybrid rendering using straghtforward function decorators.</p>
-<pre><code class="language-tsx">@<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;static&#x27;</span>) <span class="hljs-comment">// default</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Static</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
-
-@<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;dynamic&#x27;</span>)  
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Dynamic</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
-
-@<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;periodic&#x27;</span>, <span class="hljs-string">&quot;36h&quot;</span>) 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Periodic</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-<p>It supports async components with Suspense component API.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Suspense</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">AsyncComponent</span>(<span class="hljs-params">props</span>) {
-   <span class="hljs-keyword">const</span> user = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(url).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-title function_">json</span>())
-   <span class="hljs-keyword">const</span> loading = <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>loading...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
-
-   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">{loading}</span>&gt;</span>
-      Hello { hello.name }
-   <span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span>&gt;</span></span>
-}
-</code></pre>
-<h2 id="error-component">Error component</h2>
-<p>Component-driven error handling using high-order component argument.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactful/server&#x27;</span>
-
-<span class="hljs-comment">// sampling a custom high-order component error</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">myCustomErrorComponent</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My generic error page...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>{ errors.map((x,i) =&gt; <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{i}</span>&gt;</span>{ x }<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>) }<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
-
-<span class="hljs-comment">// replacing default failure HOC for error handling</span>
-<span class="hljs-keyword">const</span> settings = { <span class="hljs-attr">failure</span>: myCustomErrorComponent }
-
-<span class="hljs-comment">// starting reactful server with custom error component</span>
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>, settings).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
-</code></pre>
-<p>Local specific error is handled with function decorator.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { error } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
-
-<span class="hljs-comment">// sampling a custom high-order component error</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">mySpecificErrorComponent</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My specific error page...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>{ errors.map((x,i) =&gt; <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{i}</span>&gt;</span>{ x }<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>) }<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
-
-@<span class="hljs-title function_">error</span>(mySpecificErrorComponent)
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Example</span>(<span class="hljs-params"></span>) { ... }
-</code></pre>
-<h2 id="html-extension">HTML extension</h2>
-<p>Extended <code>&lt;link&gt;</code> tag allows JSX imports inside HTML.</p>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;react&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;../components/header.tsx&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">Header</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;HTML-X&quot;</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span> <span class="hljs-comment">&lt;!-- JSX into HTML --&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
-</code></pre>
-<p>The <code>rel</code> attribute enables specific named component imports.</p>
-<pre><code class="language-html"><span class="hljs-comment">&lt;!-- &#x27;Header&#x27; component in /etc/header.tsx&quot; --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;Header&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;react&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;../etc/header.tsx&quot;</span> /&gt;</span>
-</code></pre>
+<h2 id="multiple-supports">Multiple supports</h2>
+<p>Reactful server supports <a href='#' onclick='goto("src/review/multiple.html#markdown-support")'>Markdown</a>, <a href='#' onclick='goto("src/review/multiple.html#extended-html")'>extended HTML</a> and <a href='#' onclick='goto("src/review/multiple.html#async-components")'>async components</a> with Suspense API suport (with <strong>await</strong> props alternative to Suspense API).</p>
 
             
             <script async type="text/javascript">
