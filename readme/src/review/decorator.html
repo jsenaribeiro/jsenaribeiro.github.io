@@ -242,6 +242,26 @@ body.marp-vscode blockquote {
 <p>Decorators are designed only to classes in JavaScript. Since React is basically a functional designed coding, native JavaScript decoratores are useless in React. So, to achive function decorators, the Reactful implements a micro-transpiler using Bun. With function decorators, the functional component could deal with some semantics using decorators as metadatas.</p>
 <h2 id="transpiler">Transpiler</h2>
 <p>The decorator transpiler uses Bun tools for runtime and build-time transpiler, both time transpiling happens in decorator life-cycle.</p>
+<h2 id="modelling">Modelling</h2>
+<p>The decorator signature is a function that returns an specific signature function with meta and call arguments and call return, as example bellow.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">decorating</span> = args =&gt; <span class="hljs-function">(<span class="hljs-params">meta, call</span>) =&gt;</span> call
+</code></pre>
+<p>The meta is a ImportMeta type with import metadata, and call is any kind of function, like ReactFunctionComponent or just RFC. A decorator could intercepts each functional component.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">decorating</span>(<span class="hljs-params">args: string</span>): <span class="hljs-title class_">Decorator</span>&lt;<span class="hljs-variable constant_">RFC</span>&gt; {   
+   <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params">meta: ImportMeta, call: RFC</span>) {
+      <span class="hljs-comment">// TODO...</span>
+      <span class="hljs-keyword">return</span> call
+   }
+}
+</code></pre>
+<p>A decorator is activated by dependency injection in server starter of Reactful framework using inject fluent method as bellow.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactful/server&#x27;</span>
+<span class="hljs-keyword">import</span> { decorating } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./decorators&#x27;</span>
+
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>)
+     .<span class="hljs-title function_">inject</span>(decorating)
+     .<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
+</code></pre>
 <h2 id="limitations">Limitations</h2>
 <p>Custom decorators has no support to imports, it means that it could be imported, but it cannot import anything itself. If it this happens, the app will crash.</p>
 

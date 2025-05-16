@@ -240,8 +240,33 @@ body.marp-vscode blockquote {
 <h1 id="dependency-injection">Dependency Injection</h1>
 <h2 id="architectural-motivation">Architectural motivation</h2>
 <p>To deal with directives and global store, Reactful framework uses a IoC container to inject the global store and the custom directives.</p>
+<h2 id="ioc-container">IoC Container</h2>
+<p>The Reactful IoC container handles two types of dependencies: global state and props directives. As a unique global state, it is injected in second parameter, the settings object, in storage field. Directives are injected in fluent inject function.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactful/server&#x27;</span>
+<span class="hljs-keyword">import</span> { directive1, directive2 } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./directives&#x27;</span>
+
+<span class="hljs-keyword">const</span> store = { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;john&#x27;</span>, <span class="hljs-attr">date</span>: <span class="hljs-string">&#x27;0001-01-01&#x27;</span> }
+
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>({ store })
+     .<span class="hljs-title function_">inject</span>(directive1)
+     .<span class="hljs-title function_">inject</span>(directive2)
+     .<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
+</code></pre>
+<p>The server parameter is typed by Settings interface</p>
+<pre><code class="language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Settings</span>&lt;T = <span class="hljs-built_in">any</span>&gt;  {
+   <span class="hljs-attr">store</span>: T          <span class="hljs-comment">// global state  (default: undefined)</span>
+   <span class="hljs-attr">route</span>: <span class="hljs-built_in">string</span>     <span class="hljs-comment">// component page folder (default: &#x27;/routes&#x27;)</span>
+   <span class="hljs-attr">query</span>: <span class="hljs-built_in">string</span>     <span class="hljs-comment">// query selector for root HTML (default: &#x27;#root&#x27;)</span>
+}
+</code></pre>
 <h2 id="resolution-approach">Resolution approach</h2>
-<p>The dependency resolution approach uses the second parameter of functional component that, until the React 19, was useless. So, in framework life-cycle, this second argument receives a Feed interface with multiple.</p>
+<p>The Reacful dependency resolution uses the useless second parameter of a functional component in React, named as feeds. All application dependencies are injected and resolved in this object.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Component</span>(<span class="hljs-params">props, feeds</span>) {
+   <span class="hljs-keyword">const</span> isPending = feeds.<span class="hljs-property">awaits</span>
+   <span class="hljs-keyword">const</span> globalState = feeds.<span class="hljs-property">store</span>
+}
+</code></pre>
+<p>So, in framework life-cycle, this second argument receives a Feed interface with multiple.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Feeds</span> {
    <span class="hljs-attr">param</span>: record    <span class="hljs-comment">// route params of dynamic routing</span>
    <span class="hljs-attr">store</span>: record    <span class="hljs-comment">// custom global store by DI</span>

@@ -248,7 +248,19 @@ body.marp-vscode blockquote {
 <p>Reactul data binding is a two-way data binding based on its stateful objects and props directives. By stateful object, it uses its self rendering behavior, by props directives it uses its capability of injecting props. There is two type of if: props binding for controlled components and form binding for uncontrolled components.</p>
 <h2 id="props-binding">Props binding</h2>
 <p>Here an example of stateful props without any props binding with its verbosity using input value and onChange properties to deal with the binding.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Old</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> [name, setName] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&quot;World&quot;</span>)
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">setValue</span> = e =&gt; <span class="hljs-title function_">setName</span>(e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>)
+
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, {name}!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{setValue)</span> /&gt;</span>
+   <span class="hljs-tag">&lt;/&gt;</span></span>
+}
+</code></pre>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">New</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello { props.name || &#x27;World&#x27; }&quot;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> props.name = e.target.value} /&gt;    
 <span class="hljs-tag">&lt;/&gt;</span></span>

@@ -240,79 +240,147 @@ body.marp-vscode blockquote {
             <style>
 @import url(./index.css);
 @import url(./routing.css);
-table {  margin: 0 20px; zoom:0.85 !important }
-table th { font-weight:700; border-bottom-style: dashed }
 </style> 
 <h1 id="routing-page">Routing page</h1>
-<blockquote>
-<p>path routing • route decorator • dynamic route • props routing • extended HTML • markdown support • lazy components • prefetch route • nested routes</p>
-</blockquote>
 <h2 id="folder-routing">Folder routing</h2>
-<p>Simple folder routing with inner fallbacks retries until the root path (/).</p>
+<p>Static folder routing has no extra naming conventions (like in next.js). Its routing fallbacks retries into nearest inner route until achieve the root path (/).</p>
 <table>
 <thead>
 <tr>
-<th>all formats</th>
-<th>prefix omission</th>
-<th>index omission</th>
-<th>nesting routes</th>
+<th>DIRECTORY</th>
+<th>ROUTING</th>
+<th>RESOLUTION</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>html, jsx, tsx, md</td>
-<td>/admin.tsx = /admin</td>
-<td>/index.html = /</td>
-<td>./c = /a/b/c</td>
+<td>/routes/index.tsx</td>
+<td>localhost:3000/</td>
+<td>index JSX</td>
+</tr>
+<tr>
+<td>/routes/about.tsx</td>
+<td>localhost:3000/about</td>
+<td>filename JSX</td>
+</tr>
+<tr>
+<td>/routes/sample.html</td>
+<td>localhost:3000/sample</td>
+<td>filename HTML</td>
+</tr>
+<tr>
+<td>/routes/example.md</td>
+<td>localhost:3000/example</td>
+<td>filename markdown</td>
+</tr>
+<tr>
+<td>/routes/profile/index.tsx</td>
+<td>localhost:3000/profile</td>
+<td>subfolder index JSX</td>
 </tr>
 </tbody>
 </table>
-<h2 id="async-components">Async components</h2>
-<p>Async components supports <code>Suspense API</code> with await directive alternative.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">AsyncSample</span>(<span class="hljs-params">props</span>) {
-   <span class="hljs-keyword">const</span> text = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;www.api.com/text&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-title function_">text</span>());
-   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>content response: { text }<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></span>
+<h2 id="nesting-routes">Nesting routes</h2>
+<p>Nesting routes uses dot slash syntax for relative routing based on current file path.</p>
+<table>
+<thead>
+<tr>
+<th>CONTEXT</th>
+<th>ROUTING</th>
+<th>RESOLUTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/</td>
+<td>./about</td>
+<td>/about</td>
+</tr>
+<tr>
+<td>/admin/system</td>
+<td>./account</td>
+<td>/admin/account</td>
+</tr>
+<tr>
+<td>/user/profile/overview</td>
+<td>./details</td>
+<td>/user/profile/details</td>
+</tr>
+</tbody>
+</table>
+<h2 id="conflicts-rules">Conflicts rules</h2>
+<p>Considering the index and extension supression, there is some conflict cases listed below. All routing conflits throws exception in build time exception.</p>
+<table>
+<thead>
+<tr>
+<th>CONTEXT SAMPLING</th>
+<th>CONFLICT TYPE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>file.tsx, file/index.tsx</td>
+<td>filename x index</td>
+</tr>
+<tr>
+<td>file.html, file.tsx, <a href="http://file.html">file.md</a></td>
+<td>filename x extensions</td>
+</tr>
+<tr>
+<td>file.html, file.tsx, <a href="http://file.html">file.md</a>, file/index.tsx</td>
+<td>filename x extensions x index</td>
+</tr>
+</tbody>
+</table>
+<h2 id="async-components-with-suspense-api">Async components with Suspense API</h2>
+<p>Async components is supported with React <code>Suspense API</code>.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Async</span>(<span class="hljs-params">props</span>) {
+   <span class="hljs-keyword">const</span> text = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;http://www.url.com&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-title function_">text</span>())
+   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>awaited content = { text }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 }
-</code></pre>
-<section cols='2' style='margin-top: 10px'>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">SuspenseAlt</span> = <span class="hljs-keyword">async</span> _ =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">{</span>&lt;<span class="hljs-attr">Loading</span>/&gt;</span>}&gt;
-      <span class="hljs-tag">&lt;<span class="hljs-name">AsyncSample</span> /&gt;</span>
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = <span class="hljs-keyword">async</span> props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">{</span>&lt;<span class="hljs-attr">b</span>&gt;</span>loading...<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span>}&gt;
+      <span class="hljs-tag">&lt;<span class="hljs-name">Async</span> /&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span>&gt;</span>
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">AwaitAlt</span> = <span class="hljs-keyword">async</span> _ =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">await</span>=<span class="hljs-string">{AsyncSample}</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">Loading</span>/&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
+<h2 id="await-props-as-suspense-alternative">Await props as Suspense alternative</h2>
+<p>Await props directives is an alternative to Suspense API where the fallback is a children content and the async component is on <code>[await]</code> props directive.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = <span class="hljs-keyword">async</span> props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">await</span>=<span class="hljs-string">{Async}</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>loading...<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
 </code></pre>
-</section>
-<h2 id="dynamic-routes">Dynamic routes</h2>
-<p>Function decorator for dynamic routing and highest priority routing resolution.</p>
-<pre><code class="language-tsx">@<span class="hljs-title function_">route</span>(<span class="hljs-string">&#x27;/profile/:id&#x27;</span>)
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Profile</span>(<span class="hljs-params">props, feeds</span>) {
-   <span class="hljs-keyword">const</span> url = <span class="hljs-string">`<span class="hljs-subst">${url}</span>/<span class="hljs-subst">${feeds.params.id}</span>`</span>
-   <span class="hljs-keyword">const</span> user = <span class="hljs-title function_">fetch</span>(url).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-title function_">json</span>())
+<h2 id="dynamic-routes-by-function-decorators">Dynamic routes by function decorators</h2>
+<p>Dynamic routing (aka parametric route) handled by functions decorator. If there are conflits with folder routing, the routing decorator will overrides it as superior priority.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { route } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
 
-   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>User name: { user.name }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+@<span class="hljs-title function_">route</span>(<span class="hljs-string">&#x27;/whatever/profile/:id&#x27;</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Profile</span>(<span class="hljs-params">props, { params }</span>) {
+   <span class="hljs-keyword">const</span> user = <span class="hljs-title function_">fetch</span>(<span class="hljs-string">`<span class="hljs-subst">${url}</span>/<span class="hljs-subst">${params.id}</span>`</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-title function_">json</span>())
+
+   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Profile<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>User ID: { params.id }<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>User name: { user.name }<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
 }
-</code></pre>
-<h2 id="props-routing">Props routing</h2>
-<p>Conditional render with <code>[route]</code> props and clickable router with <code>[link]</code> props.</p>
+</span></code></pre>
+<h2 id="props-routing-directives">Props routing directives</h2>
+<p>A declarativerouting with <code>[route]</code> that renders when it matches with current route, meanwhile <code>[link]</code> adds a clickable behavior into its host element to switch routes.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Menu<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>   
-   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>     <span class="hljs-comment">&lt;!-- clickable router --&gt;</span>   
-   <span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>  <span class="hljs-comment">&lt;!-- conditional render --&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>         <span class="hljs-comment">&lt;!-- clicable router --&gt;</span>   
+   <span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>  <span class="hljs-comment">&lt;!-- conditional rendering --&gt;</span>
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 <h2 id="lazy-loading">Lazy loading</h2>
-<p>Lazy import routing with promise extension polyfil named <code>asLazyComponent</code>.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Sample</span> = <span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./main&#x27;</span>).<span class="hljs-title function_">asLazyComponent</span>(<span class="hljs-string">&#x27;Sample&#x27;</span>)
+<p>Lazy routing only import the lazy component when it is matched by route props. It is enabled by import using a promise extension polyfill called <code>asLazyComponent</code>. Then, the component imported with asLazyComponent and uset with route props, will only be importing in moment that is routed to its target route.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">MyLazyComponent</span> = <span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./main&#x27;</span>).<span class="hljs-title function_">asLazyComponent</span>(<span class="hljs-string">&#x27;Sample&#x27;</span>)
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = (<span class="hljs-params">props, feeds</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Menu<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;/sample&#x27;</span>&gt;</span>Sample<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">Sample</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/lazy&#x27;</span> /&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">MyLazyComponent</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/lazy&#x27;</span> /&gt;</span> 
+   { feeds.await &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>importing component...<span class="hljs-tag">&lt;/&gt;</span>}
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 
