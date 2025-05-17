@@ -239,7 +239,6 @@ body.marp-vscode blockquote {
             <script src='../index.js'></script>
 <style>@import url(./index.css);</style> 
 <h1 id="dependency-injection">Dependency Injection</h1>
-<h2 id="architectural-motivation">Architectural motivation</h2>
 <p>To deal with directives and global store, Reactful framework uses a IoC container to inject the global store and the custom directives.</p>
 <h2 id="ioc-container">IoC Container</h2>
 <p>The Reactful IoC container handles <a onclick='goto("review/stateful.html")'>global state</a>, <a href='#error-handling'>error components<a>, <a onclick='goto("review/directive.html")'>props directives</a> and <a onclick='goto("review/decorator.html")'>function decorators</a>. As a unique global state, it is injected in second parameter, the settings object, in storage field. Directives are injected in fluent inject function.</p>
@@ -277,7 +276,7 @@ body.marp-vscode blockquote {
    <span class="hljs-attr">fails</span>: <span class="hljs-title class_">Invalid</span>[] <span class="hljs-comment">// current fetch errors</span>
 }
 </code></pre>
-<h2 id="error-handling">Error handling</h2>
+<h2 id="error-components">Error components</h2>
 <p>The error component is a high-order component that receives an HTTP status code with an error array based in exception throws or HTTP response.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">errorComponent</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My custom error component...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>

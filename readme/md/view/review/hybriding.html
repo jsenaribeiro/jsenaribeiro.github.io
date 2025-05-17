@@ -239,9 +239,7 @@ body.marp-vscode blockquote {
             <script src='../index.js'></script>
 <style>@import url(./index.css);</style> 
 <h1 id="hybrid-rendering">Hybrid rendering</h1>
-<blockquote>
-<p>hybrid rendering • server components • partial hydration • web apis • extended html • error handling • markdown support</p>
-</blockquote>
+<p>Hybrid rendering allows multiple rendering strategies as client-side rendering (CSR), server-side rendering (SSR), static site generation (SSG) and incremental site regeneration (ISR), além de estar relacionado a React Server Components (RSC). Todas essas tecnologias são suportadas pelo servidor do Reactful.</p>
 <h2 id="server-starting-point">Server starting point</h2>
 <p>The fluent server function in <code>'reactful/server'</code> is the framework starting point to run the application with <code>&quot;/routes&quot;</code> and <code>&quot;#root&quot;</code> as default values.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactful/server&#x27;</span>
@@ -261,12 +259,6 @@ body.marp-vscode blockquote {
      .<span class="hljs-title function_">inject</span>(directive)
      .<span class="hljs-title function_">inject</span>(decorator)
      .<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
-</code></pre>
-<h2 id="restful-apis-folder">RESTful apis folder</h2>
-<p>The <code>/apis</code> folder serves webapis using HTTP verb in function name. It is important to notice that the folder is <code>/apis</code> but in route is just <code>/api</code>.</p>
-<pre><code class="language-ts"><span class="hljs-comment">// warning: /api/ folder, but /api route</span>
-<span class="hljs-comment">// routing: http://localhost:3000/api/sample</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">get</span> = request =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Response</span>(<span class="hljs-string">&#x27;Hello World!&#x27;</span>)
 </code></pre>
 <h2 id="client-component">Client component</h2>
 <p>Since the user interation happens in client-side, only client component could be stateful. Here, the client decorator is a more component-scoped than the conventional module-scoped <code>'use server'</code> directive.</p>
@@ -295,23 +287,6 @@ body.marp-vscode blockquote {
       Hello { hello.name }
    <span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span>&gt;</span></span>
 }
-</code></pre>
-<h2 id="html-extension">HTML extension</h2>
-<p>Extended <code>&lt;link&gt;</code> with <code>type=&quot;react&quot;</code> for JSX imports of default component (component name is filename) or named component with <code>rel</code> attribute.</p>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;react&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;./general.tsx&quot;</span> /&gt;</span>   
-<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;react&quot;</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;Special&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;./etc.tsx&quot;</span> /&gt;</span>
-</code></pre>
-<p>So, the component could be used as normal element inside the HTML document.</p>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;react&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;./general.tsx&quot;</span> /&gt;</span>   
-   <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;react&quot;</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;Special&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;./etc.tsx&quot;</span> /&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">General</span> /&gt;</span> <span class="hljs-comment">&lt;!-- default JSX into HTML --&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">Special</span> /&gt;</span> <span class="hljs-comment">&lt;!-- named JSX into HTML --&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span> 
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
 
             
