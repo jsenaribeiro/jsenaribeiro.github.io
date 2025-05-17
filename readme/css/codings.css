@@ -7,8 +7,8 @@ pre {
 
 p code { 
    font-family: var(--code-font), monospace;
-   background-color: #292929; 
-   border: solid 5px #292929;
+   background-color: #292929 !important; 
+   border: solid 5px #292929 !important;
    border-width: 5px 4px;
    color: wheat;
 }

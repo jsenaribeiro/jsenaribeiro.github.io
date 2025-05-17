@@ -116,8 +116,7 @@ body.marp-vscode blockquote {
 }
 
 </style>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
-<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+            
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
 <style>
@@ -238,45 +237,64 @@ body.marp-vscode blockquote {
         </head>
         <body class="vscode-body vscode-dark">
             <script src='../index.js'></script>
-<style>@import url(./index.css);</style>
-<!-- <script src='../../js/steps.js'></script> -->
+<style>
+@import url(./index.css);
+@import url(./introduction.css);
+</style> 
 <h1 id="introduction">Introduction</h1>
-<blockquote>
-<p>bun • templates • cli • server • script • typescript</p>
-</blockquote>
-<h2 id="creating-a-new-project">Creating a new project</h2>
-<pre><code class="language-ps"><span class="hljs-variable">$</span> bunx @reactful/create@latest
-- template? empty|minimal|sampling
-- project name? MyProjectName
-- is vsCode IDE? (Y/n) y
-- install? (Y/n) y
-- serve? (Y/n) y
-- installing...
-- serving...
+<center>
+<p>Reactful is a fullstack React framework with innovative stateful approach, minimalist code design and comprehensive framework features.</p>
+</center>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>binding</td>
+<td>dual binding props directives</td>
+</tr>
+<tr>
+<td>styling</td>
+<td>modular and component CSS scope</td>
+</tr>
+<tr>
+<td>serving</td>
+<td>supports RSC, JSX, TSX, HTML and MD</td>
+</tr>
+<tr>
+<td>ranking</td>
+<td>SEO metatags and Open Graph Protocol</td>
+</tr>
+<tr>
+<td>storing</td>
+<td>local, global and partial state management</td>
+</tr>
+<tr>
+<td>routing</td>
+<td>advanced routing with SSG, SSR, ISR and RSC</td>
+</tr>
+</tbody>
+</table>
+<center >
+<h2 upper>Smart objects (self-rendering states)</h2>
+<p>Smart objects is new concept for a self-rendering state that clears all the boilerplate code with hooks, imports, calls, etc in React state managenent.</p>
+</center>
+<section cols='3' divs><aside right>
+<h2 id="function-decorator">Function decorator</h2>
+<p>Function decorator transpiller enables decorator for metadata functional components</p>
+</aside><aside center>
+<h2 id="props-directive">Props directive</h2>
+<p>Global injectable props that can share behaviors between in its host elements in render time.</p>
+</aside><aside left>
+<h2 id="dual-binding">Dual binding</h2>
+<p>Built-in props directives that emulates two-way data binding design with React one way data flow.</p>
+</aside></section>
 
-running at localhost:<span class="hljs-number">3000</span>
-</code></pre>
-<h2 id="running-application">Running application</h2>
-<pre><code class="language-ps"><span class="hljs-variable">$</span> bun run <span class="hljs-built_in">start</span> <span class="hljs-comment"># running at locahost:3000</span>
-</code></pre>
-<h2 id="starting-code">Starting code</h2>
-<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/server&#x27;</span>
-<span class="hljs-keyword">import</span> { client } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful&#x27;</span>
-
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
-
-<span class="hljs-meta">@client</span>(<span class="hljs-literal">true</span>)
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>Hello { props.name }<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-<!-- ## Next steps...
-- [Presentation](#)
-- [Conceptions](#)
- -->
-
-            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+            
             <script async type="text/javascript">
 /* From extension marp-team.marp-vscode */
 (()=>{var W=Object.defineProperty;var K=(w,h,x)=>h in w?W(w,h,{enumerable:!0,configurable:!0,writable:!0,value:x}):w[h]=x;var o=(w,h)=>W(w,"name",{value:h,configurable:!0});var v=(w,h,x)=>K(w,typeof h!="symbol"?h+"":h,x);(()=>{var w={32:(y,S,g)=>{y.exports=g(924)},924:(y,S)=>{"use strict";var g;g={value:!0};const E={h1:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:o(()=>HTMLSpanElement,"proto")},pre:{proto:o(()=>HTMLElement,"proto"),style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},A="data-marp-auto-scaling-wrapper",p="data-marp-auto-scaling-svg",c="data-marp-auto-scaling-container",T=class T extends HTMLElement{constructor(){super();v(this,"container");v(this,"containerSize");v(this,"containerObserver");v(this,"svg");v(this,"svgComputedStyle");v(this,"svgPreserveAspectRatio","xMinYMid meet");v(this,"wrapper");v(this,"wrapperSize");v(this,"wrapperObserver");const s=o(t=>([e])=>{const{width:n,height:r}=e.contentRect;this[t]={width:n,height:r},this.updateSVGRect()},"e");this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(s("containerSize")),this.wrapperObserver=new ResizeObserver((...t)=>{s("wrapperSize")(...t),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`

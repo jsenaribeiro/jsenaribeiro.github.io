@@ -1,0 +1,26 @@
+img { width:100% }
+
+[divs] h2 {
+   border: 0 !important;
+}
+
+[divs] {
+   zoom: 0.99;
+   padding: 0;
+}
+
+strong { 
+   color: wheat;
+   font-weight: bolder !important; 
+   text-transform: uppercase;
+}
+
+table tr td:first-of-type,
+table tr th:first-of-type {
+   font-family: var(--code-font);
+   text-align: right;
+}
+
+table {
+   margin-left: 20px;
+}

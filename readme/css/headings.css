@@ -28,32 +28,26 @@ h3 {
    margin-bottom: 10px;
 }
 
-p + h3 { margin-top:10px }
-h3+p { margin-top:0px }
-
 h4 { font-size: 1.1rem; }
+
+p+h3 { margin-top:10px }
+h3+p, h1+p { margin-top:0px }
+h1+p { margin-top:-5px !important; padding: 0 50px; }
+h1+center { margin-top:-20px !important; padding: 0 50px; }
 
 
 /* counting */
 
-
-body {
-   counter-reset: h3;
-}
+body { counter-reset: h3; }
 
 h3::before {
    counter-increment: h3;
    content: counter(h3) ". ";
 }
 
-h4 a {
-   font-weight: bolder;
-}
+h4 a { font-weight: bolder; }
 
-
-h4:before {
-   content: '● '
-}
+h4:before { content: '● ' }
 
 h4 {
    color: #AAA;

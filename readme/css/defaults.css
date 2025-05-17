@@ -6,7 +6,10 @@
    padding: 0;
 }
 
-.vscode-body { background-color: unset; }
+.vscode-body { 
+   background: unset; 
+   padding:10px 0 0 0; 
+}
 
 * { font-style: normal !important; }
 
@@ -26,13 +29,17 @@ body {
 }
 
 p { margin-top: 15px }
-h2 + p, h1+p, h1+center { margin-top: 0px }
 p + p { margin-top: 5px }
+h2 + p, h1+p, h1+center { margin-top: 0px }
 p+h2, img+h2, aside+h2 { margin-top: 10px; }
 pre + [cols] {  margin-top: 10px; }
 pre + pre {  margin-top: 20px; }
 [cols] pre + pre {  margin-top: 0px; }
 
+[upper] { text-transform: uppercase; }
+[center] { text-align: center; }
+[right] { text-align: right; }
+[left] { text-align: left; }
 
 blockquote {
    border: 0;

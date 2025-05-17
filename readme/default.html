@@ -13,28 +13,18 @@
 </head>
 
 <body onload="startup()">
-   <logo style="display: none;"></logo>
-
    <section id="fading" class="loading"></section>
    <section id="loading" class="loading">
       <span class="loader"></span>
    </section>
-
    <section id="content">
-      <nav id="menu">         
-         <header style="zoom:0.7">
-            <!-- <h1 style="zoom:0.7; border:0 !important">
-               <a id="reactful" href="./index.html">reactful</a>
-            </h1> -->
-         </header>
-          <br/>
-
+      <nav id="menu">    
          <ul id="overview">
             <li><label>OVERVIEW</label></li>
-            <li><a id="conception">Conception</a></li>
             <!-- <li><a id="comparison">Comparison</a></li> -->
             <li><a id="introduction">Introduction</a></li>
-            <li><a id="organization">Organization</a></li>
+            <li><a id="installation">Installation</a></li>
+            <li><a id="organization">Structure</a></li> 
          </ul>
          
          <ul id="preview">
@@ -61,8 +51,20 @@
          </ul>
       </nav>
       
-      <main style="margin-left: 200px; padding: 0; width:700px; padding-bottom:20px">
-         <iframe scrolling="no" src="md/view/overview/index.html">
+      <logo style="display: none;"></logo> 
+      
+      <main id="main">
+         <header id="header">             
+            <!-- <h2><img src="img/reactful.png" />Reactful</h2>             
+            <aside style="text-align: right;"> 
+               documentation | github 
+            </aside> -->
+            <h2 style="text-align: left;"><img src="img/reactful.png" /></h2>  
+            <h2 style="letter-spacing: 7px;">REACTFUL</h2> 
+            <h2>documentation | <a>github</a></h2>
+         </header>
+      
+         <iframe scrolling="no" src="md/view/overview/introduction.html">
          </iframe>
       </main>      
    </section>
