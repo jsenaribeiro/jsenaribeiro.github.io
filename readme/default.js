@@ -1,4 +1,5 @@
-const delay = (timeout, action) => setTimeout(action, timeout)
+const base = 'md/view'
+const wait = (timeout, action) => setTimeout(action, timeout)
 
 function startup() {
    const frame = document.querySelector("iframe")
@@ -9,6 +10,8 @@ function startup() {
 
    createLogo(document)
    resize(frame)
+
+   console.log(window.history)
 }
 
 function resize(iframe, remake) {
@@ -22,47 +25,47 @@ function resize(iframe, remake) {
 }
  
 function createLinks(where) {
-   const links = document.querySelectorAll(`#${where} a`)
-   const mount = uid => `./src/${where}/${uid}.html`
+   const mount = uid => `${where}/${uid}.html`
    const click = elm => goto(mount(elm.id), true)  
+   const links = document.querySelectorAll(`#${where} a`)
 
-   links.forEach(a => a.id = a.href.split('#').at(-1) ?? '')
    links.forEach(a => a.onclick = () => click(a))
-   links.forEach(a => a.href = '#')
 
    clearHash()
 }
 
-function goto(url, focused) {
+function goto(address, manual) {   
+   const menu = address.split('/').at(-1).split('.')[0]
+   const main = document.querySelector('iframe')
+
+   main.src = `${base}/${address}`
+   main.style.height = 'auto'
+
+   wait(111, () => resize(main))
+   select(menu)
+
+   if (manual) return
+   if (address.split('#').length < 2) return 
+
+   const hash = '#' + address.split('#').at(-1).trim()     
+
+   wait(999, () => gotoHash(main, hash))
+}
+
+function select(label) {
    document.querySelectorAll('.active')
       .forEach(x => x.classList.remove('active'))
    
-   const iframe = document.querySelector('iframe')
-   iframe.style.height = 'auto'
-   iframe.src = url
-
-   delay(111, () => resize(iframe))
-
-   if (focused) return
-
-   const label = url.split('/').at(-1).split('.')[0]
+   if (label == 'index') return
    const child = document.querySelector(`#${label}`)
    child.classList.add('active')
-
-   const hash = url.split('#').at(-1).trim()
-   if (!hash) return   
-   console.log({hash})
-
-   delay(999, () => gotoHash(iframe, hash))
 }
 
 function gotoHash(iframe, hash) {
    const target = iframe.contentWindow
-      .document.querySelector('#' + hash);
+      .document.querySelector(hash);
 
-   if (target) target.scrollIntoView({ behavior: 'smooth' });
-
-   console.log({target}) 
+   if (target) target.scrollIntoView({ behavior: 'smooth' })
 }
 
 function clearHash() {
@@ -71,5 +74,21 @@ function clearHash() {
    const value = route + query
    const clear = () => history.replaceState(null, '', value)
 
-   delay(999, clear)   
+   wait(999, clear)   
 }
+
+window.addEventListener("popstate", function (event) {
+   console.log("popstate", window.history) 
+});
+
+window.addEventListener('hashchange', () => {
+   console.log('hashchange', window.location.hash);
+});
+
+window.addEventListener('message', function(event) {
+   if (event.data.command != 'update-path') return
+   const path = JSON.parse(event.data.text)?.path?.pathname
+   const name = path?.split('/').at(-1)?.split('.')[0]
+   console.log(name, { path, name })   
+   select(name)
+});
