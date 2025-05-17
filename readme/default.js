@@ -10,8 +10,6 @@ function startup() {
 
    createLogo(document)
    resize(frame)
-
-   console.log(window.history)
 }
 
 function resize(iframe, remake) {
@@ -19,7 +17,7 @@ function resize(iframe, remake) {
    const target = iframe.contentWindow.document.body
    const height = target?.scrollHeight + 'px'
 
-   if (!height) return
+   if (!height || !iframe) return
    else iframe.style.height = height
    if (!remake) setTimeout(repeat, 333)
 }
@@ -35,6 +33,8 @@ function createLinks(where) {
 }
 
 function goto(address, manual) {   
+   loading(true)
+
    const menu = address.split('/').at(-1).split('.')[0]
    const main = document.querySelector('iframe')
 
@@ -42,7 +42,7 @@ function goto(address, manual) {
    main.style.height = 'auto'
 
    wait(111, () => resize(main))
-   select(menu)
+   wait(999, () => loading(false))
 
    if (manual) return
    if (address.split('#').length < 2) return 
@@ -52,6 +52,12 @@ function goto(address, manual) {
    wait(999, () => gotoHash(main, hash))
 }
 
+function loading(ok) {
+   const display = ok ? 'flex' : 'none'
+   document.querySelectorAll('.loading')
+      .forEach(x => x.style.display = display)
+}
+
 function select(label) {
    document.querySelectorAll('.active')
       .forEach(x => x.classList.remove('active'))
@@ -59,12 +65,10 @@ function select(label) {
    if (label == 'index') return
    const child = document.querySelector(`#${label}`)
    child.classList.add('active')
-}
+} 
 
 function gotoHash(iframe, hash) {
-   const target = iframe.contentWindow
-      .document.querySelector(hash);
-
+   const target = iframe.contentWindow.document.querySelector(hash);   
    if (target) target.scrollIntoView({ behavior: 'smooth' })
 }
 
@@ -89,6 +93,9 @@ window.addEventListener('message', function(event) {
    if (event.data.command != 'update-path') return
    const path = JSON.parse(event.data.text)?.path?.pathname
    const name = path?.split('/').at(-1)?.split('.')[0]
-   console.log(name, { path, name })   
+   const node = this.document.querySelector('iframe')
+   console.log(name, { path, name })     
    select(name)
+   resize(node)
+   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
