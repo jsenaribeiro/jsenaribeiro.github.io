@@ -1,39 +1,12 @@
-@import url('css/index.css');
+@import url(../../css/index.css);
 
-nav { color: var(--default); }
-
-nav a {
-   text-decoration: none;
-   font-size: 1.1rem;   
+#folder {
+   border: 0;
+   width: 100%;
+   height: auto;
+   padding: 0;
 }
 
-main {
-   flex: 1;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   text-align: center;
-   padding: 4rem 2rem;
+P + iframe {
+   margin-top: -20px;
 }
-
-main p {
-   font-size: 1rem;
-   color: var(--subtile);
-   max-width: 345px;
-   line-height: 1.6;
-   font-weight: 100;
-   padding: 0px 0 20px 0;
-   border-top: dashed grey 0;
-
-}
-
-footer {
-   text-align: center;
-   padding: 2rem;
-   font-size: 0.9rem;
-   background: var(--darkest);
-   color: var(--subtile);
-}
-
-nav { background-color: transparent ;}
