@@ -31,7 +31,8 @@ body {
 p { margin-top: 15px }
 p + p { margin-top: 5px }
 h2 + p, h1+p, h1+center { margin-top: 0px }
-p+h2, img+h2, aside+h2 { margin-top: 10px; }
+p+h2, img+h2 { margin-top: 10px; }
+/* aside+h2 { margin-top: 10px; } */
 pre + [cols] {  margin-top: 10px; }
 pre + pre {  margin-top: 20px; }
 [cols] pre + pre {  margin-top: 0px; }
@@ -51,6 +52,4 @@ blockquote {
    color: var(--subtile);
 }
 
-[data-kantu] {
-   padding-left:0;
-}
+[data-kantu] { padding-left:0; }

@@ -26,8 +26,8 @@ hr {
 #header {
    font-size: 0.9rem !important;
    border-bottom: solid 1px grey;   
-   grid-template-columns: 100px 1fr auto !important;
-   background-color: var(--darkreader-bg--inverse) Im !important;
+   grid-template-columns: 100px 1fr auto !important; 
+   background: var(--inverse);
    position: sticky;
    display: grid;
    width: 100%;
