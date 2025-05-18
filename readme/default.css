@@ -24,6 +24,7 @@ hr {
 }
 
 #header {
+   padding-top: 10px;
    font-size: 0.9rem !important;
    border-bottom: solid 1px grey;   
    grid-template-columns: 100px 1fr auto !important; 
@@ -66,4 +67,8 @@ pre+pre { margin-top: 20px; }
    width: 700px;
    margin-left: 200px;
    padding-bottom: 20px
+}
+
+#logo:hover {
+   filter: drop-shadow(0 0 1px white) drop-shadow(0 0 2px wheat) drop-shadow(0 0 3px black);
 }

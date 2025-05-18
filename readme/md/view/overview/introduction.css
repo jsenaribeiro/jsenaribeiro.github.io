@@ -1,13 +1,17 @@
 img { width:100% }
 
-[divs] h2 {
-   border: 0 !important;
+[divs] h2 { 
+   text-transform: lowercase;
+   border: 0 !important; 
+   padding: 0;
 }
 
 [divs] {
    zoom: 0.99;
    padding: 0;
 }
+
+h2 + p { padding: 0; }
 
 strong { 
    color: wheat;
@@ -21,6 +25,14 @@ table tr th:first-of-type {
    text-align: right;
 }
 
+table td { padding:3px 7px; }
+
 table {
    margin-left: 20px;
+   margin-top: -15px;
+}
+
+[smart-object] {
+   letter-spacing: 5px;
+   font-size: 1.5rem;
 }

@@ -238,10 +238,21 @@ body.marp-vscode blockquote {
         <body class="vscode-body vscode-dark">
             <script src='../index.js'></script>
 <style>@import url(./index.css);</style> 
+<style>@import url(./multiple.css);</style> 
 <h1 id="multiple-server">Multiple server</h1>
 <h2 id="semantic-folders">Semantic folders</h2>
 <p>Each default framework folder has a special responsability in project lyfe-cicle allowing multiple server features, like routing, apis, etc.</p>
-<iframe id='folder' src='../folder.html' ></iframe>
+<ul>
+<li><strong>/apis</strong>: RESTful function requests with HTTP verb names</li>
+<li><strong>/assets</strong>: Public static content as images, sounds, fonts, etc</li>
+<li><strong>/routes</strong>: Component pages for static directory routing</li>
+<li><strong>/builds</strong>: Ready-to-deploy post-build content</li>
+<li><strong>/controls</strong>: Standard shareable control components</li>
+<li><strong>/directives</strong>: Render-time property directtives</li>
+<li><strong>/decorators</strong>: Build-time function decorators</li>
+<li><strong>/tests</strong>: Unit and e2e pre-configured tests</li>
+</ul>
+<iframe hidden id='folder' src='../folder.html' ></iframe>
 <h2 id="restful-apis">RESTful apis</h2>
 <p>The <code>/apis</code> folder serves webapis by <code>/api</code> route in URL address. The framework uses the HTTP verb names for semantic conventions to expose RESTful apis. Important to notice that where the folder is <code>'/apis'</code>, in url it works as <code>'/api'</code> for semantic reasons.</p>
 <pre><code class="language-ts"><span class="hljs-comment">// warning: /api/ folder, but /api route</span>

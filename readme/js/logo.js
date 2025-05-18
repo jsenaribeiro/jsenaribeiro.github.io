@@ -3,17 +3,22 @@ function createLogo(content) {
    const div1 = document.createElement('div')
    const div2 = document.createElement('div')
    const div3 = document.createElement('div')
-   const span = document.createElement('span')
-   const divs = [div1, div2, div3, span]
+   const ball = document.createElement('span')
+   const divs = [div1, div2, div3, ball]
 
    divs.forEach(x => logo.appendChild(x))
 
+   setInterval(animation, 3000)
+}
 
-   setInterval(function () {
-      const from0To3 = Math.floor(Math.random() * 3)
-      const during = 150 + (100 * (from0To3 * 9))
+function animation() {
+   const anime = div => div.style.animationDuration = `${during}ms`
+   const from1To3 = Math.floor(Math.random() * 3) + 1
+   const during = 150 + (100 * (from0To3 * 7))
 
-      document.querySelectorAll("logo div")
-         .forEach(div => div.style.animationDuration = `${during}ms`)
-   }, 3000)
+   document.querySelectorAll("logo div").forEach(anime)
+}
+
+function centerlize() {
+
 }
