@@ -248,7 +248,7 @@ body.marp-vscode blockquote {
 <h2 id="server-launcher">Server launcher</h2>
 <p>IoC container for <a onclick='goto("review/stateful.html#global-store")'>global store</a>, <a onclick='goto("review/injection.html#error-components")'>error components</a>, <a onclick='goto("review/directive.html#props-directives")'>props directives</a>, <a onclick='goto("review/decorator.html")'>function decorators</a>.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactful/server&#x27;</span>
-<span class="hljs-keyword">import</span> { directive, decorator } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./directives&#x27;</span>
+<span class="hljs-keyword">import</span> { directive, decorator } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./etc&#x27;</span>
 
 <span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>({ <span class="hljs-attr">store</span>: { <span class="hljs-attr">ok</span>:<span class="hljs-literal">true</span> } })
      .<span class="hljs-title function_">inject</span>(directive)

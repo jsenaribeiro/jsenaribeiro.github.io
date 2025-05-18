@@ -253,7 +253,7 @@ body.marp-vscode blockquote {
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 <h2 id="form-binding">Form binding</h2>
-<p><a onclick='goto("review/paradigm.html#props-binding")'>Form binding</a> is a uncontrolled component enabled by <code>form[data]</code> and <code>child[bind]</code>.</p>
+<p><a onclick='goto("review/paradigm.html#props-binding")'>Form binding</a> is a uncontrolled uses <code>form[data]</code> and <code>child[bind]</code> directives, with full support to a customizable HTML <a onclick='goto("review/paradigm.html#form-binding-validation")'>validation API</a>.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Form</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span>&gt;</span> 
       Name: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
@@ -262,13 +262,14 @@ body.marp-vscode blockquote {
    <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<p>It supports customizable <a onclick='goto("review/paradigm.html#form-binding-validation")'>validation API</a> with pending states in <strong>feeds.await</strong>, form actions, error handling and <code>[onFetch]</code> props handler and <a onclick='goto("review/paradigm.html#form-binding-authentication")'>JWT bearer authentication</a>.</p>
+<h2 id="fetch-binding">Fetch binding</h2>
+<p>It supports fetch binding within <strong>form binding</strong> using pending states in <strong>feeds.await</strong>, form actions, error handling, <code>[onFetch]</code> props handler and <a onclick='goto("review/paradigm.html#form-binding-authentication")'>JWT bearer authentication</a>.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Form</span> = (<span class="hljs-params">props, feeds</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span> 
    { feeds.await &amp; <span class="hljs-tag">&lt;<span class="hljs-name">progress</span>&gt;</span>loading<span class="hljs-tag">&lt;/<span class="hljs-name">progress</span>&gt;</span> }
 
    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">onError</span>=<span class="hljs-string">{onValidate}</span>&gt;</span>
       Name: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> <span class="hljs-attr">maxlength</span>=<span class="hljs-string">{50}</span> /&gt;</span>
-      Mail: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;mail&#x27;</span> <span class="hljs-attr">validate</span>=<span class="hljs-string">{validateEmail}</span> /&gt;</span>    
+      Mail: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;mail&#x27;</span> <span class="hljs-attr">validate</span>=<span class="hljs-string">{validateMe}</span> /&gt;</span>    
       <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 
@@ -281,7 +282,7 @@ body.marp-vscode blockquote {
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">onValidate</span> = invalids =&gt; invalids.<span class="hljs-property">errors</span>.<span class="hljs-title function_">push</span>({ <span class="hljs-attr">error</span>: <span class="hljs-string">&#x27;new error&#x27;</span> })
 <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">onPost</span>(<span class="hljs-params">response: Response</span>) { <span class="hljs-comment">/* something... */</span> }
 </code></pre>
-<aside cols='3:5'>
+<aside cols='3:5' style='padding-top:10px'>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Form</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> 
    <span class="hljs-attr">action</span>=<span class="hljs-string">&#x27;www.api.com&#x27;</span> 
    <span class="hljs-attr">onFetch</span>=<span class="hljs-string">{onPost}</span>&gt;</span> ...
