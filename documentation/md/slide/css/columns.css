@@ -1,0 +1,9 @@
+[cols] { display:grid !important; gap:10px; margin-bottom: 0 !important; }
+
+[cols='2'] { grid-template-columns: repeat(2, 1fr) !important; }
+[cols='3'] { grid-template-columns: repeat(3, 1fr) !important; }
+[cols='4'] { grid-template-columns: repeat(4, 1fr) !important; }
+[cols='3:5'] { grid-template-columns: 3fr 5fr !important; }
+[cols='4:5'] { grid-template-columns: 4fr 5fr !important; }
+[cols='5:3'] { grid-template-columns: 5fr 3fr !important; }
+[cols='5:4'] { grid-template-columns: 5fr 4fr !important; }

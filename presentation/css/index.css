@@ -1,9 +1,13 @@
-@import url(../../../css/index.css);
-@import url(./arch.css);
-@import url(./heads.css);
-@import url(./lists.css);
-@import url(./table.css);
-@import url(./code.css);
+@import url(variables.css);
+@import url(defaults.css);
+@import url(headings.css);
+@import url(codings.css);
+@import url(columns.css);
+@import url(arch.css);
+@import url(heads.css);
+@import url(lists.css);
+@import url(table.css);
+@import url(code.css);
 
 section {
    letter-spacing: 1px !important;
