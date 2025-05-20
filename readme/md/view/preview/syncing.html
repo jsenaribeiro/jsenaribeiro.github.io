@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Functional decorator</title>
+            <title>Sync Apis</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -237,25 +237,79 @@ body.marp-vscode blockquote {
         </head>
         <body class="vscode-body vscode-dark">
             <script src='../index.js'></script>
-<style>@import url(./index.css);</style> 
-<h1 id="functional-decorator">Functional decorator</h1>
-<p>Javascript decorator is class-only. Since React is basically a functional designed coding, native JavaScript decoratores are useless in React. So, to achive function decorators, the Reactful implements a micro-transpiler using Bun. With function decorators, the functional component could deal with some semantics using decorators as metadatas.</p>
-<h2 id="transpiler">Transpiler</h2>
-<p>The decorator transpiler uses Bun tools for runtime and build-time transpiler, both time transpiling happens in decorator life-cycle.</p>
-<h2 id="modelling">Modelling</h2>
-<p>The decorator signature is a function that returns an specific signature function with meta and call arguments and call return, as example bellow.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">decorating</span> = args =&gt; <span class="hljs-function">(<span class="hljs-params">meta, call</span>) =&gt;</span> call
+<style>
+@import url(./index.css);
+@import url(./syncing.css);
+</style> 
+<h1 id="sync-apis">Sync Apis</h1>
+<blockquote>
+<p>caching • pooling • authentication • retries • streaming • interception • invalidation • swr</p>
+</blockquote>
+<h2 id="fetch-swr">Fetch SWR</h2>
+<div cols='3:5'><div>
+<p>The fetch api is a extended with SWR improvements settings supports cache as key array, time string, 'no-cache' and 'force-cache', invalidated by fech.clear().</p>
+</div><div style='padding-top: 20px'>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> cache = <span class="hljs-string">&quot;7min&quot;</span>
+<span class="hljs-keyword">const</span> timer = { <span class="hljs-attr">delay</span>: <span class="hljs-number">3</span> }
+<span class="hljs-keyword">const</span> retry = { <span class="hljs-attr">count</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">delay</span>: <span class="hljs-string">&quot;1s&quot;</span> }
+<span class="hljs-keyword">const</span> param = { cache, retry, timer }
+
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(url, param)
 </code></pre>
-<p>The meta is a ImportMeta type with import metadata, and call is any kind of function, like ReactFunctionComponent or just RFC. A decorator could intercepts each functional component.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">decorating</span>(<span class="hljs-params">args: string</span>): <span class="hljs-title class_">Decorator</span>&lt;<span class="hljs-variable constant_">RFC</span>&gt; {   
-   <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params">meta: ImportMeta, call: RFC</span>) {
-      <span class="hljs-comment">// TODO...</span>
-      <span class="hljs-keyword">return</span> call
-   }
+</div></div>
+<h2 id="sync-mapper">Sync mapper</h2>
+<p>The syncer creates a object remote mapping to a RESTful api, allowing synching design and SWR features like retry, cache, timer (pooling), invalidate, etc.</p>
+<div cols='2'>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> userApi = syncer&lt;<span class="hljs-title class_">User</span>&gt;()
+   .<span class="hljs-title function_">timer</span>(<span class="hljs-number">1000</span>)
+   .<span class="hljs-title function_">retry</span>(<span class="hljs-number">3</span>, <span class="hljs-number">1000</span>)
+   .<span class="hljs-title function_">cache</span>(<span class="hljs-number">1000</span>, <span class="hljs-literal">true</span>)
+   .<span class="hljs-title function_">fetch</span>(<span class="hljs-string">&quot;http://api.com/users&quot;</span>)
+   .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> <span class="hljs-string">&quot;not found...&quot;</span>)
+   .<span class="hljs-title function_">match</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x, <span class="hljs-string">&quot;id&quot;</span>)
+</code></pre>
+<pre><code class="language-ts">userApi.<span class="hljs-property">list</span> <span class="hljs-comment">// array content</span>
+userApi.<span class="hljs-property">wait</span> <span class="hljs-comment">// pending flag</span>
+userApi.<span class="hljs-property">code</span> <span class="hljs-comment">// status code</span>
+userApi.<span class="hljs-property">head</span> <span class="hljs-comment">// HTTP headers</span>
+</code></pre>
+</div>
+<p>The syncers abstracts RESTful API, with <code>api.load</code> and <code>api.save</code> syncing data (cached or remote) with after-render, with <code>api.clear</code> as SWR invalidator.</p>
+<pre><code class="language-ts">userApi.<span class="hljs-title function_">load</span>()                <span class="hljs-comment">// get all users</span>
+userApi.<span class="hljs-title function_">load</span>({ <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;ok&#x27;</span> })   <span class="hljs-comment">// get all users with name=&#x27;ok&#x27;         </span>
+
+userApi.<span class="hljs-title function_">save</span>(<span class="hljs-literal">true</span>)            <span class="hljs-comment">// local diff + automatic requests</span>
+userApi.<span class="hljs-title function_">save</span>(<span class="hljs-literal">false</span>)           <span class="hljs-comment">// remote diff + automatic requests</span>
+
+userApi.<span class="hljs-title function_">clear</span>()                <span class="hljs-comment">// invalidate all</span>
+userApi.<span class="hljs-title function_">clear</span>(<span class="hljs-string">&#x27;/users?id=1&#x27;</span>)   <span class="hljs-comment">// invalidate query string</span>
+</code></pre>
+<h2 id="authentication">Authentication</h2>
+<p>It supports JWT bearer authentication and OAuth providers.</p>
+<div cols='2' style='margin-top: 10px'>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> jwt = authentication&lt;<span class="hljs-title class_">User</span>&gt;()
+   .<span class="hljs-title function_">fetch</span>(<span class="hljs-string">&quot;https:/api.com/login&quot;</span>)
+   .<span class="hljs-title function_">catch</span>(<span class="hljs-string">&quot;/login&quot;</span>, <span class="hljs-string">&quot;Unauthorized&quot;</span>)
+   .<span class="hljs-title function_">match</span>(<span class="hljs-string">&quot;/home&quot;</span>, <span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-property">token</span>)
+</code></pre>
+<pre><code class="language-ts"><span class="hljs-keyword">await</span> jwt.<span class="hljs-title function_">login</span>(username, password)
+<span class="hljs-keyword">const</span> user = session.<span class="hljs-property">logon</span>
+
+session.<span class="hljs-title function_">logout</span>()
+</code></pre>
+</div>
+<pre><code class="language-ts"><span class="hljs-keyword">const</span> googleAuth = {
+   <span class="hljs-attr">scopings</span>: [<span class="hljs-string">&#x27;profile&#x27;</span>, <span class="hljs-string">&#x27;email&#x27;</span>],
+   <span class="hljs-attr">clientId</span>: <span class="hljs-string">&#x27;asdfasfsadfasdfasdf.apps.googleusercontent.com&#x27;</span>,
+   <span class="hljs-attr">queryURL</span>: <span class="hljs-string">&#x27;https://www.googleapis.com/oauth2/v3/userinfo&#x27;</span>,
+   <span class="hljs-attr">tokenURL</span>: <span class="hljs-string">&#x27;https://accounts.google.com/o/oauth2/auth&#x27;</span>
 }
+
+<span class="hljs-keyword">const</span> loginGoogleApi = authentication&lt;<span class="hljs-title class_">User</span>&gt;(googleAuth)
+   .<span class="hljs-title function_">fetch</span>(<span class="hljs-string">&quot;http://www.google.com/login&quot;</span>)
+   .<span class="hljs-title function_">catch</span>(<span class="hljs-string">&quot;/login&quot;</span>, <span class="hljs-string">&quot;Login fails&quot;</span>)
+   .<span class="hljs-property">match</span>&lt;<span class="hljs-title class_">Token</span>&gt;(<span class="hljs-string">&quot;/home&quot;</span>, <span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-property">access_token</span>)
 </code></pre>
-<h2 id="limitations">Limitations</h2>
-<p>Custom decorators has no support to imports, it means that it could be imported, but it cannot import anything itself. If it this happens, the app will crash.</p>
 
             
             <script async type="text/javascript">

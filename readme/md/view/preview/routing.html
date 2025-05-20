@@ -248,7 +248,7 @@ table th { font-weight:700; border-bottom-style: dashed }
 <p>path routing • route decorator • dynamic route • props routing •  markdown support • lazy components • nested routes</p>
 </blockquote>
 <h2 id="folder-routing">Folder routing</h2>
-<p>Easy <a onclick='goto("review/structure.html#folder-routing")'>folder routing</a> with inner fallbacks retries until the root path (/).</p>
+<p>Easy <a onclick='goto("review/structure.html#folder-routing")'>folder routing</a> with inner fallbacks retries until the root path (/). Important to notice that routed component must be a default export to work.</p>
 <table>
 <thead>
 <tr>
@@ -271,7 +271,7 @@ table th { font-weight:700; border-bottom-style: dashed }
 <h2 id="dynamic-routes">Dynamic routes</h2>
 <p>Function decorator for <a onclick='goto("review/structure.html#dynamic-routes")'>dynamic routing</a> and highest priority routing resolution.</p>
 <pre><code class="language-tsx">@<span class="hljs-title function_">route</span>(<span class="hljs-string">&#x27;/profile/:id&#x27;</span>)
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Profile</span>(<span class="hljs-params">props, feeds</span>) {
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Profile</span>(<span class="hljs-params">props, feeds</span>) {
    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>User id: { feeds.params.id }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 }
 </code></pre>

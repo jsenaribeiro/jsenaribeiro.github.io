@@ -1,75 +1,7 @@
-@import url('../../css/index.css');
+@import url(css/index.css);
 
+h4:before { content:''  }
 
-section {
-   font-family: 'fira sans' !important;
-   font-weight: 100 !important;
-   background: #222 !important;
-   font-size: 1.7rem !important;
-   color: #DDD !important;
-}
+aside { text-align:left }
 
-h1 { 
-   letter-spacing: 20px !important; 
-   text-transform: uppercase !important;
-}
-
-h2 {
-   font-size: 2.7rem !important;
-   text-align: left !important;
-   font-weight: 100 !important;
-   letter-spacing: 1px !important;
-}
-
-h3:before { content:'' !important }
-
-h3 {
-   letter-spacing: 5px !important;
-   text-transform: lowercase !important;
-   margin-top: -75px !important;
-   text-align: right !important;
-   font-size: 2rem !important;
-   color: #AAA !important;
-}
-
-h2+p, h3+p, p+p { 
-   text-align:left !important; 
-}
-
-table {
-   & tr td { padding: 10px 10px !important; }
-
-   & tr td:not(:first-of-type) {
-      text-align: left !important
-   }
-
-   & tr td:first-of-type {
-      text-align: right !important;
-      font-weight: 400 !important;
-   }
-}
-
-p { margin: 0 0 30px 0 !important; }
-
-li { margin: 10px 0 !important; }
-ul > li { list-style: none !important; }
-ul > li { margin-left: 70px !important; }
-ul > li > ul > li { margin-left: 30px !important; }
-
-li::before {
-   content: '' !important;
-   width: 0.5em !important;
-   height: 0.5em !important;
-   border-radius: 50% !important; 
-   margin-right: 0.7em !important;
-   display: inline-block !important;
-   transform: translateY(-0.1em) !important; 
-   background-color: whitesmoke !important;
-}
-
-ul > li > ul > li:before {
-   border: solid 1px white !important;
-   background-color: transparent !important;
-}
-
-strong { font-weight:700 !important; }
+aside li { margin-left:40px !important; }

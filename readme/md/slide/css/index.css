@@ -1,0 +1,29 @@
+@import url(../../../css/index.css);
+@import url(./arch.css);
+@import url(./heads.css);
+@import url(./lists.css);
+@import url(./table.css);
+@import url(./code.css);
+
+section {
+   letter-spacing: 1px !important;
+   font-family: 'fira sans' !important;
+   font-weight: 100 !important;
+   background: #222 !important;
+   font-size: 1.7rem !important;
+   color: #DDD !important;
+}
+
+p { margin: 0 0 30px 0 !important; }
+
+strong { font-weight: 700 !important; }
+
+blockquote:before, blockquote:after { content:'' !important }
+
+img { width: 100% !important; }
+
+h2+p,
+h3+p,
+p+p {
+   text-align: left !important;
+}

@@ -246,9 +246,10 @@ body.marp-vscode blockquote {
 <p>hybrid rendering • server components • partial hydration • web apis • extended html • error handling • markdown support</p>
 </blockquote>
 <h2 id="server-launcher">Server launcher</h2>
-<p>IoC container for <a onclick='goto("review/stateful.html#global-store")'>global store</a>, <a onclick='goto("review/injection.html#error-components")'>error components</a>, <a onclick='goto("review/directive.html#props-directives")'>props directives</a>, <a onclick='goto("review/decorator.html")'>function decorators</a>.</p>
+<p>IoC container for <a onclick='goto("review/stateful.html#global-store")'>global store</a>, <a onclick='goto("review/injection.html#error-components")'>error components</a> abd <a onclick='goto("review/directive.html#props-directives")'>props directives</a>.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactful/server&#x27;</span>
-<span class="hljs-keyword">import</span> { directive, decorator } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./etc&#x27;</span>
+<span class="hljs-keyword">import</span> { directive } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./directives&#x27;</span>
+<span class="hljs-keyword">import</span> { decorator } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./decorators&#x27;</span>
 
 <span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>({ <span class="hljs-attr">store</span>: { <span class="hljs-attr">ok</span>:<span class="hljs-literal">true</span> } })
      .<span class="hljs-title function_">inject</span>(directive)
@@ -260,8 +261,8 @@ body.marp-vscode blockquote {
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">get</span> = request =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Response</span>(<span class="hljs-string">&#x27;Hello World!&#x27;</span>)
 </code></pre>
 <h2 id="decorator-side">Decorator side</h2>
-<p>Component bound <a onclick='goto("review/decorator.html")'>function decorators</a> for <strong>SSG</strong>, <strong>SSR</strong> and <strong>ISR</strong> <a onclick='goto("review/hybriding.html")'>rendering</a>.</p>
-<pre><code class="language-tsx">@<span class="hljs-title function_">client</span>(<span class="hljs-literal">true</span>) <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hi</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
+<p>Component-bound <a onclick='goto("review/decorator.html")'>function decorators</a> for <strong>SSG</strong>, <strong>SSR</strong> and <strong>ISR</strong> <a onclick='goto("review/hybriding.html")'>rendering</a>.</p>
+<pre><code class="language-tsx">@<span class="hljs-title function_">client</span>(<span class="hljs-literal">true</span>) <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Client</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
 @<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;static&#x27;</span>) <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Static</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
 @<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;dynamic&#x27;</span>) <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Dynamic</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
 @<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;periodic&#x27;</span>, <span class="hljs-string">&quot;36h&quot;</span>)  <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Periodic</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
