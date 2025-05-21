@@ -1,4 +1,4 @@
-const base = 'md/view'
+const base = 'view'
 const wait = (timeout, action) => setTimeout(action, timeout)
 
 function startup() {
