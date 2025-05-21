@@ -18,3 +18,18 @@ ul>li>ul>li:before {
    border: solid 1px white !important;
    background-color: transparent !important;
 }
+
+[cols] ul:first-of-type li {
+   margin-left: 0 !important;
+}
+
+[issues] {   
+   padding-top: 20px !important;   
+   & li { 
+      /* font-family: agave !important;  */
+      margin-left: 0 !important;
+      /* font-weight: 200 !important; */
+   }
+}
+
+[issues] li strong { color:wheat !important; }

@@ -10,12 +10,10 @@ h2 {
    letter-spacing: 1px !important;
 }
 
-h3:before {
-   content: '' !important
-}
+h3:before { content: '' !important }
 
 h3 {
-   letter-spacing: 5px !important;
+   /* letter-spacing: 3px !important; */
    text-transform: lowercase !important;
    margin-top: -90px !important;
    text-align: right !important;
@@ -27,7 +25,6 @@ h2 {
    letter-spacing: 3px !important;
    padding-bottom: 9px;
 }
-
 
 h2 strong:before {
    color: silver;

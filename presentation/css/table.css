@@ -67,3 +67,11 @@ table {
 [flaws] table tr td:nth-of-type(2) {
    text-align: center !important;
 }
+
+table:has(tr > td:first-child:last-child) {
+   margin-right: 10px !important;
+   & td {
+      color: #AAA !important;
+      padding: 7px 0 !important;
+   }
+ }
