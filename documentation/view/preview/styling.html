@@ -236,11 +236,8 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <script src='../index.js'></script>
-<style>
-@import url(./index.css);
-@import url(./styling.css);
-</style> 
+            <script src='../js/index.js'></script>
+<style>@import url(../css/index.css);</style> 
 <h1 id="style-plus">Style plus</h1>
 <blockquote>
 <p>module-scoped CSS • component scope CSS • layout props • function decorator • SoC styling • vanilla-like CSS</p>
@@ -263,19 +260,15 @@ body.marp-vscode blockquote {
 <pre><code class="language-tsx">@<span class="hljs-title function_">style</span>(<span class="hljs-string">&#x27;../styles/hello.css&#x27;</span>)
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello World!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 </code></pre>
-<aside cols='2' style='margin-top: 10px;'>
+<aside cols='5:4' style='margin-top: 10px;'>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./hello.css&#x27;</span>
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">Hello</span>(<span class="hljs-params"></span>) {
-   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
-}
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hi!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 </code></pre>
-<pre><code class="language-css"><span class="hljs-selector-tag">h1</span><span class="hljs-selector-class">.Hello</span> { 
-   <span class="hljs-attribute">color</span>: red;
-   <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;
-}
+<pre><code class="language-css">* { <span class="hljs-attribute">background</span>: green;  }
+<span class="hljs-selector-tag">h1</span><span class="hljs-selector-class">.Hello</span> { <span class="hljs-attribute">color</span>: red;  }
 </code></pre>
 </aside>
-<h2 id="styled-route">Styled route</h2>
+<h2 id="routed-style">Routed style</h2>
 <p>The CSS className <code>routed</code> styles the <a onclick='goto("review/scoping.html#styled-route")'>matched routed</a> <code>[link]</code> with current route.</p>
 <pre><code class="language-css"><span class="hljs-selector-tag">button</span><span class="hljs-selector-class">.routed</span> { <span class="hljs-attribute">background</span>: wheat; <span class="hljs-attribute">font-weight</span>: bolder; }
 </code></pre>

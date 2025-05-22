@@ -236,17 +236,15 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <script src='../index.js'></script>
-<style>
-@import url(./index.css);
-@import url(./storing.css);
-</style> 
+            <script src='../js/index.js'></script>
+<style>@import url(../css/index.css);</style> 
+<style>@import url(storing.css);</style> 
 <h1 id="stateful-objects">Stateful objects</h1>
 <blockquote>
-<p>self-rendering state • stateful proxy object • stateful props • modular state • global state • state handling • dependency injection</p>
+<p>reactive object • stateful props • modular state • global state • self-rendering state • dependency injection</p>
 </blockquote>
 <h2 id="local-props">Local props</h2>
-<p>Local states with <a onclick='goto("review/stateful.html#stateful-props")'>self-rendering</a> props (all props are converted in stateful objects).</p>
+<p>Local states where all props are converted into <a onclick='goto("review/stateful.html#stateful-props")'>self-rendering states</a>.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span> Hello { props.name } !
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> {<span class="hljs-attr">e</span> =&gt;</span> props.name = e.target.value} /&gt;
 <span class="hljs-tag">&lt;/&gt;</span></span>

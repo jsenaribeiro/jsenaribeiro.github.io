@@ -236,12 +236,12 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <script src='../index.js'></script>
+            <script src='../js/index.js'></script>
+<style>@import url(../css/index.css);</style> 
 <style>
-@import url(./index.css);
-@import url(./routing.css);
-table {  margin: 0 20px; zoom:0.87 !important }
-table th { font-weight:700; border-bottom-style: dashed }
+   @import url(routing.css);
+   table { justify-self:center; margin-top: -30px !important; }
+   table th { font-weight:700; border-bottom-style: dashed }
 </style> 
 <h1 id="routing-pages">Routing pages</h1>
 <blockquote>
@@ -252,28 +252,40 @@ table th { font-weight:700; border-bottom-style: dashed }
 <table>
 <thead>
 <tr>
-<th>all formats</th>
-<th>prefix omission</th>
-<th>index omission</th>
-<th>nesting routes</th>
+<th></th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>html, jsx, tsx, md</td>
-<td>/admin.tsx = /admin</td>
-<td>/index.html = /</td>
-<td>./c = /a/b/c</td>
+<td>indexing</td>
+<td>/routes/index.tsx</td>
+<td>/</td>
+</tr>
+<tr>
+<td>prefixing</td>
+<td>/routes/admin.tsx</td>
+<td>/admin</td>
+</tr>
+<tr>
+<td>nesting</td>
+<td>/routes/sub/top.tsx</td>
+<td>./top</td>
 </tr>
 </tbody>
 </table>
 </section>
 <h2 id="dynamic-routes">Dynamic routes</h2>
-<p>Function decorator for <a onclick='goto("review/structure.html#dynamic-routes")'>dynamic routing</a> and highest priority routing resolution.</p>
+<p><a onclick='goto("review/structure.html#dynamic-routes")'>Dynamic routing</a> decorator with highest priority routing resolution.</p>
 <pre><code class="language-tsx">@<span class="hljs-title function_">route</span>(<span class="hljs-string">&#x27;/profile/:id&#x27;</span>)
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Profile</span>(<span class="hljs-params">props, feeds</span>) {
-   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>User id: { feeds.params.id }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
-}
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">User</span> = (<span class="hljs-params">props, feeds</span>) =&gt;
+   <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>User id: { feeds.params.id }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+</code></pre>
+<h2 id="authorization-roles">Authorization roles</h2>
+<p>Function decorator for RBAC [Authorization?] based in [login.role?].</p>
+<pre><code class="language-tsx">@<span class="hljs-title function_">allow</span>([<span class="hljs-string">&#x27;manager&#x27;</span>,<span class="hljs-string">&#x27;admin&#x27;</span>])
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Admin</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Admin...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 </code></pre>
 <h2 id="props-routing">Props routing</h2>
 <p><a onclick='goto("review/structure.html#props-routing")'>Route props</a> directives with conditional <code>[route]</code> and router <code>[link]</code>.</p>
@@ -283,7 +295,7 @@ table th { font-weight:700; border-bottom-style: dashed }
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 <h2 id="lazy-loading">Lazy loading</h2>
-<p><a onclick='goto("review/structure.html#lazy-loading")'>Lazy import routing</a> with promise extension polyfil named <code>asLazyComponent</code>.</p>
+<p><a onclick='goto("review/structure.html#lazy-loading")'>Lazy routing</a> promise extension with <code>asLazyComponent</code>.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Main</span> = <span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./main&#x27;</span>).<span class="hljs-title function_">asLazyComponent</span>(<span class="hljs-string">&#x27;Sample&#x27;</span>)
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>

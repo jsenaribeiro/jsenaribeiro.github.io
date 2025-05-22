@@ -240,8 +240,50 @@ body.marp-vscode blockquote {
 <style>@import url(../css/index.css);</style> 
 <style>@import url(organization.css);</style>
 <h1 id="inspiration">Inspiration</h1>
-<p>The motivation of Reactful framework was to deal to the main issue in React development, its complex state management design.</p>
-<section cols='2'><aside class='infos'>
+<p>Reacftul framework was inspired by the minimalist design of stateless React, that is in direct contradiction with its stateful design.</p>
+<aside cols='5:7'>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Stateless</span> = props =&gt; 
+   <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, {props.name}!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+</code></pre>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Stateful</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> [name, setName] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&#x27;&#x27;</span>);
+  
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, {name || &#x27;World&#x27;}!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> 
+         setName(e.target.value)} /&gt;
+   <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+}
+</code></pre>
+</aside>
+<p>Based in that minimalist stateless inspiration, Reactful is designed to solve the 3 main issues in developement experience with React ecosystem.</p>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">PROBLEM</th>
+<th>SOLUTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">stateful complexity</td>
+<td>self-rendering reactive objects</td>
+</tr>
+<tr>
+<td style="text-align:right">CSS modular leaking</td>
+<td>fixed CSS loader by framework</td>
+</tr>
+<tr>
+<td style="text-align:right">lack of function metadata</td>
+<td>function decorator transpiler</td>
+</tr>
+</tbody>
+</table>
+</center>
+<p>Since component are function, the lack of a syntatic way to metadata function highly impacts framework features, as in routing over-conventions in next.js and limited semantics of 'use server' directive to deal with server rendering.</p>
 <table>
 <thead>
 <tr>
@@ -251,83 +293,15 @@ body.marp-vscode blockquote {
 </thead>
 <tbody>
 <tr>
-<td>/apis</td>
-<td>RESTful functions</td>
+<td>next.js over-conventions</td>
+<td>page.tsx, layout.tsx, loading.tsx, error.tsx, not-found.tsx, route.ts, [param], [...param], [[...param]], index.tsx, api/, (group), @slot/, default.tsx</td>
 </tr>
 <tr>
-<td>/assets</td>
-<td>Static contents</td>
-</tr>
-<tr>
-<td>/routes</td>
-<td>Component pages</td>
-</tr>
-<tr>
-<td>/directives</td>
-<td>Injectable props</td>
-</tr>
-<tr>
-<td>/decorators</td>
-<td>function decorators</td>
-</tr>
-<tr>
-<td>/controls</td>
-<td>Control components</td>
-</tr>
-<tr>
-<td>/builds</td>
-<td>Deploy content</td>
-</tr>
-<tr>
-<td>/tests</td>
-<td>unit and e2e tests</td>
+<td>limited use directives</td>
+<td><code>'use server' export default const SSG ...</code> <br/> <code>'use server' export default const SSR ...</code></td>
 </tr>
 </tbody>
 </table>
-</aside><aside class='infos'>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.env</td>
-<td>Environment file</td>
-</tr>
-<tr>
-<td>.ignore</td>
-<td>Git ignored  files</td>
-</tr>
-<tr>
-<td>index.ts</td>
-<td>Startup script</td>
-</tr>
-<tr>
-<td>index.html</td>
-<td>HTML wrapper</td>
-</tr>
-<tr>
-<td>sitemap.xml</td>
-<td>automatic SEO sitemap</td>
-</tr>
-<tr>
-<td>package.json</td>
-<td>Project configuration</td>
-</tr>
-<tr>
-<td>bun.lockb</td>
-<td>Bun automatic locked file</td>
-</tr>
-<tr>
-<td>robot.txt</td>
-<td>Optional to SEO crawlers</td>
-</tr>
-</tbody>
-</table>
-</aside></section>
 
             
             <script async type="text/javascript">
