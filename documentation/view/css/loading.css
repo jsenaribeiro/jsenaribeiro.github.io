@@ -60,7 +60,7 @@
    position: fixed;
    height: 100%;
    width: 100%;
-   opacity: 0.75;
+   opacity: 0.75 !important;
    background: var(--base-color);   
    filter: brightness(0.6);
    justify-self: center;
