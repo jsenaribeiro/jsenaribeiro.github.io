@@ -56,6 +56,7 @@ function sendEmail() {
    function onSuccess() {
       alert('Thanks for your comment!')
       textarea.value = ''
+      email.value = ''
       onFinnaly()
    }
 
