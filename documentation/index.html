@@ -5,70 +5,27 @@
    <meta charset="UTF-8" />
    <title>Reactful Framework</title>
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <link rel="stylesheet" href="css/loading.css" />
-   <link rel="stylesheet" href="index.css" />
+   <link rel="stylesheet" href="index.css">
+   <script src="view/js/logo.js"></script>
    <script src="index.js"></script>
    <title>reactful.js</title>
 </head>
 
 <body onload="startup()">
-   <section id="fading" class="loading"></section>
-   <section id="loading" class="loading" >
-      <span class="loader"></span>
-   </section>
-   <section id="content">
-      <nav id="menu">    
-         <ul id="overview">
-            <li><label>OVERVIEW</label></li>
-            <li><a id="introduction">Introduction</a></li>
-            <li><a id="installation">Installation</a></li>
-            <li><a id="inspiration">Inspiration</a></li>
-         </ul>
-         
-         <ul id="preview">
-            <li><label>PREVIEW</label></li>
-            <li><a id="serving">Server flows</a></li>
-            <li><a id="routing">Routing pages</a></li>
-            <li><a id="storing">Stateful objects</a></li>
-            <li><a id="binding">Data bindings</a></li>
-            <li><a id="styling">Styling plus</a></li>
-            <!-- <li><a id="ranking">Ranking SEO</a></li> -->
-            <!-- <li><a id="syncing">Sync Api</a></li> -->
-         </ul>
-         
-         <ul id="review"> 
-            <li><label>REVIEW</label></li>
-            <li><a id="scoping">Extended CSS</a></li>
-            <li><a id="stateful">Self-rendering</a></li>
-            <li><a id="multiple">Multiplex server</a></li>
-            <li><a id="hybriding">Hybrid rendering</a></li>
-            <li><a id="paradigm">Binding paradigm</a></li>
-            <li><a id="structure">Routing architecture</a></li>
-            <li><a id="injection">Dependency injection</a></li>
-            <li><a id="decorator">Function decorator</a></li>
-            <li><a id="directive">Property directive</a></li> 
-         </ul>
-      </nav>
-      
-      <logo style="display: none;"></logo> 
-      
-      <main id="main" style="padding-top:0;">
-         <header id="header">             
-            <!-- <h2><img src="img/reactful.png" />Reactful</h2>             
-            <aside style="text-align: right;"> 
-               documentation | github 
-            </aside> -->
-            <h2 style="text-align: left;">
-               <a id="logo" href="index.html"><img src="img/reactful.png" /></a>
-            </h2>  
-            <h2 style="letter-spacing: 7px;">REACTFUL</h2> 
-            <h2>documentation | <a>github</a></h2>
-         </header>
-      
-         <iframe scrolling="no" src="overview/introduction.html">
-         </iframe>
-      </main>      
-   </section>
+   <main>
+      <logo style="zoom:2"></logo>
+      <h1>reactful</h1>
+      <p>A minimalist React framework for state management, hybrid rendering and component routing with advanced features.</p>
+      <a href="view/index.html">documentation</a>
+   </main>
+
+   <footer>
+      © 2025 reactful. All rights reserved.
+   </footer>
 </body>
+
+<style>
+   h1 { border:0 !important; }
+</style>
 
 </html>
