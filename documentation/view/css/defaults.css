@@ -2,16 +2,29 @@
    font-weight: 300;
    font-style: normal;
    box-sizing: border-box;
+   font-style: normal !important;
    margin: 0;
    padding: 0;
 }
+
+*, body { background: var(--inverse); }
 
 .vscode-body { 
    background: unset; 
    padding:10px 0 0 0; 
 }
 
-* { font-style: normal !important; }
+
+#folder {
+   border: 0;
+   width: 100%;
+   height: auto;
+   padding: 0;
+}
+
+P+iframe { margin-top: -20px; }
+
+h1 { letter-spacing: 2px; }
 
 strong { font-weight: bolder !important; }
 

@@ -18,7 +18,3 @@ function animation() {
 
    document.querySelectorAll("logo div").forEach(anime)
 }
-
-function centerlize() {
-
-}
