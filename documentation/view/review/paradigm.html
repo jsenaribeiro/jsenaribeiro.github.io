@@ -236,9 +236,10 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <script src='../index.js'></script>
-<style>@import url(./index.css);</style> 
+            <script src='../js/index.js'></script>
+<style>@import url(../css/index.css);</style> 
 <h1 id="binding-paradigm">Binding paradigm</h1>
+<h2 id="dual-binding">Dual binding</h2>
 <p>React is a one-way data binding and Angular has two-way data binding. Reactful stateful objects emulates the two-way data binding in a React application keeping the more performatic React one-way data flow architecture.</p>
 <h2 id="react-versus-angular">React versus Angular</h2>
 <p>React and Angular are pretty uncomparable. One is a library, another is a framework. React is easier until starts its state management, but Angular destroy its advantage with its obscure ngModule. The nice simplicity of React functional component is hard to compare the clean organicity of Angular class component.</p>
@@ -308,20 +309,7 @@ body.marp-vscode blockquote {
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 <p>The self-rendering object is set in <code>[data]</code> and its children form elements maps each field with <code>[bind]</code>. The render will only be triggered by submit button. The form binding covers multiples inner features, like actions, validation and authentication.</p>
-<h3 id="form-binding-action">Form binding: action</h3>
-<p>Using form binding with action make a JSON serialization of data object, send to server with fetch api. The feeds.await has the boolean pending state. After the response, a new render will be done do update the component.</p>
-<pre><code class="language-tsx">
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Todo</span> = (<span class="hljs-params">props, feeds</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&#x27;http://www.api.com&#x27;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&#x27;POST&#x27;</span> &gt;</span> 
-      Task: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;task&#x27;</span> /&gt;</span>
-      Done: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;mail&#x27;</span> /&gt;</span>    
-      <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
-   
-   { feeds.await &amp; <span class="hljs-tag">&lt;<span class="hljs-name">progress</span>&gt;</span>loading...<span class="hljs-tag">&lt;/<span class="hljs-name">progress</span>&gt;</span>  }
-<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-<h3 id="form-binding-validation">Form binding: validation</h3>
+<h2 id="validation-binding">Validation binding</h2>
 <p>Form biding validation follows the native HTML <code>validation API</code>, injecting its validation errors, joined with HTTP errors, in <strong>feeds.fails</strong> array.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Todo</span> = (<span class="hljs-params">props, feeds</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&#x27;http://www.api.com&#x27;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&#x27;POST&#x27;</span> &gt;</span> 
@@ -364,7 +352,20 @@ body.marp-vscode blockquote {
    errors.<span class="hljs-title function_">push</span>({ <span class="hljs-attr">error</span>: <span class="hljs-string">&#x27;some custom error message&#x27;</span> })
 }
 </code></pre>
-<h3 id="form-binding-authentication">Form binding: authentication</h3>
+<h2 id="action-binding">Action binding</h2>
+<p>Using form binding with action make a JSON serialization of data object, send to server with fetch api. The feeds.await has the boolean pending state. After the response, a new render will be done do update the component.</p>
+<pre><code class="language-tsx">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Todo</span> = (<span class="hljs-params">props, feeds</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&#x27;http://www.api.com&#x27;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&#x27;POST&#x27;</span> &gt;</span> 
+      Task: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;task&#x27;</span> /&gt;</span>
+      Done: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;mail&#x27;</span> /&gt;</span>    
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+   
+   { feeds.await &amp; <span class="hljs-tag">&lt;<span class="hljs-name">progress</span>&gt;</span>loading...<span class="hljs-tag">&lt;/<span class="hljs-name">progress</span>&gt;</span>  }
+<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+<h3 id="authentication-binding">Authentication binding</h3>
 <p>Form binding authentication enables JWT bearer authentication algorithm by <code>[bearer]</code> props in submit-time. It sets the token name field of response JSON.</p>
 <style>
    aside[auth] ul { zoom: 0.95; margin-left: 20px; }
@@ -387,10 +388,11 @@ body.marp-vscode blockquote {
       password: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;password&#x27;</span> /&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 
-      <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>{ fails.map(...) }<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>   
+      <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&#x27;error-summary&#x27;</span>&gt;</span>
+         { fails.map(e =&gt; ...) }
+      <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>   
    <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 <span class="hljs-tag">&lt;/&gt;</span></span>
-
 </code></pre>
 <ul>
 <li>ALGORITHM</li>

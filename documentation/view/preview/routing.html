@@ -240,7 +240,7 @@ body.marp-vscode blockquote {
 <style>@import url(../css/index.css);</style> 
 <style>
    @import url(routing.css);
-   table { justify-self:center; margin-top: -30px !important; }
+   table { margin: 0px 30px !important; zoom:0.95; }
    table th { font-weight:700; border-bottom-style: dashed }
 </style> 
 <h1 id="routing-pages">Routing pages</h1>
@@ -248,54 +248,57 @@ body.marp-vscode blockquote {
 <p>path routing • route decorator • dynamic route • props routing •  markdown support • lazy components • nested routes</p>
 </blockquote>
 <h2 id="folder-routing">Folder routing</h2>
-<p>Easy <a onclick='goto("review/structure.html#folder-routing")'>folder routing</a> with inner fallbacks retries until the root path (/). Important to notice that routed component must be a default export to work.</p>
+<p><a onclick='goto("review/structure.html#folder-routing")'>Directory routing</a> with recursive fallbacks and nested routes.</p>
 <table>
 <thead>
 <tr>
-<th></th>
-<th></th>
-<th></th>
+<th>model</th>
+<th>route</th>
+<th>resolution</th>
+<th>context</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>indexing</td>
+<td>/routes</td>
 <td>/routes/index.tsx</td>
-<td>/</td>
+<td>/routes</td>
 </tr>
 <tr>
 <td>prefixing</td>
-<td>/routes/admin.tsx</td>
 <td>/admin</td>
+<td>/routes/admin.tsx</td>
+<td>/routes</td>
 </tr>
 <tr>
 <td>nesting</td>
-<td>/routes/sub/top.tsx</td>
 <td>./top</td>
+<td>/routes/sub/top.tsx</td>
+<td>/routes/sub</td>
 </tr>
 </tbody>
 </table>
-</section>
 <h2 id="dynamic-routes">Dynamic routes</h2>
-<p><a onclick='goto("review/structure.html#dynamic-routes")'>Dynamic routing</a> decorator with highest priority routing resolution.</p>
+<p>Dynamic <a onclick='goto("review/structure.html#dynamic-routes")'>route decorator</a> as highest priority routing resolution.</p>
 <pre><code class="language-tsx">@<span class="hljs-title function_">route</span>(<span class="hljs-string">&#x27;/profile/:id&#x27;</span>)
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">User</span> = (<span class="hljs-params">props, feeds</span>) =&gt;
    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>User id: { feeds.params.id }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 </code></pre>
 <h2 id="authorization-roles">Authorization roles</h2>
-<p>Function decorator for RBAC [Authorization?] based in [login.role?].</p>
+<p>Function decorator for role authorization based on <code>feeds.logon.role</code>.</p>
 <pre><code class="language-tsx">@<span class="hljs-title function_">allow</span>([<span class="hljs-string">&#x27;manager&#x27;</span>,<span class="hljs-string">&#x27;admin&#x27;</span>])
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Admin</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Admin...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 </code></pre>
 <h2 id="props-routing">Props routing</h2>
-<p><a onclick='goto("review/structure.html#props-routing")'>Route props</a> directives with conditional <code>[route]</code> and router <code>[link]</code>.</p>
+<p><a onclick='goto("review/structure.html#props-routing")'>Route directives</a> with conditional <code>[route]</code> and clickable router <code>[link]</code>.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>     <span class="hljs-comment">&lt;!-- clickable router --&gt;</span>   
    <span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>   <span class="hljs-comment">&lt;!-- conditional render --&gt;</span>
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 <h2 id="lazy-loading">Lazy loading</h2>
-<p><a onclick='goto("review/structure.html#lazy-loading")'>Lazy routing</a> promise extension with <code>asLazyComponent</code>.</p>
+<p><a onclick='goto("review/structure.html#lazy-loading")'>Lazy routing</a> using <code>asLazyComponent</code> promise extension.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Main</span> = <span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./main&#x27;</span>).<span class="hljs-title function_">asLazyComponent</span>(<span class="hljs-string">&#x27;Sample&#x27;</span>)
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>

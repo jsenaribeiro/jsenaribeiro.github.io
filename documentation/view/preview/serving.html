@@ -259,7 +259,7 @@ body.marp-vscode blockquote {
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">get</span> = request =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Response</span>(<span class="hljs-string">&#x27;Hello World!&#x27;</span>)
 </code></pre>
 <h2 id="decorator-side">Decorator side</h2>
-<p>Component-bound <a onclick='goto("review/decorator.html")'>function decorators</a> for <strong>SSG</strong>, <strong>SSR</strong> and <strong>ISR</strong> <a onclick='goto("review/hybriding.html")'>rendering</a>.</p>
+<p>Component metadata with <a onclick='goto("review/decorator.html")'>function decorators</a> for <a onclick='goto("review/hybriding.html")'>hybrid rendering</a>.</p>
 <pre><code class="language-tsx">@<span class="hljs-title function_">client</span>(<span class="hljs-literal">true</span>) <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Client</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
 @<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;static&#x27;</span>) <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Static</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
 @<span class="hljs-title function_">server</span>(<span class="hljs-string">&#x27;dynamic&#x27;</span>) <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Dynamic</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
@@ -267,14 +267,25 @@ body.marp-vscode blockquote {
 </code></pre>
 <h2 id="seo-decorator">SEO decorator</h2>
 <p>Function decorator overloads for SEO with typed metatags.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { seo, <span class="hljs-title class_">MetaTag</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
+<aside cols='2'>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { seo } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">MetaTag</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
 
-@<span class="hljs-title function_">seo</span>(<span class="hljs-string">&#x27;title&#x27;</span>, <span class="hljs-string">&#x27;description&#x27;</span>) <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">Hi</span> =&gt;  <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>Hi...<span class="hljs-tag">&lt;/&gt;</span></span>
-
-<span class="hljs-keyword">const</span> <span class="hljs-attr">meta</span>: <span class="hljs-title class_">MetaTag</span> = { <span class="hljs-attr">chartset</span>: <span class="hljs-string">&#x27;UTF-8&#x27;</span>, <span class="hljs-attr">keywords</span>: <span class="hljs-string">&#x27;a,b,etc&#x27;</span> }
-
-@<span class="hljs-title function_">seo</span>(<span class="hljs-string">&#x27;title&#x27;</span>, meta) <span class="hljs-keyword">const</span> <span class="hljs-title function_">About</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>etc...<span class="hljs-tag">&lt;/&gt;</span></span> 
+@<span class="hljs-title function_">seo</span>(<span class="hljs-string">&#x27;title&#x27;</span>, <span class="hljs-string">&#x27;description&#x27;</span>) 
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Hi</span>(<span class="hljs-params">props</span>) {
+   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>Hi...<span class="hljs-tag">&lt;/&gt;</span></span>
+}
 </code></pre>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-attr">meta</span>: <span class="hljs-title class_">MetaTag</span> = { 
+   <span class="hljs-attr">chartset</span>: <span class="hljs-string">&#x27;UTF-8&#x27;</span>, 
+   <span class="hljs-attr">keywords</span>: <span class="hljs-string">&#x27;a,b,etc&#x27;</span> 
+   <span class="hljs-attr">og</span>: { ... }
+}
+
+@<span class="hljs-title function_">seo</span>(<span class="hljs-string">&#x27;title&#x27;</span>, meta) 
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">About</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>etc...<span class="hljs-tag">&lt;/&gt;</span></span> 
+</code></pre>
+</aside>
 <h2 id="multiple-supports">Multiple supports</h2>
 <p>It supports <a onclick='goto("review/multiple.html#markdown-support")'>Markdown</a>, <a onclick='goto("review/multiple.html#extended-html")'>extended HTML</a> and <a onclick='goto("review/multiple.html#async-components")'>async components</a>.</p>
 

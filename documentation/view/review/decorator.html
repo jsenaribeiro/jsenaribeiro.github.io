@@ -236,12 +236,11 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <script src='../index.js'></script>
-<style>@import url(./index.css);</style> 
+            <script src='../js/index.js'></script>
+<style>@import url(../css/index.css);</style> 
 <h1 id="functional-decorator">Functional decorator</h1>
-<p>Javascript decorator is class-only. Since React is basically a functional designed coding, native JavaScript decoratores are useless in React. So, to achive function decorators, the Reactful implements a micro-transpiler using Bun. With function decorators, the functional component could deal with some semantics using decorators as metadatas.</p>
-<h2 id="transpiler">Transpiler</h2>
-<p>The decorator transpiler uses Bun tools for runtime and build-time transpiler, both time transpiling happens in decorator life-cycle.</p>
+<h2 id="decorators">Decorators</h2>
+<p>Javascript decorator is class-only. Since React is fully functional, native JavaScript decoratores are useless in React. So, Reactful implements a bun transpiler for function decortoras.</p>
 <h2 id="modelling">Modelling</h2>
 <p>The decorator signature is a function that returns an specific signature function with meta and call arguments and call return, as example bellow.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">decorating</span> = args =&gt; <span class="hljs-function">(<span class="hljs-params">meta, call</span>) =&gt;</span> call

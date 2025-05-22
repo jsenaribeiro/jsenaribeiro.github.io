@@ -261,7 +261,7 @@ body.marp-vscode blockquote {
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 <h2 id="action-binding">Action binding</h2>
-<p>[Action binding?] sets pending states in <strong>feeds.await</strong>, form actions, error handling, <code>[onFetch]</code> props handler and <a onclick='goto("review/paradigm.html#form-binding-authentication")'>Authentication</a>.</p>
+<p><a onclick='goto("review/paradigm.html#action-binding")'>Action binding</a> has a pending state in <strong>feeds.await</strong>, error states in **feeds.fails' and <code>[onFetch]</code> props handler. It also support <a onclick='goto("review/paradigm.html#authentication-binding")'>authentication</a> binding variation.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Form</span> = (<span class="hljs-params">props, feeds</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span> 
    { feeds.await &amp; <span class="hljs-tag">&lt;<span class="hljs-name">progress</span>&gt;</span>loading<span class="hljs-tag">&lt;/<span class="hljs-name">progress</span>&gt;</span> }
 
