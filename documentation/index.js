@@ -42,11 +42,14 @@ function sendEmail() {
 
    from_email = email.value?.trim()
       || "anonymous@email.com"
+   
+   const message = textarea.value.trim()
+      + '\n\n' + from_email
 
    const params = {
       from_email,
       from_name: "commentator",
-      message: textarea.value.trim()
+      message
    }
 
    emailjs.init(PUBLICK_KEY);
@@ -67,8 +70,8 @@ function sendEmail() {
    }
 
    function onFinnaly() {
-      textarea.disabled = true
-      button.disabled = false
+      textarea.disabled = false
+      button.disabled = true
       email.disabled = false
    }
 }
