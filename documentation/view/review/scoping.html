@@ -236,68 +236,114 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <script src='../index.js'></script>
-<style>@import url(./index.css);</style> 
+            <script src='../js/index.js'></script>
+<style>
+@import url(../css/index.css);
+table { margin-top:-20px;  }
+</style> 
 <h1 id="extended-css">Extended CSS</h1>
-<h2 id="fake-css-imports">Fake CSS imports</h2>
-<p>All CSS imported in React is leaked to global scope. Even importing in a given module, the CSS import is completelly fake in its sematics. It is the same to import a CSS using link[href] in HTML. So, CSS imports in React are useless and error phrone.</p>
+<h2 id="css-imports-bug">CSS imports bug</h2>
+<p>All imported CSS leaks to global scope. It is the same behavior of a link[href] in static HTML. CSS imports in React are useless and error phrone.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;my.css&#x27;</span> <span class="hljs-comment">// global, not modular</span>
 </code></pre>
-<h2 id="alternative-solutions">Alternative solutions</h2>
-<p>There is two major library alternatives to deal with this React structural bug: &quot;CSS modules&quot;, that uses naming conventions in CSS filename to achive module-scope, and styled component, where components is creating not in CSS, but inside typescript. Both fails to just deliver a CSS import that works as it expected.</p>
+<h2 id="alternatives">Alternatives</h2>
+<p>Two more popular libraries to deal with this bug are <strong>css-module</strong> and <strong>styled-components</strong>. Both are very different approch, but share in common the failure to solve the CSS import bug.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>css-module</td>
+<td>it uses name conventions with imported css into a object, and injected in styles props of React element</td>
+</tr>
+<tr>
+<td>styled-component</td>
+<td>it uses literal string to allow CSS text into javascript file, but not support actual CSS file</td>
+</tr>
+</tbody>
+</table>
 <pre><code class="language-tsx"><span class="hljs-comment">// css-module library approach using &#x27;module.css&#x27; suffix convention</span>
 <span class="hljs-keyword">import</span> cssModule <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./blog.module.css&#x27;</span> 
 
 <span class="hljs-comment">// styled-component library approach using special into script</span>
 <span class="hljs-keyword">const</span> styledComponent = styled.<span class="hljs-property">section</span><span class="hljs-string">`padding: 4em; background: papayawhip;`</span>;
 </code></pre>
-<h2 id="css-transpiler">CSS transpiler</h2>
-<p>To fix this, Reacftul create a micro-transpiler with Bun that manages all CSS imports in javascript module in a way that it work as it is expected. So,</p>
+<h2 id="transpiler">Transpiler</h2>
+<p>Reacftul fixes this bug with a bun transpiler that manages all CSS imports in javascript module in a way that it work as it is expected. So,</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;my.css&#x27;</span> <span class="hljs-comment">// only applied into intra-module components</span>
 </code></pre>
-<h2 id="transpiler-limitations">Transpiler limitations</h2>
-<p>This transpiler not work yet with pseudo-selector, so, for CSS with :first-of-type, :before, :hover, and others pseudo-selectors, the Reactful modular CSS will not work.</p>
+<h2 id="limitations">Limitations</h2>
+<p>This solution version not support pseudo-selector, so, for this case ():first-of-type, :before, :hover, etc), use the convention HTML <code>link[href]</code>.</p>
 <h2 id="style-decorator">Style decorator</h2>
-<p>The <code>@style('path')</code> function decorator enables a component-scoped CSS in script-side, binding a CSS path file to an specific functional component.</p>
+<p>The <code>@style('path')</code> decorator enables a component-scoped CSS in script-side.</p>
 <pre><code class="language-tsx">@<span class="hljs-title function_">style</span>(<span class="hljs-string">&#x27;../styles/hello.css&#x27;</span>)
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello World!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 </code></pre>
 <h2 id="component-classname">Component className</h2>
-<p>All inner elements in a component has added the component name as CSS className, allowing a CSS side way to style to an specific component.</p>
-<aside cols='2'>
+<p>Reactful automatically adds the component name in CSS className of its inner elements, allowing a CSS-side styling for an specific component.</p>
+<aside cols='5:4'>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./hello.css&#x27;</span>
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">Hello</span>(<span class="hljs-params"></span>) {
-   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
-}
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = _ =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 </code></pre>
-<pre><code class="language-css"><span class="hljs-selector-tag">h1</span><span class="hljs-selector-class">.Hello</span> { 
-   <span class="hljs-attribute">color</span>: red;
-   <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;
-}
+<pre><code class="language-css"><span class="hljs-selector-tag">h1</span> { <span class="hljs-attribute">color</span>:silver }
+<span class="hljs-selector-tag">h1</span><span class="hljs-selector-class">.Hello</span> { <span class="hljs-attribute">color</span>: red }
 </code></pre>
 </aside>
 <h2 id="grid-layout-props">Grid layout props</h2>
-<p>Built-in props directives for CSS grid layout with <code>[grid]</code>, <code>[cols]</code> and <code>[gaps]</code>, allowing an easy and clear way to layout directally in HTML.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> original = <span class="hljs-string">`gap:10px; display:grid; grid-template-columns:1fr 1fr`</span>
-</code></pre>
-<aside cols='4:5'>
+<p>Style props directives for easy CSS grid layout with <code>[grid]</code>, <code>[cols]</code> and <code>[gaps]</code>, allowing an easy and clear way to layout directally in HTML.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Before</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{original}</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#x27;gap:10px; display:grid; grid-template-columns:1fr 1fr&#x27;</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Column 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Column 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>   
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">After</span> = props =&gt;  <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">grid</span> <span class="hljs-attr">gaps</span>=<span class="hljs-string">&#x27;10px&#x27;</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">&#x27;1fr 1fr&#x27;</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">grid</span> <span class="hljs-attr">gaps</span>=<span class="hljs-string">&#x27;10px&#x27;</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">&#x27;1fr 1fr&#x27;</span>&gt;</span> 
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Column 1<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Column 2<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>   
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-</aside>
+<p>Alias in <code>cols</code> directive allows shorter syntax for grid-template-columns syntax.</p>
+<br/>
+<table>
+<thead>
+<tr>
+<th>cols</th>
+<th>grid-template-columns</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>2</code></td>
+<td><code>1fr 1fr</code></td>
+<td>number of columns</td>
+</tr>
+<tr>
+<td><code>2:3:1</code></td>
+<td><code>2fr 3fr 1fr</code></td>
+<td>column proportions</td>
+</tr>
+<tr>
+<td><code>auto:1:2</code></td>
+<td><code>auto 1fr 2fr</code></td>
+<td>proportions with auto width</td>
+</tr>
+<tr>
+<td><code>100px:1:2</code></td>
+<td><code>100px 1fr 2fr</code></td>
+<td>proportions with absolute width</td>
+</tr>
+</tbody>
+</table>
 <h2 id="styled-route">Styled route</h2>
-<p>The <code>.routed</code> is a CSS className that allows to style the current route link <code>[link]</code> that matches to current route, to style its a toggle state as active. So, all elements with <code>[link]</code> that matches the route that is mapped for, it will apply the <code>.routed</code> CSS class.</p>
+<p>The <code>.routed</code> is built-in a CSS className for the element with <code>[link]</code> that is in current route, as an simplified way to toggle state CSS.</p>
 <pre><code class="language-css"><span class="hljs-selector-tag">button</span><span class="hljs-selector-class">.routed</span> { <span class="hljs-attribute">background</span>: wheat; <span class="hljs-attribute">font-weight</span>: bolder; }
 </code></pre>
 

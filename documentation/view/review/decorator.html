@@ -253,6 +253,46 @@ body.marp-vscode blockquote {
    }
 }
 </code></pre>
+<h2 id="library">Library</h2>
+<p>Reactful has its built-int decorators for multiple purposes.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">@style</td>
+<td>It binds a CSS class into a component</td>
+</tr>
+<tr>
+<td style="text-align:right">@server</td>
+<td>It sets the non-client hybrid rendering model</td>
+</tr>
+<tr>
+<td style="text-align:right">@client</td>
+<td>It defines a component as client-side, allowing states</td>
+</tr>
+<tr>
+<td style="text-align:right">@route</td>
+<td>It binds a component to an specific route</td>
+</tr>
+<tr>
+<td style="text-align:right">@error</td>
+<td>It binds a error component to an specific component</td>
+</tr>
+<tr>
+<td style="text-align:right">@auth</td>
+<td>It check the authorization role in logon.role</td>
+</tr>
+<tr>
+<td style="text-align:right">@seo</td>
+<td>It sets metatags information</td>
+</tr>
+</tbody>
+</table>
 <h2 id="limitations">Limitations</h2>
 <p>Custom decorators has no support to imports, it means that it could be imported, but it cannot import anything itself. If it this happens, the app will crash.</p>
 

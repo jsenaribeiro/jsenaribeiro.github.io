@@ -236,14 +236,13 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <script src='../index.js'></script>
-<style>@import url(./index.css);</style> 
+            <script src='../js/index.js'></script>
+<style>@import url(../css/index.css);</style> 
 <h1 id="self-rendering">Self rendering</h1>
 <h2 id="self-rendering-state">Self rendering state</h2>
-<p>Self rendering states is a concept that avoid any extra boilerplate code to handle states in react. It is a classless and hoockless solution fully based in objects.</p>
-<h2 id="stateful-object-concept">Stateful object concept</h2>
-<p>Any object is, by definition, stateful. But in React context, something stateful is a more specific domain. The concept of a stateful object is a way to deal simples object that tiggers the render when it is changed.</p>
-<p>Technically, a stateful object is a javascript proxy object that encapsulate the original object and state hooks. A proxy object can intercept each set and get behavior in object fields, and, this enable to triggers the render when the object field is changed, or and field in its inner objects.</p>
+<p>Self rendering states is a concept that avoid any extra boilerplate code to handle states in react. It is a classless and hoockless solution based only on OOP.</p>
+<h2 id="reactive-objects">Reactive objects</h2>
+<p>Reactive object is a way to deal simples object that tiggers the render when it is changed, using a javascript proxy object that encapsulates the original object and state hooks, triggering the render when the object is changed.</p>
 <h2 id="stateful-props">Stateful props</h2>
 <p>The most basic state in React is the useState hook. In example bellow, is the lesser boilerplate code you will deal handling states in React.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
@@ -258,26 +257,19 @@ body.marp-vscode blockquote {
    <span class="hljs-tag">&lt;/&gt;</span></span>
 }
 </code></pre>
-<p>The local states is handled by props itself, all props are self-rendering objects in Reacful, with no imports, no hooks, just props.</p>
+<p>In Reactful, all props are reactive objects, avoiding any imports, hooks and calls.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, { props.name } !<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> 
       <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> props.name = e.target.value} /&gt;
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<p>With <a onclick="review/paradigm.html#props-binding">props binding</a>, the code is even cleaner.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
-   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, { props.name } !<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-<p>All the follow examples will use dual binding.</p>
 <h2 id="global-store">Global store</h2>
-<p>Global store follows the principle of unique source of thuth, so it is the unique self-rendering for all application that you need inject in server startup function.</p>
+<p>Global store is an injectable global state that follows the single source of thuth principle (SSoT), beeing injected in the server IoC Container.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> myStore = { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span> }
 <span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>({ <span class="hljs-attr">store</span>: myStore }).<span class="hljs-title function_">render</span>()
 </code></pre>
-<p>After injected in Reactful IoC container, it is available as feeds.store in component second argument, with no extra import.</p>
+<p>After injected, it is available as feeds.store ias component second argument.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hi</span> = (<span class="hljs-params">props, { store }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hi, { store.name } !<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{store}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
@@ -289,12 +281,12 @@ body.marp-vscode blockquote {
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 <h2 id="partial-states">Partial states</h2>
-<p>Partial states allows multiple modular shared stores. First step, you need to creat explicitly a store by useStore function.</p>
+<p>For multiple shared states, the partial states allows modular approach. First, you need to creat explicitly a store by useStore function.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">import</span> { useStore } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> person = <span class="hljs-title function_">useStore</span>({ <span class="hljs-attr">guid</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;john&#x27;</span> })
 </code></pre>
-<p>After, you need to import your store and binding it into a component using <code>@client(true, state=null)</code> decorator second parameter</p>
+<p>After that, you need to import the crated store and binding it into a component using <code>@client(true, state=null)</code> decorator.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { client } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
 <span class="hljs-keyword">import</span> { person } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./stores&#x27;</span>
 
@@ -305,9 +297,9 @@ body.marp-vscode blockquote {
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 <h2 id="performatic-algorithm">Performatic algorithm</h2>
-<p>The Reactful implements an delayed render algorithm (or batching algoritm) that waits 0.5s between changes to trigger the render. This avoid a component over-rendering that impacts its performance, at same time, is short enough not be perceivable to user.</p>
+<p>The Reactful implements an delayed render algorithm (or batching algoritm) that waits 0.5s between rendering, avoiding rendering overloading excess.</p>
 <h2 id="deconstruction-limitation">Deconstruction limitation</h2>
-<p>Since self-rendering states are objects, it means that if the object is deconstructed into fields, it will loss its self-rendering behavior. Bellow, the name is not self-rendering, since it is not more a field in a object, but just a value (string).</p>
+<p>Since reactive objects are objects, if it is deconstructed into fields, it will loss its self-rendering behavior.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params">{ name }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello { name } !<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span> <span class="hljs-comment">&lt;!-- no self-rendering here --&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> name = e.target.value} /&gt;

@@ -236,14 +236,13 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <script src='../index.js'></script>
-<style>@import url(./index.css);</style> 
+            <script src='../js/index.js'></script>
+<style>@import url(../css/index.css);</style> 
 <h1 id="property-directives">Property directives</h1>
-<p>Directives are a core concept in Angular. The kind of Angular-like directive emulated by props directive in Reactful is the attribute directive. With attribute directive is possible to create a attribute that you can shared between multiple components.</p>
+<h2 id="directive-concept">Directive concept</h2>
+<p>Property directive emulates the Angular-like attribute directive, but a functional approach and with less coding. Directive enables attributes that you can encapsulate algorithm and shared between elements.</p>
 <h2 id="reactful-directives">Reactful directives</h2>
-<p>Reactful directives are built-in props directives that appends new attributes in HTML elements, enabling data binding, style extensions, etc.</p>
-<h2 id="props-directives">Props directives</h2>
-<p>Directives injects props into HTML elements, allowing shareed behaviors between elements without any related component, working like a property transformers.</p>
+<p>Reactful directives are built-in props directives that appends new attributes into React elements, enabling resources like data binding, style extensions, etc.</p>
 <section cols='5:4'>
 <pre><code class="language-tsx"><span class="hljs-comment">// decorator producer</span>
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">decorator</span> = props =&gt; { ...props }
@@ -253,7 +252,7 @@ body.marp-vscode blockquote {
 </code></pre>
 </section>
 <h2 id="custom-directives">Custom directives</h2>
-<p>Custom directives are registered injecting it in the server IoC container, above an example of how to create, register and use a function decorator.</p>
+<p>Custom directives are registered it server IoC container, here an example of how to creation, register and usage of a custom directive.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
 
 <span class="hljs-comment">// 1. create a function that receives and returns a props </span>
@@ -268,10 +267,8 @@ declare <span class="hljs-variable language_">module</span> <span class="hljs-st
 <span class="hljs-comment">// 4. just the props directive in elements</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Ok</span> = prop =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">shown</span>=<span class="hljs-string">{true}</span>&gt;</span>Show me!<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 </code></pre>
-<h2 id="performance-issues">Performance issues</h2>
-<p>Directives are processed in rendering time for each element. In general, it has negligenciable impact in performance, but a large number of it could has somo significant performance impact to application. So, be aware of this.</p>
-<h2 id="utility-concern">Utility concern</h2>
-<p>Directives are very powerful and versartile feature, but its probably more useful as native framework directive, specially for enabling routing and binding.</p>
+<h2 id="performance-concerns">Performance concerns</h2>
+<p>Directive time cost is negligenciable, in general, but a large number of it could decreases performance. So, consider this for custom directives, due it be a render-time function call.</p>
 
             
             <script async type="text/javascript">

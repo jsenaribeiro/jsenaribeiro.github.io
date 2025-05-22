@@ -236,21 +236,19 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <script src='../index.js'></script>
-<style>@import url(./index.css);</style> 
+            <script src='../js/index.js'></script>
+<style>@import url(../css/index.css);</style> 
 <h1 id="dependency-injection">Dependency Injection</h1>
-<p>To deal with directives and global store, Reactful framework uses a IoC container to inject the global store and the custom directives.</p>
 <h2 id="ioc-container">IoC Container</h2>
-<p>The Reactful IoC container handles <a onclick='goto("review/stateful.html")'>global state</a>, <a href='#error-handling'>error components<a>, <a onclick='goto("review/directive.html")'>props directives</a> and <a onclick='goto("review/decorator.html")'>function decorators</a>. As a unique global state, it is injected in second parameter, the settings object, in storage field. Directives are injected in fluent inject function.</p>
+<p>The Reactful IoC container handles <a onclick='goto("review/stateful.html")'>global state</a>, <a href='#error-handling'>error components<a> and<a onclick='goto("review/directive.html")'>props directives</a> dependencies as server argument or inject method.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactful/server&#x27;</span>
 <span class="hljs-keyword">import</span> { directive } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./directives&#x27;</span>
-<span class="hljs-keyword">import</span> { decorator } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./decorators&#x27;</span>
 
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">error</span> = (<span class="hljs-params">status, errors</span>) =&gt; ...
 <span class="hljs-keyword">const</span> store = { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;john&#x27;</span>, <span class="hljs-attr">date</span>: <span class="hljs-string">&#x27;0001-01-01&#x27;</span> }
 
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>({ store })
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>({ store, error })
      .<span class="hljs-title function_">inject</span>(directive)
-     .<span class="hljs-title function_">inject</span>(decorator)
      .<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 </code></pre>
 <p>The server parameter is typed by Settings interface</p>
@@ -260,14 +258,14 @@ body.marp-vscode blockquote {
    <span class="hljs-attr">query</span>: <span class="hljs-built_in">string</span>     <span class="hljs-comment">// query selector for root HTML (default: &#x27;#root&#x27;)</span>
 }
 </code></pre>
-<h2 id="resolution-approach">Resolution approach</h2>
-<p>The Reacful dependency resolution uses the useless second parameter of a functional component in React, named as feeds. All application dependencies are injected and resolved in this object.</p>
+<h2 id="injection-resolution">Injection resolution</h2>
+<p>It uses the the function second parameter to inject the feeds object. A object that contains all injected dependencies and contextual informations.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Component</span>(<span class="hljs-params">props, feeds</span>) {
    <span class="hljs-keyword">const</span> isPending = feeds.<span class="hljs-property">awaits</span>
    <span class="hljs-keyword">const</span> globalState = feeds.<span class="hljs-property">store</span>
 }
 </code></pre>
-<p>So, in framework life-cycle, this second argument receives a Feed interface with multiple.</p>
+<p>Here the commented Feeds interface.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Feeds</span> {
    <span class="hljs-attr">param</span>: record    <span class="hljs-comment">// route params of dynamic routing</span>
    <span class="hljs-attr">store</span>: record    <span class="hljs-comment">// custom global store by DI</span>
@@ -277,27 +275,26 @@ body.marp-vscode blockquote {
 }
 </code></pre>
 <h2 id="error-components">Error components</h2>
-<p>The error component is a high-order component that receives an HTTP status code with an error array based in exception throws or HTTP response.</p>
+<p>The high-order error component receives an HTTP status code with an error array cached by unhandled exception throws or HTTP eror responses.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">errorComponent</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My custom error component...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
    { errors.map((e,i) =&gt; <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{i}</span>&gt;</span>{ e }<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>) }
 <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
 </code></pre>
-<p>The error component uses dependency injection of global error handling for automatic redirect when exception throws.</p>
+<p>The error component is injected in Reactful server function.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>({ <span class="hljs-attr">error</span>: errorComponent }).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 </code></pre>
-<p>For specific error component in special case, the <code>@error(component)</code> component allows to bind an specific error component with an specific component.</p>
-<pre><code class="language-tsx"><span class="hljs-comment">// specific error handling</span>
-@<span class="hljs-title function_">error</span>(customFailureHOC)
+<p>Specific compnoent errors is handled by  <code>@error(component)</code> decorator.</p>
+<pre><code class="language-tsx">@<span class="hljs-title function_">error</span>(specificErrorComponent)
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">SomeComponent</span>(<span class="hljs-params"></span>) { ... }
 
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">customFailureHOC</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">specificErrorComponent</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My custom error component...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
    { errors.map((e,i) =&gt; <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{i}</span>&gt;</span>{ e }<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>) }
 <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
 </code></pre>
 <h2 id="conflits-with-react-19">Conflits with React 19</h2>
-<p>THe canary React 19 is using this component second parameter as server component context. If this will release, the Feeds interface will add him as serve field.</p>
+<p>Canary React 19 will is considering use the function second parameter for server component context. So, when if this decision goes to final version,  Reactful will realocate this information to serve field in Feeds.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Feeds</span> {
    <span class="hljs-attr">serve</span>: <span class="hljs-title class_">Context</span>
    ...,

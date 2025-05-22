@@ -239,12 +239,12 @@ body.marp-vscode blockquote {
         <body class="vscode-body vscode-dark">
             <script src='../index.js'></script>
 <style>
-@import url(./index.css);
+@import url(../css/index.css);
 @import url(./structure.css);
 </style> 
 <h1 id="routing-architecture">Routing architecture</h1>
 <h2 id="folder-routing">Folder routing</h2>
-<p>Static folder routing has no extra naming conventions (like in next.js). Its routing fallbacks retries into nearest inner route until achieve the root path (/).</p>
+<p>Static folder routing has no extra naming conventions. Its routing fallbacks retries into nearest inner route until achieve the root path (/).</p>
 <table>
 <thead>
 <tr>
@@ -282,7 +282,7 @@ body.marp-vscode blockquote {
 </tbody>
 </table>
 <h2 id="nesting-routes">Nesting routes</h2>
-<p>Nesting routes uses dot slash syntax for relative routing based on current file path.</p>
+<p>Nesting routes uses relative dot slash syntax.</p>
 <table>
 <thead>
 <tr>
@@ -309,7 +309,7 @@ body.marp-vscode blockquote {
 </tr>
 </tbody>
 </table>
-<h2 id="conflicts-rules">Conflicts rules</h2>
+<h2 id="conflict-rules">Conflict rules</h2>
 <p>Considering the index and extension supression, there is some conflict cases listed below. All routing conflits throws exception in build time exception.</p>
 <table>
 <thead>
@@ -334,7 +334,7 @@ body.marp-vscode blockquote {
 </tbody>
 </table>
 <h2 id="dynamic-routes">Dynamic routes</h2>
-<p>Dynamic routing (aka parametric route) handled by functions decorator. If there are conflits with folder routing, the routing decorator will overrides it as superior priority.</p>
+<p>Dynamic routing (aka parametric route) uses functions decorator. It has highets priority, overriding any static routing conflicts.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { route } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
 
 @<span class="hljs-title function_">route</span>(<span class="hljs-string">&#x27;/whatever/profile/:id&#x27;</span>)
@@ -348,8 +348,8 @@ body.marp-vscode blockquote {
    <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
 }
 </span></code></pre>
-<h2 id="props-routing">Props routing</h2>
-<p>A declarativerouting with <code>[route]</code> that renders when it matches with current route, meanwhile <code>[link]</code> adds a clickable behavior into its host element to switch routes.</p>
+<h2 id="declartive-routing">Declartive routing</h2>
+<p>The <code>[route]</code> enables declarative routing, meanwhile <code>[link]</code> directive adds a clickable behavior into its host element to switch routes.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Menu<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>   
    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>         <span class="hljs-comment">&lt;!-- clicable router --&gt;</span>   
@@ -357,7 +357,7 @@ body.marp-vscode blockquote {
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 <h2 id="lazy-loading">Lazy loading</h2>
-<p>Lazy routing only import the lazy component when it is matched by route props. It is enabled by import using a promise extension polyfill called <code>asLazyComponent</code>. Then, the component imported with asLazyComponent and uset with route props, will only be importing in moment that is routed to its target route.</p>
+<p>Lazy routing enables lazy component that is imported in runtime, only when it matches the route. It is enabled by import using a promise extension as <code>asLazyComponent</code>.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">MyLazyComponent</span> = <span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./main&#x27;</span>).<span class="hljs-title function_">asLazyComponent</span>(<span class="hljs-string">&#x27;Sample&#x27;</span>)
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = (<span class="hljs-params">props, feeds</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
@@ -366,23 +366,6 @@ body.marp-vscode blockquote {
    <span class="hljs-tag">&lt;<span class="hljs-name">MyLazyComponent</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/lazy&#x27;</span> /&gt;</span> 
    { feeds.await &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>importing component...<span class="hljs-tag">&lt;/&gt;</span>}
 <span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-<h2 id="async-components">Async components</h2>
-<p>Async components is supported with React <code>Suspense API</code>.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Async</span>(<span class="hljs-params">props</span>) {
-   <span class="hljs-keyword">const</span> text = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;http://www.url.com&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-title function_">text</span>())
-   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>awaited content = { text }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
-}
-
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = <span class="hljs-keyword">async</span> props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">{</span>&lt;<span class="hljs-attr">b</span>&gt;</span>loading...<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span>}&gt;
-      <span class="hljs-tag">&lt;<span class="hljs-name">Async</span> /&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span>&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-<h2 id="await-props-alternative">Await props alternative</h2>
-<p>Await props directives is an alternative to Suspense API where the fallback is a children content and the async component is on <code>[await]</code> props directive.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = <span class="hljs-keyword">async</span> props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">await</span>=<span class="hljs-string">{Async}</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>loading...<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
 </code></pre>
 
             <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>

@@ -237,44 +237,40 @@ body.marp-vscode blockquote {
         </head>
         <body class="vscode-body vscode-dark">
             <script src='../js/index.js'></script>
-<style>@import url(../css/index.css);</style> 
+<style>
+@import url(../css/index.css);
+table th { font-weight:600 !important; }
+table td { font-weight:100 !important; color:white; }
+</style> 
 <h1 id="binding-paradigm">Binding paradigm</h1>
 <h2 id="dual-binding">Dual binding</h2>
-<p>React is a one-way data binding and Angular has two-way data binding. Reactful stateful objects emulates the two-way data binding in a React application keeping the more performatic React one-way data flow architecture.</p>
-<h2 id="react-versus-angular">React versus Angular</h2>
-<p>React and Angular are pretty uncomparable. One is a library, another is a framework. React is easier until starts its state management, but Angular destroy its advantage with its obscure ngModule. The nice simplicity of React functional component is hard to compare the clean organicity of Angular class component.</p>
-<p>So, the trade-offs between React and Angular are close enough to call it a personal choice. Unless Angular discards its ngModule or React evolves its state management to something more like Angular two-way data binding.</p>
-<p>Its obvious that evolves a library state management is more feaseable than untangle a framework. And here stats the idea of React stateful object.</p>
+<p>Reactful reactive objects emulates Angular's two-way data binding, abstracting the React one-way data flow using built-in <code>[data]</code> and <code>[bind]</code> <a href='directive.html'>directives</a>.</p>
 <h2 id="reactful-dual-binding">Reactful Dual binding</h2>
-<p>Reactul dual data binding is a one-way data binding that emulates two-way data binding, using stateful objects and props directives. It is dual because it binds the value and the change event of each writeable HTML element (input, select, etc). There is two type of if: props binding for controlled components and form binding for uncontrolled components.</p>
+<p>Reactul dual data binding is a two-way data binding design with a one-way data flow architecture. It is dual because it binds the value and the event change to each input-like element.</p>
 <table>
 <thead>
 <tr>
-<th></th>
-<th></th>
-<th></th>
+<th>input</th>
+<th>select</th>
+<th>textarea</th>
+<th>radio</th>
+<th>checkbox</th>
+<th>button</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>input</td>
 <td>onChange</td>
-<td></td>
-</tr>
-<tr>
-<td>select</td>
 <td>onSelect</td>
-<td></td>
-</tr>
-<tr>
-<td>textarea</td>
 <td>onChange</td>
-<td></td>
+<td>onChange</td>
+<td>onChange</td>
+<td>onClick</td>
 </tr>
 </tbody>
 </table>
 <h2 id="props-binding">Props binding</h2>
-<p>Here an example of stateful props without any props binding with its verbosity using input value and onChange properties to deal with the binding.</p>
+<p>This example is a conventional implementation of local states in React.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Old</span>(<span class="hljs-params"></span>) {
@@ -287,19 +283,20 @@ body.marp-vscode blockquote {
    <span class="hljs-tag">&lt;/&gt;</span></span>
 }
 </code></pre>
+<p>With reactive props, all the boilerplate code with hook imports and hoook calls are abstracted by its self-rendering algorithm.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">New</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello { props.name || &#x27;World&#x27; }&quot;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> props.name = e.target.value} /&gt;    
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<p>The <code>[data]</code> receiving the object and <code>[bind]</code> props maps to its object field, this applies the input value into object field and triggers the component render.</p>
+<p>And all implementation details of input.value and input.onChange is abstracted with <code>[data]</code> object with its <code>[bind]</code> field directives.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello { props.name || &#x27;World&#x27; }&quot;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>    
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 <h2 id="form-binding">Form binding</h2>
-<p>Props binding is a controlled component two-way data binding, but form binding is its uncontrolled component alternative to <code>[data]</code> and <code>[bind]</code> props directives.</p>
+<p>Form binding enables controlled component dual where the <code>[data]</code> is placed in form and the <code>[bind]</code> in its input-like childrem elements.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Form</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span>&gt;</span>   
       Name: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
@@ -308,9 +305,9 @@ body.marp-vscode blockquote {
    <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<p>The self-rendering object is set in <code>[data]</code> and its children form elements maps each field with <code>[bind]</code>. The render will only be triggered by submit button. The form binding covers multiples inner features, like actions, validation and authentication.</p>
+<p>Here, the render is rendered only after the submit button. Form binding covers another specific features, like actions, validation and authentication.</p>
 <h2 id="validation-binding">Validation binding</h2>
-<p>Form biding validation follows the native HTML <code>validation API</code>, injecting its validation errors, joined with HTTP errors, in <strong>feeds.fails</strong> array.</p>
+<p>Validation binding reuse all native HTML <code>validation API</code> specification, injecting its validation errors in <strong>feeds.fails</strong> array in render-time.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Todo</span> = (<span class="hljs-params">props, feeds</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&#x27;http://www.api.com&#x27;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&#x27;POST&#x27;</span> &gt;</span> 
       Task: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;task&#x27;</span> <span class="hljs-attr">maxlength</span>=<span class="hljs-string">{20}</span> /&gt;</span>
@@ -326,7 +323,7 @@ body.marp-vscode blockquote {
    { feeds.await &amp; <span class="hljs-tag">&lt;<span class="hljs-name">progress</span>&gt;</span>loading...<span class="hljs-tag">&lt;/<span class="hljs-name">progress</span>&gt;</span>  }
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<p>Custom validations is covered by <code>input[validate]</code> props, meanwhile <code>form[onError]</code> allows intercepts the fails array before the render to monitor, update or insert on it.</p>
+<p>Custom extension validations is supported by <code>input[validate]</code> props and  <code>form[onError]</code> handler, as demonstrated bellow.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Todo</span> = (<span class="hljs-params">props, feeds</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&#x27;http://www.api.com&#x27;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&#x27;POST&#x27;</span> <span class="hljs-attr">onError</span>=<span class="hljs-string">{onValidate}</span> &gt;</span> 
       Task: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;task&#x27;</span> <span class="hljs-attr">maxlength</span>=<span class="hljs-string">{20}</span> /&gt;</span>
@@ -353,7 +350,7 @@ body.marp-vscode blockquote {
 }
 </code></pre>
 <h2 id="action-binding">Action binding</h2>
-<p>Using form binding with action make a JSON serialization of data object, send to server with fetch api. The feeds.await has the boolean pending state. After the response, a new render will be done do update the component.</p>
+<p>Action binding transform a form[data] into RESTful request, with JSON serialization of its data object and fetch api background request. The feeds.await updates its pending state flag, rendering the component after the response.</p>
 <pre><code class="language-tsx">
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Todo</span> = (<span class="hljs-params">props, feeds</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&#x27;http://www.api.com&#x27;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&#x27;POST&#x27;</span> &gt;</span> 
@@ -365,8 +362,8 @@ body.marp-vscode blockquote {
    { feeds.await &amp; <span class="hljs-tag">&lt;<span class="hljs-name">progress</span>&gt;</span>loading...<span class="hljs-tag">&lt;/<span class="hljs-name">progress</span>&gt;</span>  }
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<h3 id="authentication-binding">Authentication binding</h3>
-<p>Form binding authentication enables JWT bearer authentication algorithm by <code>[bearer]</code> props in submit-time. It sets the token name field of response JSON.</p>
+<h2 id="authentication-binding">Authentication binding</h2>
+<p>Authentication is yet an experimental feature, but for now, it enables JWT bearer authentication algorithm by <code>[bearer]</code> directive in submit-time. It sets the token name field of response JSON.</p>
 <style>
    aside[auth] ul { zoom: 0.95; margin-left: 20px; }
    [auth] ul li:first-of-type { 
@@ -409,7 +406,7 @@ body.marp-vscode blockquote {
 <li>err: clear 'token'</li>
 </ul>
 </aside>
-<p>In succed authentication, the session user and token are persisted in sessionStorage. The logged user could be resolved in any place of application as feeds.logon.</p>
+<p>In succeded authentication, the token is persisted in sessionStorage. The logged user could be accessed in feeds.logon and interects with @auth decorator for RBAC (role-base access control).</p>
 <pre><code class="language-tsx"><span class="hljs-comment">// The `sessionStorage.set(&#x27;logon&#x27;)` retrives the current logged user</span>
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">Home</span> = (<span class="hljs-params">props, { logon }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>username: { logon.name }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 </code></pre>

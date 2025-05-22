@@ -8,7 +8,7 @@ table {
 table tr th {
    color: rgb(96, 164, 216);
    font-weight: 400 !important;
-   border-bottom:solid 1px #555 !important;
+   border-bottom:solid 1px #777 !important;
    padding-bottom: 13px;
 }
 

@@ -287,7 +287,7 @@ body.marp-vscode blockquote {
 </code></pre>
 <h2 id="authorization-roles">Authorization roles</h2>
 <p>Function decorator for role authorization based on <code>feeds.logon.role</code>.</p>
-<pre><code class="language-tsx">@<span class="hljs-title function_">allow</span>([<span class="hljs-string">&#x27;manager&#x27;</span>,<span class="hljs-string">&#x27;admin&#x27;</span>])
+<pre><code class="language-tsx">@<span class="hljs-title function_">auth</span>([<span class="hljs-string">&#x27;manager&#x27;</span>,<span class="hljs-string">&#x27;admin&#x27;</span>])
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Admin</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Admin...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 </code></pre>
 <h2 id="props-routing">Props routing</h2>
