@@ -13,8 +13,8 @@ function createLogo(content) {
 
 function animation() {
    const anime = div => div.style.animationDuration = `${during}ms`
-   const from1To3 = Math.floor(Math.random() * 3) + 1
-   const during = 150 + (100 * (from0To3 * 7))
+   const from0To3 = Math.floor(Math.random() * 3) 
+   const during = 150 + (100 * (from0To3 * 5))
 
    document.querySelectorAll("logo div").forEach(anime)
 }
