@@ -37,3 +37,38 @@ footer {
 }
 
 nav { background-color: transparent ;}
+
+button {
+   margin-top: 5px;
+   padding: 5px 25px;
+   font-family: agave;   
+   /* background: dimgrey !important;
+   border-color: #333 !important;
+   border-style: solid;
+   color: whitesmoke; */
+}
+
+button:disabled { color:whitesmoke }
+
+textarea {
+   display: block;
+   color: black;;
+   font-family: agave;
+   margin: 30px 0 0 0;
+   width: 300px;
+   height: 77px; 
+   padding: 5px;
+}
+
+#email {
+   width: 300px;
+   margin-top: 25px;
+   text-align: center;
+   margin-bottom: -25px;
+   font-family: agave;
+   padding: 3px 10px;
+}
+
+textarea, #email, button {
+   filter: invert(0.83);
+}

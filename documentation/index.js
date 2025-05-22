@@ -25,3 +25,49 @@ function createLink(iframe, content) {
 
    links.forEach(a => a.onclick = () => click(a))
 }
+
+function onKey(event) {
+   button.disabled = !event.target.value?.trim()
+}
+
+
+function sendEmail() {
+   const SERVICE_ID = 'service_5x1js7s'
+   const PUBLICK_KEY = 'pC_QRVGa3CtXY7xpv'
+   const TEMPLATE_ID = 'template_qvb7fpm'
+
+   textarea.disabled = true
+   button.disabled = true
+   email.disabled = true
+
+   from_email = email.value?.trim()
+      || "anonymous@email.com"
+
+   const params = {
+      from_email,
+      from_name: "commentator",
+      message: textarea.value.trim()
+   }
+
+   emailjs.init(PUBLICK_KEY);
+   emailjs.send(SERVICE_ID, TEMPLATE_ID, params)
+      .then(onSuccess, onFailure)
+   
+   function onSuccess() {
+      alert('Thanks for your comment!')
+      textarea.value = ''
+      onFinnaly()
+   }
+
+   function onFailure(ex) {
+      alert("The email was not sent!")
+      console.error(ex)
+      onFinnaly()
+   }
+
+   function onFinnaly() {
+      textarea.disabled = false
+      button.disabled = false
+      email.disabled = false
+   }
+}

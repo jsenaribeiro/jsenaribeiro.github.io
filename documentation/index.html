@@ -4,8 +4,9 @@
 <head>
    <meta charset="UTF-8" />
    <title>Reactful Framework</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
    <link rel="stylesheet" href="index.css">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
    <script src="view/js/logo.js"></script>
    <script src="index.js"></script>
    <title>reactful.js</title>
@@ -19,7 +20,17 @@
       <a href="view/index.html">documentation</a>
       <a href="https://www.youtube.com/watch?v=uuD9GVRK3K8">introduction</a>
       <a href="https://www.youtube.com/shorts/KEHiHDnXEHM">briefing</a>
+
+      <input id="email" placeholder="your@email.com (optional)" type="email" />
+      <textarea id="comment" onkeyup="onKey(event)" placeholder="Feel freee to send comments, feedbacks, suggestions, critics or any other comments to dev team."></textarea>
+      <button disabled onclick="sendEmail(event)">Send your comment!</button>
    </main>
+
+   <script>            
+      const textarea = document.querySelector('textarea')
+      const button = document.querySelector('button')
+      const email = document.getElementById('email')
+   </script>
 
    <footer>
       © 2025 reactful. All rights reserved.
