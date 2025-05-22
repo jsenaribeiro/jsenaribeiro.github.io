@@ -67,7 +67,7 @@ function sendEmail() {
    }
 
    function onFinnaly() {
-      textarea.disabled = false
+      textarea.disabled = true
       button.disabled = false
       email.disabled = false
    }
