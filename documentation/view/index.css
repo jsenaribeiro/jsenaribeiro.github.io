@@ -27,6 +27,7 @@ hr {
 
 #header {
    padding-top: 10px;
+   background: var(--inverse);
    font-size: 0.9rem !important;
    border-bottom: solid 1px grey;   
    grid-template-columns: 100px 1fr auto !important; 
