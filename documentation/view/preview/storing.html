@@ -244,13 +244,13 @@ body.marp-vscode blockquote {
 <p>reactive object • stateful props • modular state • global state • self-rendering state • dependency injection</p>
 </blockquote>
 <h2 id="local-props">Local props</h2>
-<p>Local states with reactive props as <a onclick='goto("review/stateful.html#stateful-props")'>self-rendering states</a>.</p>
+<p>Local states with reactive props as <a onclick='goto("review/reactive.html#stateful-props")'>self-rendering states</a>.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span> Hello { props.name } !
    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> {<span class="hljs-attr">e</span> =&gt;</span> props.name = e.target.value} /&gt;
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 <h2 id="global-store">Global store</h2>
-<p>Injectable <a onclick='goto("review/stateful.html#global-store")'>global store</a> as global store as Single Source of Truth (SSoT) pattern.</p>
+<p>Injectable <a onclick='goto("review/reactive.html#global-store")'>global store</a> as global store as Single Source of Truth (SSoT) pattern.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>({ <span class="hljs-attr">store</span>: { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span> } }).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params">props, feeds</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
@@ -260,7 +260,7 @@ body.marp-vscode blockquote {
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
 <h2 id="partial-states">Partial states</h2>
-<p><a onclick='goto("review/stateful.html#partial-states")'>Partial states</a> is a modular state set in the <code>@client</code> decorator.</p>
+<p><a onclick='goto("review/reactive.html#partial-states")'>Partial states</a> is a modular state set in the <code>@client</code> decorator.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">const</span> guy = <span class="hljs-title function_">useStore</span>({ <span class="hljs-attr">guid</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;john&#x27;</span> })
 
 <span class="hljs-meta">@client</span>(<span class="hljs-literal">true</span>, guy)

@@ -25,15 +25,8 @@ table tr th:first-of-type {
    text-align: right;
 }
 
-table td { padding:3px 7px; }
-
 table {
    margin-left: 20px;
    margin-top: -15px;
-}
-
-[smart-object] {
-   letter-spacing: 5px;
-   font-size: 1.5rem;
 }
 

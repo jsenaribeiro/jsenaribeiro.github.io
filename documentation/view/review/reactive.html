@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Routing structure</title>
+            <title>Reactive objects</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -116,8 +116,7 @@ body.marp-vscode blockquote {
 }
 
 </style>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
-<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+            
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
 <style>
@@ -237,169 +236,75 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <script src='../index.js'></script>
-<style>
-@import url(../css/index.css);
-@import url(./structure.css);
-</style> 
-<h1 id="routing-structure">Routing structure</h1>
-<h2 id="folder-routing">Folder routing</h2>
-<p>Static folder routing has no extra naming conventions. Its routing fallbacks retries into nearest inner route until achieve the root path (/).</p>
-<table>
-<thead>
-<tr>
-<th>DIRECTORY</th>
-<th>ROUTING</th>
-<th>RESOLUTION</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>/routes/index.tsx</td>
-<td>localhost:3000/</td>
-<td>index JSX</td>
-</tr>
-<tr>
-<td>/routes/about.tsx</td>
-<td>localhost:3000/about</td>
-<td>filename JSX</td>
-</tr>
-<tr>
-<td>/routes/sample.html</td>
-<td>localhost:3000/sample</td>
-<td>filename HTML</td>
-</tr>
-<tr>
-<td>/routes/example.md</td>
-<td>localhost:3000/example</td>
-<td>filename markdown</td>
-</tr>
-<tr>
-<td>/routes/profile/index.tsx</td>
-<td>localhost:3000/profile</td>
-<td>subfolder index JSX</td>
-</tr>
-</tbody>
-</table>
-<h2 id="nesting-routes">Nesting routes</h2>
-<p>Nesting routes uses relative dot slash syntax.</p>
-<table>
-<thead>
-<tr>
-<th>CONTEXT</th>
-<th>ROUTING</th>
-<th>RESOLUTION</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>/</td>
-<td>./about</td>
-<td>/about</td>
-</tr>
-<tr>
-<td>/admin/system</td>
-<td>./account</td>
-<td>/admin/account</td>
-</tr>
-<tr>
-<td>/user/profile/overview</td>
-<td>./details</td>
-<td>/user/profile/details</td>
-</tr>
-</tbody>
-</table>
-<h2 id="conflict-rules">Conflict rules</h2>
-<p>Considering the index and extension supression, there is some conflict cases listed below. All routing conflits throws exception in build time exception.</p>
-<table>
-<thead>
-<tr>
-<th>CONTEXT SAMPLING</th>
-<th>CONFLICT TYPE</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>file.tsx, file/index.tsx</td>
-<td>filename x index</td>
-</tr>
-<tr>
-<td>file.html, file.tsx, <a href="http://file.html">file.md</a></td>
-<td>filename x extensions</td>
-</tr>
-<tr>
-<td>file.html, file.tsx, <a href="http://file.html">file.md</a>, file/index.tsx</td>
-<td>filename x extensions x index</td>
-</tr>
-</tbody>
-</table>
-<h2 id="cached-routing">Cached Routing</h2>
-<p>As Reactful supports for <a href='structure.html#client-component'>partial hydration</a>, all routes are sent and cached to the browser as a performatic user experience as a client-side app.</p>
-<h2 id="dynamic-routes">Dynamic routes</h2>
-<p>Dynamic routing (aka parametric route) uses functions decorator. It has highets priority, overriding any static routing conflicts.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { route } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
+            <script src='../js/index.js'></script>
+<style>@import url(../css/index.css);</style> 
+<h1 id="reactive-objects">Reactive objects</h1>
+<h2 id="reactive-concept">Reactive concept</h2>
+<p>Reactive objects are self-rendering states, that encapsulates the React state handling algorithm, avoiding any extra boilerplate, with no class, hooks, calls, etc, just OOP. The reactive object is a Proxy Object thattiggers the host component render when it is changed.</p>
+<h2 id="self-rendering-props">Self-rendering props</h2>
+<p>The most basic state in React is the useState hook. In example bellow, is the lesser boilerplate code you will deal handling states in React.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
 
-@<span class="hljs-title function_">route</span>(<span class="hljs-string">&#x27;/whatever/profile/:id&#x27;</span>)
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Profile</span>(<span class="hljs-params">props, { params }</span>) {
-   <span class="hljs-keyword">const</span> user = <span class="hljs-title function_">fetch</span>(<span class="hljs-string">`<span class="hljs-subst">${url}</span>/<span class="hljs-subst">${params.id}</span>`</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-title function_">json</span>())
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Hello</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> [name, setName] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&#x27;&#x27;</span>);
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">onName</span> = e =&gt; <span class="hljs-title function_">setName</span>(e.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>)
 
-   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Profile<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>User ID: { params.id }<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>User name: { user.name }<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-}
-</span></code></pre>
-<h2 id="declarative-routing">Declarative routing</h2>
-<p>The <code>[route]</code> enables declarative routing, meanwhile <code>[link]</code> directive adds a clickable behavior into its host element to switch routes.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Menu<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>   
-   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>         <span class="hljs-comment">&lt;!-- clicable router --&gt;</span>   
-   <span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>  <span class="hljs-comment">&lt;!-- conditional rendering --&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-<p>Declarative routing offers a cleaner, transparent and component-driven approach to routing. In declarative routing, all page components is declared in the space where it will render, with no extra convention or configuration, it rendering is trigger whe [route] props is matched.</p>
-<p>Declarative routing keeps the mental model design within a component-based single-page application, when most of everything is components. Layout next.js is opaque and creating coupling convention to specific framework.</p>
-<h2 id="imperative-routing-draft">Imperative routing (draft)</h2>
-<p>For imperative routing cases, Reactful has a router object.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { router } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
-
-router.<span class="hljs-property">history</span>  <span class="hljs-comment">// all routes</span>
-router.<span class="hljs-property">current</span>  <span class="hljs-comment">// current route</span>
-router.<span class="hljs-property">address</span>  <span class="hljs-comment">// location object</span>
-
-router.<span class="hljs-title function_">goto</span>(<span class="hljs-string">&#x27;/admin&#x27;</span>)   <span class="hljs-comment">// location.href = &#x27;/admin&#x27;</span>
-router.<span class="hljs-title function_">back</span>()           <span class="hljs-comment">// back to previous route</span>
-router.<span class="hljs-title function_">back</span>(<span class="hljs-number">2</span>)          <span class="hljs-comment">// back 2 previous routes</span>
-router.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;back&#x27;</span>, f)    <span class="hljs-comment">// back event</span>
-router.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;goto&#x27;</span>, f)    <span class="hljs-comment">// goto event</span>
-</code></pre>
-<h2 id="lazy-loading-routes">Lazy loading routes</h2>
-<p>Lazy routing enables lazy component that is imported in runtime, only when it matches the route. It is enabled by import using a promise extension as <code>asLazyComponent</code>.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">MyLazyComponent</span> = <span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./main&#x27;</span>).<span class="hljs-title function_">asLazyComponent</span>(<span class="hljs-string">&#x27;Sample&#x27;</span>)
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = (<span class="hljs-params">props, feeds</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Menu<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;/sample&#x27;</span>&gt;</span>Sample<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">MyLazyComponent</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/lazy&#x27;</span> /&gt;</span> 
-   { feeds.await &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>importing component...<span class="hljs-tag">&lt;/&gt;</span>}
-<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-<h2 id="outlet-templating-draft">Outlet templating (draft)</h2>
-<p>The @outlet decorators applies transparent template/layout components.</p>
-<pre><code class="language-tsx">@<span class="hljs-title function_">outlet</span>() <span class="hljs-comment">// &#x27;./outlet&#x27; path by defalt</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Sample2</span> = (<span class="hljs-params">props, feeds</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
-
-@<span class="hljs-title function_">outlet</span>(<span class="hljs-string">&#x27;/templates/my-specific-template&#x27;</span>)
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Sample2</span> = (<span class="hljs-params">props, feeds</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>...<span class="hljs-tag">&lt;/&gt;</span></span>
-</code></pre>
-<pre><code class="language-tsx"><span class="hljs-comment">// ./outlet.tsx component example</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span>(<span class="hljs-params">{ children }</span>) {
-   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>{ section }<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></span>
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, {name || &#x27;World&#x27;}!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{onName}</span> /&gt;</span>
+   <span class="hljs-tag">&lt;/&gt;</span></span>
 }
 </code></pre>
+<p>All props are converted in reactive objects in Reactful, avoiding any extra coding for imports, hooks and calls to deal with local states.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
+   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, { props.name } !<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{props.name}</span> 
+      <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> props.name = e.target.value} /&gt;
+<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+<h2 id="injecting-global-store">Injecting global store</h2>
+<p>Global store is an injectable global state that follows the single source of thuth principle (SSoT), beeing injected in the server IoC Container.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> myStore = { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span> }
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>({ <span class="hljs-attr">store</span>: myStore }).<span class="hljs-title function_">render</span>()
+</code></pre>
+<p>After injected, it is available as feeds.store ias component second argument.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hi</span> = (<span class="hljs-params">props, { store }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
+   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hi, { store.name } !<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{store}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/&gt;</span></span>
 
-            <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params">props, { store }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
+   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, { store.name } !<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{store}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+<h2 id="partial-modular-states">Partial modular states</h2>
+<p>For multiple shared states, the partial states allows modular approach. First, you need to creat explicitly a store by useStore function.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { useStore } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> person = <span class="hljs-title function_">useStore</span>({ <span class="hljs-attr">guid</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;john&#x27;</span> })
+</code></pre>
+<p>After that, you need to import the crated store and binding it into a component using <code>@client(true, state=null)</code> decorator.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { client } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
+<span class="hljs-keyword">import</span> { person } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./stores&#x27;</span>
+
+@<span class="hljs-title function_">client</span>(<span class="hljs-literal">true</span>, person)
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
+   Hello { person.name } !
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{person}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+<h2 id="performatic-debounce-algorithm">Performatic debounce algorithm</h2>
+<p>The Reactful implements in background a debounce render algorithm with 0.5s delay between each rendering, avoiding render overload.</p>
+<h2 id="deconstruction-state-concern">Deconstruction state concern</h2>
+<p>When deconstructed, reactive objects losses its self-rendering behavior.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params">{ name }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>   
+   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello { name } !<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span> <span class="hljs-comment">&lt;!-- no self-rendering here --&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> name = e.target.value} /&gt;
+<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+
+            
             <script async type="text/javascript">
 /* From extension marp-team.marp-vscode */
 (()=>{var W=Object.defineProperty;var K=(w,h,x)=>h in w?W(w,h,{enumerable:!0,configurable:!0,writable:!0,value:x}):w[h]=x;var o=(w,h)=>W(w,"name",{value:h,configurable:!0});var v=(w,h,x)=>K(w,typeof h!="symbol"?h+"":h,x);(()=>{var w={32:(y,S,g)=>{y.exports=g(924)},924:(y,S)=>{"use strict";var g;g={value:!0};const E={h1:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"1"},style:"display: block; font-size: 2em; margin-block-start: 0.67em; margin-block-end: 0.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h2:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"2"},style:"display: block; font-size: 1.5em; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h3:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"3"},style:"display: block; font-size: 1.17em; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h4:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"4"},style:"display: block; margin-block-start: 1.33em; margin-block-end: 1.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h5:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"5"},style:"display: block; font-size: 0.83em; margin-block-start: 1.67em; margin-block-end: 1.67em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},h6:{proto:o(()=>HTMLHeadingElement,"proto"),attrs:{role:"heading","aria-level":"6"},style:"display: block; font-size: 0.67em; margin-block-start: 2.33em; margin-block-end: 2.33em; margin-inline-start: 0px; margin-inline-end: 0px; font-weight: bold;"},span:{proto:o(()=>HTMLSpanElement,"proto")},pre:{proto:o(()=>HTMLElement,"proto"),style:"display: block; font-family: monospace; white-space: pre; margin: 1em 0; --marp-auto-scaling-white-space: pre;"}},A="data-marp-auto-scaling-wrapper",p="data-marp-auto-scaling-svg",c="data-marp-auto-scaling-container",T=class T extends HTMLElement{constructor(){super();v(this,"container");v(this,"containerSize");v(this,"containerObserver");v(this,"svg");v(this,"svgComputedStyle");v(this,"svgPreserveAspectRatio","xMinYMid meet");v(this,"wrapper");v(this,"wrapperSize");v(this,"wrapperObserver");const s=o(t=>([e])=>{const{width:n,height:r}=e.contentRect;this[t]={width:n,height:r},this.updateSVGRect()},"e");this.attachShadow({mode:"open"}),this.containerObserver=new ResizeObserver(s("containerSize")),this.wrapperObserver=new ResizeObserver((...t)=>{s("wrapperSize")(...t),this.flushSvgDisplay()})}static get observedAttributes(){return["data-downscale-only"]}connectedCallback(){this.shadowRoot.innerHTML=`
