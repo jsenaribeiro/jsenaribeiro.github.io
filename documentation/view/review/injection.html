@@ -265,7 +265,6 @@ body.marp-vscode blockquote {
    <span class="hljs-keyword">const</span> globalState = feeds.<span class="hljs-property">store</span>
 }
 </code></pre>
-<p>Here the commented Feeds interface.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Feeds</span> {
    <span class="hljs-attr">param</span>: record    <span class="hljs-comment">// route params of dynamic routing</span>
    <span class="hljs-attr">store</span>: record    <span class="hljs-comment">// custom global store by DI</span>
@@ -274,6 +273,7 @@ body.marp-vscode blockquote {
    <span class="hljs-attr">fails</span>: <span class="hljs-title class_">Invalid</span>[] <span class="hljs-comment">// current fetch errors</span>
 }
 </code></pre>
+<p>Using the function second argument, the props are preserved to its original semantics: the component attributes and chilren.</p>
 <h2 id="error-components">Error components</h2>
 <p>The high-order error component receives an HTTP status code with an error array cached by unhandled exception throws or HTTP eror responses.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">errorComponent</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>

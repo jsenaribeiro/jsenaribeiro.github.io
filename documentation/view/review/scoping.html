@@ -242,11 +242,12 @@ body.marp-vscode blockquote {
 table { margin-top:-20px;  }
 </style> 
 <h1 id="extended-css">Extended CSS</h1>
+<h2 id="classless-css">Classless CSS</h2>
+<p>Instead of Tailwind approach, tha mixes style information into component, breaking the separation of concern between scripts and styles, Reactful follows a classless CSS approach, using a classless lib minimal.css as starter styling. Minimal.css is an extension of popular classless lib pico.css. It enable SoC between style and script fixing internal issues, as CSS imports bug, using just HTML, CSS and JS native specifications.</p>
 <h2 id="css-imports-bug">CSS imports bug</h2>
 <p>All imported CSS leaks to global scope. It is the same behavior of a link[href] in static HTML. CSS imports in React are useless and error phrone.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;my.css&#x27;</span> <span class="hljs-comment">// global, not modular</span>
 </code></pre>
-<h2 id="alternatives">Alternatives</h2>
 <p>Two more popular libraries to deal with this bug are <strong>css-module</strong> and <strong>styled-components</strong>. Both are very different approch, but share in common the failure to solve the CSS import bug.</p>
 <table>
 <thead>
@@ -278,7 +279,7 @@ table { margin-top:-20px;  }
 </code></pre>
 <h2 id="limitations">Limitations</h2>
 <p>This solution version not support pseudo-selector, so, for this case ():first-of-type, :before, :hover, etc), use the convention HTML <code>link[href]</code>.</p>
-<h2 id="style-decorator">Style decorator</h2>
+<h2 id="css-decorator">CSS Decorator</h2>
 <p>The <code>@style('path')</code> decorator enables a component-scoped CSS in script-side.</p>
 <pre><code class="language-tsx">@<span class="hljs-title function_">style</span>(<span class="hljs-string">&#x27;../styles/hello.css&#x27;</span>)
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello World!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>

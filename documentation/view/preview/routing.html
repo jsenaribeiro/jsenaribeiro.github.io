@@ -283,7 +283,7 @@ body.marp-vscode blockquote {
 <p>Dynamic <a onclick='goto("review/structure.html#dynamic-routes")'>route decorator</a> as highest priority routing resolution.</p>
 <pre><code class="language-tsx">@<span class="hljs-title function_">route</span>(<span class="hljs-string">&#x27;/profile/:id&#x27;</span>)
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">User</span> = (<span class="hljs-params">props, feeds</span>) =&gt;
-   <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>User id: { feeds.params.id }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+   <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>User id: { feeds.param.id }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 </code></pre>
 <h2 id="authorization-roles">Authorization roles</h2>
 <p>Function decorator for role authorization based on <code>feeds.logon.role</code>.</p>
