@@ -253,11 +253,26 @@ body.marp-vscode blockquote {
 <li><strong>/tests</strong>: Unit and e2e pre-configured tests</li>
 </ul>
 <iframe hidden id='folder' src='../folder.html' ></iframe>
-<h2 id="restful-apis">RESTful apis</h2>
+<h2 id="api-handlers">API handlers</h2>
 <p>In  <code>/apis</code> folder, tje framework uses HTTP verb function names to map RESTful apis. Notice that folder is <code>'/apis'</code>, but in url is  <code>'/api'</code>.</p>
 <pre><code class="language-ts"><span class="hljs-comment">// warning: /api/ folder, but /api route</span>
 <span class="hljs-comment">// routing: http://localhost:3000/api/sample</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">get</span> = request =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Response</span>(<span class="hljs-string">&#x27;Hello World!&#x27;</span>)
+</code></pre>
+<h2 id="http-middleware-draft">HTTP Middleware (draft)</h2>
+<p>The handle server method allows middlewares in request-response pipeline.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactful/server&#x27;</span>
+<span class="hljs-keyword">import</span> { middleware } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./middlewares&#x27;</span>
+
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>().<span class="hljs-title function_">handle</span>(middleware).<span class="hljs-title function_">render</span>()
+</code></pre>
+<p>Response is optional, if it is returned, it will stop the request pipeline.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">middleware</span>(<span class="hljs-params">request: Request</span>): <span class="hljs-title class_">Response</span> | <span class="hljs-built_in">void</span> {
+   request.<span class="hljs-property">headers</span>.<span class="hljs-title function_">set</span>(<span class="hljs-string">&#x27;token&#x27;</span>, <span class="hljs-string">&#x27;whatever...&#x27;</span>)
+
+   <span class="hljs-keyword">const</span> interceptMe = request.<span class="hljs-property">url</span>.<span class="hljs-title function_">contains</span>(<span class="hljs-string">&#x27;test&#x27;</span>)
+   <span class="hljs-keyword">if</span> (interceptMe) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Response</span>(<span class="hljs-string">&#x27;test&#x27;</span>)
+}
 </code></pre>
 <h2 id="markdown-support">Markdown support</h2>
 <p>Reactful has a built-in markdown render with routing support. In case of name conflits with another extensions, check the <a href='structure.html#conflict-rules'>confliting name resolution</a> section.</p>
@@ -276,25 +291,51 @@ body.marp-vscode blockquote {
 </code></pre>
 <h2 id="async-components">Async components</h2>
 <p>Async components with <code>Suspense API</code> are supported. The new await <strong>props directive</strong> offers an optional alternative to <code>Suspense API</code>.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">AsyncSample</span>(<span class="hljs-params">props</span>) {
+<pre><code class="language-tsx"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Async</span>(<span class="hljs-params">props</span>) {
    <span class="hljs-keyword">const</span> text = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;www.api.com/text&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-title function_">text</span>());
    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>content response: { text }<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></span>
 }
-</code></pre>
-<section cols='2' style='margin-top: 10px'>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">SuspenseAlt</span> = <span class="hljs-keyword">async</span> _ =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">{</span>&lt;<span class="hljs-attr">Loading</span>/&gt;</span>}&gt;
-      <span class="hljs-tag">&lt;<span class="hljs-name">AsyncSample</span> /&gt;</span>
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">SyspenseExample</span> = <span class="hljs-keyword">async</span> props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">{</span>&lt;<span class="hljs-attr">h1</span>&gt;</span>loading...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>}&gt;
+      <span class="hljs-tag">&lt;<span class="hljs-name">Async</span> /&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span>&gt;</span>
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">AwaitAlt</span> = <span class="hljs-keyword">async</span> _ =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">await</span>=<span class="hljs-string">{AsyncSample}</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">Loading</span>/&gt;</span>
-   <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-<span class="hljs-tag">&lt;/&gt;</span></span>
+<p>The await directive is a Reactful alternative to Suspense component. Since it is an attribute, it could use an HTML element that could by stylized.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Await</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">await</span>=<span class="hljs-string">{Async}</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>loading...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
 </code></pre>
-</section>
+<h2 id="search-engine-optmization-seo">Search Engine Optmization (SEO)</h2>
+<p>SEO using decorators with typed MetaTag with Open Graph Protocol.</p>
+<aside cols='2'>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { seo } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">MetaTag</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
+
+@<span class="hljs-title function_">seo</span>(<span class="hljs-string">&#x27;title&#x27;</span>, <span class="hljs-string">&#x27;description&#x27;</span>) 
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Hi</span>(<span class="hljs-params">props</span>) {
+   <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>Hi...<span class="hljs-tag">&lt;/&gt;</span></span>
+}
+</code></pre>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-attr">meta</span>: <span class="hljs-title class_">MetaTag</span> = { 
+   <span class="hljs-attr">chartset</span>: <span class="hljs-string">&#x27;UTF-8&#x27;</span>, 
+   <span class="hljs-attr">keywords</span>: <span class="hljs-string">&#x27;a,b,etc&#x27;</span> 
+   <span class="hljs-attr">og</span>: { ... }
+}
+
+@<span class="hljs-title function_">seo</span>(<span class="hljs-string">&#x27;title&#x27;</span>, meta) 
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">About</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>etc...<span class="hljs-tag">&lt;/&gt;</span></span> 
+</code></pre>
+</aside>
+<p>It support dynamic SEO (draft) with high-order functions.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">myMetadataSEO</span>(<span class="hljs-params">context, feeds</span>) {  
+   context.<span class="hljs-property">title</span> = feeds.<span class="hljs-property">params</span>.<span class="hljs-property">id</span>
+   context.<span class="hljs-property">description</span> = feeds.<span class="hljs-property">params</span>.<span class="hljs-property">id</span>
+}
+
+@<span class="hljs-title function_">seo</span>(myMetadataSEO) 
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">User</span> = (<span class="hljs-params">props, feeds</span>) =&gt;
+   <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>User id: { feeds.param.id }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+</code></pre>
 
             
             <script async type="text/javascript">

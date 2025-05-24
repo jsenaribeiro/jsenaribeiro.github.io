@@ -239,10 +239,10 @@ body.marp-vscode blockquote {
             <script src='../js/index.js'></script>
 <style>
 @import url(../css/index.css);
-li { margin-left: 40px; }
+li { margin-left: 30px; }
 </style> 
 <h1 id="core-philosophy">Core philosophy</h1>
-<h2 id="minimalism">Minimalism</h2>
+<h2 id="minimalist-design">Minimalist design</h2>
 <p>Minimalism is the core design philosophy in Reacful design. The model of this minimalist is based in stateless react itself.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Stateless</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello {props.name}!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 </code></pre>
@@ -258,7 +258,7 @@ li { margin-left: 40px; }
 }
 </code></pre>
 <p>React code design it, in same time, the most concise componentization design in its stateless code, and the most verbose, with its stateful design. The examplo above is the most simple way to deal with states, the complexity increases with shared states and remote states. Also React frameworks has its verbosity problem, as next.js over-conventions.</p>
-<h2 id="principles">Principles</h2>
+<h2 id="minimalist-principles">Minimalist principles</h2>
 <p>Reactful core principles drivens the minimalist Reactful philosophy.</p>
 <ul>
 <li><strong>simplicity</strong>: solution with less verbosity</li>
@@ -272,6 +272,32 @@ li { margin-left: 40px; }
 <li>native specification APIs: learnability</li>
 </ul>
 <p>Each principle are mutual between. A simpler design, is more intuitive and learnable. A more intuitive design is simple and easier to learn. And, off course, a more learnable design is based in something simples and more intuitive.</p>
+<h2 id="stateful-reactjs-case">Stateful React.js case</h2>
+<p>Cleaner and reduced code agains stateful React verbosity and complexity.</p>
+<ul>
+<li>local states</li>
+<li>global states</li>
+<li>partial states</li>
+</ul>
+<h2 id="styling-tailwind-case">Styling tailwind case</h2>
+<p>Cleaner classless CSS, SoC principle and styles props extensions against Tailwind approach mixed messed code with CSS and JS.</p>
+<ul>
+<li>SoC principle</li>
+<li>classless CSS</li>
+<li>uncoupled fit</li>
+</ul>
+<h2 id="routing-nextjs-case">Routing Next.js case</h2>
+<p>Keeping the native component-driven design against next conventions.</p>
+<ul>
+<li>declarative routing</li>
+<li>over-convention</li>
+<li>styling routeds</li>
+<li>optional params</li>
+<li>error handling</li>
+<li>generateMetadata x @</li>
+<li>params: 3 conventions x 0</li>
+<li>generateStaticParams x @</li>
+</ul>
 
             
             <script async type="text/javascript">
