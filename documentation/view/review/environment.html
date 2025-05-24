@@ -252,7 +252,25 @@ body.marp-vscode blockquote {
 <li><strong>/decorators</strong>: Build-time function decorators</li>
 <li><strong>/tests</strong>: Unit and e2e pre-configured tests</li>
 </ul>
-<iframe hidden id='folder' src='../folder.html' ></iframe>
+<h2 id="env-settings">.env settings</h2>
+<p>The <strong>.env</strong> files are supported with no prefixes and with environment switch between build and debug. The required fields are typed, but support dynamic keyed fields.</p>
+<aside cols='4:5' style='margin-bottom: 10px'>
+<pre><code class="language-py">PORT=<span class="hljs-number">3333</span>    <span class="hljs-comment"># http port</span>
+MINIFY=TRUE  <span class="hljs-comment"># js minifier</span>
+DEBOUNCE=<span class="hljs-number">33</span>  <span class="hljs-comment"># batch render</span>
+PREFIX_URL=/ <span class="hljs-comment"># root address</span>
+MY_VALUE=<span class="hljs-number">100</span> <span class="hljs-comment"># custom field  </span>
+</code></pre>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> k <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/kernel&#x27;</span>
+
+<span class="hljs-keyword">const</span> port = k.<span class="hljs-property">env</span>.<span class="hljs-property">PORT</span>
+<span class="hljs-keyword">const</span> value = k.<span class="hljs-property">env</span>[<span class="hljs-string">&#x27;MY_VALUE&#x27;</span>]
+<span class="hljs-keyword">const</span> address = k.<span class="hljs-property">env</span>.<span class="hljs-property">PUBLIC_URL</span>
+</code></pre>
+</aside>
+<pre><code class="language-ts"><span class="hljs-comment">// use declare const to type env with custom fields</span>
+<span class="hljs-keyword">declare</span> <span class="hljs-keyword">const</span> env : <span class="hljs-title class_">IEnvironment</span> &amp; { <span class="hljs-attr">MY_VALUE</span>: <span class="hljs-built_in">number</span>  }
+</code></pre>
 <h2 id="api-handlers">API handlers</h2>
 <p>In  <code>/apis</code> folder, tje framework uses HTTP verb function names to map RESTful apis. Notice that folder is <code>'/apis'</code>, but in url is  <code>'/api'</code>.</p>
 <pre><code class="language-ts"><span class="hljs-comment">// warning: /api/ folder, but /api route</span>
@@ -277,7 +295,7 @@ body.marp-vscode blockquote {
 <h2 id="markdown-support">Markdown support</h2>
 <p>Reactful has a built-in markdown render with routing support. In case of name conflits with another extensions, check the <a href='structure.html#conflict-rules'>confliting name resolution</a> section.</p>
 <h2 id="extended-html">Extended HTML</h2>
-<p>Reactful server raw HTML, extending  <code>&lt;link&gt;</code> tag with <code>type=&quot;react&quot;</code>, for JSX rendering directally inside HTML, importing the default component, or the component defined in <code>rel</code> attribute.</p>
+<p>The <code>&lt;link&gt;</code> supports a new <code>type=&quot;react&quot;</code>, for JSX rendering injected in HTML for default import or named imports by <code>rel</code> attribute.</p>
 <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;react&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;./general.tsx&quot;</span> /&gt;</span>   
@@ -290,7 +308,7 @@ body.marp-vscode blockquote {
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
 <h2 id="async-components">Async components</h2>
-<p>Async components with <code>Suspense API</code> are supported. The new await <strong>props directive</strong> offers an optional alternative to <code>Suspense API</code>.</p>
+<p>Async components and <code>Suspense API</code> are supported, with a new await <strong>props directive</strong> an props-driven alternative to <code>Suspense API</code>.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Async</span>(<span class="hljs-params">props</span>) {
    <span class="hljs-keyword">const</span> text = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;www.api.com/text&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-title function_">text</span>());
    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>content response: { text }<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></span>

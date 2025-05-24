@@ -240,12 +240,12 @@ body.marp-vscode blockquote {
 <style>@import url(../css/index.css);</style> 
 <h1 id="functional-decorator">Functional decorator</h1>
 <h2 id="decorators">Decorators</h2>
-<p>Javascript decorator is class-only. Since React is fully functional, native JavaScript decoratores are useless in React. So, Reactful implements a bun transpiler for function decortoras.</p>
+<p>Since Javascript decorator is a class-only feature. The functional paradigm in React turns native decorators useles. Reactful fixes it implementing a functional decorator transpiler.</p>
 <h2 id="modelling">Modelling</h2>
 <p>The decorator signature is a function that returns an specific signature function with meta and call arguments and call return, as example bellow.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">decorating</span> = args =&gt; <span class="hljs-function">(<span class="hljs-params">meta, call</span>) =&gt;</span> call
 </code></pre>
-<p>The meta is a ImportMeta type with import metadata, and call is any kind of function, like ReactFunctionComponent or just RFC. A decorator could intercepts each functional component.</p>
+<p>The meta as import metadata and call a function object, like ReactFunctionComponent or just RFC. A decorator could intercepts each functional component.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">decorating</span>(<span class="hljs-params">args: string</span>): <span class="hljs-title class_">Decorator</span>&lt;<span class="hljs-variable constant_">RFC</span>&gt; {   
    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params">meta: ImportMeta, call: RFC</span>) {
       <span class="hljs-comment">// TODO...</span>

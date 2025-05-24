@@ -361,21 +361,22 @@ body.marp-vscode blockquote {
    <span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>  <span class="hljs-comment">&lt;!-- conditional rendering --&gt;</span>
 <span class="hljs-tag">&lt;/&gt;</span></span>
 </code></pre>
-<p>Declarative routing offers a cleaner, transparent and component-driven approach to routing. In declarative routing, all page components is declared in the space where it will render, with no extra convention or configuration, it rendering is trigger whe [route] props is matched.</p>
-<p>Declarative routing keeps the mental model design within a component-based single-page application, when most of everything is components. Layout next.js is opaque and creating coupling convention to specific framework.</p>
+<p>All page components is placed where it it will render, with no extra convention or boilerplate settings code. It renders when [route] props is matched. Declarative routing works as next.js slots or Angular transclusion (component project), but in a clearer way.</p>
 <h2 id="actived-routing-style">Actived routing style</h2>
 <p>The active routing elements using [link] directives could be easily style with built-in <a href='./scoping.html#styled-route'>.routed CSS className</a>, to easily creates a toggled state button.</p>
 <h2 id="imperative-routing-draft">Imperative routing (draft)</h2>
 <p>For imperative routing cases, Reactful has a router object.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { router } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/client&#x27;</span>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> { router } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@reactful/kernel&#x27;</span>
 
 router.<span class="hljs-property">history</span>  <span class="hljs-comment">// all routes</span>
 router.<span class="hljs-property">current</span>  <span class="hljs-comment">// current route</span>
 router.<span class="hljs-property">address</span>  <span class="hljs-comment">// location object</span>
+router.<span class="hljs-property">queries</span>  <span class="hljs-comment">// query string values (URL.searchParams)</span>
 
 router.<span class="hljs-title function_">goto</span>(<span class="hljs-string">&#x27;/admin&#x27;</span>)   <span class="hljs-comment">// location.href = &#x27;/admin&#x27;</span>
 router.<span class="hljs-title function_">back</span>()           <span class="hljs-comment">// back to previous route</span>
 router.<span class="hljs-title function_">back</span>(<span class="hljs-number">2</span>)          <span class="hljs-comment">// back 2 previous routes</span>
+
 router.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;back&#x27;</span>, f)    <span class="hljs-comment">// back event</span>
 router.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;goto&#x27;</span>, f)    <span class="hljs-comment">// goto event</span>
 </code></pre>

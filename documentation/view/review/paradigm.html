@@ -244,9 +244,7 @@ table td { font-weight:100 !important; color:white; }
 </style> 
 <h1 id="binding-paradigm">Binding paradigm</h1>
 <h2 id="dual-binding">Dual binding</h2>
-<p>Reactful reactive objects emulates Angular's two-way data binding, abstracting the React one-way data flow using built-in <code>[data]</code> and <code>[bind]</code> <a href='directive.html'>directives</a>.</p>
-<h2 id="reactful-dual-binding">Reactful Dual binding</h2>
-<p>Reactul dual data binding is a two-way data binding design with a one-way data flow architecture. It is dual because it binds the value and the event change to each input-like element.</p>
+<p>Reactful reactive objects emulates Angular's two-way data binding, abstracting the React one-way data flow using built-in <code>[data]</code> and <code>[bind]</code> <a href='directive.html'>directives</a>. The dual data binding is a two-way data binding design with a one-way data flow architecture. It is dual because it binds the value and the event change to each input-like element.</p>
 <table>
 <thead>
 <tr>
@@ -327,7 +325,7 @@ table td { font-weight:100 !important; color:white; }
 <pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Todo</span> = (<span class="hljs-params">props, feeds</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&#x27;http://www.api.com&#x27;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&#x27;POST&#x27;</span> <span class="hljs-attr">onError</span>=<span class="hljs-string">{onValidate}</span> &gt;</span> 
       Task: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;task&#x27;</span> <span class="hljs-attr">maxlength</span>=<span class="hljs-string">{20}</span> /&gt;</span>
-      Done: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;mail&#x27;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&#x27;email&#x27;</span> <span class="hljs-attr">validate</span>=<span class="hljs-string">{validateSpecificEmail}</span> /&gt;</span>    
+      Done: <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;mail&#x27;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&#x27;email&#x27;</span> <span class="hljs-attr">validate</span>=<span class="hljs-string">{specificValidation}</span> /&gt;</span>    
       <span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
    <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
 
@@ -339,7 +337,7 @@ table td { font-weight:100 !important; color:white; }
    { feeds.await &amp; <span class="hljs-tag">&lt;<span class="hljs-name">progress</span>&gt;</span>loading...<span class="hljs-tag">&lt;/<span class="hljs-name">progress</span>&gt;</span>  }
 <span class="hljs-tag">&lt;/&gt;</span></span>
 
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">validateSpecificEmail</span>(<span class="hljs-params"></span>) {
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">specificValidation</span>(<span class="hljs-params"></span>) {
    <span class="hljs-comment">// return a non-empty string to invalidate</span>
    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;example of a custom email error message....&#x27;</span>
 }
@@ -406,7 +404,7 @@ table td { font-weight:100 !important; color:white; }
 <li>err: clear 'token'</li>
 </ul>
 </aside>
-<p>In succeded authentication, the token is persisted in sessionStorage. The logged user could be accessed in feeds.logon and interects with @auth decorator for RBAC (role-base access control).</p>
+<p>In succeded authentication, the token is persisted in sessionStorage and could be accessed in feeds.logon, interecing with RBAC @auth decorator .</p>
 <pre><code class="language-tsx"><span class="hljs-comment">// The `sessionStorage.set(&#x27;logon&#x27;)` retrives the current logged user</span>
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">Home</span> = (<span class="hljs-params">props, { logon }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>username: { logon.name }<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
 </code></pre>
