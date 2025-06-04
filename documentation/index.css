@@ -73,3 +73,35 @@ textarea {
 textarea, #email, button {
    filter: invert(0.83);
 }
+
+#c0d3x {
+   font-weight: 100;
+   font-family: 'fira sans', consolas, monospace;
+   border:0 !important;
+   border-top: solid 1px wheat !important;
+   letter-spacing: 15px;
+   margin-bottom: 20px;
+   padding-top: 10px;
+   font-size: 15px;
+   width: 400px;
+}
+
+#links {
+   margin-bottom: -15px;;
+}
+
+#links > :not(:first-of-type) {
+   border-left: solid 2px grey;
+
+}
+
+#links > * {
+   margin-bottom:;
+   font-size: 0.9rem !important;
+   padding: 0 5px;
+}
+
+logo {
+   transform: rotate(140deg);
+   margin-bottom: -15px;
+}
