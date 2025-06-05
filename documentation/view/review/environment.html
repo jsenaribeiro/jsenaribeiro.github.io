@@ -247,10 +247,7 @@ body.marp-vscode blockquote {
 <li><strong>/assets</strong>: Public static content as images, sounds, fonts, etc</li>
 <li><strong>/routes</strong>: Component pages for static directory routing</li>
 <li><strong>/builds</strong>: Ready-to-deploy post-build content</li>
-<li><strong>/controls</strong>: Standard shareable control components</li>
-<li><strong>/directives</strong>: Render-time property directtives</li>
-<li><strong>/decorators</strong>: Build-time function decorators</li>
-<li><strong>/tests</strong>: Unit and e2e pre-configured tests</li>
+<li><strong>/controls</strong>: Common shareable components</li>
 </ul>
 <h2 id="env-settings">.env settings</h2>
 <p>The <strong>.env</strong> files are supported with no prefixes and with environment switch between build and debug. The required fields are typed, but support dynamic keyed fields.</p>
@@ -308,7 +305,7 @@ MY_VALUE=<span class="hljs-number">100</span> <span class="hljs-comment"># custo
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
 <h2 id="async-components">Async components</h2>
-<p>Async components and <code>Suspense API</code> are supported, with a new await <strong>props directive</strong> an props-driven alternative to <code>Suspense API</code>.</p>
+<p>Async components and <code>Suspense API</code> are supported, with a new await <strong>props handler</strong> an props-driven alternative to <code>Suspense API</code>.</p>
 <pre><code class="language-tsx"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Async</span>(<span class="hljs-params">props</span>) {
    <span class="hljs-keyword">const</span> text = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;www.api.com/text&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-title function_">text</span>());
    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>content response: { text }<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></span>
