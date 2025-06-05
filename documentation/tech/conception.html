@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>Dependency Injection</title>
+            <title>Architecture</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -236,71 +236,312 @@ body.marp-vscode blockquote {
         
         </head>
         <body class="vscode-body vscode-dark">
-            <script src='../js/index.js'></script>
-<style>@import url(../css/index.css);</style> 
-<h1 id="dependency-injection">Dependency Injection</h1>
-<h2 id="ioc-container">IoC Container</h2>
-<p>The Reactful IoC container handles <a onclick='goto("review/reactive.html")'>global state</a>, <a href='#error-handling'>error components<a> and<a onclick='goto("review/directive.html")'>props handlers</a> dependencies as server argument or inject method.</p>
+            <h1 id="architecture">Architecture</h1>
+<p>Reactful is a full-featured react meta-framework with a minimalist design and maximalist performance.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ux</td>
+<td>performance</td>
+<td>consumption (RAM, CPU, HD), speedness (latence, etc), scalability (concurrency, etc)</td>
+</tr>
+<tr>
+<td>dx</td>
+<td>productivity</td>
+<td>simplicity, learnability, intuitivity</td>
+</tr>
+<tr>
+<td>mx</td>
+<td>proficiency</td>
+<td>supports, principles, highlights</td>
+</tr>
+</tbody>
+</table>
+<h2 id="productivity">PRODUCTIVITY</h2>
+<p>Reactful has a large focus in dev experience with component-based SPA.
+Reactful is an standard-driven minimalist stateful React.</p>
+<ul>
+<li>simplicity</li>
+<li>intuitivity</li>
+<li>learnability</li>
+</ul>
+<p>Instead of overwhelming the developer with new concepts, conventions, components, standards and pattern. The minimalist architecture philosophy is standard-driven, with OOP, attributes, decorators and directory routing. As a react meta-framework, instead of be an react extension, it is a react compression, removing, for example, the need of hooks as optional in favor of object.</p>
+<h3 id="styling">Styling</h3>
+<p>The lack of CSS modularization, or CSS leaking imports, push React ecosystem to some workround solutions, that not solved the problem, but deal with it. The main 3 solutions are css-module, styled-component and tailwing. In common, none of them solve the CSS modular issue, and decreases the design quality.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>css-module</td>
+<td>Import modules with '.module.css' suffix and inject into JSX style props</td>
+<td>It enable some CSS scoping, but based in convention with some coupling with JSX by the style props</td>
+</tr>
+<tr>
+<td>styled-component</td>
+<td>It uses literal strings to code CSS string content inside of script, converting it in a CSS object to associate to JSX style props</td>
+<td>It is similar to css-module but without any opaque convention required, but mix style inside script, and  is not able to deal with existent CSS files</td>
+</tr>
+<tr>
+<td>tailwind CSS lib</td>
+<td>Create utility CSS to style component using CSS class composition inside component className props</td>
+<td>It completelly breaks the SoC between style and component, and polluted the code with styling information</td>
+</tr>
+</tbody>
+</table>
+<p>Reactful made the more obvious solution, just fix the CSS imports, allowing that any CSS import is only injected inside the modular components, a more web standard solution with zero learning curve overhead.</p>
+<p>Warning! the current version does not support pseudo-selector. For CSS pseudo-selector content, just load your CSS files by HTML link[href] attribute.</p>
+<h3 id="routing">Routing</h3>
+<p>Routing cruscial to a SPA in the most common solutions are the client-side lib react-router-dom and server-side react meta frameworks line next.js. Both defines the approach that influences othes technologies, as Remix, Astro, etc.</p>
+<table>
+<thead>
+<tr>
+<th>problems</th>
+<th>solutions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- react-router-dom boilerplate code</td>
+<td>directory for static routing</td>
+</tr>
+<tr>
+<td>- next.js conventions overhead</td>
+<td>decorator for dynamic routing</td>
+</tr>
+<tr>
+<td>- extra hooks and components</td>
+<td>transversal props handlers</td>
+</tr>
+</tbody>
+</table>
+<p>Next.js brings an great improvement with directory routing in relation to verbose component-driven solution in react-router-dom. But, the limit of this approach to deal with dynamic routing, open the door to naming conventions, losing its original advantage with a syntatic and sematic convention overhead.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>next.js routing conventions</td>
+<td>page.js, page.tsx, layout.js, layout.tsx, loading.js, loading.tsx, error.js, error.tsx, not-found.js, found.tsx, route.ts, [param], [...param], [[...param]], index.js, index.tsx, api/, (group), @slot/, default.js, default.tsx</td>
+</tr>
+</tbody>
+</table>
+<p>React solves route mapping bringing back the simplicity of directory routing, but for dynamic routing, it intruduces functional decorators by its transpiler.</p>
+<pre><code class="language-tsx">@<span class="hljs-title function_">route</span>(<span class="hljs-string">&#x27;/profile/:id&#x27;</span>)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Profile</span>(<span class="hljs-params">props, feeds</span>) { 
+   <span class="hljs-keyword">const</span> id = feeds.<span class="hljs-property">param</span>.<span class="hljs-property">id</span>
+   ...etc
+}
+</code></pre>
+<p>For routing navigation, just props handlers and declarative routing. The [link] props create a clickable element, and [route] a conditional rendering.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">Menu</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">link</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>Main<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>     <span class="hljs-comment">&lt;!-- clickable router --&gt;</span>   
+   <span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">route</span>=<span class="hljs-string">&#x27;/main&#x27;</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>   <span class="hljs-comment">&lt;!-- conditional render --&gt;</span>
+<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+<h3 id="binding">Binding</h3>
+<p>React has the easiest componization design when dealing with stateless component, but the most verbose, complex and couter-intuitive when deals with stateful component. Even with hook functions, it much more complex that angular-like solutions, like vue and angular itself with its local data binding and shared service injection. The complexity and verbosity scales within stateful React scope.</p>
+<h4 id="a-stateless">a) stateless</h4>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Stateless</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, {props.name}!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+</code></pre>
+<h4 id="b-stateful-local">b) stateful (local)</h4>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">LocalStates</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> [name, setName] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&#x27;&#x27;</span>);
+  
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, {name || &#x27;World&#x27;}!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> 
+         setName(e.target.value)} /&gt;
+   <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>
+}
+</code></pre>
+<h4 id="c-stateful-global">c) stateful (global)</h4>
+<pre><code class="language-tsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, { createContext, useContext, useState } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">MyContext</span> = <span class="hljs-title function_">createContext</span>();
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">GlobalState</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> [name, setName] = <span class="hljs-title function_">useContext</span>(<span class="hljs-title class_">MyContext</span>);
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{name}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{e</span> =&gt;</span> setName(e.target.value)} /&gt;
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello, {name || &#x27;World&#x27;}!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> state = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&#x27;&#x27;</span>);
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">MyContext.Provider</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{state}</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">GlobalState</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">MyContext.Provider</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<p>Reactful solution implements reactive objects, property handlers and dependency injections. Here, props are reactives objects that triggers the render when it is change, and store is a global state injected in component second argument. So, in Reactful, the props itself is a state, avoiding any imports, hooks, call, etc.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">LocalState</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span> Hello { props.name }!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>  
+<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+<pre><code class="language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">GlobalState</span> = (<span class="hljs-params">props, { store }</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span> Hello { store.name }!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{store}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>  
+<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+<p>It also supports uncontrolled forms with <code>form[data]</code> with <code>form &gt; input[bind]</code> with RESTful action, validation API and embbeded JWT auth algorithm.</p>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span> Hello { props.name }!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">data</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> /&gt;</span>  
+<span class="hljs-tag">&lt;/&gt;</span></span>
+</code></pre>
+<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">Form</span> = props =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span> Hello { props.name }!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">form</span>=<span class="hljs-string">{props}</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&#x27;webapi...&#x27;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">bind</span>=<span class="hljs-string">&#x27;name&#x27;</span> <span class="hljs-attr">maxlength</span>=<span class="hljs-string">&#x27;50&#x27;</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/&gt;</span>
+</span></code></pre>
+<p>Global states are injected with the Reacful IoC container.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">import</span> { launch } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactful/server&#x27;</span>
-<span class="hljs-keyword">import</span> { directive } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./directives&#x27;</span>
+<span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./store&#x27;</span>
 
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">error</span> = (<span class="hljs-params">status, errors</span>) =&gt; ...
-<span class="hljs-keyword">const</span> store = { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;john&#x27;</span>, <span class="hljs-attr">date</span>: <span class="hljs-string">&#x27;0001-01-01&#x27;</span> }
-
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">launch</span>({ store, error })
-     .<span class="hljs-title function_">inject</span>(directive)
-     .<span class="hljs-title function_">inject</span>(middleware)
-     .<span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>)
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">launch</span>({ store }).<span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 </code></pre>
-<p>The launch parameter is typed by Settings interface</p>
-<pre><code class="language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Settings</span>&lt;T = <span class="hljs-built_in">any</span>&gt;  {
-   <span class="hljs-attr">store</span>: T          <span class="hljs-comment">// global state  (default: undefined)</span>
-   <span class="hljs-attr">route</span>: <span class="hljs-built_in">string</span>     <span class="hljs-comment">// component page folder (default: &#x27;/routes&#x27;)</span>
-   <span class="hljs-attr">query</span>: <span class="hljs-built_in">string</span>     <span class="hljs-comment">// query selector for root HTML (default: &#x27;#root&#x27;)</span>
-}
-</code></pre>
-<h2 id="injection-resolution">Injection resolution</h2>
-<p>It uses the the function second parameter to inject the feeds object. A object that contains all injected dependencies and contextual informations.</p>
-<pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Component</span>(<span class="hljs-params">props, feeds</span>) {
-   <span class="hljs-keyword">const</span> isPending = feeds.<span class="hljs-property">awaits</span>
-   <span class="hljs-keyword">const</span> globalState = feeds.<span class="hljs-property">store</span>
-}
-</code></pre>
-<pre><code class="language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Feeds</span> {
-   <span class="hljs-attr">param</span>: record    <span class="hljs-comment">// route params of dynamic routing</span>
-   <span class="hljs-attr">store</span>: record    <span class="hljs-comment">// custom global store by DI</span>
-   <span class="hljs-attr">logon</span>: record    <span class="hljs-comment">// current logged user by Reactful auth</span>
-   <span class="hljs-attr">await</span>: <span class="hljs-built_in">boolean</span>   <span class="hljs-comment">// global pending fetch for loading spine</span>
-   <span class="hljs-attr">fails</span>: <span class="hljs-title class_">Invalid</span>[] <span class="hljs-comment">// current fetch errors</span>
-}
-</code></pre>
-<p>Using the function second argument, the props are preserved to its original semantics: the component attributes and children. Insteado of mixing it with other information, like next.js with params.</p>
-<h2 id="error-components">Error components</h2>
-<p>The high-order error component receives an HTTP status code with an error array cached by unhandled exception throws or HTTP eror responses.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">errorComponent</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My custom error component...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-   { errors.map((e,i) =&gt; <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{i}</span>&gt;</span>{ e }<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>) }
-<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
-</code></pre>
-<p>The error component is injected in Reactful launch function.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">await</span> <span class="hljs-title function_">launch</span>({ <span class="hljs-attr">error</span>: errorComponent }).<span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>)
-</code></pre>
-<p>Specific compnoent errors is handled by  <code>@error(component)</code> decorator.</p>
-<pre><code class="language-tsx">@<span class="hljs-title function_">error</span>(specificErrorComponent)
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">SomeComponent</span>(<span class="hljs-params"></span>) { ... }
-
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">specificErrorComponent</span> = (<span class="hljs-params">status, errors</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My custom error component...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-   { errors.map((e,i) =&gt; <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{i}</span>&gt;</span>{ e }<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>) }
-<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
-</code></pre>
-<h2 id="conflits-with-react-19">Conflits with React 19</h2>
-<p>Canary React 19 will is considering use the function second parameter for server component context. So, when if this decision goes to final version,  Reactful will realocate this information to serve field in Feeds.</p>
-<pre><code class="language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Feeds</span> {
-   <span class="hljs-attr">serve</span>: <span class="hljs-title class_">Context</span>
-   ...,
-}
-</code></pre>
+<h2 id="performance">PERFORMANCE</h2>
+<h3 id="consumption">consumption</h3>
+<h4 id="a-static-server-rendering-ssg">a) static server rendering (SSG)</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>reactful</th>
+<th>next.js</th>
+<th>remix</th>
+<th>fresh</th>
+<th>astro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAM</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CPU</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>HD</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="b-dynamic-server-rendering-ssr">b) dynamic server rendering (SSR)</h4>
+<h4 id="c-periodic-server-rendering-isr">c) periodic server rendering (ISR)</h4>
+<h4 id="d-client-rendering-csr">d) client rendering (CSR)</h4>
+<h3 id="velocity">velocity</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>load-time</td>
+<td></td>
+</tr>
+<tr>
+<td>build-time</td>
+<td></td>
+</tr>
+<tr>
+<td>render-time</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="proficiency">PROFICIENCY</h2>
+<p>In this contenxt, proficiency is the range of capacities and features of a given technology. It implies the manager experience to minimizes the number of licences and technological fragmentation of the project and team. Reactful supports:</p>
+<h3 id="supports">supports</h3>
+<ul>
+<li>.env integration</li>
+<li>server-side rendering</li>
+<li>static site generation</li>
+<li>incremental site regeneration</li>
+<li>search engine optmization</li>
+<li>client-side rendering</li>
+<li>partial-hidration</li>
+<li>component streaming</li>
+<li>property directivy</li>
+<li>markdown rendering</li>
+<li>modular CSS</li>
+<li>nested routing</li>
+<li>cached routing</li>
+<li>routing pre-fetch</li>
+<li>component-scoped CSS</li>
+<li>RESTful form actions</li>
+<li>HTML validation API</li>
+<li>error handling</li>
+<li>async component</li>
+<li>server component</li>
+<li>http middleware</li>
+<li>lazy components</li>
+<li>CLI create tool</li>
+<li>api routing</li>
+</ul>
+<h3 id="innovations-highlights">innovations (highlights)</h3>
+<ul>
+<li>dependency injection (react)</li>
+<li>function decorators (all)</li>
+<li>declarative routing (all)</li>
+<li>dual data binding (react)</li>
+<li>reactive objects (all)</li>
+<li>HTML links JSX (all)</li>
+</ul>
+<h3 id="foundations">foundations</h3>
+<ul>
+<li>KISS principles</li>
+<li>XP simple design</li>
+<li>SoC (style x script)</li>
+<li>web standards</li>
+<li>classless CSS</li>
+<li>typescript</li>
+<li>bun</li>
+</ul>
 
             
             <script async type="text/javascript">
