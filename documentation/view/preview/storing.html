@@ -251,7 +251,7 @@ body.marp-vscode blockquote {
 </code></pre>
 <h2 id="global-store">Global store</h2>
 <p>Injectable <a onclick='goto("review/reactive.html#global-store")'>global store</a> as global store as Single Source of Truth (SSoT) pattern.</p>
-<pre><code class="language-tsx"><span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>({ <span class="hljs-attr">store</span>: { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span> } }).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
+<pre><code class="language-tsx"><span class="hljs-keyword">await</span> <span class="hljs-title function_">launch</span>({ <span class="hljs-attr">store</span>: { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;world&#x27;</span> } }).<span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">Hello</span> = (<span class="hljs-params">props, feeds</span>) =&gt; <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
    Hello { feeds.store.name || &#x27;World&#x27; } !

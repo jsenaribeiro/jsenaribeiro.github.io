@@ -258,8 +258,8 @@ body.marp-vscode blockquote {
 <span class="hljs-comment">// 1. create a function that receives and returns a props </span>
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">shown</span> = props =&gt; ({ ...props, <span class="hljs-attr">hidden</span>: !props.<span class="hljs-property">shown</span> })
 
-<span class="hljs-comment">// 2. inject the function into server IoC container</span>
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;/routes&quot;</span>).<span class="hljs-title function_">inject</span>([ shown ]).<span class="hljs-title function_">render</span>(<span class="hljs-string">&quot;#root&quot;</span>)
+<span class="hljs-comment">// 2. inject the function into launch IoC container</span>
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">launch</span>(<span class="hljs-string">&quot;/routes&quot;</span>).<span class="hljs-title function_">inject</span>([ shown ]).<span class="hljs-title function_">server</span>(<span class="hljs-string">&quot;#root&quot;</span>)
 
 <span class="hljs-comment">// 3. declare in module &quot;react&quot; to enable intellisense</span>
 declare <span class="hljs-variable language_">module</span> <span class="hljs-string">&quot;react&quot;</span> { interface <span class="hljs-title class_">HTMLAttribute</span> { show?:boolean }}

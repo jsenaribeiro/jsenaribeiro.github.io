@@ -278,11 +278,11 @@ MY_VALUE=<span class="hljs-number">100</span> <span class="hljs-comment"># custo
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">get</span> = request =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Response</span>(<span class="hljs-string">&#x27;Hello World!&#x27;</span>)
 </code></pre>
 <h2 id="http-middleware-draft">HTTP Middleware (draft)</h2>
-<p>The handle server method allows middlewares in request-response pipeline.</p>
-<pre><code class="language-ts"><span class="hljs-keyword">import</span> { server } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactful/server&#x27;</span>
+<p>The handle launch method allows middlewares in request-response pipeline.</p>
+<pre><code class="language-ts"><span class="hljs-keyword">import</span> { launch } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;reactful/server&#x27;</span>
 <span class="hljs-keyword">import</span> { middleware } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./middlewares&#x27;</span>
 
-<span class="hljs-keyword">await</span> <span class="hljs-title function_">server</span>().<span class="hljs-title function_">handle</span>(middleware).<span class="hljs-title function_">render</span>()
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">launch</span>().<span class="hljs-title function_">handle</span>(middleware).<span class="hljs-title function_">render</span>()
 </code></pre>
 <p>Response is optional, if it is returned, it will stop the request pipeline.</p>
 <pre><code class="language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title function_">middleware</span>(<span class="hljs-params">request: Request</span>): <span class="hljs-title class_">Response</span> | <span class="hljs-built_in">void</span> {
