@@ -1,6 +1,3 @@
-index
-
-
 overview
 - Startup: template
 - Structure: structure
